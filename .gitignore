@@ -1,0 +1,7 @@
+
+.vs/Binary-Brains-Repository/v16/.suo
+*.sqlite
+*.cs
+*.cache
+.vs/VSWorkspaceState.json
+Del 5/BinaryBrainsAPI/BinaryBrainsAPI/obj/Release/net5.0/BinaryBrainsAPI.GeneratedMSBuildEditorConfig.editorconfig
