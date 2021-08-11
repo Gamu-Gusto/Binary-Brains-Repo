@@ -5979,19 +5979,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Reinhardt Smit\\.nuget\\packages\\": {}
+    "C:\\Users\\ABSC612\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\2021 Coding\\370 PROJECT\\API\\FINAL\\BinaryBrainsAPI\\BinaryBrainsAPI\\BinaryBrainsAPI.csproj",
+      "projectUniqueName": "C:\\Users\\ABSC612\\Source\\Repos\\Binary-Brains-Repository\\Del 5\\BinaryBrainsAPI\\BinaryBrainsAPI\\BinaryBrainsAPI.csproj",
       "projectName": "BinaryBrainsAPI",
-      "projectPath": "C:\\2021 Coding\\370 PROJECT\\API\\FINAL\\BinaryBrainsAPI\\BinaryBrainsAPI\\BinaryBrainsAPI.csproj",
-      "packagesPath": "C:\\Users\\Reinhardt Smit\\.nuget\\packages\\",
-      "outputPath": "C:\\2021 Coding\\370 PROJECT\\API\\FINAL\\BinaryBrainsAPI\\BinaryBrainsAPI\\obj\\",
+      "projectPath": "C:\\Users\\ABSC612\\Source\\Repos\\Binary-Brains-Repository\\Del 5\\BinaryBrainsAPI\\BinaryBrainsAPI\\BinaryBrainsAPI.csproj",
+      "packagesPath": "C:\\Users\\ABSC612\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ABSC612\\Source\\Repos\\Binary-Brains-Repository\\Del 5\\BinaryBrainsAPI\\BinaryBrainsAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Reinhardt Smit\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ABSC612\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5999,7 +5999,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "http://api.nuget.org/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net5.0": {
@@ -6054,7 +6054,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }
