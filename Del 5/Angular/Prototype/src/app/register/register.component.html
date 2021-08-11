@@ -1,0 +1,171 @@
+<div class="container">
+    <br>
+    <div class="row">
+        <div class="col" style="background-color: black;">
+            <img src="../assets/logo/artech.png" class="logo"  alt="user">
+        </div>
+
+        <div class="col">
+            <div class="row">
+                <div class="col">
+                    <h3>Registration</h3>
+                </div>
+                <div class="col">
+                    <button mdbBtn type="button" gradient="peach" (click)="cancelRegistration(cancelRegisterModal)"  style="float: right" rounded="true" mdbWavesEffect>Back</button>
+                </div>
+            </div>
+            <br>
+
+        <div class="row">
+            <div class="col">
+                <label>Fisrt Name</label>
+                <input type="text" class="form-control" style="width: 250px;" placeholder="Enter Name">
+            </div>
+            <div class="col">
+                <label>Last Name</label>
+                <input type="text" class="form-control" style="width: 250px;" placeholder="Enter Surname">
+            </div>
+        </div>
+        <br>
+
+        
+        <div class="row">
+            <div class="col">
+                <label>Email Address</label>
+                <input type="email" class="form-control" style="width: 250px;" placeholder="E-mail">
+            </div>
+            <div class="col">
+                <label>Username</label>
+                <input type="text" class="form-control" style="width: 250px;" placeholder="Username">
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col">
+                <div>
+                    <div class="form-group">
+                        <label for="sel1">User Type:</label>
+                        <select class="form-control" id="sel1">
+                          <option>User</option>
+                          <option>Artist</option>
+                        </select>
+                      </div> 
+                </div>
+            </div>
+            <div class="col">
+                
+        <div>
+            <label>Phone Number</label>
+            <input type="text" class="form-control" style="width: 250px;" placeholder="+ (27)">
+        </div>
+            </div>
+        </div>
+        <br>
+
+        
+        <div class="row">
+            <div class="col">
+                <label>Password</label>
+                <input type="password" class="form-control" style="width: 250px;" placeholder="Password">
+            </div>
+            <div class="col">
+                <label>Confirm Password</label>
+                <input type="password" class="form-control" style="width: 250px;" placeholder="Confirm Password">
+            </div>
+        </div>
+        <br>
+
+        <br>
+
+        <div>
+            <div class="form-group">
+                <label for="sel1">Country</label>
+                <select class="form-control" id="sel1">
+                  <option>South Africa</option>
+                  <option>Italy</option>
+                </select>
+              </div> 
+        </div>
+
+        <div>
+            <div class="form-group">
+                <label for="sel1">Province</label>
+                <select class="form-control" id="sel1">
+                  <option>Gauteng</option>
+                  <option>Vrystaat</option>
+                </select>
+              </div> 
+        </div>
+
+        <label>City</label>
+        <input type="text" class="form-control" placeholder="City">
+        <br>
+        <label>Suburb</label>
+        <input type="text" class="form-control" placeholder="Suburb">
+        <br>
+
+        <div class="row">
+            <div class="col">
+                <label>Address Line</label>
+                <input type="text" class="form-control" style="width: 250px;" placeholder="Address Line">
+            </div>
+            <div class="col">
+                <label>Postal Code</label>
+                <input type="text" class="form-control" style="width: 250px;" placeholder="Postal Code">
+            </div>
+        </div>
+        <br>
+
+        
+        
+        <!-- <button mdbBtn type="button" gradient="purple" (click)="onRegister(registerModal)"  rounded="true" mdbWavesEffect>Register</button> -->
+        <button mdbBtn type="button" gradient="purple" [routerLink]="['/register-artist']"  rounded="true" mdbWavesEffect>Next</button> 
+
+
+        </div>
+    </div>
+</div>
+
+
+<!-- ============================================================================ -->
+<!-- ===============MODALS BELOW========================================================================================================== -->
+
+
+<ng-template #registerModal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Confirm Registration</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Do you want to confirm registration details?</p>
+    </div>
+    <div class="modal-footer">
+        <button mdbBtn type="button" gradient="peach" (click)="modal.dismiss('Cross click')"rounded="true" mdbWavesEffect>No</button>
+      <button mdbBtn type="button" gradient="purple" (click)="submitRegistration(registerModal)" rounded="true" mdbWavesEffect>Confirm</button>
+    </div>
+  </ng-template>
+
+
+  <!-- ============================================================================ -->
+<!-- ===============MODALS BELOW========================================================================================================== -->
+
+
+<ng-template #cancelRegisterModal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Cancel Registration</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Are you sure you want to cancel the registration process?</p>
+    </div>
+    <div class="modal-footer">
+        <button mdbBtn type="button" gradient="peach" (click)="modal.dismiss('Cross click')"rounded="true" mdbWavesEffect>No</button>
+      <button mdbBtn type="button" gradient="purple" (click)="yesCancel(cancelRegisterModal)" rounded="true" mdbWavesEffect>Yes</button>
+    </div>
+  </ng-template>
+
