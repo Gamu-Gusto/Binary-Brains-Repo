@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BinaryBrainsAPI.Entities.Images;
+using BinaryBrainsAPI.Entities.Users;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -11,10 +13,8 @@ namespace BinaryBrainsAPI.Entities.Artworks
     {
         [Key]
         public int ArtworkID { get; set; }
-        [Required]
         public string ArtworkTitle { get; set; }
         public double ArtworkPrice { get; set; }
-        public string ArtworkPicture { get; set; }
 
         [ForeignKey("SurfaceTypeID")]
         public int SurfaceTypeID { get; set; }
@@ -35,5 +35,17 @@ namespace BinaryBrainsAPI.Entities.Artworks
         [ForeignKey("FrameColourID")]
         public int FrameColourID { get; set; }
         public FrameColour FrameColour { get; set; }
+
+        [ForeignKey("ImageID")]
+        public int ImageID { get; set; }
+        public Image Image { get; set; }
+
+        [ForeignKey("UserID")]
+        public int UserID { get; set; }
+        public User User { get; set; }
+
+        [ForeignKey("ArtworkTypeID")]
+        public int ArtworkTypeID { get; set; }
+        public ArtworkType ArtworkType { get; set; }
     }
 }

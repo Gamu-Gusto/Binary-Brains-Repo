@@ -11,7 +11,6 @@ namespace BinaryBrainsAPI.Entities.Exhibitions
         [Key]
         public int ScheduleTypeID { get; set; }
 
-        [Required]
         public string ScheduleTypeDescription { get; set; }
     }
 }

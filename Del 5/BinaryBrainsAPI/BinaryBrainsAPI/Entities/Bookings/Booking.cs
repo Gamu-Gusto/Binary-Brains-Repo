@@ -16,14 +16,11 @@ namespace BinaryBrainsAPI.Entities.Bookings
         [Key]
         public int BookingID { get; set; }
         public DateTime BookingDateTime { get; set; }
+        public string BookingStatus { get; set; }
 
         [ForeignKey("BookingNotificationID")]
         public int? BookingNotificationID { get; set; }
         public BookingNotification BookingNotification { get; set; }
-
-        [ForeignKey("PaymentID")]
-        public int PaymentID { get; set; }
-        public Payment Payment { get; set; }
 
         [ForeignKey("ArtClassID")]
         public int ArtClassID { get; set; }

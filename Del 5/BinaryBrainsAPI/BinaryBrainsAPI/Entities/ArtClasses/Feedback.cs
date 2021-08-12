@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BinaryBrainsAPI.Entities.Users;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -15,6 +16,10 @@ namespace BinaryBrainsAPI.Entities.ArtClasses
         public double TeacherRating { get; set; }
         public double DifficultyRating { get; set; }
         public double OverallRating { get; set; }
+
+        [ForeignKey("UserID")]
+        public int UserID { get; set; }
+        public User User { get; set; }
 
         [ForeignKey("ArtClassID")] 
         public int ArtClassID { get; set; }

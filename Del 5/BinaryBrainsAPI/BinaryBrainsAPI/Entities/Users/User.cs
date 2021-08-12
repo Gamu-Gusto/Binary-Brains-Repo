@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BinaryBrainsAPI.Entities.Images;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -21,7 +22,7 @@ namespace BinaryBrainsAPI.Entities.Users
         public string UserAddressLine1 { get; set; }
         public string UserAddressLine2 { get; set; }
         public int UserPostalCode { get; set; }
-        public string UserProfilePicture { get; set; }
+        public string ArtistBio { get; set; }
 
         [ForeignKey("UserTypeID")]
         public int UserTypeID { get; set; }
@@ -30,6 +31,10 @@ namespace BinaryBrainsAPI.Entities.Users
         [ForeignKey("SuburbID")]
         public int SuburbID { get; set; }
         public Suburb Suburb { get; set; }
+
+        [ForeignKey("ImageID")]
+        public int ImageID { get; set; }
+        public Image Image { get; set; }
 
 
     }

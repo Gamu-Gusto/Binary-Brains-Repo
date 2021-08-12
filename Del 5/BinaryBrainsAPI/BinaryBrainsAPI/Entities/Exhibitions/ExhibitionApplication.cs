@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BinaryBrainsAPI.Entities.Images;
+using BinaryBrainsAPI.Entities.Users;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -11,9 +13,6 @@ namespace BinaryBrainsAPI.Entities.Exhibitions
     {
         [Key]
         public int ExhibitionApplicationID { get; set; }
-        public string ExhibitionPicture1 { get; set; }
-        public string ExhibitionPicture2 { get; set; }
-        public string ExhibitionPicture3 { get; set; }
         public string ApplicationDescription { get; set; }
 
         [ForeignKey("ExhibitionID")]
@@ -23,5 +22,13 @@ namespace BinaryBrainsAPI.Entities.Exhibitions
         [ForeignKey("ApplicationStatusID")]
         public int ApplicationStatusID { get; set; }
         public ApplicationStatus ApplicationStatus { get; set; }
+
+        [ForeignKey("ImageID")]
+        public int ImageID { get; set; }
+        public Image Image { get; set; }
+
+        [ForeignKey("UserID")]
+        public int UserID { get; set; }
+        public User User { get; set; }
     }
 }

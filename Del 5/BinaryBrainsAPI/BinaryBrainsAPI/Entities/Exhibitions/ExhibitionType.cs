@@ -10,8 +10,6 @@ namespace BinaryBrainsAPI.Entities.Exhibitions
     {
         [Key]
         public int ExhibitionTypeID { get; set; }
-
-        [Required]
         public string ExhibitionTypeDecription { get; set; }
     }
 }

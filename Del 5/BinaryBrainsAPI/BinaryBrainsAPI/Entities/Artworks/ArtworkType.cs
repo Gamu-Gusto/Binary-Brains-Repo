@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace BinaryBrainsAPI.Entities.Artworks
 {
-    public class ShowcaseArtwork
+    public class ArtworkType
     {
         [Key]
-        public int ShowcaseArtworkID { get; set; }
-        public string ShowCaseTitle { get; set; }
-        public string ShowCaseImage { get; set; }
+        public int ArtworkTypeID { get; set; }
+        public string ArtworkTypeDescription { get; set; }
     }
 }

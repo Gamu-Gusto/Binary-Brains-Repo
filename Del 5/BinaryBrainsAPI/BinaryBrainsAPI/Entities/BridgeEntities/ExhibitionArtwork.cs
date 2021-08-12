@@ -1,17 +1,20 @@
-﻿using BinaryBrainsAPI.Entities.BridgeEntities;
+﻿using BinaryBrainsAPI.Entities.Artworks;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BinaryBrainsAPI.Entities
+namespace BinaryBrainsAPI.Entities.BridgeEntities
 {
-	public class ExhibitionArtwork
-	{
-	    public int ArtworkID { get; set; }
+    public class ExhibitionArtwork
+    {
+        [ForeignKey("ExhibitionID")]
+        public int ExhibitionID { get; set; }
+        public Exhibition Exhibition { get; set; }
 
-		public int ExhibitionID { get; set; }
-	}
+        [ForeignKey("ArtworkID")]
+        public int ArtworkID { get; set; }
+        public Artwork Artwork { get; set; }
+    }
 }

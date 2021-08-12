@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BinaryBrainsAPI.Entities.Bookings;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -22,8 +23,12 @@ namespace BinaryBrainsAPI.Entities.Payments
         public int PaymentStatusID { get; set; }
         public PaymentStatus PaymentStatus { get; set; }
 
-        //[ForeignKey("BookingID")]
-        //public int BookingID { get; set; }
-        //public Booking Booking { get; set; }
+       [ForeignKey("BookingID")]
+       public int BookingID { get; set; }
+       public Booking Booking { get; set; }
+
+        [ForeignKey("RefundID")]
+        public int RefundID { get; set; }
+        public Refund Refund { get; set; }
     }
 }

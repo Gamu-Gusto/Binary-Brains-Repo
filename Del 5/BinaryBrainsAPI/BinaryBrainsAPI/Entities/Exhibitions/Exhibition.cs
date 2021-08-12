@@ -1,4 +1,5 @@
 ﻿using BinaryBrainsAPI.Entities.Exhibitions;
+using BinaryBrainsAPI.Entities.Images;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -13,20 +14,13 @@ namespace BinaryBrainsAPI.Entities
         [Key]
         public int ExhibitionID { get; set; }
 
-        [Required]
         public string ExhibitionName { get; set; }
 
-        [Required]
         public string ExhibitionDescription { get; set; }
 
-        [Required]
         public DateTime ExhibitionDate { get; set; }
 
-        [Required]
         public DateTime ExhibitionTime { get; set; }
-
-        [Required]
-        public string Exhibition_Image { get; set; }
 
         [ForeignKey("ExhibitionTypeID")]
         public int ExhibitionTypeID { get; set; }
@@ -40,13 +34,13 @@ namespace BinaryBrainsAPI.Entities
         public int OrganisationID { get; set; }
         public Organisation Organisation { get; set; }
 
-        [ForeignKey("ExhibitionAnnouncementID")]
-        public int ExhibitionAnnouncementID { get; set; }
-        public ExhibitionAnnouncement ExhibitionAnnouncement { get; set; }
-
         [ForeignKey("VenueID")]
         public int VenueID { get; set; }
         public Venue Venue { get; set; }
+
+        [ForeignKey("ImageID")]
+        public int ImageID { get; set; }
+        public Image Image { get; set; }
 
     }
 }
