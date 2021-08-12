@@ -1,0 +1,60 @@
+<div class="container" >
+<div class="row">
+  <div class="col">
+      <img src="../assets/logo/artech.png" class="logo"  alt="user">
+  </div>
+  <div class="col">
+      
+<div class="col"></div>
+  <div class="login-form" style="width: 350px">
+     
+    <!-- <form class="text-center border border-light p-5"> -->
+        <div>
+        <p class="h4 mb-4">Welcome, Sign in</p>
+        <div class="text-center">
+          <img src="../assets/user/User_Circle.png" class="img-fluid" alt="user">
+        </div>
+      <br>
+        <!-- Email -->
+        <label>Email</label>
+        <input type="email" id="defaultLoginFormEmail" class="form-control" style="width: 250px; margin-left: auto; margin-right: auto" placeholder="E-mail">
+      
+        <!-- Password -->
+        <label>Password</label>
+        <input type="password" id="defaultLoginFormPassword" class="form-control" style="width: 250px; margin-left: auto; margin-right: auto" placeholder="Password">
+      
+        <div class="d-flex justify-content-around">
+          <div>
+            <!-- Forgot password -->
+            <a href="/reset-password">Forgot password?</a>
+          </div>
+        </div>
+        <br>
+      
+        <!--  Login button -->
+    <div>
+        <button mdbBtn type="button" gradient="blue" [routerLink]="['/home']" rounded="true" mdbWavesEffect>Login User</button>
+    </div>
+     <div>
+      <button mdbBtn type="button" gradient="blue" [routerLink]="['/artist-home']" rounded="true" mdbWavesEffect>Login Artist</button>
+  </div> 
+    <br>
+      
+        <!-- Register -->
+        <p>Not a member?
+        </p>
+        <div class="row">
+          <div class="col">
+            <button mdbBtn type="button" gradient="aqua" style="width:200px;" rounded="true" [routerLink]="['/register']" mdbWavesEffect>Register As User</button>          
+          </div>
+          <div class="col">
+            <button mdbBtn type="button" gradient="purple" [routerLink]="['/register']" rounded="true" mdbWavesEffect>Register as Artist</button>
+          </div>
+        </div>
+      <!-- </form> -->
+    </div>
+    </div>
+  </div>
+  </div>
+</div>
+  

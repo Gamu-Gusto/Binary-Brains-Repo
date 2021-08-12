@@ -716,6 +716,24 @@ namespace BinaryBrainsAPI.Migrations
                     b.ToTable("Country");
                 });
 
+            modelBuilder.Entity("BinaryBrainsAPI.Entities.Users.Privileges", b =>
+                {
+                    b.Property<int>("PrivilegesID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Privilege")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PrivilegeDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("PrivilegesID");
+
+                    b.ToTable("Privileges");
+                });
+
             modelBuilder.Entity("BinaryBrainsAPI.Entities.Users.Province", b =>
                 {
                     b.Property<int>("ProvinceID")
@@ -818,10 +836,15 @@ namespace BinaryBrainsAPI.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("PrivilegesID")
+                        .HasColumnType("int");
+
                     b.Property<string>("UserRoleDescription")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UserTypeID");
+
+                    b.HasIndex("PrivilegesID");
 
                     b.ToTable("UserType");
                 });
@@ -1128,6 +1151,17 @@ namespace BinaryBrainsAPI.Migrations
                     b.Navigation("Suburb");
 
                     b.Navigation("UserType");
+                });
+
+            modelBuilder.Entity("BinaryBrainsAPI.Entities.Users.UserType", b =>
+                {
+                    b.HasOne("BinaryBrainsAPI.Entities.Users.Privileges", "Privileges")
+                        .WithMany()
+                        .HasForeignKey("PrivilegesID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Privileges");
                 });
 #pragma warning restore 612, 618
         }

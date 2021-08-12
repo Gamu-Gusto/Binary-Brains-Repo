@@ -1,0 +1,148 @@
+<div class="page-padding">
+  <div class="container">
+    <img
+      src="../../../assets/art-class/art-class-poster.png"
+      alt=""
+      style="width: 900px; height: 300px"
+    />
+    <div class="bottom-left">
+      <img
+        src="../../../assets/user/User_Circle.png"
+        alt=""
+        style="width: 100px; height: 100px"
+      />
+      <h1>Reinhardt Smit</h1>
+      <button
+        type="button"
+        class="btn btn-outline-secondary btn-rounded"
+        data-mdb-ripple-color="dark"
+      >
+        Edit Profile Pic
+      </button>
+    </div>
+  </div>
+  <h3>My Account</h3>
+  <p>View and edit personal info below.</p>
+  <hr />
+  <div class="profile-card">
+  <div class="row">
+    <div class="col">
+      <label>Fisrt Name</label>
+      <input
+        type="text"
+        class="form-control"
+        style="width: 535px"
+        placeholder="Enter Name"
+      />
+      <br />
+      <label>Last Name</label>
+      <input
+        type="text"
+        class="form-control"
+        style="width: 535px"
+        placeholder="Enter Surname"
+      />
+      <br />
+
+      <div>
+        <label>Email Address</label>
+        <input
+          type="email"
+          class="form-control"
+          style="width: 535px"
+          placeholder="E-mail"
+        />
+      </div>
+      <br>
+
+   
+
+      
+      <br />
+    </div>
+    <div class="col">
+
+      <div>
+        <label>Phone Number</label>
+        <input
+          type="text"
+          class="form-control"
+          style="width: 535px"
+          placeholder="+ (27)"
+        />
+      </div>
+      <br />
+
+      <div>
+        <label>Address Line</label>
+        <input
+          type="email"
+          class="form-control"
+          style="width: 535px"
+          placeholder="Address Line"
+        />
+      </div>
+
+      
+      <br />
+
+      <div>
+        <label>Postal Code</label>
+        <input
+          type="email"
+          class="form-control"
+          style="width: 535px"
+          placeholder="Postal Code"
+        />
+      </div>
+    </div>
+  </div>
+  <br />
+</div>
+
+  <button
+    mdbBtn
+    type="button"
+    gradient="purple"
+    (click)="onUpdateUser(updateUserModal)"
+    rounded="true"
+    mdbWavesEffect
+  >
+    Update Info
+  </button>
+</div>
+<br />
+
+<!-- ============================================================================ -->
+<!-- ===============MODALS BELOW========================================================================================================== -->
+
+<ng-template #updateUserModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Update User Profile</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Are you sure you want update your profile details?</p>
+  </div>
+  <div class="modal-footer">
+    <button mdbBtn type="button" gradient="peach" rounded="true" (click)="modal.dismiss('Cross click')"  mdbWavesEffect>No</button>
+
+    <button
+      mdbBtn
+      type="button"
+      gradient="purple"
+      (click)="submitUpdateUser(updateUserModal)"
+      rounded="true"
+      mdbWavesEffect
+    >
+      Yes
+    </button>
+  </div>
+</ng-template>

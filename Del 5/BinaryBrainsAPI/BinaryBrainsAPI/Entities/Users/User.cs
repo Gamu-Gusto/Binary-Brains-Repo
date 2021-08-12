@@ -30,5 +30,7 @@ namespace BinaryBrainsAPI.Entities.Users
         [ForeignKey("SuburbID")]
         public int SuburbID { get; set; }
         public Suburb Suburb { get; set; }
+
+
     }
 }
