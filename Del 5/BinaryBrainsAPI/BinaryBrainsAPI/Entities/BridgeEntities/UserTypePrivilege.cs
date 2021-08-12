@@ -14,11 +14,11 @@ namespace BinaryBrainsAPI.Entities.BridgeEntities
         public int UserTypePrivilegeID { get; set; }
 
         [ForeignKey("UserTypeID")]
-        public int UserTypeID { get; set; }
+        public int? UserTypeID { get; set; }
         public UserType UserType { get; set; }
 
         [ForeignKey("PrivilegesID")]
-        public int PrivilegesID { get; set; }
+        public int? PrivilegesID { get; set; }
         public Privileges Privileges { get; set; }
     }
 }
