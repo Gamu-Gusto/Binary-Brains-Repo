@@ -11,7 +11,7 @@ namespace BinaryBrainsAPI.Entities.Images
     {
         [Key]
         public int ImageID { get; set; }
-        public string Image { get; set; }
+        public byte ImageContent { get; set; }
 
         [ForeignKey("ImageTypeID")]
 
