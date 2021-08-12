@@ -3,7 +3,9 @@ using BinaryBrainsAPI.Entities.ArtClasses;
 using BinaryBrainsAPI.Entities.Artists;
 using BinaryBrainsAPI.Entities.Artworks;
 using BinaryBrainsAPI.Entities.Bookings;
+using BinaryBrainsAPI.Entities.BridgeEntities;
 using BinaryBrainsAPI.Entities.Exhibitions;
+using BinaryBrainsAPI.Entities.Images;
 using BinaryBrainsAPI.Entities.Payments;
 using BinaryBrainsAPI.Entities.Users;
 using Microsoft.EntityFrameworkCore;
@@ -39,12 +41,13 @@ namespace BinaryBrainsAPI.Data
         public DbSet<ArtworkStatus> ArtworkStatus { get; set; }
         public DbSet<ArtworkDimension> ArtworkDimension { get; set; }
         public DbSet<FrameColour> FrameColour { get; set; }
-        public DbSet<ShowcaseArtwork> ShowcaseArtwork { get; set; }
+        public DbSet<ArtworkType> ArtworkType { get; set; }
 
         // Payment
         public DbSet<Payment> Payment { get; set; }
         public DbSet<PaymentType> PaymentType { get; set; }
         public DbSet<PaymentStatus> PaymentStatus { get; set; }
+        public DbSet<Refund> Refund { get; set; }
 
         // Bookings
         public DbSet<Booking> Booking { get; set; }
@@ -65,10 +68,21 @@ namespace BinaryBrainsAPI.Data
         public DbSet<City> City { get; set; }
         public DbSet<Province> Province { get; set; }
         public DbSet<Country> Country { get; set; }
+        public DbSet<Privileges> Privileges { get; set; }
 
         // Artists
         public DbSet<Invitation> Invitation { get; set; }
         public DbSet<InvitationStatus> InvitationStatus { get; set; }
+
+        // Bridge Entities
+        public DbSet<ExhibitionArtwork> ExhibitionArtwork { get; set; }
+        public DbSet<UserInvitation> UserInvitation { get; set; }
+        public DbSet<UserTypePrivilege> UserTypePrivilege { get; set; }
+
+        // Images
+        public DbSet<Image> Image { get; set; }
+        public DbSet<ImageType> ImageType { get; set; }
+
 
     }
 }
