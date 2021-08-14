@@ -1,0 +1,138 @@
+<div class="container">
+    <div class="row">
+    <h1>Artworks</h1>
+    </div>
+<hr>
+<br>
+<button type="button" class="btn btn-primary" (click)="addArtwork(addArtworkModal)" >Add Artwork <i class="fas fa-plus"></i></button>
+<br>
+<br>
+<div class="card-deck">
+    <div class="card">
+      <img src="./../assets/artworks/artwork1.png" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Ori Blind Forest</h5>
+        <p class="card-text">
+            <li>Medium: Ink</li>
+            <li>Surface: Digital</li>
+            <li>Dimensions: w 1000mm - h 562mm</li>
+            <li>Price: R 1500.00</li>
+        </p>
+        <p class="card-text"><small class="text-muted">By James McDonald</small></p>
+      </div>
+      <button type="button" class="btn btn-success" (click)="onDeleteArtwork(deleteArtworkModal)"  >Update <i class="fas fa-edit"></i></button>
+      <button type="button" class="btn btn-danger" (click)="onDeleteArtwork(deleteArtworkModal)" >Delete <i class="fas fa-trash"></i></button>
+
+    </div>
+    <div class="card">
+      <img src="./../assets/artworks/artwork2.png" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Colourful Character</h5>
+        <p class="card-text">
+            <li>Medium: Painting</li>
+            <li>Surface: Paper and Cardboard.</li>
+            <li>Dimensions: w 600mm - h 600mm</li>
+            <li>Price: R 2000.00</li>
+        </p>
+        <p class="card-text"><small class="text-muted">By Jamie Smith</small></p>
+      </div>
+      <button type="button" class="btn btn-success"  (click)="addArtwork(addArtworkModal)"   >Update <i class="fas fa-edit"></i></button>
+      <button type="button" class="btn btn-danger" (click)="onDeleteArtwork(deleteArtworkModal)" >Delete <i class="fas fa-trash"></i></button>
+    </div>
+    <div class="card">
+      <img src="./../assets/artworks/artwork3.png" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Little Things</h5>
+        <p class="card-text">
+            <li>Medium: Pencil</li>
+            <li>Surface: Paper Drawing</li>
+            <li>Dimensions: w 1200mm - h 900mm</li>
+            <li>Price: R 1200.00</li>
+        </p>
+        <p class="card-text"><small class="text-muted">By Danny McFarlane</small></p>
+      </div>
+      <button type="button" class="btn btn-success" (click)="onDeleteArtwork(deleteArtworkModal)"  >Update <i class="fas fa-edit"></i></button>
+      <button type="button" class="btn btn-danger" (click)="onDeleteArtwork(deleteArtworkModal)"  >Delete <i class="fas fa-trash"></i></button>
+
+    </div>
+  </div>
+</div>
+<!-- =================================================================================== -->
+<!-- ========================MODAL BELOW ===================================================================== -->
+
+<ng-template #addArtworkModal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Update Artwork</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <label>Artwork Title:</label>
+        <input type="text" class="form-control" style="width: 250px;" placeholder="Artwork Title">
+        <br>
+        <label>Medium used:</label>
+        <input type="text" class="form-control" style="width: 250px;" placeholder="Medium type">
+        <br>
+        <label>Surface used:</label>
+        <input type="text" class="form-control" style="width: 250px;" placeholder="Surface Type">
+        <br>
+        <label>Dimmensions</label>
+        <input type="text" class="form-control" style="width: 250px;" placeholder="mm x mm">
+        <br>
+        <label>Price:</label>
+        <input type="text" class="form-control" style="width: 250px;" placeholder="R 0.00">
+        <br>
+        <button type="button"  class="btn btn-success">Change Picture <i class="fas fa-plus"></i></button>
+        <p>ori_blind_forest_picture.png</p>
+        </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-danger" (click)="modal.dismiss('Cross click')">Cancel</button>
+      <button type="button" class="btn btn-primary" (click)="onConfirm(confirmModal)">Save Changes</button>
+
+    </div>
+  </ng-template>
+
+  <!-- (click)="confirmArtwork(addArtworkModal)" -->
+  <!-- (click)="addArtwork(addArtworkModal)" -->
+
+
+  
+<!-- =========MODALS BELOW======================= -->
+
+<ng-template #deleteArtworkModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Delete Artwork</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" >
+    <p>Are you sure you want to delete this Artwork?</p>
+    </div>
+    <br>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="modal.dismiss('Cross click')">No</button>
+    <button type="button" class="btn btn-primary" (click)="confirmDeleteArtwork(deleteArtworkModal)">Yes</button>
+  </div>
+</ng-template>
+
+
+<!-- =========MODALS BELOW======================= -->
+
+<ng-template #confirmModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Confirm New Artwork</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" >
+    <p>Are you sure you want to add this Artwork?</p>
+    </div>
+    <br>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="modal.dismiss('Cross click')">No</button>
+    <button type="button" class="btn btn-primary" (click)="onYes(deleteArtworkModal)">Yes</button>
+  </div>
+</ng-template>

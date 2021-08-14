@@ -1,0 +1,99 @@
+<div class="container">
+    <div class="row">
+      <div class="col">
+        <h1>Participants</h1>
+      </div>
+      
+      <div class="col">
+        <button type="button" class="btn btn-danger" style="float: right;" [routerLink]="['/exhibitions']">Back</button>
+      </div>
+    </div>
+    <hr>
+    <h2>Exhibition Participants</h2>
+    <div class="row">
+      <label>Search Exhibntion User:</label>
+      <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Search">
+          <div class="input-group-append">
+            <button class="btn btn-outline-success" type="button"><i class="fas fa-search"></i></button>
+          </div>
+        </div>
+    </div>
+    <p><small>No searches found</small></p>
+    <br>
+    <button class="btn btn-success" style="float: right; margin-bottom: 20px;">Select All</button>
+    <button class="btn btn-primary" style="float: right; margin-bottom: 20px; margin-right: 10px;" (click)="removeSelectedArtists(removeAllArtistModal)">Delete</button>
+
+    <br>
+
+    <table class="table">
+        <thead>
+          <tr class="table-primary">
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Email Address</th>
+            <th scope="col">Phone number</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Tom</td>
+            <td>Cruise</td>
+            <td>tom@gmail.com</td>
+            <td>1234567890</td>
+            <td>
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+            </td>
+          </tr>
+
+          <tr>
+            <td>Elon</td>
+            <td>Musk</td>
+            <td>elon@gmail.com</td>
+            <td>1234567890</td>
+
+            <td>
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+
+    <ng-template #removeArtistModal let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title">Remove Artist from Exhibition</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" >
+      <p>Are you sure you want to remove this Artist from the exhibition?</p>
+          </div>
+          <br>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" (click)="modal.dismiss('Cross click')">No</button>
+          <button type="button" class="btn btn-primary" (click)="confirmRemove(removeArtistModal)">Yes</button>
+        </div>
+      </ng-template>
+
+
+      <ng-template #removeAllArtistModal let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title">Remove All Selected Artists</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" >
+      <p>Are you sure you want to remove all the selected artists fromt the exhibition?</p>
+          </div>
+          <br>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" (click)="modal.dismiss('Cross click')">No</button>
+          <button type="button" class="btn btn-primary" (click)="confirmRemoveAll(removeAllArtistModal)">Yes</button>
+        </div>
+      </ng-template>
