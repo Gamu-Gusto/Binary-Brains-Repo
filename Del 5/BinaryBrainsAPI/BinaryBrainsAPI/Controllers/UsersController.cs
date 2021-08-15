@@ -52,7 +52,7 @@ namespace BinaryBrainsAPI.Controllers
         {
             if (user == null)
             {
-                return BadRequest("Employee is null.");
+                return BadRequest("User is null.");
             }
             _appRepository.Add(user);
             return CreatedAtRoute(
