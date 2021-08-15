@@ -16,19 +16,19 @@ namespace BinaryBrainsAPI.Entities.Exhibitions
         public string ApplicationDescription { get; set; }
 
         [ForeignKey("ExhibitionID")]
-        public int ExhibitionID { get; set; }
+        public int? ExhibitionID { get; set; }
         public Exhibition Exhibition { get; set; }
 
         [ForeignKey("ApplicationStatusID")]
-        public int ApplicationStatusID { get; set; }
+        public int? ApplicationStatusID { get; set; }
         public ApplicationStatus ApplicationStatus { get; set; }
 
         [ForeignKey("ImageID")]
-        public int ImageID { get; set; }
+        public int? ImageID { get; set; }
         public Image Image { get; set; }
 
         [ForeignKey("UserID")]
-        public int UserID { get; set; }
+        public int? UserID { get; set; }
         public User User { get; set; }
     }
 }

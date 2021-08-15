@@ -10,6 +10,6 @@ namespace BinaryBrainsAPI.Entities.Users
     {
         [Key]
         public int CountryID { get; set; }
-        public string CountryDescription { get; set; }
+        public string CountryName { get; set; }
     }
 }

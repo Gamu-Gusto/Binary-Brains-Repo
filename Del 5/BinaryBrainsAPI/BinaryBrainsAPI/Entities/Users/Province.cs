@@ -11,7 +11,7 @@ namespace BinaryBrainsAPI.Entities.Users
     {
         [Key]
         public int ProvinceID { get; set; }
-        public string ProvinceDescription { get; set; }
+        public string ProvinceName { get; set; }
 
         [ForeignKey("CountryID")]
         public int CountryID { get; set; }

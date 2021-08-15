@@ -32,10 +32,5 @@ namespace BinaryBrainsAPI.Entities.Users
         public int SuburbID { get; set; }
         public Suburb Suburb { get; set; }
 
-        [ForeignKey("ImageID")]
-        public int ImageID { get; set; }
-        public Image Image { get; set; }
-
-
     }
 }

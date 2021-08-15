@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BinaryBrainsAPI.Entities.Users;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -11,11 +12,15 @@ namespace BinaryBrainsAPI.Entities.Images
     {
         [Key]
         public int ImageID { get; set; }
-        public byte ImageContent { get; set; }
+        public byte[] ImageContent { get; set; }
 
         [ForeignKey("ImageTypeID")]
 
         public int ImageTypeID { get; set; }
         public ImageType ImageType { get; set; }
+
+        [ForeignKey("UserID")]
+        public int UserID { get; set; }
+        public virtual User User { get; set; }
     }
 }

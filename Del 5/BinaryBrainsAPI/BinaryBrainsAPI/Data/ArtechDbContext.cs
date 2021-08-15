@@ -18,10 +18,14 @@ namespace BinaryBrainsAPI.Data
 {
     public class ArtechDbContext : DbContext
     {
+        
+
         public ArtechDbContext(DbContextOptions<ArtechDbContext> options) : base(options)
         {
 
         }
+
+       
 
         // Exhibition
         public DbSet<Exhibition> Exhibition { get; set; }
@@ -69,6 +73,7 @@ namespace BinaryBrainsAPI.Data
         public DbSet<Province> Province { get; set; }
         public DbSet<Country> Country { get; set; }
         public DbSet<Privileges> Privileges { get; set; }
+        
 
         // Artists
         public DbSet<Invitation> Invitation { get; set; }
@@ -77,11 +82,12 @@ namespace BinaryBrainsAPI.Data
         // Bridge Entities
         public DbSet<ExhibitionArtwork> ExhibitionArtwork { get; set; }
         public DbSet<UserInvitation> UserInvitation { get; set; }
-        public DbSet<UserTypePrivilege> UserTypePrivilege { get; set; }
+  
 
         // Images
         public DbSet<Image> Image { get; set; }
         public DbSet<ImageType> ImageType { get; set; }
+        public DbSet<UserTypePrivilege> UserTypePrivilege { get; set; }
 
 
     }

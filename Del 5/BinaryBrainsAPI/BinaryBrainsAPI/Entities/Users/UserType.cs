@@ -11,10 +11,10 @@ namespace BinaryBrainsAPI.Entities.Users
     {
         [Key]
         public int UserTypeID { get; set; }
-        public string UserRoleDescription { get; set; }
+        public string UserRoleName { get; set; }
 
         [ForeignKey("PrivilegesID")]
-        public int PrivilegesID { get; set; }
+        public int? PrivilegesID { get; set; }
         public Privileges Privileges { get; set; }
     }
 }

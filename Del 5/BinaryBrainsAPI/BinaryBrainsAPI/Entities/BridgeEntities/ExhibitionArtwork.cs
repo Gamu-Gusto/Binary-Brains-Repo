@@ -14,11 +14,11 @@ namespace BinaryBrainsAPI.Entities.BridgeEntities
         public int ExhibitionArtworkID { get; set; }
 
         [ForeignKey("ExhibitionID")]
-        public int ExhibitionID { get; set; }
+        public int? ExhibitionID { get; set; }
         public Exhibition Exhibition { get; set; }
 
         [ForeignKey("ArtworkID")]
-        public int ArtworkID { get; set; }
+        public int? ArtworkID { get; set; }
         public Artwork Artwork { get; set; }
     }
 }

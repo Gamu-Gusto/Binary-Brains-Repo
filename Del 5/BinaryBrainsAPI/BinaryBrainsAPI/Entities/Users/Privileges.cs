@@ -8,7 +8,7 @@ namespace BinaryBrainsAPI.Entities.Users
     public class Privileges
     {
         public int PrivilegesID { get; set; }
-        public string Privilege { get; set; }
+        public string PrivilegeName { get; set; }
         public string PrivilegeDescription{ get; set; }
     }
 }

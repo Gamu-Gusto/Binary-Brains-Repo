@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BinaryBrainsAPI.Dtos.ImageDtos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -25,5 +26,8 @@ namespace BinaryBrainsAPI.Dtos.UsersDtos
 
         public int SuburbID { get; set; }
         public SuburbDto Suburb { get; set; }
+
+        public int ImageID { get; set; }
+        public ImageDto Image { get; set; }
     }
 }

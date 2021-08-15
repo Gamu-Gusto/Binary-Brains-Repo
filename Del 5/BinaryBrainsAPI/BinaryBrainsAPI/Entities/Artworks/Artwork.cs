@@ -41,7 +41,7 @@ namespace BinaryBrainsAPI.Entities.Artworks
         public Image Image { get; set; }
 
         [ForeignKey("UserID")]
-        public int UserID { get; set; }
+        public int? UserID { get; set; }
         public User User { get; set; }
 
         [ForeignKey("ArtworkTypeID")]

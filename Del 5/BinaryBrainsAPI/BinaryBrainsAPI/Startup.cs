@@ -1,4 +1,8 @@
 using BinaryBrainsAPI.Data;
+using BinaryBrainsAPI.Entities.Images;
+using BinaryBrainsAPI.Entities.Users;
+using BinaryBrainsAPI.Interfaces;
+using BinaryBrainsAPI.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,6 +33,14 @@ namespace BinaryBrainsAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ArtechDbContext> (options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddScoped<IAppRepository<User>, UsersRepository>();
+            services.AddScoped<IAppRepository<City>, CityRepository>();
+            services.AddScoped<IAppRepository<Province>, ProvinceRepository>();
+            services.AddScoped<IAppRepository<Suburb>, SurburbRepository>();
+            services.AddScoped<IAppRepository<Country>, CountryRepository>();
+            services.AddScoped<IAppRepository<UserType>, UserTypeRepository>();
+            services.AddScoped<IAppRepository<Privileges>, PrivilegesRepository>();
+            services.AddScoped<IAppRepository<Image>, ImagesRepository>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
