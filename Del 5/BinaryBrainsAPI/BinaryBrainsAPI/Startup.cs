@@ -33,6 +33,8 @@ namespace BinaryBrainsAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ArtechDbContext> (options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            // User Repositories
             services.AddScoped<IAppRepository<User>, UsersRepository>();
             services.AddScoped<IAppRepository<City>, CityRepository>();
             services.AddScoped<IAppRepository<Province>, ProvinceRepository>();
@@ -41,6 +43,20 @@ namespace BinaryBrainsAPI
             services.AddScoped<IAppRepository<UserType>, UserTypeRepository>();
             services.AddScoped<IAppRepository<Privileges>, PrivilegesRepository>();
             services.AddScoped<IAppRepository<Image>, ImagesRepository>();
+
+            // Exhibition Repositories
+
+            // Art Classes Repositories
+
+            // Artists Repositories
+
+            // Artworks Repositories
+
+            // Bookings Repositories
+
+            // Payments Repositories
+
+            // Images Repositories
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
