@@ -1,10 +1,12 @@
 using BinaryBrainsAPI.Data;
 using BinaryBrainsAPI.Entities.ArtClasses;
+using BinaryBrainsAPI.Entities.Artists;
 using BinaryBrainsAPI.Entities.Images;
 using BinaryBrainsAPI.Entities.Users;
 using BinaryBrainsAPI.Interfaces;
 using BinaryBrainsAPI.Repository;
 using BinaryBrainsAPI.Repository.ArtClassesRepositories;
+using BinaryBrainsAPI.Repository.ArtistsRepositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -55,7 +57,10 @@ namespace BinaryBrainsAPI
             services.AddScoped<IAppRepository<ClassTeacher>, ClassTeacherRepository>();
             services.AddScoped<IAppRepository<Feedback>, FeedbackRepository>();
             services.AddScoped<IAppRepository<TeacherType>, TeacherTypeRepository>();
+
             // Artists Repositories
+            services.AddScoped<IAppRepository<Invitation>, InvitationRepository>();
+            services.AddScoped<IAppRepository<InvitationStatus>, InvitationStatusRepository>();
 
             // Artworks Repositories
 
