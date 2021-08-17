@@ -120,3 +120,13 @@ C:\Users\ABSC612\Source\Repos\Binary-Brains-Repository\Del 5\BinaryBrainsAPI\Bin
 C:\Users\ABSC612\Source\Repos\Binary-Brains-Repository\Del 5\BinaryBrainsAPI\BinaryBrainsAPI\obj\Debug\net5.0\ref\BinaryBrainsAPI.dll
 C:\Users\ABSC612\Source\Repos\Binary-Brains-Repository\Del 5\BinaryBrainsAPI\BinaryBrainsAPI\obj\Debug\net5.0\BinaryBrainsAPI.pdb
 C:\Users\ABSC612\Source\Repos\Binary-Brains-Repository\Del 5\BinaryBrainsAPI\BinaryBrainsAPI\obj\Debug\net5.0\BinaryBrainsAPI.genruntimeconfig.cache
+C:\Users\Reinhardt Smit\Source\Repos\Gamu-Gusto\Binary-Brains-Repository\Del 5\BinaryBrainsAPI\BinaryBrainsAPI\obj\Debug\net5.0\BinaryBrainsAPI.csproj.AssemblyReference.cache
+C:\Users\Reinhardt Smit\Source\Repos\Gamu-Gusto\Binary-Brains-Repository\Del 5\BinaryBrainsAPI\BinaryBrainsAPI\obj\Debug\net5.0\BinaryBrainsAPI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Reinhardt Smit\Source\Repos\Gamu-Gusto\Binary-Brains-Repository\Del 5\BinaryBrainsAPI\BinaryBrainsAPI\obj\Debug\net5.0\BinaryBrainsAPI.AssemblyInfoInputs.cache
+C:\Users\Reinhardt Smit\Source\Repos\Gamu-Gusto\Binary-Brains-Repository\Del 5\BinaryBrainsAPI\BinaryBrainsAPI\obj\Debug\net5.0\BinaryBrainsAPI.AssemblyInfo.cs
+C:\Users\Reinhardt Smit\Source\Repos\Gamu-Gusto\Binary-Brains-Repository\Del 5\BinaryBrainsAPI\BinaryBrainsAPI\obj\Debug\net5.0\BinaryBrainsAPI.csproj.CoreCompileInputs.cache
+C:\Users\Reinhardt Smit\Source\Repos\Gamu-Gusto\Binary-Brains-Repository\Del 5\BinaryBrainsAPI\BinaryBrainsAPI\obj\Debug\net5.0\BinaryBrainsAPI.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Reinhardt Smit\Source\Repos\Gamu-Gusto\Binary-Brains-Repository\Del 5\BinaryBrainsAPI\BinaryBrainsAPI\obj\Debug\net5.0\BinaryBrainsAPI.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Reinhardt Smit\Source\Repos\Gamu-Gusto\Binary-Brains-Repository\Del 5\BinaryBrainsAPI\BinaryBrainsAPI\obj\Debug\net5.0\BinaryBrainsAPI.dll
+C:\Users\Reinhardt Smit\Source\Repos\Gamu-Gusto\Binary-Brains-Repository\Del 5\BinaryBrainsAPI\BinaryBrainsAPI\obj\Debug\net5.0\ref\BinaryBrainsAPI.dll
+C:\Users\Reinhardt Smit\Source\Repos\Gamu-Gusto\Binary-Brains-Repository\Del 5\BinaryBrainsAPI\BinaryBrainsAPI\obj\Debug\net5.0\BinaryBrainsAPI.pdb

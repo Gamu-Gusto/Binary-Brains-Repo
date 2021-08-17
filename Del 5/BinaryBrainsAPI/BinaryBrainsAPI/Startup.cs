@@ -1,8 +1,10 @@
 using BinaryBrainsAPI.Data;
+using BinaryBrainsAPI.Entities.ArtClasses;
 using BinaryBrainsAPI.Entities.Images;
 using BinaryBrainsAPI.Entities.Users;
 using BinaryBrainsAPI.Interfaces;
 using BinaryBrainsAPI.Repository;
+using BinaryBrainsAPI.Repository.ArtClassesRepositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -47,6 +49,7 @@ namespace BinaryBrainsAPI
             // Exhibition Repositories
 
             // Art Classes Repositories
+            services.AddScoped<IAppRepository<ArtClass>, ArtClassRepository>();
 
             // Artists Repositories
 
