@@ -1,12 +1,14 @@
 using BinaryBrainsAPI.Data;
 using BinaryBrainsAPI.Entities.ArtClasses;
 using BinaryBrainsAPI.Entities.Artists;
+using BinaryBrainsAPI.Entities.Artworks;
 using BinaryBrainsAPI.Entities.Images;
 using BinaryBrainsAPI.Entities.Users;
 using BinaryBrainsAPI.Interfaces;
 using BinaryBrainsAPI.Repository;
 using BinaryBrainsAPI.Repository.ArtClassesRepositories;
 using BinaryBrainsAPI.Repository.ArtistsRepositories;
+using BinaryBrainsAPI.Repository.ArtworksRepositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -63,6 +65,13 @@ namespace BinaryBrainsAPI
             services.AddScoped<IAppRepository<InvitationStatus>, InvitationStatusRepository>();
 
             // Artworks Repositories
+            services.AddScoped<IAppRepository<Artwork>, ArtworkRepository>();
+            services.AddScoped<IAppRepository<ArtworkDimension>, ArtworkDimensionRepository>();
+            services.AddScoped<IAppRepository<ArtworkStatus>, ArtworkStatusRepository>();
+            services.AddScoped<IAppRepository<ArtworkType>, ArtworkTypeRepository>();
+            services.AddScoped<IAppRepository<FrameColour>, FrameColourRepository>();
+            services.AddScoped<IAppRepository<MediumType>, MediumTypeRepository>();
+            services.AddScoped<IAppRepository<SurfaceType>, SurfaceTypeRepository>();
 
             // Bookings Repositories
 
