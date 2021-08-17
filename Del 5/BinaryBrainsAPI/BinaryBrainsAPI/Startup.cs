@@ -50,7 +50,11 @@ namespace BinaryBrainsAPI
 
             // Art Classes Repositories
             services.AddScoped<IAppRepository<ArtClass>, ArtClassRepository>();
-
+            services.AddScoped<IAppRepository<ArtClassAnnouncement>, ArtClassAnnouncementRepository>();
+            services.AddScoped<IAppRepository<ArtClassType>, ArtClassTypeRepository>();
+            services.AddScoped<IAppRepository<ClassTeacher>, ClassTeacherRepository>();
+            services.AddScoped<IAppRepository<Feedback>, FeedbackRepository>();
+            services.AddScoped<IAppRepository<TeacherType>, TeacherTypeRepository>();
             // Artists Repositories
 
             // Artworks Repositories
