@@ -14,5 +14,7 @@ namespace BinaryBrainsAPI.Interfaces
         void Update(TEntity dbEntity, TEntity entity);
         void Delete(TEntity entity);
 
+        
+
     }
 }

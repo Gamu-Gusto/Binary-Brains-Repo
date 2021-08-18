@@ -5,8 +5,10 @@ using System.Threading.Tasks;
 
 namespace BinaryBrainsAPI.Interfaces
 {
-    public interface IIdentifier
+    public interface IIdentifier<TEntity> where TEntity : class
     {
-        int Id { get; set; }
+        TEntity getUser(string UserName);
+
+
     }
 }
