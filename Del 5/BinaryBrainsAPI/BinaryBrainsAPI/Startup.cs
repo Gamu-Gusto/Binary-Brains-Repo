@@ -6,6 +6,7 @@ using BinaryBrainsAPI.Entities.Artworks;
 using BinaryBrainsAPI.Entities.Bookings;
 using BinaryBrainsAPI.Entities.Exhibitions;
 using BinaryBrainsAPI.Entities.Images;
+using BinaryBrainsAPI.Entities.Payments;
 using BinaryBrainsAPI.Entities.Users;
 using BinaryBrainsAPI.Interfaces;
 using BinaryBrainsAPI.Repository;
@@ -14,6 +15,8 @@ using BinaryBrainsAPI.Repository.ArtistsRepositories;
 using BinaryBrainsAPI.Repository.ArtworksRepositories;
 using BinaryBrainsAPI.Repository.BookingsRepositories;
 using BinaryBrainsAPI.Repository.ExhibitionsRepositories;
+using BinaryBrainsAPI.Repository.ImagesRepositories;
+using BinaryBrainsAPI.Repository.PaymentsRepositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -92,9 +95,14 @@ namespace BinaryBrainsAPI
             services.AddScoped<IAppRepository<BookingNotification>, BookingNotificationRepository>();
 
             // Payments Repositories
+            services.AddScoped<IAppRepository<Payment>, PaymentRepository>();
+            services.AddScoped<IAppRepository<PaymentStatus>, PaymentStatusRepository>();
+            services.AddScoped<IAppRepository<PaymentType>, PaymentTypeRepository>();
+            services.AddScoped<IAppRepository<Refund>, RefundRepository>();
 
             // Images Repositories
-
+            services.AddScoped<IAppRepository<Image>, ImageRepository>();
+            services.AddScoped<IAppRepository<ImageType>, ImageTypeRepository>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
