@@ -7622,19 +7622,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ABSC612\\.nuget\\packages\\": {}
+    "C:\\Users\\Reinhardt Smit\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ABSC612\\Source\\Repos\\Binary-Brains-Repository\\Del 5\\BinaryBrainsAPI\\BinaryBrainsAPI\\BinaryBrainsAPI.csproj",
+      "projectUniqueName": "C:\\Users\\Reinhardt Smit\\Source\\Repos\\Gamu-Gusto\\Binary-Brains-Repository\\Del 5\\BinaryBrainsAPI\\BinaryBrainsAPI\\BinaryBrainsAPI.csproj",
       "projectName": "BinaryBrainsAPI",
-      "projectPath": "C:\\Users\\ABSC612\\Source\\Repos\\Binary-Brains-Repository\\Del 5\\BinaryBrainsAPI\\BinaryBrainsAPI\\BinaryBrainsAPI.csproj",
-      "packagesPath": "C:\\Users\\ABSC612\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ABSC612\\Source\\Repos\\Binary-Brains-Repository\\Del 5\\BinaryBrainsAPI\\BinaryBrainsAPI\\obj\\",
+      "projectPath": "C:\\Users\\Reinhardt Smit\\Source\\Repos\\Gamu-Gusto\\Binary-Brains-Repository\\Del 5\\BinaryBrainsAPI\\BinaryBrainsAPI\\BinaryBrainsAPI.csproj",
+      "packagesPath": "C:\\Users\\Reinhardt Smit\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Reinhardt Smit\\Source\\Repos\\Gamu-Gusto\\Binary-Brains-Repository\\Del 5\\BinaryBrainsAPI\\BinaryBrainsAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ABSC612\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Reinhardt Smit\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7642,7 +7642,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "http://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net5.0": {
