@@ -1,7 +1,10 @@
 using BinaryBrainsAPI.Data;
+using BinaryBrainsAPI.Entities;
 using BinaryBrainsAPI.Entities.ArtClasses;
 using BinaryBrainsAPI.Entities.Artists;
 using BinaryBrainsAPI.Entities.Artworks;
+using BinaryBrainsAPI.Entities.Bookings;
+using BinaryBrainsAPI.Entities.Exhibitions;
 using BinaryBrainsAPI.Entities.Images;
 using BinaryBrainsAPI.Entities.Users;
 using BinaryBrainsAPI.Interfaces;
@@ -9,6 +12,8 @@ using BinaryBrainsAPI.Repository;
 using BinaryBrainsAPI.Repository.ArtClassesRepositories;
 using BinaryBrainsAPI.Repository.ArtistsRepositories;
 using BinaryBrainsAPI.Repository.ArtworksRepositories;
+using BinaryBrainsAPI.Repository.BookingsRepositories;
+using BinaryBrainsAPI.Repository.ExhibitionsRepositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -51,6 +56,15 @@ namespace BinaryBrainsAPI
             services.AddScoped<IAppRepository<Image>, ImagesRepository>();
 
             // Exhibition Repositories
+            services.AddScoped<IAppRepository<ApplicationStatus>, ApplicationStatusRepository>();
+            services.AddScoped<IAppRepository<ExhibitionAnnouncement>, ExhibitionAnnouncementRepository>();
+            services.AddScoped<IAppRepository<ExhibitionApplication>, ExhibitionApplicationRepository>();
+            services.AddScoped<IAppRepository<Exhibition>, ExhibitionRepository>();
+            services.AddScoped<IAppRepository<ExhibitionType>, ExhibitionTypeRepository>();
+            services.AddScoped<IAppRepository<Organisation>, OrganisationRepository>();
+            services.AddScoped<IAppRepository<Schedule>, ScheduleRepository>();
+            services.AddScoped<IAppRepository<ScheduleType>, ScheduleTypeRepository>();
+            services.AddScoped<IAppRepository<Venue>, VenueRepository>();
 
             // Art Classes Repositories
             services.AddScoped<IAppRepository<ArtClass>, ArtClassRepository>();
@@ -74,10 +88,14 @@ namespace BinaryBrainsAPI
             services.AddScoped<IAppRepository<SurfaceType>, SurfaceTypeRepository>();
 
             // Bookings Repositories
+            services.AddScoped<IAppRepository<Booking>, BookingRepository>();
+            services.AddScoped<IAppRepository<BookingNotification>, BookingNotificationRepository>();
 
             // Payments Repositories
 
             // Images Repositories
+
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
