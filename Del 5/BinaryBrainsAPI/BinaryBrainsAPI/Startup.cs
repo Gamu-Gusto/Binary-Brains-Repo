@@ -18,6 +18,7 @@ using BinaryBrainsAPI.Repository.ExhibitionsRepositories;
 using BinaryBrainsAPI.Repository.ImagesRepositories;
 using BinaryBrainsAPI.Repository.PaymentsRepositories;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
@@ -31,6 +32,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web.Http;
 
 namespace BinaryBrainsAPI
 {
@@ -46,7 +48,18 @@ namespace BinaryBrainsAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ArtechDbContext> (options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("MyCorsPolicy", builder => builder
+                    .WithOrigins("http://localhost:4200", "http://localhost:4200")
+                    .AllowAnyMethod()
+                    .AllowCredentials()
+                    .WithHeaders("Accept", "Content-Type", "Origin", "X-My-Header"));
+                services.AddMvc();
+            });
+
+            services.AddDbContext<ArtechDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             // User Repositories
             services.AddScoped<IAppRepository<User>, UsersRepository>();
@@ -57,6 +70,7 @@ namespace BinaryBrainsAPI
             services.AddScoped<IAppRepository<UserType>, UserTypeRepository>();
             services.AddScoped<IAppRepository<Privileges>, PrivilegesRepository>();
             services.AddScoped<IAppRepository<Image>, ImagesRepository>();
+            services.AddScoped<IIdentifier<User>, UserLoginRepository>();
 
             // Exhibition Repositories
             services.AddScoped<IAppRepository<ApplicationStatus>, ApplicationStatusRepository>();
@@ -124,13 +138,16 @@ namespace BinaryBrainsAPI
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseCors("MyCorsPolicy");
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+
+           
+
         }
     }
 }

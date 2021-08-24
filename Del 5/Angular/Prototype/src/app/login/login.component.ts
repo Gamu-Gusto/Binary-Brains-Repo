@@ -1,4 +1,23 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../data.service';
+import { User } from '../model/user.model';
+import { Router } from '@angular/router';
+import { FormBuilder, FormControl,FormGroup,ReactiveFormsModule, Validators  } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+
+
+//**Interfaces */
+interface UserType {
+  id: string;
+  name: string;
+}
+
+interface Surburb {
+  id: string;
+  name: string;
+}
+
+/**End Interfaces */
 
 @Component({
   selector: 'app-login',
@@ -7,9 +26,104 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  user: Object;
+  formSubmitted = false;
+  theErrors: string[] = [];
 
-  ngOnInit(): void {
+  
+   public User : FormControl = new FormControl(); 
+  loginForm: FormGroup;
+
+    
+   constructor(public data: DataService,private formBuilder: FormBuilder,private fb: FormBuilder, private toastr: ToastrService, private router: Router) { 
+
+    this.loginForm = new FormGroup({
+          
+      UserName : new FormControl(''),
+      Password : new FormControl('')
+  
+   
+  
+     });
+  
+
+
+    }
+          
+
+  ngOnInit(): void  {
+
+    this.loginForm = this.formBuilder.group({
+      UserName : ['', Validators.required],
+      Password :['',Validators.required],
+   
+    
+   });
+
+  
+
   }
+
+
+  onSubmit(event) { 
+
+
+   
+    this.formSubmitted = true;
+    event.preventDefault();
+                  
+    if (this.loginForm.invalid) {
+       return;
+    }
+
+    else{
+                      
+                      
+      this.data.loginUser(this.loginForm.value).subscribe(success => {
+
+        this.router.navigate(['/home']);
+     
+      }, error =>{
+          
+          console.log(error);
+          /*
+        var splited = error.String().split(",");
+
+
+        for(let i = 0; i< splited.length;i++)
+        
+        {
+          var p = i+1;
+
+          splited[i] = p.toString() + "-" + splited[i]
+
+          this.theErrors.push(splited[i] )
+
+        }
+
+        error = this.theErrors.join(".");
+*/
+        this.toastr.error(error, 'Error',{
+        disableTimeOut:true,
+        tapToDismiss: false,
+        closeButton: true,
+        positionClass:'toast-top-full-width',
+        enableHtml: true
+    
+      });
+
+      console.log(error);
+    
+  });
+
+       
+
+    }
+    
+  }
+
+
+
+  
 
 }

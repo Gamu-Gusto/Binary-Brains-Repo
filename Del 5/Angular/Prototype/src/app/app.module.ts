@@ -1,5 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import {RouterModule} from '@angular/router';
+import {DataService} from'./data.service';
+import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,6 +34,8 @@ import { ArtistBookingsComponent } from './artist-home/artist-bookings/artist-bo
 import { ClassComponent } from './artist-home/class/class.component';
 import { ClassesComponent } from './artist-home/classes/classes.component';
 import { ArtistbookingComponent } from './artist-home/artist-bookings/artistbooking/artistbooking.component';
+
+
 import { ArtistRefundsComponent } from './artist-home/artist-bookings/artist-refunds/artist-refunds.component';
 import { ArtistCompletedComponent } from './artist-home/artist-bookings/artist-completed/artist-completed.component';
 import { ArtistFeedbackComponent } from './artist-home/artist-bookings/artist-feedback/artist-feedback.component';
@@ -105,9 +111,9 @@ import { ArtistAnnouncementComponent } from './artist-home/artist-announcement/a
     ToastrModule.forRoot(),
     MDBBootstrapModule.forRoot(),
     MdbModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,ReactiveFormsModule,RouterModule,HttpClientModule
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
