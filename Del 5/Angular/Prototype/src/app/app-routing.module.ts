@@ -36,6 +36,7 @@ import { FeedbackComponent } from './home/my-bookings/feedback/feedback.componen
 import { MyBookingsComponent } from './home/my-bookings/my-bookings.component';
 import { RefundsComponent } from './home/my-bookings/refunds/refunds.component';
 import { UserAccountComponent } from './home/user-account/user-account.component';
+import { WelcomePageComponent } from './home/welcome-page/welcome-page.component';
 import { LoginComponent } from './login/login.component';
 import { NewPasswordComponent } from './new-password/new-password.component';
 import { RegisterArtistComponent } from './register-artist/register-artist.component';
@@ -54,6 +55,7 @@ const routes: Routes = [
     // User Page Routes
   { path: 'home', component: HomeComponent, children: [
     { path: 'art-classes', component: ArtClassesComponent},
+    { path: 'welcome', component: WelcomePageComponent},
     { path: 'art-class', component: ArtClassComponent},
     { path: 'exhibitions', component: ExhibitionsComponent},
     { path: 'artwork-showroom', component: ArtworkShowroomComponent},

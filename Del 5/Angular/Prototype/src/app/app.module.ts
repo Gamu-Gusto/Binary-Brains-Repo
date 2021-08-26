@@ -56,6 +56,7 @@ import { GenerateTagsComponent } from './artist-home/my-exhibitions/generate-tag
 import { ContactUserComponent } from './home/contact-user/contact-user.component';
 import { ContactArtistComponent } from './artist-home/contact-artist/contact-artist.component';
 import { ArtistAnnouncementComponent } from './artist-home/artist-announcement/artist-announcement.component';
+import { WelcomePageComponent } from './home/welcome-page/welcome-page.component';
 
 
 @NgModule({
@@ -102,7 +103,8 @@ import { ArtistAnnouncementComponent } from './artist-home/artist-announcement/a
     GenerateTagsComponent,
     ContactUserComponent,
     ContactArtistComponent,
-    ArtistAnnouncementComponent
+    ArtistAnnouncementComponent,
+    WelcomePageComponent
   ],
   imports: [
     BrowserModule,
