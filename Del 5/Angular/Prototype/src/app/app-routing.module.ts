@@ -13,6 +13,7 @@ import { ArtistExhibitionComponent } from './artist-home/artist-exhibition/artis
 import { ArtistExhibitionsComponent } from './artist-home/artist-exhibitions/artist-exhibitions.component';
 import { ArtistHomeComponent } from './artist-home/artist-home.component';
 import { ArtistShowroomComponent } from './artist-home/artist-showroom/artist-showroom.component';
+import { ArtistWelcomePageComponent } from './artist-home/artist-welcome-page/artist-welcome-page.component';
 import { ClassComponent } from './artist-home/class/class.component';
 import { ClassesComponent } from './artist-home/classes/classes.component';
 import { ContactArtistComponent } from './artist-home/contact-artist/contact-artist.component';
@@ -82,8 +83,9 @@ const routes: Routes = [
     {path: 'artist-exhibition', component: ArtistExhibitionComponent},
     {path: 'my-artwork', component: MyArtworkComponent},
     {path: 'artist-showroom', component: ArtistShowroomComponent},
+    {path: 'artist-welcome', component: ArtistWelcomePageComponent},
     {path: 'apply-exhibition', component: ApplyExhibitionComponent},
-    { path: 'artist-announcements', component: ArtistAnnouncementComponent},
+    {path: 'artist-announcements', component: ArtistAnnouncementComponent},
     {path: 'invitations', component: InvitationsComponent},
     {path: 'contact-artist', component: ContactArtistComponent},
     {path: 'artist-account', component: ArtistAccountComponent},

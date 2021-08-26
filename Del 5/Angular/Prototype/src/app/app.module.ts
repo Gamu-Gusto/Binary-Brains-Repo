@@ -57,6 +57,7 @@ import { ContactUserComponent } from './home/contact-user/contact-user.component
 import { ContactArtistComponent } from './artist-home/contact-artist/contact-artist.component';
 import { ArtistAnnouncementComponent } from './artist-home/artist-announcement/artist-announcement.component';
 import { WelcomePageComponent } from './home/welcome-page/welcome-page.component';
+import { ArtistWelcomePageComponent } from './artist-home/artist-welcome-page/artist-welcome-page.component';
 
 
 @NgModule({
@@ -104,7 +105,8 @@ import { WelcomePageComponent } from './home/welcome-page/welcome-page.component
     ContactUserComponent,
     ContactArtistComponent,
     ArtistAnnouncementComponent,
-    WelcomePageComponent
+    WelcomePageComponent,
+    ArtistWelcomePageComponent
   ],
   imports: [
     BrowserModule,
