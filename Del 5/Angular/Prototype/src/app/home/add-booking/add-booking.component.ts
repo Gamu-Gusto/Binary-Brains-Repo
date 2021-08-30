@@ -12,4 +12,7 @@ export class AddBookingComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onSubmit(event) {
+
+  }
 }
