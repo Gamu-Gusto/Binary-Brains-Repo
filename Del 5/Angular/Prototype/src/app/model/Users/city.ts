@@ -1,5 +1,5 @@
 export class City {
     CityID: string;
-    CityDescription: string;
+    CityName: string;
     Province: string;
 }

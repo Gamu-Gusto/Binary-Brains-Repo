@@ -23,6 +23,7 @@ import { AcceptedExhibitionsComponent } from './artist-home/my-exhibitions/accep
 import { ApplicationsComponent } from './artist-home/my-exhibitions/applications/applications.component';
 import { GenerateTagsComponent } from './artist-home/my-exhibitions/generate-tags/generate-tags.component';
 import { MyExhibitionsComponent } from './artist-home/my-exhibitions/my-exhibitions.component';
+import { AddClassComponent } from './home/add-class/add-class.component';
 import { AnnouncementsComponent } from './home/announcements/announcements.component';
 import { ArtClassComponent } from './home/art-class/art-class.component';
 import { ArtClassesComponent } from './home/art-classes/art-classes.component';
@@ -44,6 +45,8 @@ import { RegisterArtistComponent } from './register-artist/register-artist.compo
 import { RegisterComponent } from './register/register.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
+
+
 const routes: Routes = [
   // Login and Register Routes
   {path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -58,6 +61,7 @@ const routes: Routes = [
     { path: 'art-classes', component: ArtClassesComponent},
     { path: 'welcome', component: WelcomePageComponent},
     { path: 'art-class', component: ArtClassComponent},
+    { path: 'add-class', component: AddClassComponent},
     { path: 'exhibitions', component: ExhibitionsComponent},
     { path: 'artwork-showroom', component: ArtworkShowroomComponent},
     { path: 'announcements', component: AnnouncementsComponent},

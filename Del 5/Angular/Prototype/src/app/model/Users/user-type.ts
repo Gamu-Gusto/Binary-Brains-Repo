@@ -1,4 +1,4 @@
 export class UserType {
     UserTypeID : string;
-    UserRoleDescription : string;
+    UserRoleName : string;
 }

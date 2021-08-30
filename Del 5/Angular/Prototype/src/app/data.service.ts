@@ -5,6 +5,11 @@ import { Observable ,throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';    
 import { take, takeUntil ,map,filter,switchMap} from 'rxjs/operators';
+import { UserType } from './model/Users/user-type';
+import { Suburb } from './model/Users/suburb';
+import { City } from './model/Users/city';
+import { Country } from './model/Users/country';
+import { Province } from './model/Users/province';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +21,11 @@ export class DataService {
   apiURL = 'https://localhost:'+this.port+'/api';
 
   user : User;
+  listUserTypes: UserType[];
+  listSuburbs: Suburb[];
+  listCities: City[];
+  listCountries: Country[];
+  listProvinces: Province[];
 
   constructor(private http: HttpClient,private toastr: ToastrService) { }
 
@@ -42,6 +52,59 @@ export class DataService {
 
   }
 
+  getAllUserTypes(){
+ 
+    return this.http
+    .get(this.apiURL + '/UserType')
+
+  };
+
+
+  getAllSuburbs(): Observable<Suburb[]>{
+
+    return this.http.get(this.apiURL + '/Surburb') .pipe(map((response: any) => response.json()))
+    .pipe(catchError(this.handleError))
+
+
+  };
+
+  getAllCities(){
+
+    return this.http.get(this.apiURL + '/City') 
+
+  };
+
+  getAllCountries(){
+
+    return this.http.get(this.apiURL + '/Country')
+
+  };
+
+
+  getAllProvinces(){
+
+    return this.http.get(this.apiURL + '/Province') 
+
+  
+
+  };
+
+
+  
+ addUser(user): Observable<User> {
+
+  return this.http
+  .post<User>(this.apiURL + '/User', JSON.stringify(user), this.httpOptions)
+  .pipe(
+    retry(1)
+    ,
+    catchError(this.handleError)
+    
+  )
+
+  
+
+}  
 
         // Error handling 
 handleError(error) {

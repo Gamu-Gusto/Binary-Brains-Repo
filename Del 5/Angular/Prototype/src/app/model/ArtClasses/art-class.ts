@@ -8,7 +8,7 @@ export class ArtClass {
     RefundDayLimit: string;
     ClassPrice: string;
 
-    ArtClassType: string;
+   ArtClassType: string;
 
     Venue: string;
 

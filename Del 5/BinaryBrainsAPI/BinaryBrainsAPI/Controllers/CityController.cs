@@ -1,5 +1,6 @@
 ﻿using BinaryBrainsAPI.Entities.Users;
 using BinaryBrainsAPI.Interfaces;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 namespace BinaryBrainsAPI.Controllers
 {
     [Route("api/City")]
+    [EnableCors("MyCorsPolicy")]
     public class CityController : Controller
     {
         private readonly IAppRepository<City> _appRepository;

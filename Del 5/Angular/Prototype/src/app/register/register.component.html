@@ -1,138 +1,194 @@
-<div class="container">
+<form [formGroup]="registrationForm" (ngSubmit)="onSubmit($event)">
+  <div class="container">
     <br>
     <div class="row">
-        <div class="col" style="background-color: black;">
-            <img src="../assets/logo/artech.png" class="logo"  alt="user">
-        </div>
+      <div class="col" style="background-color: black;">
+        <img src="../assets/logo/artech.png" class="logo" alt="user">
+      </div>
 
-        <div class="col">
-            <div class="row">
-                <div class="col">
-                    <h3>Registration</h3>
-                </div>
-                <div class="col">
-                    <button mdbBtn type="button" gradient="peach" (click)="cancelRegistration(cancelRegisterModal)"  style="float: right" rounded="true" mdbWavesEffect>Back</button>
-                </div>
-            </div>
-            <br>
-
+      <div class="col">
         <div class="row">
-            <div class="col">
-                <label>Fisrt Name</label>
-                <input type="text" class="form-control" style="width: 250px;" placeholder="Enter Name">
-            </div>
-            <div class="col">
-                <label>Last Name</label>
-                <input type="text" class="form-control" style="width: 250px;" placeholder="Enter Surname">
-            </div>
-        </div>
-        <br>
-
-        
-        <div class="row">
-            <div class="col">
-                <label>Email Address</label>
-                <input type="email" class="form-control" style="width: 250px;" placeholder="E-mail">
-            </div>
-            <div class="col">
-                <label>Username</label>
-                <input type="text" class="form-control" style="width: 250px;" placeholder="Username">
-            </div>
+          <div class="col">
+            <h3>Registration</h3>
+          </div>
+          <div class="col">
+            <button mdbBtn type="button" gradient="peach" (click)="cancelRegistration(cancelRegisterModal)"
+              style="float: right" rounded="true" mdbWavesEffect>Back</button>
+          </div>
         </div>
         <br>
 
         <div class="row">
-            <div class="col">
-                <div>
-                    <div class="form-group">
-                        <label for="sel1">User Type:</label>
-                        <select class="form-control" id="sel1">
-                          <option>User</option>
-                          <option>Artist</option>
-                        </select>
-                      </div> 
-                </div>
-            </div>
-            <div class="col">
-                
-        <div>
-            <label>Phone Number</label>
-            <input type="text" class="form-control" style="width: 250px;" placeholder="+ (27)">
-        </div>
-            </div>
+          <div class="col">
+            <label>First Name</label>
+            <input type="text" formControlName="UserFirstName" class="form-control" style="width: 250px;"
+              placeholder="Enter Name">
+          </div>
+          <div class="col">
+            <label>Last Name</label>
+            <input type="text" formControlName="UserLastName" class="form-control" style="width: 250px;"
+              placeholder="Enter Surname">
+          </div>
         </div>
         <br>
 
-        
+
         <div class="row">
-            <div class="col">
-                <label>Password</label>
-                <input type="password" class="form-control" style="width: 250px;" placeholder="Password">
-            </div>
-            <div class="col">
-                <label>Confirm Password</label>
-                <input type="password" class="form-control" style="width: 250px;" placeholder="Confirm Password">
-            </div>
+          <div class="col">
+            <label>Email Address</label>
+            <input type="email" formControlName="UserEmail" class="form-control" style="width: 250px;"
+              placeholder="E-mail">
+          </div>
+          <div class="col">
+            <label>Username</label>
+            <input type="text" formControlName="UserFirstName" class="form-control" style="width: 250px;"
+              placeholder="Username">
+          </div>
+          <!--       <div class="col">
+              <label>User Date Of Birth</label>
+              <mat-form-field>
+                <input matInput [matDatepicker]="picker" ng-model-options="{ timezone: 'GMT' }" formControlName="UserDOB"
+                  placeholder="Choose a date">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </div> -->
         </div>
         <br>
 
-        <br>
-
-        <div>
-            <div class="form-group">
-                <label for="sel1">Country</label>
-                <select class="form-control" id="sel1">
-                  <option>South Africa</option>
-                  <option>Italy</option>
+        <div class="row">
+          <div class="col">
+            <div>
+              <div class="form-group">
+                <label for="ScriptType" style="text-align:right;width: 150px ">User
+                  Type</label>
+                <select name="UserType" formControlName="UserTypeId" class="btn btn-outline-primary">
+                  <option value="undefined">Select User Type</option>
+                  <option *ngFor="let usertype of listUserTypes" [value]="usertype.UserTypeID">
+                    {{usertype.UserRoleDescription}}
+                  </option>
                 </select>
-              </div> 
+
+              </div>
+            </div>
+          </div>
+          <div class="col">
+
+            <div>
+              <label>Phone Number</label>
+              <input type="text" formControlName="UserPhoneNumber" class="form-control" style="width: 250px;"
+                placeholder="+ (27)">
+            </div>
+          </div>
+        </div>
+        <br>
+
+
+        <div class="row">
+          <div class="col">
+            <label>Password</label>
+            <input type="password" formControlName="UserPassword" class="form-control" style="width: 250px;"
+              placeholder="Password">
+          </div>
+          <div class="col">
+            <label>Confirm Password</label>
+            <input type="password" formControlName="UserPasswordConfirm" class="form-control" style="width: 250px;"
+              placeholder="Confirm Password">
+          </div>
+        </div>
+        <br>
+
+        <br>
+
+        <div>
+          <div class="form-group">
+            <label for="UserTypeId" style="text-align:right;width: 150px ">Surburb</label>
+            <select name="SurburbId" formControlName="SurburbId" class="btn btn-outline-primary">
+              <option value="undefined">Select Surburb</option>
+              <option *ngFor="let surburb of listSurburbs" [value]="surburb.SurburbId">
+                {{surburb.SurburbName}}
+              </option>
+            </select>
+
+          </div>
         </div>
 
         <div>
-            <div class="form-group">
-                <label for="sel1">Province</label>
-                <select class="form-control" id="sel1">
-                  <option>Gauteng</option>
-                  <option>Vrystaat</option>
-                </select>
-              </div> 
+          <div class="form-group">
+            <label>Province</label>
+            <select name="Province" formControlName="ProvinceId" class="btn btn-outline-primary">
+              <option value="undefined">Select Province</option>
+              <option *ngFor="let province of listProvinces" [value]="province.ProvinceId">
+                {{province.ProvinceName}}
+              </option>
+            </select>
+          </div>
         </div>
 
-        <label>City</label>
-        <input type="text" class="form-control" placeholder="City">
+        <div>
+          <div class="form-group">
+            <label>City</label>
+            <select name="City" formControlName="CityId" class="btn btn-outline-primary">
+              <option value="undefined">Select City</option>
+              <option *ngFor="let city of listCities" [value]="city.CityId">
+                {{city.CityName}}
+              </option>
+            </select>
+          </div>
+        </div>
         <br>
-        <label>Suburb</label>
-        <input type="text" class="form-control" placeholder="Suburb">
-        <br>
+        <div>
+          <div class="form-group">
+            <label>Country</label>
+            <select name="UserType" formControlName="CountryId" class="btn btn-outline-primary">
+              <option value="undefined">Select Country</option>
+              <option *ngFor="let country of listCountries" [value]="country.CountryId">
+                {{country.CountryName}}
+              </option>
+            </select>
+          </div>
+        </div>
 
         <div class="row">
-            <div class="col">
-                <label>Address Line</label>
-                <input type="text" class="form-control" style="width: 250px;" placeholder="Address Line">
-            </div>
-            <div class="col">
-                <label>Postal Code</label>
-                <input type="text" class="form-control" style="width: 250px;" placeholder="Postal Code">
-            </div>
+          <div class="col">
+            <label>Artist Bio</label>
+            <input type="text" formControlName="ArtistBio" class="form-control" style="width: 250px;"
+              placeholder="Artist Bio">
+          </div>
+          <div class="col">
+            <label>Address Line 1</label>
+            <input type="text" formControlName="UserAddressLine1" class="form-control" style="width: 250px;"
+              placeholder="Address Line 1">
+          </div>
+          <div class="col">
+            <label>Address Line 2</label>
+            <input type="text" formControlName="UserAddressLine2" class="form-control" style="width: 250px;"
+              placeholder="Address Line 2">
+          </div>
+          <div class="col">
+            <label>Postal Code</label>
+            <input type="text" formControlName="UserPostalCode" class="form-control" style="width: 250px;"
+              placeholder="Postal Code">
+          </div>
         </div>
         <br>
 
-        
-        
-        <!-- <button mdbBtn type="button" gradient="purple" (click)="onRegister(registerModal)"  rounded="true" mdbWavesEffect>Register</button> -->
-        <button mdbBtn type="button" gradient="purple" [routerLink]="['/register-artist']"  rounded="true" mdbWavesEffect>Next</button> 
 
 
-        </div>
+        <button mdbBtn type= "submit"  (click)="onSubmit($event)"  gradient="blue" rounded="true" mdbWavesEffect>Register</button>
+        <!--<button mdbBtn type="button" gradient="purple" [routerLink]="['/register-artist']"  rounded="true" mdbWavesEffect>Next</button> -->
+
+
+      </div>
     </div>
-</div>
+  </div>
+
+ 
+  <!-- ============================================================================ -->
+  <!-- ===============MODALS BELOW========================================================================================================== -->
 
 
-<!-- ============================================================================ -->
-<!-- ===============MODALS BELOW========================================================================================================== -->
-
-
-<ng-template #registerModal let-modal>
+  <ng-template #registerModal let-modal>
     <div class="modal-header">
       <h4 class="modal-title">Confirm Registration</h4>
       <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -143,17 +199,18 @@
       <p>Do you want to confirm registration details?</p>
     </div>
     <div class="modal-footer">
-        <button mdbBtn type="button" gradient="peach" (click)="modal.dismiss('Cross click')"rounded="true" mdbWavesEffect>No</button>
-      <button mdbBtn type="button" gradient="purple" (click)="submitRegistration(registerModal)" rounded="true" mdbWavesEffect>Confirm</button>
+      <button mdbBtn type="button" gradient="peach" (click)="modal.dismiss('Cross click')" rounded="true"
+        mdbWavesEffect>No</button>
+      <button mdbBtn type="submit" gradient="purple" rounded="true" mdbWavesEffect>Confirm</button>
     </div>
   </ng-template>
 
 
   <!-- ============================================================================ -->
-<!-- ===============MODALS BELOW========================================================================================================== -->
+  <!-- ===============MODALS BELOW========================================================================================================== -->
 
 
-<ng-template #cancelRegisterModal let-modal>
+  <ng-template #cancelRegisterModal let-modal>
     <div class="modal-header">
       <h4 class="modal-title">Cancel Registration</h4>
       <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -164,8 +221,11 @@
       <p>Are you sure you want to cancel the registration process?</p>
     </div>
     <div class="modal-footer">
-        <button mdbBtn type="button" gradient="peach" (click)="modal.dismiss('Cross click')"rounded="true" mdbWavesEffect>No</button>
-      <button mdbBtn type="button" gradient="purple" (click)="yesCancel(cancelRegisterModal)" rounded="true" mdbWavesEffect>Yes</button>
+      <button mdbBtn type="button" gradient="peach" (click)="modal.dismiss('Cross click')" rounded="true"
+        mdbWavesEffect>No</button>
+      <button mdbBtn type="button" gradient="purple" (click)="yesCancel(cancelRegisterModal)" rounded="true"
+        mdbWavesEffect>Yes</button>
     </div>
   </ng-template>
 
+</form>

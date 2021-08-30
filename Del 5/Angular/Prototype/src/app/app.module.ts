@@ -5,6 +5,7 @@ import {RouterModule} from '@angular/router';
 import {DataService} from'./data.service';
 import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -57,7 +58,11 @@ import { ContactUserComponent } from './home/contact-user/contact-user.component
 import { ContactArtistComponent } from './artist-home/contact-artist/contact-artist.component';
 import { ArtistAnnouncementComponent } from './artist-home/artist-announcement/artist-announcement.component';
 import { WelcomePageComponent } from './home/welcome-page/welcome-page.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ArtistWelcomePageComponent } from './artist-home/artist-welcome-page/artist-welcome-page.component';
+import { AddClassComponent } from './home/add-class/add-class.component';
+
+
 
 
 @NgModule({
@@ -106,7 +111,9 @@ import { ArtistWelcomePageComponent } from './artist-home/artist-welcome-page/ar
     ContactArtistComponent,
     ArtistAnnouncementComponent,
     WelcomePageComponent,
-    ArtistWelcomePageComponent
+    ArtistWelcomePageComponent,
+    AddClassComponent,
+   
   ],
   imports: [
     BrowserModule,
@@ -118,6 +125,7 @@ import { ArtistWelcomePageComponent } from './artist-home/artist-welcome-page/ar
     BrowserAnimationsModule,ReactiveFormsModule,RouterModule,HttpClientModule
   ],
   providers: [DataService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

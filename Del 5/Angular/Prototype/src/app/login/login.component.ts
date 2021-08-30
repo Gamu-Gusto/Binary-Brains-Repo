@@ -4,20 +4,9 @@ import { User } from '../model/user.model';
 import { Router } from '@angular/router';
 import { FormBuilder, FormControl,FormGroup,ReactiveFormsModule, Validators  } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 
 
-//**Interfaces */
-interface UserType {
-  id: string;
-  name: string;
-}
-
-interface Surburb {
-  id: string;
-  name: string;
-}
-
-/**End Interfaces */
 
 @Component({
   selector: 'app-login',
@@ -35,7 +24,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
     
-   constructor(public data: DataService,private formBuilder: FormBuilder,private fb: FormBuilder, private toastr: ToastrService, private router: Router) { 
+   constructor(public data: DataService,private formBuilder: FormBuilder,private fb: FormBuilder, private toastr: ToastrService, private router: Router,private calendar: NgbCalendar,) { 
 
     this.loginForm = new FormGroup({
           

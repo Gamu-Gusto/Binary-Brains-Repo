@@ -2,6 +2,7 @@
 using BinaryBrainsAPI.Dtos.UsersDtos;
 using BinaryBrainsAPI.Entities.Users;
 using BinaryBrainsAPI.Interfaces;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,6 +13,7 @@ using System.Threading.Tasks;
 namespace BinaryBrainsAPI.Controllers
 {
     [Route("api/User")]
+    [EnableCors("MyCorsPolicy")]
     public class UsersController : ControllerBase
     {
         private readonly IAppRepository<User> _appRepository;

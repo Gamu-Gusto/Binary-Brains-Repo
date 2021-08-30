@@ -1,5 +1,5 @@
 export class Province {
     ProvinceID : string;
-    ProvinceDescription: string;
+    ProvinceName: string;
     Country: string;
 }
