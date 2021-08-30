@@ -24,6 +24,7 @@ import { ApplicationsComponent } from './artist-home/my-exhibitions/applications
 import { GenerateTagsComponent } from './artist-home/my-exhibitions/generate-tags/generate-tags.component';
 import { MyExhibitionsComponent } from './artist-home/my-exhibitions/my-exhibitions.component';
 import { AddClassComponent } from './home/add-class/add-class.component';
+import { AddExhibitionComponent } from './home/add-exhibition/add-exhibition.component';
 import { AnnouncementsComponent } from './home/announcements/announcements.component';
 import { ArtClassComponent } from './home/art-class/art-class.component';
 import { ArtClassesComponent } from './home/art-classes/art-classes.component';
@@ -63,6 +64,7 @@ const routes: Routes = [
     { path: 'art-class', component: ArtClassComponent},
     { path: 'add-class', component: AddClassComponent},
     { path: 'exhibitions', component: ExhibitionsComponent},
+    { path: 'add-exhibition', component: AddExhibitionComponent},
     { path: 'artwork-showroom', component: ArtworkShowroomComponent},
     { path: 'announcements', component: AnnouncementsComponent},
     { path: 'contact-user', component: ContactUserComponent},

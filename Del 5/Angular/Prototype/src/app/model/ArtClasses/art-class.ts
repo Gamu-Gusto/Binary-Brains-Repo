@@ -4,6 +4,8 @@ export class ArtClass {
     ArtClassDescription: string;
     ArtClassStartDate: string;
     ArtClassEndDate: string;
+    ArtClassStartTime: string;
+    ArtClassEndTime: string;
     ClassLimit: string;
     RefundDayLimit: string;
     ClassPrice: string;
@@ -14,7 +16,7 @@ export class ArtClass {
 
     ClassTeacher: string;
 
-    ArtClassAnnouncement: string;
+    ArtClassAnnouncementId: string;
 
     Organisation: string;
 }

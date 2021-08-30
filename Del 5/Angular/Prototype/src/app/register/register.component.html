@@ -130,8 +130,8 @@
             <label>City</label>
             <select name="City" formControlName="CityId" class="btn btn-outline-primary">
               <option value="undefined">Select City</option>
-              <option *ngFor="let city of listCities" [value]="city.CityId">
-                {{city.CityName}}
+              <option *ngFor="let city of listCities" [value]="city.cityID">
+                {{city.cityName}}
               </option>
             </select>
           </div>
@@ -175,7 +175,8 @@
 
 
 
-        <button mdbBtn type= "submit"  (click)="onSubmit($event)"  gradient="blue" rounded="true" mdbWavesEffect>Register</button>
+        <button mdbBtn type="submit" (click)="onSubmit($event)" gradient="blue" rounded="true"
+          mdbWavesEffect>Register</button>
         <!--<button mdbBtn type="button" gradient="purple" [routerLink]="['/register-artist']"  rounded="true" mdbWavesEffect>Next</button> -->
 
 
@@ -183,7 +184,7 @@
     </div>
   </div>
 
- 
+
   <!-- ============================================================================ -->
   <!-- ===============MODALS BELOW========================================================================================================== -->
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators ,FormsModule} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators, FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
@@ -9,7 +9,7 @@ import { Suburb } from '../model/Users/suburb';
 import { Province } from '../model/Users/province';
 import { Country } from '../model/Users/country';
 import { City } from '../model/Users/city';
-import {NgbCalendar, NgbDate, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
+import { NgbCalendar, NgbDate, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 
@@ -36,7 +36,7 @@ export class RegisterComponent implements OnInit {
 
   public listUserTypes: any;
 
-  public listSurburbs:any;
+  public listSurburbs: any;
 
   public listProvinces: any;
 
@@ -44,7 +44,7 @@ export class RegisterComponent implements OnInit {
 
   public listCities: any;
 
-  public User : FormControl = new FormControl(); 
+  public User: FormControl = new FormControl();
   registrationForm: FormGroup;
 
   formSubmitted = false;
@@ -88,32 +88,32 @@ export class RegisterComponent implements OnInit {
   */
   errorMessage: any;
 
-  constructor(public data: DataService,private route: Router, private modalService: NgbModal, private toastr: ToastrService,private formBuilder: FormBuilder,private fb: FormBuilder) { 
-    
-    
+  constructor(public data: DataService, private route: Router, private modalService: NgbModal, private toastr: ToastrService, private formBuilder: FormBuilder, private fb: FormBuilder) {
+
+
     this.registrationForm = new FormGroup({
-    
-      UserName : new FormControl(''),
-      UserFirstName : new FormControl(''),
-      UserLastName : new FormControl(''),
-      UserEmail : new FormControl(''),
-      UserPhoneNumber : new FormControl(''),
-      UserPassword : new FormControl(''),
-      UserPasswordConfirm : new FormControl(''),
-      UserDOB : new FormControl(''),
-      UserAddressLine1 : new FormControl(''),
-      UserAddressLine2 : new FormControl(''),
-      UserPostalCode : new FormControl(''),
-      ArtistBio : new FormControl(''),
+      UserID: new FormControl(''),
+      UserName: new FormControl(''),
+      UserFirstName: new FormControl(''),
+      UserLastName: new FormControl(''),
+      UserEmail: new FormControl(''),
+      UserPhoneNumber: new FormControl(''),
+      UserPassword: new FormControl(''),
+      UserPasswordConfirm: new FormControl(''),
+      UserDOB: new FormControl(''),
+      UserAddressLine1: new FormControl(''),
+      UserAddressLine2: new FormControl(''),
+      UserPostalCode: new FormControl(''),
+      ArtistBio: new FormControl(''),
       UserTypeId: new FormControl(''),
       SurburbId: new FormControl(''),
       CountryId: new FormControl(''),
       ProvinceId: new FormControl(''),
       CityId: new FormControl(''),
-   
-   
-  
-     });
+
+
+
+    });
 
 
 
@@ -123,34 +123,34 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
 
-  this.getuserTypes();
-  this.getCities();
-  this.getCountries();
-  this.getPrivinces();
-  this.getSuburbs();
-   
-  console.log(this.listUserTypes);
+    this.getuserTypes();
+    this.data.getAllCities().then((result) => { console.log(result); this.listCities = result });
+    this.getCountries();
+    this.getPrivinces();
+    this.getSuburbs();
 
-    this.registrationForm =  this.formBuilder.group({
-  
-    UserName :  [''],
-    UserFirstName : [''],
-    UserLastName : [''],
-    UserEmail : [''],
-    UserPhoneNumber : [''],
-    UserPassword: [''],
-    UserPasswordConfirm: [''],
-    UserDOB : [''],
-    UserAddressLine1 : [''],
-    UserAddressLine2 : [''],
-    UserPostalCode :[''],
-    ArtistBio : [''],
-    UserTypeId: [''],
-    SurburbId: [''],
-    CityId: [''],
-    ProvinceId: [''],
-    CountryId: [''],
-  });
+    console.log(this.listCities);
+
+    this.registrationForm = this.formBuilder.group({
+      UserID: [''],
+      UserName: [''],
+      UserFirstName: [''],
+      UserLastName: [''],
+      UserEmail: [''],
+      UserPhoneNumber: [''],
+      UserPassword: [''],
+      UserPasswordConfirm: [''],
+      UserDOB: [''],
+      UserAddressLine1: [''],
+      UserAddressLine2: [''],
+      UserPostalCode: [''],
+      ArtistBio: [''],
+      UserTypeId: [''],
+      SurburbId: [''],
+      CityId: [''],
+      ProvinceId: [''],
+      CountryId: [''],
+    });
 
   }
 
@@ -159,116 +159,121 @@ export class RegisterComponent implements OnInit {
     const { value: UserPasswordConfirm } = formGroup.get('UserPasswordConfirm');
     return UserPassword === UserPasswordConfirm ? null : { passwordNotMatch: true };
   }
-    
-  getuserTypes() {  
+
+  getuserTypes() {
     this.data.getAllUserTypes().subscribe(response => {
-      
+
       this.listUserTypes = response
+
+    }, err => {
+      console.log("Error", err)
+    });
+
+    console.log(this.listUserTypes);
+  }
+  /*
+  getCities() {  
+    this.data.getAllCities().subscribe(response => {
+        
+      this.listCities = response
     
     }, err => 
     {console.log("Error",err)
-  });  
+  }); 
+  }
+  */
+  getSuburbs() {
+    this.data.getAllSuburbs().subscribe(response => {
 
-    console.log(this.listUserTypes);
-} 
+      this.listSurburbs = response
 
-getCities() {  
-  this.data.getAllCities().subscribe(response => {
-      
-    this.listCities = response
-  
-  }, err => 
-  {console.log("Error",err)
-}); 
-} 
-getSuburbs() {  
-  this.data.getAllSuburbs().subscribe(response => {
-      
-    this.listSurburbs = response
-  
-  }, err => 
-  {console.log("Error",err)
-}); 
-} 
-getCountries() {  
-  this.data.getAllCountries().subscribe(response => {
-      
-    this.listCountries = response
-  
-  }, err => 
-  {console.log("Error",err)
-}); 
-} 
-getPrivinces() {  
-  this.data.getAllProvinces().subscribe(response => {
-      
-    this.listProvinces = response
-  
-  }, err => 
-  {console.log("Error",err)
-}); 
-} 
+    }, err => {
+      console.log("Error", err)
+    });
+  }
+  getCountries() {
+    this.data.getAllCountries().subscribe(response => {
 
-  onSubmit(event) { 
-   
+      this.listCountries = response
+
+    }, err => {
+      console.log("Error", err)
+    });
+  }
+  getPrivinces() {
+    this.data.getAllProvinces().subscribe(response => {
+
+      this.listProvinces = response
+
+    }, err => {
+      console.log("Error", err)
+    });
+  }
+
+  onSubmit(event) {
+
     this.formSubmitted = true;
     event.preventDefault();
-                  
+
     if (this.registrationForm.invalid) {
-       return;
+      return;
     }
 
-    else{
-          
-     console.log(this.registrationForm.value);
-                      
-      this.data.addUser(this.registrationForm.value).subscribe(success => 
-                          
-        {
-          this.route.navigate(['/login']);
-          this.toastr.success("Registration Successful, Please Login", 'Success',{
-            disableTimeOut:true,
-            tapToDismiss: false,
-            closeButton: true,
-            positionClass:'toast-top-full-width',
-            
-            
-        
-          });
+    else {
 
-          
-          this.formSubmitted = false;
-            this.registrationForm.reset();
-        
-          
-                        
-        }, error =>{
-          
-          console.log(error);
-      
-        this.toastr.error(error, 'Error',{
-        disableTimeOut:true,
-        tapToDismiss: false,
-        closeButton: true,
-        positionClass:'toast-top-full-width',
-        enableHtml: true
-    
+      console.log(this.registrationForm.value);
+      this.registrationForm.get('UserTypeId').setValue('1');
+      this.registrationForm.get('SurburbId').setValue('1');
+      this.registrationForm.get('CityId').setValue('');
+      this.registrationForm.get('ProvinceId').setValue('');
+      this.registrationForm.get('CountryId').setValue('');
+
+
+      this.data.addUser(this.registrationForm.value).then(success => {
+        this.route.navigate(['/login']);
+        this.toastr.success("Registration Successful, Please Login", 'Success', {
+          disableTimeOut: true,
+          tapToDismiss: false,
+          closeButton: true,
+          positionClass: 'toast-top-full-width',
+
+
+
+        });
+
+
+        this.formSubmitted = false;
+        this.registrationForm.reset();
+
+
+
+      }).catch(error => {
+
+        console.log(error);
+
+        this.toastr.error(error, 'Error', {
+          disableTimeOut: true,
+          tapToDismiss: false,
+          closeButton: true,
+          positionClass: 'toast-top-full-width',
+          enableHtml: true
+
+        });
+
+        console.log(error);
+
       });
 
-      console.log(error);
-    
-  });
 
-       
 
     }
-    
+
   }
   onRegister(modalRegister) {
     this.modalService.open(modalRegister, { centered: true });
   }
 
-  submitRegistration (modalRegister) {
+  submitRegistration(modalRegister) {
     this.route.navigate(['/login']);
     this.modalService.dismissAll(modalRegister);
     // this.toastr.success('Registration Successful', 'Success');
@@ -279,7 +284,7 @@ getPrivinces() {
     this.modalService.open(cancelRegisterModal, { centered: true });
   }
 
-  yesCancel (cancelRegisterModal) {
+  yesCancel(cancelRegisterModal) {
     this.route.navigate(['/login']);
     this.modalService.dismissAll(cancelRegisterModal);
     // this.toastr.success('Registration Successful', 'Success');
