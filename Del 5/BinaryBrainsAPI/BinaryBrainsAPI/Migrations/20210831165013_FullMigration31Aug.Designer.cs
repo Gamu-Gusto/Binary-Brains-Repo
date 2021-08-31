@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BinaryBrainsAPI.Migrations
 {
     [DbContext(typeof(ArtechDbContext))]
-    [Migration("20210815123235_FullMigration15Aug20213")]
-    partial class FullMigration15Aug20213
+    [Migration("20210831165013_FullMigration31Aug")]
+    partial class FullMigration31Aug
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
