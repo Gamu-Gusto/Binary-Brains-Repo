@@ -1,5 +1,5 @@
 export class Suburb {
     SuburbID: string;
-    SuburbDescription: string;
+    SuburbName: string;
     City: string;
 }

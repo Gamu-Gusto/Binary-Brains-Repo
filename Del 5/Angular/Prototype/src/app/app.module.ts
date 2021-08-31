@@ -5,6 +5,7 @@ import {RouterModule} from '@angular/router';
 import {DataService} from'./data.service';
 import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -56,6 +57,17 @@ import { GenerateTagsComponent } from './artist-home/my-exhibitions/generate-tag
 import { ContactUserComponent } from './home/contact-user/contact-user.component';
 import { ContactArtistComponent } from './artist-home/contact-artist/contact-artist.component';
 import { ArtistAnnouncementComponent } from './artist-home/artist-announcement/artist-announcement.component';
+import { WelcomePageComponent } from './home/welcome-page/welcome-page.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { ArtistWelcomePageComponent } from './artist-home/artist-welcome-page/artist-welcome-page.component';
+import { AddClassComponent } from './home/add-class/add-class.component';
+import { AddExhibitionComponent } from './home/add-exhibition/add-exhibition.component';
+import { AddClassTeacherComponent } from './home/add-class-teacher/add-class-teacher.component';
+import { AddPaymentComponent } from './home/add-payment/add-payment.component';
+import { AddArtworkComponent } from './home/add-artwork/add-artwork.component';
+import { AddBookingComponent } from './home/add-booking/add-booking.component';
+
+
 
 
 @NgModule({
@@ -102,18 +114,27 @@ import { ArtistAnnouncementComponent } from './artist-home/artist-announcement/a
     GenerateTagsComponent,
     ContactUserComponent,
     ContactArtistComponent,
-    ArtistAnnouncementComponent
+    ArtistAnnouncementComponent,
+    WelcomePageComponent,
+    ArtistWelcomePageComponent,
+    AddClassComponent,
+    AddExhibitionComponent,
+    AddClassTeacherComponent,
+    AddPaymentComponent,
+    AddArtworkComponent,
+    AddBookingComponent,
+   
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     NgbModule,
     ToastrModule.forRoot(),
     MDBBootstrapModule.forRoot(),
     MdbModule,
-    BrowserAnimationsModule,ReactiveFormsModule,RouterModule,HttpClientModule
+    BrowserAnimationsModule,ReactiveFormsModule,RouterModule,HttpClientModule, AppRoutingModule
   ],
   providers: [DataService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

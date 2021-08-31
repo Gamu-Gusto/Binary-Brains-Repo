@@ -12,6 +12,6 @@ export class User {
         UserAddressLine2 : string;
         UserPostalCode : string;
         ArtistBio : string;
-        UserType: string;
-        Surburb: string;
+        UserTypeId: string;
+        SurburbId: string;
 }

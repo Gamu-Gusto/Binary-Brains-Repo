@@ -3,3 +3,5 @@
 *.cache
 .vs/VSWorkspaceState.json
 Del 5/BinaryBrainsAPI/BinaryBrainsAPI/obj/Release/net5.0/BinaryBrainsAPI.GeneratedMSBuildEditorConfig.editorconfig
+*.editorconfig
+*.cache

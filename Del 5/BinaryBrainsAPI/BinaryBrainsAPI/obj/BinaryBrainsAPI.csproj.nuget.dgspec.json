@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Reinhardt Smit\\Source\\Repos\\Gamu-Gusto\\Binary-Brains-Repository\\Del 5\\BinaryBrainsAPI\\BinaryBrainsAPI\\BinaryBrainsAPI.csproj": {}
+    "C:\\2021 Coding\\GitHub\\Binary-Brains-Repository\\Del 5\\BinaryBrainsAPI\\BinaryBrainsAPI\\BinaryBrainsAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Reinhardt Smit\\Source\\Repos\\Gamu-Gusto\\Binary-Brains-Repository\\Del 5\\BinaryBrainsAPI\\BinaryBrainsAPI\\BinaryBrainsAPI.csproj": {
+    "C:\\2021 Coding\\GitHub\\Binary-Brains-Repository\\Del 5\\BinaryBrainsAPI\\BinaryBrainsAPI\\BinaryBrainsAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Reinhardt Smit\\Source\\Repos\\Gamu-Gusto\\Binary-Brains-Repository\\Del 5\\BinaryBrainsAPI\\BinaryBrainsAPI\\BinaryBrainsAPI.csproj",
+        "projectUniqueName": "C:\\2021 Coding\\GitHub\\Binary-Brains-Repository\\Del 5\\BinaryBrainsAPI\\BinaryBrainsAPI\\BinaryBrainsAPI.csproj",
         "projectName": "BinaryBrainsAPI",
-        "projectPath": "C:\\Users\\Reinhardt Smit\\Source\\Repos\\Gamu-Gusto\\Binary-Brains-Repository\\Del 5\\BinaryBrainsAPI\\BinaryBrainsAPI\\BinaryBrainsAPI.csproj",
+        "projectPath": "C:\\2021 Coding\\GitHub\\Binary-Brains-Repository\\Del 5\\BinaryBrainsAPI\\BinaryBrainsAPI\\BinaryBrainsAPI.csproj",
         "packagesPath": "C:\\Users\\Reinhardt Smit\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Reinhardt Smit\\Source\\Repos\\Gamu-Gusto\\Binary-Brains-Repository\\Del 5\\BinaryBrainsAPI\\BinaryBrainsAPI\\obj\\",
+        "outputPath": "C:\\2021 Coding\\GitHub\\Binary-Brains-Repository\\Del 5\\BinaryBrainsAPI\\BinaryBrainsAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Reinhardt Smit\\AppData\\Roaming\\NuGet\\NuGet.Config",

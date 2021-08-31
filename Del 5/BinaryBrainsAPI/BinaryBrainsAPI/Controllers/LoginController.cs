@@ -16,7 +16,7 @@ namespace BinaryBrainsAPI.Controllers
 {
     [Route("api/Login")]
     [ApiController]
-    [EnableCors("MyCorsPolicy")]
+
     public class LoginController : ControllerBase
     {
 

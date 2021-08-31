@@ -1,5 +1,6 @@
 ﻿using BinaryBrainsAPI.Entities.Users;
 using BinaryBrainsAPI.Interfaces;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ namespace BinaryBrainsAPI.Controllers
 {
 
     [Route("api/Country")]
+    [EnableCors("MyCorsPolicy")]
     public class CountryController : Controller
     {
         private readonly IAppRepository<Country> _appRepository;

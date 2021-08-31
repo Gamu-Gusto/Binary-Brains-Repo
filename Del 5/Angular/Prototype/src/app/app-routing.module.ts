@@ -13,6 +13,7 @@ import { ArtistExhibitionComponent } from './artist-home/artist-exhibition/artis
 import { ArtistExhibitionsComponent } from './artist-home/artist-exhibitions/artist-exhibitions.component';
 import { ArtistHomeComponent } from './artist-home/artist-home.component';
 import { ArtistShowroomComponent } from './artist-home/artist-showroom/artist-showroom.component';
+import { ArtistWelcomePageComponent } from './artist-home/artist-welcome-page/artist-welcome-page.component';
 import { ClassComponent } from './artist-home/class/class.component';
 import { ClassesComponent } from './artist-home/classes/classes.component';
 import { ContactArtistComponent } from './artist-home/contact-artist/contact-artist.component';
@@ -22,6 +23,8 @@ import { AcceptedExhibitionsComponent } from './artist-home/my-exhibitions/accep
 import { ApplicationsComponent } from './artist-home/my-exhibitions/applications/applications.component';
 import { GenerateTagsComponent } from './artist-home/my-exhibitions/generate-tags/generate-tags.component';
 import { MyExhibitionsComponent } from './artist-home/my-exhibitions/my-exhibitions.component';
+import { AddClassComponent } from './home/add-class/add-class.component';
+import { AddExhibitionComponent } from './home/add-exhibition/add-exhibition.component';
 import { AnnouncementsComponent } from './home/announcements/announcements.component';
 import { ArtClassComponent } from './home/art-class/art-class.component';
 import { ArtClassesComponent } from './home/art-classes/art-classes.component';
@@ -36,11 +39,14 @@ import { FeedbackComponent } from './home/my-bookings/feedback/feedback.componen
 import { MyBookingsComponent } from './home/my-bookings/my-bookings.component';
 import { RefundsComponent } from './home/my-bookings/refunds/refunds.component';
 import { UserAccountComponent } from './home/user-account/user-account.component';
+import { WelcomePageComponent } from './home/welcome-page/welcome-page.component';
 import { LoginComponent } from './login/login.component';
 import { NewPasswordComponent } from './new-password/new-password.component';
 import { RegisterArtistComponent } from './register-artist/register-artist.component';
 import { RegisterComponent } from './register/register.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+
+
 
 const routes: Routes = [
   // Login and Register Routes
@@ -54,8 +60,11 @@ const routes: Routes = [
     // User Page Routes
   { path: 'home', component: HomeComponent, children: [
     { path: 'art-classes', component: ArtClassesComponent},
+    { path: 'welcome', component: WelcomePageComponent},
     { path: 'art-class', component: ArtClassComponent},
+    { path: 'add-class', component: AddClassComponent},
     { path: 'exhibitions', component: ExhibitionsComponent},
+    { path: 'add-exhibition', component: AddExhibitionComponent},
     { path: 'artwork-showroom', component: ArtworkShowroomComponent},
     { path: 'announcements', component: AnnouncementsComponent},
     { path: 'contact-user', component: ContactUserComponent},
@@ -80,8 +89,9 @@ const routes: Routes = [
     {path: 'artist-exhibition', component: ArtistExhibitionComponent},
     {path: 'my-artwork', component: MyArtworkComponent},
     {path: 'artist-showroom', component: ArtistShowroomComponent},
+    {path: 'artist-welcome', component: ArtistWelcomePageComponent},
     {path: 'apply-exhibition', component: ApplyExhibitionComponent},
-    { path: 'artist-announcements', component: ArtistAnnouncementComponent},
+    {path: 'artist-announcements', component: ArtistAnnouncementComponent},
     {path: 'invitations', component: InvitationsComponent},
     {path: 'contact-artist', component: ContactArtistComponent},
     {path: 'artist-account', component: ArtistAccountComponent},
