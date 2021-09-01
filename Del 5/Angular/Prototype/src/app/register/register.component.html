@@ -20,15 +20,35 @@
 
         <div class="row">
           <div class="col">
-            <label>First Name</label>
-            <input type="text" formControlName="UserFirstName" class="form-control" style="width: 250px;"
-              placeholder="Enter Name">
+            <div class="form-group">
+              <label>First Name</label>
+              <input type="text" formControlName="UserFirstName" class="form-control" style="width: 250px;"
+                placeholder="Enter Name">
+            </div>
+            <div class="error-messages">
+              <ng-container *ngFor="let error of error_messages.UserFirstName">
+                <div class="error-message" *ngIf="registrationForm.get('UserFirstName').hasError(error.type) &&
+                   (registrationForm.get('UserFirstName').dirty || registrationForm.get('UserFirstName').touched)">
+                  {{ error.message }}
+                </div>
+              </ng-container>
+            </div>
           </div>
+
           <div class="col">
             <label>Last Name</label>
             <input type="text" formControlName="UserLastName" class="form-control" style="width: 250px;"
               placeholder="Enter Surname">
+            <div class="error-messages">
+              <ng-container *ngFor="let error of error_messages.UserLastName">
+                <div class="error-message" *ngIf="registrationForm.get('UserLastName').hasError(error.type) &&
+                   (registrationForm.get('UserLastName').dirty || registrationForm.get('UserLastName').touched)">
+                  {{ error.message }}
+                </div>
+              </ng-container>
+            </div>
           </div>
+
         </div>
         <br>
 
@@ -38,21 +58,40 @@
             <label>Email Address</label>
             <input type="email" formControlName="UserEmail" class="form-control" style="width: 250px;"
               placeholder="E-mail">
+            <div class="error-messages">
+              <ng-container *ngFor="let error of error_messages.UserEmail">
+                <div class="error-message" *ngIf="registrationForm.get('UserEmail').hasError(error.type) &&
+                   (registrationForm.get('UserEmail').dirty || registrationForm.get('UserEmail').touched)">
+                  {{ error.message }}
+                </div>
+              </ng-container>
+            </div>
           </div>
           <div class="col">
             <label>Username</label>
-            <input type="text" formControlName="UserFirstName" class="form-control" style="width: 250px;"
+            <input type="text" formControlName="UserName" class="form-control" style="width: 250px;"
               placeholder="Username">
+            <div class="error-messages">
+              <ng-container *ngFor="let error of error_messages.UserName">
+                <div class="error-message" *ngIf="registrationForm.get('UserName').hasError(error.type) &&
+                   (registrationForm.get('UserName').dirty || registrationForm.get('UserName').touched)">
+                  {{ error.message }}
+                </div>
+              </ng-container>
+            </div>
           </div>
-          <!--       <div class="col">
-              <label>User Date Of Birth</label>
-              <mat-form-field>
-                <input matInput [matDatepicker]="picker" ng-model-options="{ timezone: 'GMT' }" formControlName="UserDOB"
-                  placeholder="Choose a date">
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-              </mat-form-field>
-            </div> -->
+          <div class="col">
+            <label>User Date Of Birth</label>
+            <div class="form-group">
+              <div class="input-group">
+                <input class="form-control" formControlName="UserDOB" placeholder="yyyy-mm-dd" name="dp"
+                  [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <br>
 
@@ -64,10 +103,11 @@
                   Type</label>
                 <select name="UserType" formControlName="UserTypeId" class="btn btn-outline-primary">
                   <option value="undefined">Select User Type</option>
-                  <option *ngFor="let usertype of listUserTypes" [value]="usertype.UserTypeID">
-                    {{usertype.UserRoleDescription}}
+                  <option *ngFor="let usertype of listUserTypes" [value]="usertype.userTypeID">
+                    {{usertype.userRoleName}}
                   </option>
                 </select>
+
 
               </div>
             </div>
@@ -78,6 +118,15 @@
               <label>Phone Number</label>
               <input type="text" formControlName="UserPhoneNumber" class="form-control" style="width: 250px;"
                 placeholder="+ (27)">
+              <div class="error-messages">
+                <ng-container *ngFor="let error of error_messages.UserPhoneNumber">
+                  <div class="error-message"
+                    *ngIf="registrationForm.get('UserPhoneNumber').hasError(error.type) &&
+                     (registrationForm.get('UserPhoneNumber').dirty || registrationForm.get('UserPhoneNumber').touched)">
+                    {{ error.message }}
+                  </div>
+                </ng-container>
+              </div>
             </div>
           </div>
         </div>
@@ -89,44 +138,51 @@
             <label>Password</label>
             <input type="password" formControlName="UserPassword" class="form-control" style="width: 250px;"
               placeholder="Password">
+            <div class="error-messages">
+              <ng-container *ngFor="let error of error_messages.UserPassword">
+                <div class="error-message" *ngIf="registrationForm.get('UserPassword').hasError(error.type) &&
+                   (registrationForm.get('UserPassword').dirty || registrationForm.get('UserPassword').touched)">
+                  {{ error.message }}
+                </div>
+              </ng-container>
+            </div>
           </div>
           <div class="col">
             <label>Confirm Password</label>
             <input type="password" formControlName="UserPasswordConfirm" class="form-control" style="width: 250px;"
               placeholder="Confirm Password">
+            <div class="error-messages">
+              <ng-container *ngFor="let error of error_messages.UserPasswordConfirm">
+                <div class="error-message"
+                  *ngIf="registrationForm.get('UserPasswordConfirm').hasError(error.type) &&
+                   (registrationForm.get('UserPasswordConfirm').dirty || registrationForm.get('UserPasswordConfirm').touched)">
+                  {{ error.message }}
+                </div>
+              </ng-container>
+
+              <ng-container>
+                <div class="error-message"
+                  *ngIf="registrationForm.get('UserPasswordConfirm').hasError('notSame') &&
+                   (registrationForm.get('UserPasswordConfirm').dirty || registrationForm.get('UserPasswordConfirm').touched)">
+                  {{ error.message }}
+                </div>
+              </ng-container>
+            </div>
           </div>
         </div>
         <br>
-
-        <br>
-
-        <div>
-          <div class="form-group">
-            <label for="UserTypeId" style="text-align:right;width: 150px ">Surburb</label>
+        <div class="row">
+          <div class="col">
+            <label>Surburb</label>
             <select name="SurburbId" formControlName="SurburbId" class="btn btn-outline-primary">
               <option value="undefined">Select Surburb</option>
-              <option *ngFor="let surburb of listSurburbs" [value]="surburb.SurburbId">
-                {{surburb.SurburbName}}
+              <option *ngFor="let surburb of listSurburbs" [value]="surburb.suburbID">
+                {{surburb.suburbName}}
               </option>
             </select>
 
           </div>
-        </div>
-
-        <div>
-          <div class="form-group">
-            <label>Province</label>
-            <select name="Province" formControlName="ProvinceId" class="btn btn-outline-primary">
-              <option value="undefined">Select Province</option>
-              <option *ngFor="let province of listProvinces" [value]="province.ProvinceId">
-                {{province.ProvinceName}}
-              </option>
-            </select>
-          </div>
-        </div>
-
-        <div>
-          <div class="form-group">
+          <div class="col">
             <label>City</label>
             <select name="City" formControlName="CityId" class="btn btn-outline-primary">
               <option value="undefined">Select City</option>
@@ -136,14 +192,24 @@
             </select>
           </div>
         </div>
-        <br>
-        <div>
-          <div class="form-group">
+
+        <div class="row">
+          <div class="col">
+            <label>Province</label>
+            <select name="Province" formControlName="ProvinceId" class="btn btn-outline-primary">
+              <option value="undefined">Select Province</option>
+              <option *ngFor="let province of listProvinces" [value]="province.provinceID">
+                {{province.provinceName}}
+              </option>
+            </select>
+
+          </div>
+          <div class="col">
             <label>Country</label>
             <select name="UserType" formControlName="CountryId" class="btn btn-outline-primary">
               <option value="undefined">Select Country</option>
-              <option *ngFor="let country of listCountries" [value]="country.CountryId">
-                {{country.CountryName}}
+              <option *ngFor="let country of listCountries" [value]="country.countryID">
+                {{country.countryName}}
               </option>
             </select>
           </div>
@@ -159,6 +225,15 @@
             <label>Address Line 1</label>
             <input type="text" formControlName="UserAddressLine1" class="form-control" style="width: 250px;"
               placeholder="Address Line 1">
+            <div class="error-messages">
+              <ng-container *ngFor="let error of error_messages.UserAddressLine1">
+                <div class="error-message"
+                  *ngIf="registrationForm.get('UserAddressLine1').hasError(error.type) &&
+                   (registrationForm.get('UserAddressLine1').dirty || registrationForm.get('UserAddressLine1').touched)">
+                  {{ error.message }}
+                </div>
+              </ng-container>
+            </div>
           </div>
           <div class="col">
             <label>Address Line 2</label>
@@ -169,6 +244,14 @@
             <label>Postal Code</label>
             <input type="text" formControlName="UserPostalCode" class="form-control" style="width: 250px;"
               placeholder="Postal Code">
+            <div class="error-messages">
+              <ng-container *ngFor="let error of error_messages.UserPostalCode">
+                <div class="error-message" *ngIf="registrationForm.get('UserPostalCode').hasError(error.type) &&
+                   (registrationForm.get('UserPostalCode').dirty || registrationForm.get('UserPostalCode').touched)">
+                  {{ error.message }}
+                </div>
+              </ng-container>
+            </div>
           </div>
         </div>
         <br>

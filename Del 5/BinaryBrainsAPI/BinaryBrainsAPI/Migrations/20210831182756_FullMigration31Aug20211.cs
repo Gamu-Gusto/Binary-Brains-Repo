@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BinaryBrainsAPI.Migrations
 {
-    public partial class FullMigration15Aug20213 : Migration
+    public partial class FullMigration31Aug20211 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -270,6 +270,32 @@ namespace BinaryBrainsAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "User",
+                columns: table => new
+                {
+                    UserID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserFirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserLastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserPhoneNumber = table.Column<int>(type: "int", nullable: false),
+                    UserPassword = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserDOB = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UserAddressLine1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserAddressLine2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserPostalCode = table.Column<int>(type: "int", nullable: false),
+                    ArtistBio = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserTypeID = table.Column<int>(type: "int", nullable: false),
+                    SuburbID = table.Column<int>(type: "int", nullable: false),
+                    timestamp = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_User", x => x.UserID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Venue",
                 columns: table => new
                 {
@@ -367,6 +393,33 @@ namespace BinaryBrainsAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Image",
+                columns: table => new
+                {
+                    ImageID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ImageContent = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    ImageTypeID = table.Column<int>(type: "int", nullable: false),
+                    UserID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Image", x => x.ImageID);
+                    table.ForeignKey(
+                        name: "FK_Image_ImageType_ImageTypeID",
+                        column: x => x.ImageTypeID,
+                        principalTable: "ImageType",
+                        principalColumn: "ImageTypeID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Image_User_UserID",
+                        column: x => x.UserID,
+                        principalTable: "User",
+                        principalColumn: "UserID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "City",
                 columns: table => new
                 {
@@ -458,217 +511,6 @@ namespace BinaryBrainsAPI.Migrations
                         column: x => x.VenueID,
                         principalTable: "Venue",
                         principalColumn: "VenueID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Suburb",
-                columns: table => new
-                {
-                    SuburbID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    SuburbName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CityID = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Suburb", x => x.SuburbID);
-                    table.ForeignKey(
-                        name: "FK_Suburb_City_CityID",
-                        column: x => x.CityID,
-                        principalTable: "City",
-                        principalColumn: "CityID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ArtClassAnnouncement",
-                columns: table => new
-                {
-                    ArtClassAnnouncementID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ArtClassAnnouncementDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ArtClassID = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ArtClassAnnouncement", x => x.ArtClassAnnouncementID);
-                    table.ForeignKey(
-                        name: "FK_ArtClassAnnouncement_ArtClasse_ArtClassID",
-                        column: x => x.ArtClassID,
-                        principalTable: "ArtClasse",
-                        principalColumn: "ArtClassID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "User",
-                columns: table => new
-                {
-                    UserID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserFirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserLastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserPhoneNumber = table.Column<int>(type: "int", nullable: false),
-                    UserPassword = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserDOB = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UserAddressLine1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserAddressLine2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserPostalCode = table.Column<int>(type: "int", nullable: false),
-                    ArtistBio = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserTypeID = table.Column<int>(type: "int", nullable: false),
-                    SuburbID = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_User", x => x.UserID);
-                    table.ForeignKey(
-                        name: "FK_User_Suburb_SuburbID",
-                        column: x => x.SuburbID,
-                        principalTable: "Suburb",
-                        principalColumn: "SuburbID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_User_UserType_UserTypeID",
-                        column: x => x.UserTypeID,
-                        principalTable: "UserType",
-                        principalColumn: "UserTypeID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Booking",
-                columns: table => new
-                {
-                    BookingID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    BookingDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    BookingStatus = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    BookingNotificationID = table.Column<int>(type: "int", nullable: true),
-                    ArtClassID = table.Column<int>(type: "int", nullable: false),
-                    UserID = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Booking", x => x.BookingID);
-                    table.ForeignKey(
-                        name: "FK_Booking_ArtClasse_ArtClassID",
-                        column: x => x.ArtClassID,
-                        principalTable: "ArtClasse",
-                        principalColumn: "ArtClassID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Booking_BookingNotification_BookingNotificationID",
-                        column: x => x.BookingNotificationID,
-                        principalTable: "BookingNotification",
-                        principalColumn: "BookingNotificationID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Booking_User_UserID",
-                        column: x => x.UserID,
-                        principalTable: "User",
-                        principalColumn: "UserID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Feedback",
-                columns: table => new
-                {
-                    FeedbackID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FeedbackComment = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TeacherRating = table.Column<double>(type: "float", nullable: false),
-                    DifficultyRating = table.Column<double>(type: "float", nullable: false),
-                    OverallRating = table.Column<double>(type: "float", nullable: false),
-                    UserID = table.Column<int>(type: "int", nullable: false),
-                    ArtClassID = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Feedback", x => x.FeedbackID);
-                    table.ForeignKey(
-                        name: "FK_Feedback_ArtClasse_ArtClassID",
-                        column: x => x.ArtClassID,
-                        principalTable: "ArtClasse",
-                        principalColumn: "ArtClassID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Feedback_User_UserID",
-                        column: x => x.UserID,
-                        principalTable: "User",
-                        principalColumn: "UserID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Image",
-                columns: table => new
-                {
-                    ImageID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ImageContent = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
-                    ImageTypeID = table.Column<int>(type: "int", nullable: false),
-                    UserID = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Image", x => x.ImageID);
-                    table.ForeignKey(
-                        name: "FK_Image_ImageType_ImageTypeID",
-                        column: x => x.ImageTypeID,
-                        principalTable: "ImageType",
-                        principalColumn: "ImageTypeID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Image_User_UserID",
-                        column: x => x.UserID,
-                        principalTable: "User",
-                        principalColumn: "UserID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Payment",
-                columns: table => new
-                {
-                    PaymentID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Amount = table.Column<double>(type: "float", nullable: false),
-                    PaymentDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    PaymentTypeID = table.Column<int>(type: "int", nullable: false),
-                    PaymentStatusID = table.Column<int>(type: "int", nullable: false),
-                    BookingID = table.Column<int>(type: "int", nullable: false),
-                    RefundID = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Payment", x => x.PaymentID);
-                    table.ForeignKey(
-                        name: "FK_Payment_Booking_BookingID",
-                        column: x => x.BookingID,
-                        principalTable: "Booking",
-                        principalColumn: "BookingID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Payment_PaymentStatus_PaymentStatusID",
-                        column: x => x.PaymentStatusID,
-                        principalTable: "PaymentStatus",
-                        principalColumn: "PaymentStatusID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Payment_PaymentType_PaymentTypeID",
-                        column: x => x.PaymentTypeID,
-                        principalTable: "PaymentType",
-                        principalColumn: "PaymentTypeID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Payment_Refund_RefundID",
-                        column: x => x.RefundID,
-                        principalTable: "Refund",
-                        principalColumn: "RefundID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -794,6 +636,111 @@ namespace BinaryBrainsAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Suburb",
+                columns: table => new
+                {
+                    SuburbID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SuburbName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CityID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Suburb", x => x.SuburbID);
+                    table.ForeignKey(
+                        name: "FK_Suburb_City_CityID",
+                        column: x => x.CityID,
+                        principalTable: "City",
+                        principalColumn: "CityID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ArtClassAnnouncement",
+                columns: table => new
+                {
+                    ArtClassAnnouncementID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ArtClassAnnouncementDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ArtClassID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ArtClassAnnouncement", x => x.ArtClassAnnouncementID);
+                    table.ForeignKey(
+                        name: "FK_ArtClassAnnouncement_ArtClasse_ArtClassID",
+                        column: x => x.ArtClassID,
+                        principalTable: "ArtClasse",
+                        principalColumn: "ArtClassID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Booking",
+                columns: table => new
+                {
+                    BookingID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    BookingDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    BookingStatus = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    BookingNotificationID = table.Column<int>(type: "int", nullable: true),
+                    ArtClassID = table.Column<int>(type: "int", nullable: false),
+                    UserID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Booking", x => x.BookingID);
+                    table.ForeignKey(
+                        name: "FK_Booking_ArtClasse_ArtClassID",
+                        column: x => x.ArtClassID,
+                        principalTable: "ArtClasse",
+                        principalColumn: "ArtClassID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Booking_BookingNotification_BookingNotificationID",
+                        column: x => x.BookingNotificationID,
+                        principalTable: "BookingNotification",
+                        principalColumn: "BookingNotificationID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Booking_User_UserID",
+                        column: x => x.UserID,
+                        principalTable: "User",
+                        principalColumn: "UserID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Feedback",
+                columns: table => new
+                {
+                    FeedbackID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FeedbackComment = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TeacherRating = table.Column<double>(type: "float", nullable: false),
+                    DifficultyRating = table.Column<double>(type: "float", nullable: false),
+                    OverallRating = table.Column<double>(type: "float", nullable: false),
+                    UserID = table.Column<int>(type: "int", nullable: false),
+                    ArtClassID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Feedback", x => x.FeedbackID);
+                    table.ForeignKey(
+                        name: "FK_Feedback_ArtClasse_ArtClassID",
+                        column: x => x.ArtClassID,
+                        principalTable: "ArtClasse",
+                        principalColumn: "ArtClassID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Feedback_User_UserID",
+                        column: x => x.UserID,
+                        principalTable: "User",
+                        principalColumn: "UserID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ExhibitionAnnouncement",
                 columns: table => new
                 {
@@ -905,6 +852,48 @@ namespace BinaryBrainsAPI.Migrations
                         column: x => x.InvitationStatusID,
                         principalTable: "InvitationStatus",
                         principalColumn: "InvitationStatusID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Payment",
+                columns: table => new
+                {
+                    PaymentID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Amount = table.Column<double>(type: "float", nullable: false),
+                    PaymentDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    PaymentTypeID = table.Column<int>(type: "int", nullable: false),
+                    PaymentStatusID = table.Column<int>(type: "int", nullable: false),
+                    BookingID = table.Column<int>(type: "int", nullable: false),
+                    RefundID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Payment", x => x.PaymentID);
+                    table.ForeignKey(
+                        name: "FK_Payment_Booking_BookingID",
+                        column: x => x.BookingID,
+                        principalTable: "Booking",
+                        principalColumn: "BookingID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Payment_PaymentStatus_PaymentStatusID",
+                        column: x => x.PaymentStatusID,
+                        principalTable: "PaymentStatus",
+                        principalColumn: "PaymentStatusID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Payment_PaymentType_PaymentTypeID",
+                        column: x => x.PaymentTypeID,
+                        principalTable: "PaymentType",
+                        principalColumn: "PaymentTypeID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Payment_Refund_RefundID",
+                        column: x => x.RefundID,
+                        principalTable: "Refund",
+                        principalColumn: "RefundID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -1150,16 +1139,6 @@ namespace BinaryBrainsAPI.Migrations
                 column: "CityID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_User_SuburbID",
-                table: "User",
-                column: "SuburbID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_User_UserTypeID",
-                table: "User",
-                column: "UserTypeID");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_UserInvitation_InvitationID",
                 table: "UserInvitation",
                 column: "InvitationID");
@@ -1206,6 +1185,9 @@ namespace BinaryBrainsAPI.Migrations
                 name: "Payment");
 
             migrationBuilder.DropTable(
+                name: "Suburb");
+
+            migrationBuilder.DropTable(
                 name: "UserInvitation");
 
             migrationBuilder.DropTable(
@@ -1230,7 +1212,13 @@ namespace BinaryBrainsAPI.Migrations
                 name: "Refund");
 
             migrationBuilder.DropTable(
+                name: "City");
+
+            migrationBuilder.DropTable(
                 name: "Invitation");
+
+            migrationBuilder.DropTable(
+                name: "UserType");
 
             migrationBuilder.DropTable(
                 name: "ArtworkDimension");
@@ -1257,16 +1245,25 @@ namespace BinaryBrainsAPI.Migrations
                 name: "BookingNotification");
 
             migrationBuilder.DropTable(
+                name: "Province");
+
+            migrationBuilder.DropTable(
                 name: "Exhibition");
 
             migrationBuilder.DropTable(
                 name: "InvitationStatus");
 
             migrationBuilder.DropTable(
+                name: "Privileges");
+
+            migrationBuilder.DropTable(
                 name: "ArtClassType");
 
             migrationBuilder.DropTable(
                 name: "ClassTeacher");
+
+            migrationBuilder.DropTable(
+                name: "Country");
 
             migrationBuilder.DropTable(
                 name: "ExhibitionType");
@@ -1294,24 +1291,6 @@ namespace BinaryBrainsAPI.Migrations
 
             migrationBuilder.DropTable(
                 name: "ScheduleType");
-
-            migrationBuilder.DropTable(
-                name: "Suburb");
-
-            migrationBuilder.DropTable(
-                name: "UserType");
-
-            migrationBuilder.DropTable(
-                name: "City");
-
-            migrationBuilder.DropTable(
-                name: "Privileges");
-
-            migrationBuilder.DropTable(
-                name: "Province");
-
-            migrationBuilder.DropTable(
-                name: "Country");
         }
     }
 }

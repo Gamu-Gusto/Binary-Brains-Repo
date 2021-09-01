@@ -24,7 +24,8 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
     
-   constructor(public data: DataService,private formBuilder: FormBuilder,private fb: FormBuilder, private toastr: ToastrService, private router: Router,private calendar: NgbCalendar,) { 
+   constructor(public data: DataService,private formBuilder: FormBuilder,private fb: FormBuilder, 
+    private toastr: ToastrService, private router: Router,private calendar: NgbCalendar) { 
 
     this.loginForm = new FormGroup({
           

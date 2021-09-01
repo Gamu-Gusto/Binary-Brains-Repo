@@ -965,11 +965,10 @@ namespace BinaryBrainsAPI.Migrations
                     b.Property<int>("UserTypeID")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("timestamp")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("UserID");
-
-                    b.HasIndex("SuburbID");
-
-                    b.HasIndex("UserTypeID");
 
                     b.ToTable("User");
                 });
@@ -1401,25 +1400,6 @@ namespace BinaryBrainsAPI.Migrations
                         .IsRequired();
 
                     b.Navigation("City");
-                });
-
-            modelBuilder.Entity("BinaryBrainsAPI.Entities.Users.User", b =>
-                {
-                    b.HasOne("BinaryBrainsAPI.Entities.Users.Suburb", "Suburb")
-                        .WithMany()
-                        .HasForeignKey("SuburbID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BinaryBrainsAPI.Entities.Users.UserType", "UserType")
-                        .WithMany()
-                        .HasForeignKey("UserTypeID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Suburb");
-
-                    b.Navigation("UserType");
                 });
 
             modelBuilder.Entity("BinaryBrainsAPI.Entities.Users.UserType", b =>

@@ -9,14 +9,13 @@ export class ArtClass {
     ClassLimit: string;
     RefundDayLimit: string;
     ClassPrice: string;
-
-   ArtClassType: string;
-
-    Venue: string;
-
-    ClassTeacher: string;
-
+    artClassTypeID: string;
+    artClassType: string;
+    venueID: string;
+    venue: string;
+    classTeacherID: string;
+    classTeacher: string;
     ArtClassAnnouncementId: string;
-
-    Organisation: string;
+     organisationID: string;
+    organisation: string;
 }

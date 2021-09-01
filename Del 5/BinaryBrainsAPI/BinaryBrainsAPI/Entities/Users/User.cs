@@ -23,16 +23,12 @@ namespace BinaryBrainsAPI.Entities.Users
         public string UserAddressLine2 { get; set; }
         public int UserPostalCode { get; set; }
         public string ArtistBio { get; set; }
-
-       // public string token { get; set; }
-
-        [ForeignKey("UserTypeID")]
         public int UserTypeID { get; set; }
-        public UserType UserType { get; set; }
-
-        [ForeignKey("SuburbID")]
         public int SuburbID { get; set; }
-        public Suburb Suburb { get; set; }
+
+        public DateTime timestamp { get; set; }
+
+
 
     }
 }

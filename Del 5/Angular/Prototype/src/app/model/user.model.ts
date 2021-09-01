@@ -14,4 +14,5 @@ export class User {
         ArtistBio : string;
         UserTypeId: string;
         SurburbId: string;
+        timestamp: any;
 }

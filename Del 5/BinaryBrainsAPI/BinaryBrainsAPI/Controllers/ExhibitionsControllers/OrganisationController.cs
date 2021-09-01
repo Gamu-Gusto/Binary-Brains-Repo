@@ -1,5 +1,6 @@
 ﻿using BinaryBrainsAPI.Entities.Exhibitions;
 using BinaryBrainsAPI.Interfaces;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 namespace BinaryBrainsAPI.Controllers.ExhibitionsControllers
 {
     [Route("api/Organisation")]
-    [ApiController]
+    [EnableCors("MyCorsPolicy")]
     public class OrganisationController : ControllerBase
     {
         private readonly IAppRepository<Organisation> _appRepository;

@@ -1,5 +1,6 @@
 ﻿using BinaryBrainsAPI.Entities.Artworks;
 using BinaryBrainsAPI.Interfaces;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 namespace BinaryBrainsAPI.Controllers.ArtworksControllers
 {
     [Route("api/Artwork")]
-    [ApiController]
+    [EnableCors("MyCorsPolicy")]
     public class ArtworkController : ControllerBase
     {
         private readonly IAppRepository<Artwork> _appRepository;

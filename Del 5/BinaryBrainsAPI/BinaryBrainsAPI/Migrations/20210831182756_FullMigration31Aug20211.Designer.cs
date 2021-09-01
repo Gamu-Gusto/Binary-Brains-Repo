@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BinaryBrainsAPI.Migrations
 {
     [DbContext(typeof(ArtechDbContext))]
-    [Migration("20210815123235_FullMigration15Aug20213")]
-    partial class FullMigration15Aug20213
+    [Migration("20210831182756_FullMigration31Aug20211")]
+    partial class FullMigration31Aug20211
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -967,11 +967,10 @@ namespace BinaryBrainsAPI.Migrations
                     b.Property<int>("UserTypeID")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("timestamp")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("UserID");
-
-                    b.HasIndex("SuburbID");
-
-                    b.HasIndex("UserTypeID");
 
                     b.ToTable("User");
                 });
@@ -1403,25 +1402,6 @@ namespace BinaryBrainsAPI.Migrations
                         .IsRequired();
 
                     b.Navigation("City");
-                });
-
-            modelBuilder.Entity("BinaryBrainsAPI.Entities.Users.User", b =>
-                {
-                    b.HasOne("BinaryBrainsAPI.Entities.Users.Suburb", "Suburb")
-                        .WithMany()
-                        .HasForeignKey("SuburbID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BinaryBrainsAPI.Entities.Users.UserType", "UserType")
-                        .WithMany()
-                        .HasForeignKey("UserTypeID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Suburb");
-
-                    b.Navigation("UserType");
                 });
 
             modelBuilder.Entity("BinaryBrainsAPI.Entities.Users.UserType", b =>

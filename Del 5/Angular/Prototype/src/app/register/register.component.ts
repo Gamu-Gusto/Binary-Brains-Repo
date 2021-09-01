@@ -50,9 +50,9 @@ export class RegisterComponent implements OnInit {
   formSubmitted = false;
   theErrors: string[] = [];
 
+  model;
 
 
-  /*
 
   error_messages = {
     'UserName': [
@@ -69,8 +69,6 @@ export class RegisterComponent implements OnInit {
 
     'UserEmail': [
       { type: 'required', message: 'Email is required.' },
-      { type: 'minlength', message: 'Email length.' },
-      { type: 'maxlength', message: 'Email length.' },
       { type: 'required', message: 'please enter a valid email address.' }
     ],
 
@@ -80,12 +78,24 @@ export class RegisterComponent implements OnInit {
       { type: 'maxlength', message: 'password length.' }
     ],
     'UserPasswordConfirm': [
-      { type: 'required', message: 'password is required.' },
-      { type: 'minlength', message: 'password length.' },
-      { type: 'maxlength', message: 'password length.' }
+      { type: 'required', message: 'password  confirm is required.' },
+      { type: 'minlength', message: 'password  confirm length.' }
     ],
+    'UserPhoneNumber': [
+      { type: 'required', message: 'password is required.' },
+      { type: 'minlength', message: 'password length.' }
+    ],
+    'UserAddressLine1': [
+      { type: 'required', message: 'address  is required.' },
+      { type: 'minlength', message: 'address length.' }
+    ],
+
+    'UserPostalCode': [
+      { type: 'required', message: 'postal code  is required.' }
+    ],
+
   }
-  */
+  
   errorMessage: any;
 
   constructor(public data: DataService, private route: Router, private modalService: NgbModal, private toastr: ToastrService, private formBuilder: FormBuilder, private fb: FormBuilder) {
@@ -110,10 +120,8 @@ export class RegisterComponent implements OnInit {
       CountryId: new FormControl(''),
       ProvinceId: new FormControl(''),
       CityId: new FormControl(''),
-
-
-
-    });
+      timestamp: new FormControl(''),
+      });
 
 
 
@@ -123,98 +131,50 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.getuserTypes();
     this.data.getAllCities().then((result) => { console.log(result); this.listCities = result });
-    this.getCountries();
-    this.getPrivinces();
-    this.getSuburbs();
+    this.data.getAllCountries().then((result) => { console.log(result); this.listCountries = result });
+    this.data.getAllSuburbs().then((result) => { console.log(result); this.listSurburbs = result });
+    this.data.getAllProvinces().then((result) => { console.log(result); this.listProvinces = result });
+    this.data.getAllUserTypes().then((result) => { console.log(result); this.listUserTypes = result });
 
     console.log(this.listCities);
 
     this.registrationForm = this.formBuilder.group({
       UserID: [''],
-      UserName: [''],
-      UserFirstName: [''],
-      UserLastName: [''],
-      UserEmail: [''],
-      UserPhoneNumber: [''],
-      UserPassword: [''],
-      UserPasswordConfirm: [''],
-      UserDOB: [''],
-      UserAddressLine1: [''],
+      UserName: ['', Validators.required],
+      UserFirstName: ['', Validators.required],
+      UserLastName: ['', Validators.required],
+      UserEmail: ['', Validators.required],
+      UserPhoneNumber: ['', Validators.required],
+      UserPassword: ['', Validators.required],
+      UserPasswordConfirm: ['', Validators.required],
+      UserDOB: ['', Validators.required],
+      UserAddressLine1: ['', Validators.required],
       UserAddressLine2: [''],
-      UserPostalCode: [''],
+      UserPostalCode: ['', Validators.required],
       ArtistBio: [''],
       UserTypeId: [''],
-      SurburbId: [''],
-      CityId: [''],
-      ProvinceId: [''],
-      CountryId: [''],
+      SurburbId: ['', Validators.required],
+      CityId: ['', Validators.required],
+      ProvinceId: ['', Validators.required],
+      CountryId: ['', Validators.required],
+      timestamp: [''],
     });
 
   }
 
-  UserPassword(formGroup: FormGroup) {
+  userPassword(formGroup: FormGroup) {
     const { value: UserPassword } = formGroup.get('UserPassword');
     const { value: UserPasswordConfirm } = formGroup.get('UserPasswordConfirm');
-    return UserPassword === UserPasswordConfirm ? null : { passwordNotMatch: true };
+    return UserPassword === UserPasswordConfirm ? null : { notSame: true };
   }
 
-  getuserTypes() {
-    this.data.getAllUserTypes().subscribe(response => {
-
-      this.listUserTypes = response
-
-    }, err => {
-      console.log("Error", err)
-    });
-
-    console.log(this.listUserTypes);
-  }
-  /*
-  getCities() {  
-    this.data.getAllCities().subscribe(response => {
-        
-      this.listCities = response
-    
-    }, err => 
-    {console.log("Error",err)
-  }); 
-  }
-  */
-  getSuburbs() {
-    this.data.getAllSuburbs().subscribe(response => {
-
-      this.listSurburbs = response
-
-    }, err => {
-      console.log("Error", err)
-    });
-  }
-  getCountries() {
-    this.data.getAllCountries().subscribe(response => {
-
-      this.listCountries = response
-
-    }, err => {
-      console.log("Error", err)
-    });
-  }
-  getPrivinces() {
-    this.data.getAllProvinces().subscribe(response => {
-
-      this.listProvinces = response
-
-    }, err => {
-      console.log("Error", err)
-    });
-  }
 
   onSubmit(event) {
 
     this.formSubmitted = true;
     event.preventDefault();
-
+    console.log(this.registrationForm.value);
     if (this.registrationForm.invalid) {
       return;
     }
@@ -222,12 +182,8 @@ export class RegisterComponent implements OnInit {
     else {
 
       console.log(this.registrationForm.value);
-      this.registrationForm.get('UserTypeId').setValue('1');
-      this.registrationForm.get('SurburbId').setValue('1');
-      this.registrationForm.get('CityId').setValue('');
-      this.registrationForm.get('ProvinceId').setValue('');
-      this.registrationForm.get('CountryId').setValue('');
-
+      this.registrationForm.get('UserDOB').setValue('2021-08-31T19:39:32.005Z')  ;
+      this.registrationForm.get('timestamp').setValue('2021-08-31T19:39:32.005Z')  ;
 
       this.data.addUser(this.registrationForm.value).then(success => {
         this.route.navigate(['/login']);

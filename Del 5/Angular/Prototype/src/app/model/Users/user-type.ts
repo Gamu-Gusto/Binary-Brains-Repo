@@ -1,4 +1,5 @@
 export class UserType {
-    UserTypeID : string;
-    UserRoleName : string;
+    userTypeID : string;
+    userRoleName : string;
+    privileges : string;
 }

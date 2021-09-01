@@ -1,5 +1,6 @@
 ﻿using BinaryBrainsAPI.Entities.Images;
 using BinaryBrainsAPI.Interfaces;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 namespace BinaryBrainsAPI.Controllers.ImagesControllers
 {
     [Route("api/Image")]
-    [ApiController]
+    [EnableCors("MyCorsPolicy")]
     public class ImageController : ControllerBase
     {
         private readonly IAppRepository<Image> _appRepository;
