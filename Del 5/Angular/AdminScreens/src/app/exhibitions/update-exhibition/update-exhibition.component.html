@@ -1,0 +1,115 @@
+<div class="container">
+  <form #form="ngForm" (submit)="onSubmit(form)">
+    <div class="row">
+      <div class="col">
+        <h1>Update Exhibition</h1>
+      </div>
+      <div class="col">
+        <button type="button" class="btn btn-danger" style="float: right;" (click)="onCancel(cancelModal)">Cancel</button>
+      </div>    </div>
+    <hr>
+    <div class="row">
+        <div class="col">
+            <label>Title:</label>
+            <input type="text" class="form-control" placeholder="Title" name="exhibitionName" [value]="exhibitionService.selectedExhibition.exhibitionName">
+            <br>
+
+            <div class="form-group">
+                <label for="comment">Exhibition Description:</label>
+                <textarea class="form-control" rows="5" id="comment" name="exhibitionDescription" [value]="exhibitionService.selectedExhibition.exhibitionDescription"></textarea>
+              </div>
+              <br>
+
+            <label>Exhibition Type:</label>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                </div>
+                <select class="custom-select" id="inputGroupSelect01">
+                  <option *ngFor="let type of exhibitionTypeList" [value]="type.exhibitionTypeID">{{type.exhibitionTypeDecription}}</option>
+                </select>
+              </div>
+              <br>
+            
+        </div>
+        <div class="col">
+            <label>Date: </label>
+            <input type="text" class="form-control" placeholder="2021/06/16" name="exhibitionDate" [value]="exhibitionService.selectedExhibition.exhibitionDate">
+            <br>
+
+            <label>Time: </label>
+            <input type="text" class="form-control" placeholder="08:00" name="exhibitionTime" [value]="exhibitionService.selectedExhibition.exhibitionTime">
+            <br>
+
+            <label>Venue:</label>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                </div>
+                <select class="custom-select" id="inputGroupSelect01">
+                  <option *ngFor="let type of venueList" [value]="type.venueID">{{type.venueDescription}}</option>
+                </select>
+              </div>
+              <br>
+
+              <div class="row">
+
+                <div class="col">
+                  <input type="file" #Image accept="image/">
+                    <button type="button" class="btn btn-danger">Remove <i class="fas fa-trash"></i></button>
+
+                </div>
+                <div class="col">
+                    <img src="./../assets/exhibitions/theme2.png" class="exhibition-image" alt="exhibiton">
+                </div>
+              </div>
+              
+
+
+                          
+        </div>
+    </div>
+    <br>
+    <!-- <button type="button" class="btn btn-primary btn-lg" (click)="addAnnouncement(announcementModal)">Submit</button> -->
+    <button type="button" class="btn btn-primary" style="width: 300px; height: 50px;" type="submit">Update Exhibition</button>
+  </form>
+</div>
+
+
+<!-- =========MODALS BELOW======================= -->
+
+<ng-template #updateAnnouncementModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Enter Announcement</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" >
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">Announcement</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+    </div>
+    </div>
+    <br>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="modal.dismiss('Cross click')">Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="confirmAnnouncement(updateAnnouncementModal)">Confirm</button>
+  </div>
+</ng-template>
+
+<ng-template #cancelModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Cancel Update Exhibtion</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" >
+    <p>Are you sure you want to cancel the update process?</p>
+    </div>
+    <br>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="modal.dismiss('Cross click')">No</button>
+    <button type="button" class="btn btn-primary" (click)="confirmCancel(cancelModal)">Yes</button>
+  </div>
+</ng-template>
+

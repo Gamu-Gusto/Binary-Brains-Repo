@@ -1,0 +1,125 @@
+<div class="container">
+    <div class="row">
+      <div class="col">
+        <h1>Add Teacher</h1>
+      </div>
+      <div class="col">
+        <button type="button" class="btn btn-danger" style="float: right;" (click)="onCancel(cancelTeacherModal)">Cancel</button>
+      </div>     </div>
+    <hr>
+    <form novalidate #form="ngForm" (submit)="onSubmit(form)">
+    <div class="row">
+        <div class="col">
+            <label>First Name:</label>
+            <input type="text" class="form-control" placeholder="First Name" name="teacherName" #teacherName="ngModel" [(ngModel)]="teacherService.teacherData.teacherName"
+            required [class.invalid]="teacherName.invalid && teacherName.touched">
+            <div *ngIf="teacherName.invalid && (teacherName.dirty || teacherName.touched)" style="color: red;">
+              Exhibition Title Required
+            </div> 
+            <br>
+
+            <label>Last Name:</label>
+            <input type="text" class="form-control" placeholder="Last Name" name="teacherSurname" #teacherSurname="ngModel" [(ngModel)]="teacherService.teacherData.teacherSurname"
+            required [class.invalid]="teacherSurname.invalid && teacherSurname.touched">
+            <div *ngIf="teacherSurname.invalid && (teacherSurname.dirty || teacherSurname.touched)" style="color: red;">
+              Exhibition Title Required
+            </div> 
+            <br>
+
+            <label>Type of Teacher:</label>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                </div>
+                <select class="custom-select" id="inputGroupSelect01" (valueChange)="selectType($event)">
+                  <option *ngFor="let type of teacherTypeList" [value]="type.teacherTypeID">{{type.teacherTypeDescription}}</option>
+                </select>
+              </div>
+              <br>
+
+              <!-- <label>ID-Number:</label>
+            <input type="text" class="form-control" placeholder="ID">
+            <br> -->
+
+             
+        </div>
+        <div class="col">
+       
+
+              <label>Phone Number:</label>
+              <input type="text" class="form-control" placeholder="+ (27)" name="teacherPhoneNumber" #teacherPhoneNumber="ngModel" [(ngModel)]="teacherService.teacherData.teacherPhoneNumber"
+              required [class.invalid]="teacherPhoneNumber.invalid && teacherPhoneNumber.touched">
+              <div *ngIf="teacherPhoneNumber.invalid && (teacherPhoneNumber.dirty || teacherPhoneNumber.touched)" style="color: red;">
+                Exhibition Title Required
+              </div> 
+              <br>
+
+              <label>Email Address:</label>
+              <input type="text" class="form-control" placeholder="@gmail.com" name="teacherEmail" #teacherEmail="ngModel" [(ngModel)]="teacherService.teacherData.teacherEmail"
+              required [class.invalid]="teacherName.invalid && teacherName.touched" pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$">
+              <div *ngIf="teacherEmail.errors && (teacherEmail.invalid && teacherEmail.touched)">
+                <small class="error-text" *ngIf="teacherEmail.errors.required" style="color: red;">Email is required</small>
+                <small class="error-text" *ngIf="teacherEmail.errors.pattern" style="color: red;">Enter a valid email</small>
+            </div>
+              <br>
+                          
+        </div>
+    </div>
+    <button type="button" class="btn btn-primary btn-lg" [disabled]="form.invalid" type="submit">Add Teacher</button>
+
+    <!-- <ng-template #teacherModal let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title">Add Teacher</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" >
+          <p>Are you sure you want to add Teacher?</p>
+        </div>
+        <br>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="modal.dismiss('Cross click')">No</button>
+        <button type="button" class="btn btn-primary" type="submit">Add Teacher</button>
+      </div>
+    </ng-template> -->
+  </form>
+  </div>
+
+
+
+<!-- =========MODALS BELOW======================= -->
+
+<!-- <ng-template #teacherModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Add Teacher</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" >
+      <p>Are you sure you want to add Teacher?</p>
+    </div>
+    <br>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="modal.dismiss('Cross click')">No</button>
+    <button type="button" class="btn btn-primary" (click)="confirmTeacher(teacherModal)">Add</button>
+  </div>
+</ng-template> -->
+
+
+<ng-template #cancelTeacherModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Cancel Add Teacher</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" >
+      <p>Are you sure you want to cancel adding class Teacher?</p>
+    </div>
+    <br>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="modal.dismiss('Cross click')">No</button>
+    <button type="button" class="btn btn-primary" (click)="confirmCancel()">Yes</button>
+  </div>
+</ng-template>

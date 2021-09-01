@@ -1,0 +1,197 @@
+<div class="container">
+  <form nonvalidate #form="ngForm" (submit)="onSubmit(form)">
+    <div class="row">
+      <div class="col">
+        <h1>Create New Art Class</h1>
+      </div>
+      <div class="col">
+        <button type="button" class="btn btn-danger" style="float: right;" (click)="onCancel(cancelModal)">Cancel</button>
+      </div>    </div>
+    <hr>
+    <div class="row">
+        <div class="col">
+            <label>Title:</label>
+            <input type="text" class="form-control" placeholder="Title" name="artClassName" #artClassName="ngModel" [(ngModel)]="artClassService.artClassData.artClassName"
+            required [class.invalid]="artClassName.invalid && artClassName.touched">
+            <div *ngIf="artClassName.invalid && (artClassName.dirty || artClassName.touched)" style="color: red;">
+              Class Title Required
+            </div> 
+            <br>
+
+            <div class="form-group">
+                <label for="comment">Class Description:</label>
+                <textarea class="form-control" rows="5" id="comment" name="artClassDescription" #artClassDescription="ngModel" [(ngModel)]="artClassService.artClassData.artClassDescription" 
+                required [class.invalid]="artClassDescription.invalid && artClassDescription.touched"></textarea>
+              </div>
+              <div *ngIf="artClassDescription.invalid && (artClassDescription.dirty || artClassDescription.touched)" style="color: red;">
+                Description Required
+              </div> 
+              <br>
+
+              <label>Start-Date:</label>
+            <input type="text" class="form-control" placeholder="Start-Date" name="artClassStartDate" #artClassStartDate="ngModel" [(ngModel)]="artClassService.artClassData.artClassStartDate" 
+            required [class.invalid]="artClassStartDate.invalid && artClassStartDate.touched">
+            <div *ngIf="artClassStartDate.invalid && (artClassStartDate.dirty || artClassStartDate.touched)" style="color: red;">
+              Start Date Required
+            </div> 
+            <br>
+
+            <label>End-Date:</label>
+            <input type="text" class="form-control" placeholder="End-Date" name="artClassEndDate" #artClassEndDate="ngModel" [(ngModel)]="artClassService.artClassData.artClassEndDate" 
+            required [class.invalid]="artClassEndDate.invalid && artClassEndDate.touched">
+            <div *ngIf="artClassEndDate.invalid && (artClassEndDate.dirty || artClassEndDate.touched)" style="color: red;">
+              End Date Required
+            </div> 
+            <br>
+
+            <label>Class Type:</label>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                </div>
+                <select class="custom-select" id="inputGroupSelect01">
+                  <option *ngFor="let type of artClassTypeList" [value]="type.artClassTypeID">{{type.artClassTypeDescription}}</option>
+                </select>
+              </div>
+              <br>
+            
+        </div>
+        <div class="col">
+            <label>Teacher:</label>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                </div>
+                <select class="custom-select" id="inputGroupSelect01">
+                  <option *ngFor="let type of teachersList" [value]="type.classTeacherID">{{type.teacherName}} {{type.teacherSurname}}</option>
+                </select>
+              </div>
+              <br>
+
+            <label>Class limit: </label>
+            <input type="number" class="form-control" placeholder="Provide class limit" name="artClassLimit" #artClassLimit="ngModel" [(ngModel)]="artClassService.artClassData.artClassLimit" 
+            required [class.invalid]="artClassLimit.invalid && artClassLimit.touched">
+            <div *ngIf="artClassLimit.invalid && (artClassLimit.dirty || artClassLimit.touched)" style="color: red;">
+              Class Limit Required
+            </div> 
+            <br>
+
+            <label>Refund Limit:</label>
+            <input type="text" class="form-control" placeholder="Refund limit" name="refundDayLimit" #refundDayLimit="ngModel" [(ngModel)]="artClassService.artClassData.refundDayLimit" 
+            required [class.invalid]="refundDayLimit.invalid && refundDayLimit.touched">
+            <div *ngIf="refundDayLimit.invalid && (refundDayLimit.dirty || refundDayLimit.touched)" style="color: red;">
+              Refund Limit Required
+            </div> 
+            <br>
+
+            <label>Venue:</label>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                </div>
+                <select class="custom-select" id="inputGroupSelect01">
+                  <option *ngFor="let type of venueList" [value]="type.venueID">{{type.venueDescription}}</option>
+                </select>
+              </div>
+              <br>
+<!-- 
+              <label>Payment Reminder: (Set how many weeks before start-date)</label>
+              <div class="row" style="margin-left: 50px;">
+              <div class="col">
+                <input class="form-check-input" type="radio">
+                <label class="form-check-label" for="flexRadioDefault1">
+                  3 Weeks
+                </label>
+              </div>
+              <div class="col">
+                <input class="form-check-input" type="radio">
+                <label class="form-check-label">
+                  2 Weeks
+                </label>
+              </div>
+              <div class="col">
+                <input class="form-check-input" type="radio">
+                <label class="form-check-label">
+                  1 Week
+                </label>
+              </div>
+            </div>
+              <br>
+              <label>Class Reminder: (Set how many weeks before start-date)</label>
+              <div class="row" style="margin-left: 50px;">
+              <div class="col">
+                <input class="form-check-input" type="radio">
+                <label class="form-check-label" for="flexRadioDefault1">
+                  3 Weeks
+                </label>
+              </div>
+              <div class="col">
+                <input class="form-check-input" type="radio">
+                <label class="form-check-label">
+                  2 Weeks
+                </label>
+              </div>
+              <div class="col">
+                <input class="form-check-input" type="radio">
+                <label class="form-check-label">
+                  1 Week
+                </label>
+              </div>
+            </div> -->
+            <hr>
+              <h4>Add Class Picture</h4>
+              <div class="row">
+                
+                <div class="col">
+                  <input type="file" #Image accept="image/">
+                  <button type="button" class="btn btn-danger sm">Delete <i class="fas fa-trash"></i></button>
+                </div>
+                <div class="col">
+                    <img src="./../assets/classes/class3.png" class="exhibition-image" alt="exhibiton">
+                </div>
+              </div>            
+        </div>
+      
+      </div>
+      <br>
+        <!-- <button type="button" class="btn btn-primary btn-lg" (click)="addClass(announcementModal)">Submit</button> -->
+        <button type="button" class="btn btn-primary" style="width: 250px; height: 50px;" [disabled]="form.invalid" type="submit">Submit</button>
+      </form>
+      </div>
+
+
+<!-- =========MODALS BELOW======================= -->
+
+<ng-template #classAnnounceModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Enter Announcement</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" >
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">Announcement</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+    </div>
+    </div>
+    <br>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="modal.dismiss('Cross click')">Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="confirmClass()">Confirm</button>
+  </div>
+</ng-template>
+
+<ng-template #cancelModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Enter Announcement</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" >
+    <p>Are you sure you want to cancel this creation process?</p>
+    </div>
+    <br>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="modal.dismiss('Cross click')">No</button>
+    <button type="button" class="btn btn-primary" (click)="confirmCancel(cancelModal)">Yes</button>
+  </div>
+</ng-template>
