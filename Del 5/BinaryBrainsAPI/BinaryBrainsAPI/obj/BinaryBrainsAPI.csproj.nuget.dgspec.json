@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\2021 Coding\\GitHub\\Binary-Brains-Repository\\Del 5\\BinaryBrainsAPI\\BinaryBrainsAPI\\BinaryBrainsAPI.csproj": {}
+    "C:\\Users\\Reinhardt Smit\\Source\\Repos\\Gamu-Gusto\\Binary-Brains-Repository\\Del 5\\BinaryBrainsAPI\\BinaryBrainsAPI\\BinaryBrainsAPI.csproj": {}
   },
   "projects": {
-    "C:\\2021 Coding\\GitHub\\Binary-Brains-Repository\\Del 5\\BinaryBrainsAPI\\BinaryBrainsAPI\\BinaryBrainsAPI.csproj": {
+    "C:\\Users\\Reinhardt Smit\\Source\\Repos\\Gamu-Gusto\\Binary-Brains-Repository\\Del 5\\BinaryBrainsAPI\\BinaryBrainsAPI\\BinaryBrainsAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\2021 Coding\\GitHub\\Binary-Brains-Repository\\Del 5\\BinaryBrainsAPI\\BinaryBrainsAPI\\BinaryBrainsAPI.csproj",
+        "projectUniqueName": "C:\\Users\\Reinhardt Smit\\Source\\Repos\\Gamu-Gusto\\Binary-Brains-Repository\\Del 5\\BinaryBrainsAPI\\BinaryBrainsAPI\\BinaryBrainsAPI.csproj",
         "projectName": "BinaryBrainsAPI",
-        "projectPath": "C:\\2021 Coding\\GitHub\\Binary-Brains-Repository\\Del 5\\BinaryBrainsAPI\\BinaryBrainsAPI\\BinaryBrainsAPI.csproj",
+        "projectPath": "C:\\Users\\Reinhardt Smit\\Source\\Repos\\Gamu-Gusto\\Binary-Brains-Repository\\Del 5\\BinaryBrainsAPI\\BinaryBrainsAPI\\BinaryBrainsAPI.csproj",
         "packagesPath": "C:\\Users\\Reinhardt Smit\\.nuget\\packages\\",
-        "outputPath": "C:\\2021 Coding\\GitHub\\Binary-Brains-Repository\\Del 5\\BinaryBrainsAPI\\BinaryBrainsAPI\\obj\\",
+        "outputPath": "C:\\Users\\Reinhardt Smit\\Source\\Repos\\Gamu-Gusto\\Binary-Brains-Repository\\Del 5\\BinaryBrainsAPI\\BinaryBrainsAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Reinhardt Smit\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -46,17 +46,17 @@
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[5.0.8, )"
+              "version": "[5.0.9, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[5.0.8, )"
+              "version": "[5.0.9, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[5.0.8, )"
+              "version": "[5.0.9, )"
             },
             "Microsoft.Owin.Cors": {
               "target": "Package",
@@ -76,7 +76,7 @@
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[5.6.3, )"
+              "version": "[6.2.1, )"
             }
           },
           "imports": [
