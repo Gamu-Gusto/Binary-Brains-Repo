@@ -41,6 +41,11 @@ namespace BinaryBrainsAPI.Repository.ArtClassesRepositories
             return _artechDb.ArtClasse.ToList();
         }
 
+        public ArtClass GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(ArtClass artClass, ArtClass entity)
         {
             artClass.ArtClassName = entity.ArtClassName;

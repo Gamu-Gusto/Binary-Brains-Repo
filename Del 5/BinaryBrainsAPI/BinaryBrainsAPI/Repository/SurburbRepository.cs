@@ -40,6 +40,11 @@ namespace BinaryBrainsAPI.Repository
             return _artechDb.Suburb.ToList();
         }
 
+        public Suburb GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(Suburb suburb, Suburb entity)
         {
             suburb.SuburbName = entity.SuburbName;

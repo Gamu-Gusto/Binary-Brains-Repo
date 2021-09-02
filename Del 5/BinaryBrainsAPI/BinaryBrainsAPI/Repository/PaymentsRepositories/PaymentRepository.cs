@@ -38,6 +38,11 @@ namespace BinaryBrainsAPI.Repository.PaymentsRepositories
             return _artechDb.Payment.ToList();
         }
 
+        public Payment GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(Payment payment, Payment entity)
         {
             payment.Amount = entity.Amount;

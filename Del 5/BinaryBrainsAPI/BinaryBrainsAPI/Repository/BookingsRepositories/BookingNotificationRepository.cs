@@ -40,6 +40,11 @@ namespace BinaryBrainsAPI.Repository.BookingsRepositories
             return _artechDb.BookingNotification.ToList();
         }
 
+        public BookingNotification GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(BookingNotification bookingNotification, BookingNotification entity)
         {
             bookingNotification.BookNotificationDescription = entity.BookNotificationDescription;

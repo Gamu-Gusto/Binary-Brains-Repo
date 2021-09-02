@@ -40,6 +40,11 @@ namespace BinaryBrainsAPI.Repository
             return _artechDb.Province.ToList();
         }
 
+        public Province GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(Province province, Province entity)
         {
             province.ProvinceName = entity.ProvinceName;

@@ -40,6 +40,11 @@ namespace BinaryBrainsAPI.Repository.BookingsRepositories
             return _artechDb.Booking.ToList();
         }
 
+        public Booking GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(Booking booking, Booking entity)
         {
             booking.BookingDateTime = entity.BookingDateTime;

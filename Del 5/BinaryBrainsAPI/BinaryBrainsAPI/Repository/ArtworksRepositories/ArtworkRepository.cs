@@ -42,6 +42,11 @@ namespace BinaryBrainsAPI.Repository.ArtworksRepositories
             
         }
 
+        public Artwork GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(Artwork artwork, Artwork entity)
         {
             artwork.ArtworkTitle = entity.ArtworkTitle;

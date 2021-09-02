@@ -61,6 +61,11 @@ namespace BinaryBrainsAPI.Repository
         {
             throw new NotImplementedException();
         }
+
+        public Image GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
     }
 
        

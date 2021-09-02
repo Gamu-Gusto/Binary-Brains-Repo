@@ -40,6 +40,11 @@ namespace BinaryBrainsAPI.Repository.ArtworksRepositories
             return _artechDb.MediumType.ToList();
         }
 
+        public MediumType GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(MediumType mediumType, MediumType entity)
         {
             mediumType.MediumTypeName = entity.MediumTypeName;

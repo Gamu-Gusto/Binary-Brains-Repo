@@ -41,6 +41,11 @@ namespace BinaryBrainsAPI.Repository
             return _artechDb.Country.ToList();
         }
 
+        public Country GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(Country country, Country entity)
         {
             country.CountryName = entity.CountryName;

@@ -38,6 +38,11 @@ namespace BinaryBrainsAPI.Repository.PaymentsRepositories
             return _artechDb.PaymentType.ToList();
         }
 
+        public PaymentType GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(PaymentType paymentType, PaymentType entity)
         {
             paymentType.PaymentTypeDescription = entity.PaymentTypeDescription;

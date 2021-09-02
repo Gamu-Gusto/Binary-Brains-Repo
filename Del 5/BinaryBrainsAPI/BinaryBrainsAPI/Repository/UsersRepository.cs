@@ -61,5 +61,10 @@ namespace BinaryBrainsAPI.Repository
             _artechDb.SaveChanges();
 
         }
+
+        public User GetByString(string str)
+        {
+            return _artechDb.User.FirstOrDefault(u => u.UserEmail == str);
+        }
     }
 }

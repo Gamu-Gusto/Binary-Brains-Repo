@@ -40,6 +40,11 @@ namespace BinaryBrainsAPI.Repository.ExhibitionsRepositories
             return _artechDb.Exhibition.ToList();
         }
 
+        public Exhibition GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(Exhibition exhibition, Exhibition entity)
         {
             exhibition.ExhibitionName = entity.ExhibitionName;

@@ -40,6 +40,11 @@ namespace BinaryBrainsAPI.Repository.ExhibitionsRepositories
             return _artechDb.Organisation.ToList();
         }
 
+        public Organisation GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(Organisation organisation, Organisation entity)
         {
             organisation.OrganisationalAddress = entity.OrganisationalAddress;

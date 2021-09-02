@@ -40,6 +40,11 @@ namespace BinaryBrainsAPI.Repository.ArtworksRepositories
             return _artechDb.ArtworkDimension.ToList();
         }
 
+        public ArtworkDimension GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(ArtworkDimension artworkDimension, ArtworkDimension entity)
         {
             artworkDimension.ArtworkDimensionDescription = entity.ArtworkDimensionDescription;

@@ -40,6 +40,11 @@ namespace BinaryBrainsAPI.Repository.ArtworksRepositories
             return _artechDb.FrameColour.ToList();
         }
 
+        public FrameColour GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(FrameColour frameColour, FrameColour entity)
         {
             frameColour.FrameColourDescription = entity.FrameColourDescription;

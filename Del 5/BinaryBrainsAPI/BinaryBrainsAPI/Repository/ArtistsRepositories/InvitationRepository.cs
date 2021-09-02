@@ -40,6 +40,11 @@ namespace BinaryBrainsAPI.Repository.ArtistsRepositories
             return _artechDb.Invitation.ToList();
         }
 
+        public Invitation GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(Invitation invitation, Invitation entity)
         {
             invitation.InvitationDetails = entity.InvitationDetails;

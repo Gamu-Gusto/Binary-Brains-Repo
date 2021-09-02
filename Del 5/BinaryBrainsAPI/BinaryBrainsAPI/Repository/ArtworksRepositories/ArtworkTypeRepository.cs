@@ -40,6 +40,11 @@ namespace BinaryBrainsAPI.Repository.ArtworksRepositories
             return _artechDb.ArtworkType.ToList();
         }
 
+        public ArtworkType GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(ArtworkType artworkType, ArtworkType entity)
         {
             artworkType.ArtworkTypeDescription = entity.ArtworkTypeDescription;

@@ -40,6 +40,11 @@ namespace BinaryBrainsAPI.Repository
             return _artechDb.Privileges.ToList();
         }
 
+        public Privileges GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(Privileges privileges, Privileges entity)
         {
             privileges.PrivilegeName = entity.PrivilegeName;

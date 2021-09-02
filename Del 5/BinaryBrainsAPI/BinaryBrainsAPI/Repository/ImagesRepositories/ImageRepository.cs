@@ -40,6 +40,11 @@ namespace BinaryBrainsAPI.Repository.ImagesRepositories
             return _artechDb.Image.ToList();
         }
 
+        public Image GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(Image image, Image entity)
         {
             image.ImageContent = entity.ImageContent;

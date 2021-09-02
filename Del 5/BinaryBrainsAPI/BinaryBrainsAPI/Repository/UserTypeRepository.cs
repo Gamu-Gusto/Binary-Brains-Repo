@@ -40,6 +40,11 @@ namespace BinaryBrainsAPI.Repository
             return _artechDb.UserType.ToList();
         }
 
+        public UserType GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(UserType userType, UserType entity)
         {
             userType.UserRoleName = entity.UserRoleName;

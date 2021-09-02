@@ -40,6 +40,11 @@ namespace BinaryBrainsAPI.Repository.ArtClassesRepositories
             return _artechDb.TeacherType.ToList();
         }
 
+        public TeacherType GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(TeacherType teacherType, TeacherType entity)
         {
             teacherType.TeacherTypeDescription = entity.TeacherTypeDescription;

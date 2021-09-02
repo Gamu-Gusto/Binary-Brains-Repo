@@ -40,6 +40,11 @@ namespace BinaryBrainsAPI.Repository.ExhibitionsRepositories
             return _artechDb.Venue.ToList();
         }
 
+        public Venue GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(Venue venue, Venue entity)
         {
             venue.VenueDescription = entity.VenueDescription;

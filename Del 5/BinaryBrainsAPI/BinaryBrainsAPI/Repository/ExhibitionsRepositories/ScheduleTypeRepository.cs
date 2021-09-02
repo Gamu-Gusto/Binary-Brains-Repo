@@ -40,6 +40,11 @@ namespace BinaryBrainsAPI.Repository.ExhibitionsRepositories
             return _artechDb.ScheduleType.ToList();
         }
 
+        public ScheduleType GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(ScheduleType scheduleType, ScheduleType entity)
         {
             scheduleType.ScheduleTypeDescription = entity.ScheduleTypeDescription;

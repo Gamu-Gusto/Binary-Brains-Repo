@@ -40,6 +40,11 @@ namespace BinaryBrainsAPI.Repository
             return _artechDb.City.ToList();
         }
 
+        public City GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(City city, City entity)
         {
             city.CityName = entity.CityName;

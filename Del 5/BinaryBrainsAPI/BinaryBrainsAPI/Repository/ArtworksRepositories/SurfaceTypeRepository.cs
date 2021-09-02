@@ -40,6 +40,11 @@ namespace BinaryBrainsAPI.Repository.ArtworksRepositories
             return _artechDb.SurfaceType.ToList();
         }
 
+        public SurfaceType GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(SurfaceType surfaceType, SurfaceType entity)
         {
             surfaceType.SurfaceTypeName = entity.SurfaceTypeName;

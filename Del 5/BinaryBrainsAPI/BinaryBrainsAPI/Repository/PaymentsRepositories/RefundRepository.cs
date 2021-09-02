@@ -38,6 +38,11 @@ namespace BinaryBrainsAPI.Repository.PaymentsRepositories
             return _artechDb.Refund.ToList();
         }
 
+        public Refund GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(Refund refund, Refund entity)
         {
             refund.RefundStatus = entity.RefundStatus;

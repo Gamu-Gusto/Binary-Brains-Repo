@@ -41,6 +41,11 @@ namespace BinaryBrainsAPI.Repository.ArtClassesRepositories
             return _artechDb.ArtClassAnnouncement.ToList();
         }
 
+        public ArtClassAnnouncement GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(ArtClassAnnouncement artClassAnnouncement, ArtClassAnnouncement entity)
         {
             artClassAnnouncement.ArtClassAnnouncementDescription = entity.ArtClassAnnouncementDescription;

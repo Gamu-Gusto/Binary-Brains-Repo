@@ -39,6 +39,11 @@ namespace BinaryBrainsAPI.Repository.PaymentsRepositories
             return _artechDb.PaymentStatus.ToList();
         }
 
+        public PaymentStatus GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(PaymentStatus paymentStatus, PaymentStatus entity)
         {
             paymentStatus.PaymentStatusDescription = entity.PaymentStatusDescription;

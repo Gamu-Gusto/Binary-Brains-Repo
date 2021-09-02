@@ -40,6 +40,11 @@ namespace BinaryBrainsAPI.Repository.ArtClassesRepositories
             return _artechDb.Feedback.ToList();
         }
 
+        public Feedback GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(Feedback feedback, Feedback entity)
         {
             feedback.FeedbackComment = entity.FeedbackComment;
