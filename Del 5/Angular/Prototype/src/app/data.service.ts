@@ -36,6 +36,10 @@ export class DataService {
   listCountries: Country[];
   listProvinces: Province[];
   sharedData:any;
+  teacherData:any;
+  venueData:any;
+  organisationData:any;
+  artClassTypeData:any;
 
   constructor(private http: HttpClient, private toastr: ToastrService) { }
 
@@ -95,9 +99,9 @@ export class DataService {
 
 
 
-  getAllArtwork() {
+  getAllArtwork(): Promise<any> {
 
-    return this.http.get(this.apiURL + '/Artwork')
+    return this.http.get(this.apiURL + '/Artwork').toPromise()
 
   };
 
@@ -106,6 +110,13 @@ export class DataService {
     return this.http.get(this.apiURL + '/ArtClass').toPromise()
 
   };
+
+  getAllExhibitions(): Promise<any>  {
+
+    return this.http.get(this.apiURL + '/Exhibition').toPromise()
+
+  };
+
 
   getArtClass(id): Promise<any>  {
 

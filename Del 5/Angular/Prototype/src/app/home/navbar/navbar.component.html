@@ -2,7 +2,7 @@
 <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark cyan" [containerInside]="false">
 
   <!-- Navbar brand -->
-  <img src="../../../assets/logo/artech.png" alt="" class="img-fluid rounded-circle z-depth-0" style="width: 5%;"> 
+  <img src="../../../assets/logo/artech.png" alt="" class="img-fluid rounded-circle z-depth-0" style="width: 5%;">
   <!-- Collapsible content -->
   <links>
 
@@ -12,34 +12,50 @@
         <!-- <a class="nav-link waves-light" [routerLink]="['exhibitions']" mdbWavesEffect>Exhibitions<span class="sr-only">(current)</span></a> -->
       </li>
       <li class="nav-item">
-        <a class="nav-link waves-light" [routerLink]="['art-classes']" routerLinkActive="active"  mdbWavesEffect>Art Classes<span class="sr-only">(current)</span></a>
+        <a class="nav-link waves-light" [routerLink]="['art-classes']" routerLinkActive="active" mdbWavesEffect>Art
+          Classes<span class="sr-only">(current)</span></a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link waves-light" [routerLink]="['artwork-showroom']" routerLinkActive="active"  mdbWavesEffect>Artwork Showroom<span class="sr-only">(current)</span></a>
+        <a class="nav-link waves-light" [routerLink]="['artwork-showroom']" routerLinkActive="active"
+          mdbWavesEffect>Artwork Showroom<span class="sr-only">(current)</span></a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link waves-light" [routerLink]="['contact-user']" routerLinkActive="active"  mdbWavesEffect>Contact Us<span class="sr-only">(current)</span></a>
+        <a class="nav-link waves-light" [routerLink]="['contact-user']" routerLinkActive="active" mdbWavesEffect>Contact
+          Us<span class="sr-only">(current)</span></a>
       </li>
 
-    
+
 
     </ul>
     <!-- Links -->
 
     <ul class="navbar-nav ml-auto nav-flex-icons">
-        <li class="nav-item">
-            <a class="nav-link waves-light" [routerLink]="['my-bookings/bookings']" routerLinkActive="active"  mdbWavesEffect>My Bookings</a>
-          </li>
       <li class="nav-item">
-        <a class="nav-link waves-light" [routerLink]="['announcements']" routerLinkActive="active"  mdbWavesEffect>Announcements</a>
+
+    
+
+        <a class="nav-link waves-light" [routerLink]="['exhibitions']" routerLinkActive="active"
+          mdbWavesEffect>Exhibitions</a>
+
+
+      </li>
+
+
+      <li class="nav-item">
+      <a class="nav-link waves-light" [routerLink]="['my-bookings/bookings']" routerLinkActive="active"
+        mdbWavesEffect>My Bookings</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link waves-light" [routerLink]="['announcements']" routerLinkActive="active"
+          mdbWavesEffect>Announcements</a>
       </li>
       <li class="nav-item avatar dropdown" dropdown>
         <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
-            <i class="fas fa-user-alt"></i></a>
+          <i class="fas fa-user-alt"></i></a>
         <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
-          <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user-account']" >My account</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['user-account']">My account</a>
           <a class="dropdown-item waves-light" mdbWavesEffect (click)="onLogout(logoutModal)">Log out</a>
         </div>
       </li>
@@ -50,8 +66,8 @@
 </mdb-navbar>
 <!--/.Navbar-->
 
-  <!-- ===================================================================================================================================================================================== -->
- <!-- ============================================================================ -->
+<!-- ===================================================================================================================================================================================== -->
+<!-- ============================================================================ -->
 <!-- ===============MODALS BELOW========================================================================================================== -->
 
 
@@ -66,8 +82,10 @@
     <p>Are you sure you want to Logout?</p>
   </div>
   <div class="modal-footer">
-      <button mdbBtn type="button" gradient="peach" (click)="modal.dismiss('Cross click')"rounded="true" mdbWavesEffect>No</button>
-    <button mdbBtn type="button" gradient="purple" (click)="yesLogout(logoutModal)" rounded="true" mdbWavesEffect>Yes</button>
+    <button mdbBtn type="button" gradient="peach" (click)="modal.dismiss('Cross click')" rounded="true"
+      mdbWavesEffect>No</button>
+    <button mdbBtn type="button" gradient="purple" (click)="yesLogout(logoutModal)" rounded="true"
+      mdbWavesEffect>Yes</button>
   </div>
 </ng-template>
 
@@ -107,7 +125,7 @@
         <!- <li>
             <i class="fas fa-envelope"></i>
         </li> -->
-        <!-- <ul class="navbar-nav ml-auto nav-flex-icons">
+<!-- <ul class="navbar-nav ml-auto nav-flex-icons">
         <li class="nav-item">
             <a class="nav-link">1 <mdb-icon fas icon="envelope"></mdb-icon></a>
           </li>
@@ -123,5 +141,3 @@
     </ul>
       </div>
   </nav>  -->
-
- 

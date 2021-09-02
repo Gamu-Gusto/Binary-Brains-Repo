@@ -1,4 +1,6 @@
 ﻿using BinaryBrainsAPI.Entities;
+using BinaryBrainsAPI.Entities.Exhibitions;
+using BinaryBrainsAPI.Entities.Images;
 using BinaryBrainsAPI.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,10 +16,25 @@ namespace BinaryBrainsAPI.Controllers.ExhibitionsControllers
     public class ExhibitionController : ControllerBase
     {
         private readonly IAppRepository<Exhibition> _appRepository;
+        private readonly IAppRepository<ExhibitionType> _exhibitionTypeRepository;
+        private readonly IAppRepository<Schedule> _scheduleRepository;
+        private readonly IAppRepository<Organisation> _organisationRepository;
+        private readonly IAppRepository<Venue> _venueRepository;
+        private readonly IAppRepository<Image> _imageRepository;
 
-        public ExhibitionController(IAppRepository<Exhibition> appRepository)
+        public ExhibitionController(IAppRepository<Exhibition> appRepository, 
+          IAppRepository<ExhibitionType> exhibitionTypeRepository
+         ,IAppRepository<Schedule> scheduleRepository
+        ,IAppRepository<Organisation> organisationRepository
+        , IAppRepository<Venue> venueRepository
+        ,IAppRepository<Image> imageRepository)
         {
             _appRepository = appRepository;
+            _exhibitionTypeRepository = exhibitionTypeRepository;
+            _scheduleRepository = scheduleRepository;
+            _organisationRepository = organisationRepository;
+            _venueRepository = venueRepository;
+            _imageRepository = imageRepository;
         }
 
         // GET: api/Exhibition
@@ -25,6 +42,22 @@ namespace BinaryBrainsAPI.Controllers.ExhibitionsControllers
         public IActionResult Get()
         {
             IEnumerable<Exhibition> exhibitions = _appRepository.GetAll();
+
+            foreach (Exhibition i in exhibitions)
+            {
+                Venue venue = _venueRepository.Get((long)i.VenueID);
+                Organisation organisation = _organisationRepository.Get((long)i.OrganisationID);
+                Schedule schedule = _scheduleRepository.Get((long)i.ScheduleID);
+                ExhibitionType exhibitionType = _exhibitionTypeRepository.Get((long)i.ExhibitionTypeID);
+                Image image = _imageRepository.Get((long)i.ImageID);
+
+                i.Venue = venue;
+                i.Organisation = organisation;
+                i.Schedule = schedule;
+                i.ExhibitionType = exhibitionType;
+                i.Image = image;
+
+            }
 
             return Ok(exhibitions);
         }

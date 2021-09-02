@@ -1,4 +1,5 @@
 ﻿using BinaryBrainsAPI.Entities.ArtClasses;
+using BinaryBrainsAPI.Entities.Exhibitions;
 using BinaryBrainsAPI.Interfaces;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
@@ -15,10 +16,22 @@ namespace BinaryBrainsAPI.Controllers.ArtClassesControllers
     public class ArtClassController : ControllerBase
     {
         private readonly IAppRepository<ArtClass> _appRepository;
-
-        public ArtClassController(IAppRepository<ArtClass> appRepository)
+        private readonly IAppRepository<ArtClassType> _artClassTypeRepository;
+        private readonly IAppRepository<Venue> _venueRepository;
+        private readonly IAppRepository<ClassTeacher> _classTeacherRepository;
+        private readonly IAppRepository<Organisation> _organisationRepository;
+       
+        public ArtClassController(IAppRepository<ArtClass> appRepository, 
+       IAppRepository<ArtClassType> artClassTypeRepository,
+        IAppRepository<Venue> venueRepository,
+        IAppRepository<ClassTeacher> classTeacherRepository,
+       IAppRepository<Organisation> organisationRepository)
         {
             _appRepository = appRepository;
+            _artClassTypeRepository = artClassTypeRepository;
+            _venueRepository = venueRepository;
+            _classTeacherRepository = classTeacherRepository;
+            _organisationRepository = organisationRepository;
         }
 
         // GET: api/ArtClass
@@ -26,6 +39,21 @@ namespace BinaryBrainsAPI.Controllers.ArtClassesControllers
         public IActionResult Get()
         {
             IEnumerable<ArtClass> artClasses = _appRepository.GetAll();
+
+
+            foreach (ArtClass i in artClasses)
+            {
+                Venue venue = _venueRepository.Get((long)i.VenueID);
+                Organisation organisation = _organisationRepository.Get((long)i.OrganisationID);
+                ArtClassType artClassType = _artClassTypeRepository.Get((long)i.ArtClassTypeID);
+                ClassTeacher classTeacher = _classTeacherRepository.Get((long)i.ClassTeacherID);
+              
+                i.Venue = venue;
+                i.Organisation = organisation;
+                i.ArtClassType = artClassType;
+                i.ClassTeacher = classTeacher;
+
+            }
 
             return Ok(artClasses);
         }

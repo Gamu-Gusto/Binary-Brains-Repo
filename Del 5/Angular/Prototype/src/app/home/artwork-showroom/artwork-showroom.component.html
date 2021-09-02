@@ -8,44 +8,18 @@
 
 
 <div class="card-deck">
-    <div class="card">
-      <img src="../assets/artworks/artwork1.png" class="card-img-top" alt="...">
+    <div class="card" *ngFor="let artwork of listArtwork; let indexofElementc= index;" >
+      <img src='data:image/png;base64,{{artwork.image.imageContent}}'  class="card-img-top" alt="...">
       <div class="card-body">
-        <h5 class="card-title">Ori Blind Forest</h5>
+        <h5 class="card-title">{{artwork.artworkTitle}}</h5>
         <p class="card-text">
-            <li>Medium: Ink</li>
-            <li>Surface: Digital</li>
-            <li>Dimensions: w 1000mm - h 562mm</li>
-            <li>Price: R 1500.00</li>
+            <li>Medium: {{artwork.mediumType.mediumTypeName}}</li>
+            <li>Surface: {{artwork.surfaceType.surfaceTypeName}}</li>
+            <li>Dimensions: {{artwork.artworkDimension.artworkDimensionDescription}}</li>
+            <li>Price: {{artwork.artworkPrice}}</li>
         </p>
-        <p class="card-text"><small class="text-muted">By James McDonald</small></p>
+        <p class="card-text"><small class="text-muted">By {{artwork.user.userFirstName + ' ' + artwork.user.userLastName}}</small></p>
       </div>
     </div>
-    <div class="card">
-      <img src="../assets/artworks/artwork2.png" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Colourful Character</h5>
-        <p class="card-text">
-            <li>Medium: Painting</li>
-            <li>Surface: Paper and Cardboard.</li>
-            <li>Dimensions: w 600mm - h 600mm</li>
-            <li>Price: R 2000.00</li>
-        </p>
-        <p class="card-text"><small class="text-muted">By Jamie Smith</small></p>
-      </div>
-    </div>
-    <div class="card">
-      <img src="../assets/artworks/artwork3.png" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Little Things</h5>
-        <p class="card-text">
-            <li>Medium: Pencil</li>
-            <li>Surface: Paper Drawing</li>
-            <li>Dimensions: w 1200mm - h 900mm</li>
-            <li>Price: R 1200.00</li>
-        </p>
-        <p class="card-text"><small class="text-muted">By Danny McFarlane</small></p>
-      </div>
-    </div>
-  </div>
-
+  
+</div>
