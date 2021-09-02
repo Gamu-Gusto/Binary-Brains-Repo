@@ -9,6 +9,8 @@ namespace BinaryBrainsAPI.Interfaces
     {
         IEnumerable<TEntity> GetAll();
         TEntity Get(long id);
+
+        TEntity GetByString(string str);
         void Add(TEntity entity);
 
         void Update(TEntity dbEntity, TEntity entity);
