@@ -37,7 +37,9 @@ namespace BinaryBrainsAPI.Repository.ArtworksRepositories
 
         public IEnumerable<Artwork> GetAll()
         {
+
             return _artechDb.Artwork.ToList();
+            
         }
 
         public void Update(Artwork artwork, Artwork entity)

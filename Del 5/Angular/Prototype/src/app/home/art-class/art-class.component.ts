@@ -33,48 +33,29 @@ export class ArtClassComponent implements OnInit{
  organisation: Organisation;
 
 listartclass: Array<ArtClass> = []
-listteacher: Array<ClassTeacher> = []
-listartclasstype: Array<ArtClassType> = []
-listartvenue: Array<Venue> = []
-listorganisation: Array<Organisation> = []
 
   constructor(public data: DataService,private route: Router, private modalService: NgbModal, private toastr: ToastrService) { }
 
 
- thartClass = this.data.sharedData;
+
 
 
 
   ngOnInit(): void {
 
+
+
     this.artClass = this.data.sharedData;
-    this.setValues();
-    this.teacher = this.data.getTeacher(this.artClass.classTeacherID).then((result) => { console.log(result); this.classTeacher = result });
-    this.artVenue = this.data.getVenue(this.artClass.venueID).then((result) => { console.log(result); this.venue = result });
-    this.artClassType = this.data.getClassType(this.artClass.artClassTypeID).then((result) => { console.log(result); this.classType = result });
-    this.artOrganisation = this.data.getOrganisation(this.artClass.organisationID).then((result) => { console.log(result); this.organisation = result });
+
+  
+    this.listartclass.push(this.artClass);
 
 
-
-
-this.listartclass.push(this.artClass);
-
-
-    console.log(this.classTeacher);
 
   }
 
-  setValues(){
+  
 
-    
-    this.listteacher.push(this.classTeacher);
-    this.listartvenue.push(this.artVenue);
-    this.listartclasstype.push(this.artClassType);
-    this.listorganisation.push(this.artOrganisation);
-
-    console.log( this.listartclass)
-
-  }
 
   onBooking(bookModal) {
     this.modalService.open(bookModal, { centered: true });

@@ -5,6 +5,10 @@ import { NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { DataService } from 'src/app/data.service';
 import { ArtClass } from 'src/app/model/ArtClasses/art-class';
+import { ArtClassType } from 'src/app/model/ArtClasses/art-class-type';
+import { ClassTeacher } from 'src/app/model/ArtClasses/class-teacher';
+import { Organisation } from 'src/app/model/Exhibitions/organisation';
+import { Venue } from 'src/app/model/Exhibitions/venue';
 
 
 @Component({
@@ -14,8 +18,15 @@ import { ArtClass } from 'src/app/model/ArtClasses/art-class';
 })
 export class ArtClassesComponent implements OnInit {
 
-  listArtwork: any;
+  listArtClasses: any;
   artclass : ArtClass;
+  classTeacher: ClassTeacher;
+
+  classType: ArtClassType;
+ 
+  venue: Venue;
+ 
+  organisation: Organisation;
 
 g
   constructor(public data: DataService,private formBuilder: FormBuilder,private fb: FormBuilder, 
@@ -28,7 +39,7 @@ g
   
   ngOnInit(): void {
 
-    this.data.getAllArtClasses().then((result) => { console.log(result); this.listArtwork = result });
+    this.data.getAllArtClasses().then((result) => { console.log(result); this.listArtClasses = result });
   }
 
 
@@ -36,11 +47,10 @@ g
 
     this.data.sharedData = artclassro;
 
-    console.log(artclassro);
- 
     this.router.navigate(['/home/art-class']);
   
   }
+
 
 
 

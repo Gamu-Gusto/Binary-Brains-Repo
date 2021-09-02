@@ -1,4 +1,6 @@
 ﻿using BinaryBrainsAPI.Entities.Artworks;
+using BinaryBrainsAPI.Entities.Images;
+using BinaryBrainsAPI.Entities.Users;
 using BinaryBrainsAPI.Interfaces;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
@@ -15,17 +17,61 @@ namespace BinaryBrainsAPI.Controllers.ArtworksControllers
     public class ArtworkController : ControllerBase
     {
         private readonly IAppRepository<Artwork> _appRepository;
+        private readonly IAppRepository<User> _userRepository;
+        private readonly IAppRepository<MediumType> _mediumTypeRepository;
+        private readonly IAppRepository<SurfaceType> _surfaceTypeRepository;
+        private readonly IAppRepository<ArtworkStatus> _artworkStatusRepository;
+        private readonly IAppRepository<ArtworkDimension> _artworkDimesionRepository;
+        private readonly IAppRepository<ArtworkType> _artworkTypeRepository;
+        private readonly IAppRepository<FrameColour> _frameColourRepository;
+        private readonly IAppRepository<Image> _imageRepository;
 
-        public ArtworkController(IAppRepository<Artwork> appRepository)
+        public ArtworkController(IAppRepository<Artwork> appRepository, IAppRepository<User> userRepository,
+            IAppRepository<MediumType> mediumTypeRepository, IAppRepository<SurfaceType> surfaceTypeRepository
+            , IAppRepository<ArtworkStatus> artworkStatusRepository, IAppRepository<FrameColour> frameColourRepository
+            , IAppRepository<ArtworkDimension> artworkDimesionRepository, IAppRepository<ArtworkType> artworkTypeRepository
+            , IAppRepository<Image> imageRepository)
         {
             _appRepository = appRepository;
+            _userRepository = userRepository;
+            _mediumTypeRepository = mediumTypeRepository;
+            _surfaceTypeRepository = surfaceTypeRepository;
+            _artworkStatusRepository = artworkStatusRepository;
+            _frameColourRepository = frameColourRepository;
+            _artworkDimesionRepository = artworkDimesionRepository;
+            _artworkTypeRepository = artworkTypeRepository;
+            _imageRepository = imageRepository;
+            _frameColourRepository = frameColourRepository;
         }
 
         // GET: api/Artwork
         [HttpGet]
         public IActionResult Get()
         {
-            IEnumerable<Artwork> artworks = _appRepository.GetAll();
+           
+
+             IEnumerable<Artwork> artworks = _appRepository.GetAll();
+
+            foreach (Artwork i in artworks)
+            {
+                User user = _userRepository.Get((long)i.UserID);
+                SurfaceType surfaceType = _surfaceTypeRepository.Get((long)i.SurfaceTypeID);
+                MediumType mediumType = _mediumTypeRepository.Get((long)i.MediumTypeID);
+                ArtworkStatus artworkStatus = _artworkStatusRepository.Get((long)i.ArtworkStatusID);
+                ArtworkDimension artworkDimension = _artworkDimesionRepository.Get((long)i.ArtworkDimensionID);
+                ArtworkType artworkType = _artworkTypeRepository.Get((long)i.ArtworkTypeID);
+                Image image = _imageRepository.Get((long)i.ImageID);
+
+                i.User = user;
+                i.SurfaceType = surfaceType;
+                i.MediumType = mediumType;
+                i.ArtworkStatus = artworkStatus;
+                i.ArtworkDimension = artworkDimension;
+                i.ArtworkType = artworkType;
+                i.Image = image;
+
+
+            }
 
             return Ok(artworks);
         }
