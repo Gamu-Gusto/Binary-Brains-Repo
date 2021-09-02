@@ -3,11 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BinaryBrainsAPI.Migrations
 {
-<<<<<<< HEAD:Del 5/BinaryBrainsAPI/BinaryBrainsAPI/Migrations/20210831182756_FullMigration31Aug20211.cs
-    public partial class FullMigration31Aug20211 : Migration
-=======
-    public partial class FullMigration31Aug : Migration
->>>>>>> 7fb4b989ef34e1b18421002e252cb1d9c844967b:Del 5/BinaryBrainsAPI/BinaryBrainsAPI/Migrations/20210831165013_FullMigration31Aug.cs
+    public partial class Test : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

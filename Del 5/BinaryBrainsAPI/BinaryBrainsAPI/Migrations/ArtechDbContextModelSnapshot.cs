@@ -826,6 +826,24 @@ namespace BinaryBrainsAPI.Migrations
                     b.ToTable("Refund");
                 });
 
+            modelBuilder.Entity("BinaryBrainsAPI.Entities.Users.Announcement", b =>
+                {
+                    b.Property<int>("AnnouncementID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AnnouncementDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AnnouncementTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("AnnouncementID");
+
+                    b.ToTable("Announcement");
+                });
+
             modelBuilder.Entity("BinaryBrainsAPI.Entities.Users.City", b =>
                 {
                     b.Property<int>("CityID")

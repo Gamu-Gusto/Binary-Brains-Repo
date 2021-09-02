@@ -10,13 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BinaryBrainsAPI.Migrations
 {
     [DbContext(typeof(ArtechDbContext))]
-<<<<<<< HEAD:Del 5/BinaryBrainsAPI/BinaryBrainsAPI/Migrations/20210831182756_FullMigration31Aug20211.Designer.cs
-    [Migration("20210831182756_FullMigration31Aug20211")]
-    partial class FullMigration31Aug20211
-=======
-    [Migration("20210831165013_FullMigration31Aug")]
-    partial class FullMigration31Aug
->>>>>>> 7fb4b989ef34e1b18421002e252cb1d9c844967b:Del 5/BinaryBrainsAPI/BinaryBrainsAPI/Migrations/20210831165013_FullMigration31Aug.Designer.cs
+    [Migration("20210901195742_AnnouncementTable")]
+    partial class AnnouncementTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -831,6 +826,24 @@ namespace BinaryBrainsAPI.Migrations
                     b.HasKey("RefundID");
 
                     b.ToTable("Refund");
+                });
+
+            modelBuilder.Entity("BinaryBrainsAPI.Entities.Users.Announcement", b =>
+                {
+                    b.Property<int>("AnnouncementID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AnnouncementDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AnnouncementTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("AnnouncementID");
+
+                    b.ToTable("Announcement");
                 });
 
             modelBuilder.Entity("BinaryBrainsAPI.Entities.Users.City", b =>

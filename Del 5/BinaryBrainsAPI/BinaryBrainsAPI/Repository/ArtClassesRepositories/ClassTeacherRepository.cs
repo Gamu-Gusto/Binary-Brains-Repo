@@ -1,6 +1,7 @@
 ﻿using BinaryBrainsAPI.Data;
 using BinaryBrainsAPI.Entities.ArtClasses;
 using BinaryBrainsAPI.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,7 +38,9 @@ namespace BinaryBrainsAPI.Repository.ArtClassesRepositories
 
         public IEnumerable<ClassTeacher> GetAll()
         {
-            return _artechDb.ClassTeacher.ToList();
+            //return _artechDb.ClassTeacher.ToList();
+            return _artechDb.ClassTeacher.Include(x => x.TeacherType).ToList();
+           // return db.Pizza.Include(x => x.PizzaType).ToList();
         }
 
         public ClassTeacher GetByString(string str)
