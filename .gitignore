@@ -5,3 +5,5 @@
 Del 5/BinaryBrainsAPI/BinaryBrainsAPI/obj/Release/net5.0/BinaryBrainsAPI.GeneratedMSBuildEditorConfig.editorconfig
 *.editorconfig
 *.cache
+/Del 5/BinaryBrainsAPI/BinaryBrainsAPI/._appsettings.Development.json
+/Del 5/BinaryBrainsAPI/BinaryBrainsAPI/bin/Debug/net5.0/._appsettings.Development.json
