@@ -4,11 +4,12 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {DataService} from'./data.service';
 import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgbDateCustomParserFormatter } from  'src/ngb-date-custom-parser-formatter';
 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateParserFormatter, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ToastrModule } from 'ngx-toastr';
@@ -133,7 +134,9 @@ import { AddBookingComponent } from './home/add-booking/add-booking.component';
     MdbModule,
     BrowserAnimationsModule,ReactiveFormsModule,RouterModule,HttpClientModule, AppRoutingModule
   ],
-  providers: [DataService],
+  providers: [DataService,
+    { provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter } 
+  ],
   bootstrap: [AppComponent],
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })

@@ -182,8 +182,8 @@ export class RegisterComponent implements OnInit {
     else {
 
       console.log(this.registrationForm.value);
-      this.registrationForm.get('UserDOB').setValue('2021-08-31T19:39:32.005Z')  ;
-      this.registrationForm.get('timestamp').setValue('2021-08-31T19:39:32.005Z')  ;
+      //this.registrationForm.get('UserDOB').setValue('2021-08-31T19:39:32.005Z')  ;
+      this.registrationForm.get('timestamp').setValue(new Date())  ;
 
       this.data.addUser(this.registrationForm.value).then(success => {
         this.route.navigate(['/login']);
