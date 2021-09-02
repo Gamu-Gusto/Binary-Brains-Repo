@@ -56,7 +56,15 @@ namespace BinaryBrainsAPI.Controllers
             {
                 return BadRequest("User is null.");
             }
+
+            if (_appRepository.GetByString(user.UserEmail) != null)
+            {
+                return BadRequest("User email already exists.");
+            };
+
+
             _appRepository.Add(user);
+
             return CreatedAtRoute(
                   "GetUser",
                   new { Id = user.UserID },
@@ -76,6 +84,7 @@ namespace BinaryBrainsAPI.Controllers
             {
                 return NotFound("The User record couldn't be found.");
             }
+
             _appRepository.Update(userToUpdate, user);
 
             return NoContent();
