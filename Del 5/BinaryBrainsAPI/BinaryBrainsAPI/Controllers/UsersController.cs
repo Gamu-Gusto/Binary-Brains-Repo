@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace BinaryBrainsAPI.Controllers
@@ -62,6 +64,14 @@ namespace BinaryBrainsAPI.Controllers
                 return BadRequest("User email already exists.");
             };
 
+            if (_appRepository.GetByString(user.UserName) != null)
+            {
+                return BadRequest("Username already exists.");
+            };
+
+            string encryptionKey = "sblw-3hn8-sqoy19";
+
+            user.UserPassword = CryptoEngine.Encrypt(user.UserPassword, encryptionKey);
 
             _appRepository.Add(user);
 
@@ -84,6 +94,14 @@ namespace BinaryBrainsAPI.Controllers
             {
                 return NotFound("The User record couldn't be found.");
             }
+            if (userToUpdate.UserPassword != user.UserPassword)
+            {
+                string encryptionKey = "sblw-3hn8-sqoy19";
+
+                user.UserPassword = CryptoEngine.Encrypt(user.UserPassword, encryptionKey);
+
+            }
+          
 
             _appRepository.Update(userToUpdate, user);
 
