@@ -71,6 +71,12 @@ export class LoginComponent implements OnInit {
                       
       this.data.loginUser(this.loginForm.value).subscribe(success => {
 
+
+
+        this.data.loginInUserData = success;
+        
+        console.log(this.data.loginInUserData );
+
         this.router.navigate(['/home']);
      
       }, error =>{

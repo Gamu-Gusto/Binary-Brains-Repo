@@ -23,6 +23,8 @@ export class ArtClassesComponent implements OnInit {
   classTeacher: ClassTeacher;
 
   classType: ArtClassType;
+
+  user: any;
  
   venue: Venue;
  
@@ -40,6 +42,8 @@ g
   ngOnInit(): void {
 
     this.data.getAllArtClasses().then((result) => { console.log(result); this.listArtClasses = result });
+
+    this.user = this.data.loginInUserData;
   }
 
 

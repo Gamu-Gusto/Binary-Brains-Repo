@@ -11,6 +11,7 @@ import { Country } from '../model/Users/country';
 import { City } from '../model/Users/city';
 import { NgbCalendar, NgbDate, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { DatePipe } from '@angular/common';
 
 
 //**Interfaces */
@@ -49,7 +50,7 @@ export class RegisterComponent implements OnInit {
 
   formSubmitted = false;
   theErrors: string[] = [];
-
+timestamp: any;
   model;
 
 
@@ -98,7 +99,8 @@ export class RegisterComponent implements OnInit {
   
   errorMessage: any;
 
-  constructor(public data: DataService, private route: Router, private modalService: NgbModal, private toastr: ToastrService, private formBuilder: FormBuilder, private fb: FormBuilder) {
+  constructor(public data: DataService, private route: Router, private modalService: NgbModal, 
+    private toastr: ToastrService, private formBuilder: FormBuilder, private fb: FormBuilder,public datepipe: DatePipe) {
 
 
     this.registrationForm = new FormGroup({
@@ -154,7 +156,7 @@ export class RegisterComponent implements OnInit {
       UserPostalCode: ['', Validators.required],
       ArtistBio: [''],
       UserTypeId: [''],
-      SurburbId: ['', Validators.required],
+      SuburbId: ['', Validators.required],
       CityId: ['', Validators.required],
       ProvinceId: ['', Validators.required],
       CountryId: ['', Validators.required],
@@ -183,8 +185,14 @@ export class RegisterComponent implements OnInit {
 
       console.log(this.registrationForm.value);
       //this.registrationForm.get('UserDOB').setValue('2021-08-31T19:39:32.005Z')  ;
-      this.registrationForm.get('timestamp').setValue(new Date())  ;
 
+        this.timestamp = new Date();  
+
+      let latest_date_time =this.datepipe.transform(this.timestamp, 'yyyy-MM-ddTHH:mm:ss');
+
+      this.registrationForm.get('timestamp').setValue(latest_date_time)  ;
+
+      console.log(this.registrationForm.value);
       this.data.addUser(this.registrationForm.value).then(success => {
         this.route.navigate(['/login']);
         this.toastr.success("Registration Successful, Please Login", 'Success', {

@@ -67,6 +67,7 @@ import { AddClassTeacherComponent } from './home/add-class-teacher/add-class-tea
 import { AddPaymentComponent } from './home/add-payment/add-payment.component';
 import { AddArtworkComponent } from './home/add-artwork/add-artwork.component';
 import { AddBookingComponent } from './home/add-booking/add-booking.component';
+import { DatePipe } from '@angular/common';
 
 
 
@@ -134,7 +135,7 @@ import { AddBookingComponent } from './home/add-booking/add-booking.component';
     MdbModule,
     BrowserAnimationsModule,ReactiveFormsModule,RouterModule,HttpClientModule, AppRoutingModule
   ],
-  providers: [DataService,
+  providers: [DataService, DatePipe,
     { provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter } 
   ],
   bootstrap: [AppComponent],
