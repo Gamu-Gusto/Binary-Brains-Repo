@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BinaryBrainsAPI.Repository
 {
-    public  class ImagesRepository : IAppRepository<Image> 
+    public  class ImagesRepository : IImageRepository<Image> 
     {
 
         readonly ArtechDbContext _artechDb;
@@ -19,52 +19,48 @@ namespace BinaryBrainsAPI.Repository
             _artechDb = artechDb;
         }
 
-        public ImagesRepository()
-        {
-        }
 
-        public virtual int Add(Image entity)
+        public void Add(Image image)
         {
 
-            _artechDb.Image.Add(entity);
+            _artechDb.Image.Add(image);
 
             _artechDb.SaveChanges();
 
-            int id = entity.ImageID;
-
-            return id;
         }
         public IEnumerable<Image> GetAll()
 
         {
-            throw new NotImplementedException();
+            return _artechDb.Image.ToList();
         }
 
         public Image Get(long id)
         {
-            throw new NotImplementedException();
+            return _artechDb.Image.FirstOrDefault(u => u.ImageID == id);
         }
 
     
 
-        public void Update(Image dbEntity, Image entity)
+        public void Update(Image image, Image entity)
         {
-            throw new NotImplementedException();
+            image.ImageID = entity.ImageID;
+            image.UserID = entity.UserID;
+            image.ImageTypeID = entity.ImageTypeID;
+            image.ImageContent = entity.ImageContent;
+            _artechDb.SaveChanges();
         }
 
-        public void Delete(Image entity)
+        public void Delete(Image image)
         {
-            throw new NotImplementedException();
+            _artechDb.Image.Remove(image);
+            _artechDb.SaveChanges();
         }
 
-        void IAppRepository<Image>.Add(Image entity)
-        {
-            throw new NotImplementedException();
-        }
 
-        public Image GetByString(string str)
+
+        public Image GetImageByUserId(long id)
         {
-            throw new NotImplementedException();
+            return _artechDb.Image.FirstOrDefault(u => u.UserID == id);
         }
     }
 
