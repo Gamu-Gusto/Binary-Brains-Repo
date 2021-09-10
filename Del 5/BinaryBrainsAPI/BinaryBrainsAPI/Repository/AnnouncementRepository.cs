@@ -50,5 +50,10 @@ namespace BinaryBrainsAPI.Repository
             _artechDb.SaveChanges();
 
         }
+
+        public Announcement GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
