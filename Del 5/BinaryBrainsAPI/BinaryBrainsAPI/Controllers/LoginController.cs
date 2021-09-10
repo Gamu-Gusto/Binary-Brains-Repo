@@ -11,6 +11,7 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Cors;
+using System.Text;
 
 namespace BinaryBrainsAPI.Controllers
 {
@@ -36,9 +37,14 @@ namespace BinaryBrainsAPI.Controllers
         [HttpGet("{username}/{password}", Name = "GetUserDetails")]
         public IActionResult Get(string username, string password)
         {
+            
+            
+            
             User user = _appRepository.getUser(username);
 
-         
+            string encryptionKey = "sblw-3hn8-sqoy19";
+
+            password = CryptoEngine.Encrypt(password, encryptionKey);
 
 
             if (user == null)
@@ -49,17 +55,6 @@ namespace BinaryBrainsAPI.Controllers
             if (user != null && user.UserPassword == password)
             {
                 isAuthenticated = true;
-
-                int length = 13;
-
-                RNGCryptoServiceProvider cryptRNG = new RNGCryptoServiceProvider();
-                byte[] tokenBuffer = new byte[length];
-                cryptRNG.GetBytes(tokenBuffer);
-
-                string token = Convert.ToBase64String(tokenBuffer);
-
-                user.UserPassword = token;
-
 
                 return Ok(user);
 

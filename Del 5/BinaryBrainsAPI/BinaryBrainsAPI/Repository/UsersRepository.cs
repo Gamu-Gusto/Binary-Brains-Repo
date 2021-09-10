@@ -46,6 +46,7 @@ namespace BinaryBrainsAPI.Repository
 
         public void Update(User user, User entity)
         {
+            user.UserID = entity.UserID;
             user.UserFirstName = entity.UserFirstName;
             user.UserName = entity.UserName;
             user.UserFirstName = entity.UserFirstName;
@@ -56,8 +57,11 @@ namespace BinaryBrainsAPI.Repository
             user.UserDOB = entity.UserDOB;
             user.UserAddressLine1 = entity.UserAddressLine1;
             user.UserAddressLine2 = entity.UserAddressLine2;
-            user.UserPostalCode = user.UserPostalCode;
-            user.ArtistBio = user.ArtistBio;
+            user.UserPostalCode = entity.UserPostalCode;
+            user.ArtistBio = entity.ArtistBio;
+            user.SuburbID = entity.SuburbID;
+            user.UserTypeID = entity.UserTypeID;
+
             _artechDb.SaveChanges();
 
         }

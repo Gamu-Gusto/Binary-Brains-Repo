@@ -35,11 +35,16 @@ export class DataService {
   listCities: City[];
   listCountries: Country[];
   listProvinces: Province[];
-  sharedData:any;
-  teacherData:any;
-  venueData:any;
-  organisationData:any;
-  artClassTypeData:any;
+  sharedData: any;
+  teacherData: any;
+  venueData: any;
+  organisationData: any;
+  artClassTypeData: any;
+  timestamp: string;
+  dateofbirth: string
+  monthseperator: string;
+  dayseperator: string;
+  loginInUserData:any;
 
   constructor(private http: HttpClient, private toastr: ToastrService) { }
 
@@ -105,43 +110,43 @@ export class DataService {
 
   };
 
-  getAllArtClasses(): Promise<any>  {
+  getAllArtClasses(): Promise<any> {
 
     return this.http.get(this.apiURL + '/ArtClass').toPromise()
 
   };
 
-  getAllExhibitions(): Promise<any>  {
+  getAllExhibitions(): Promise<any> {
 
     return this.http.get(this.apiURL + '/Exhibition').toPromise()
 
   };
 
 
-  getArtClass(id): Promise<any>  {
+  getArtClass(id): Promise<any> {
 
     return this.http.get(this.apiURL + '/ArtClass/' + id).toPromise()
 
   };
 
-  getVenue(id): Promise<any>  {
+  getVenue(id): Promise<any> {
 
     return this.http.get(this.apiURL + '/Venue/' + id).toPromise()
 
   };
 
-  
-  getTeacher(id): Promise<any>  {
+
+  getTeacher(id): Promise<any> {
 
     return this.http.get(this.apiURL + '/ClassTeacher/' + id).toPromise()
 
   };
-  getClassType(id): Promise<any>  {
+  getClassType(id): Promise<any> {
 
     return this.http.get(this.apiURL + '/ArtClassType/' + id).toPromise()
 
   };
-  getOrganisation(id): Promise<any>  {
+  getOrganisation(id): Promise<any> {
 
     return this.http.get(this.apiURL + '/Organisation/' + id).toPromise()
 
@@ -165,7 +170,31 @@ export class DataService {
 
   addUser(user): Promise<any> {
 
-    user =  {
+    console.table(user);
+
+    this.timestamp = user.timestamp + ".098Z";
+
+    if (user.UserDOB.month > 9) {
+      this.monthseperator = "-"
+
+    }
+    else {
+
+      this.monthseperator = "-0"
+    }
+
+    if (user.UserDOB.day > 9) {
+      this.dayseperator = "-"
+
+    }
+    else {
+
+      this.dayseperator = "-0"
+    }
+
+    this.dateofbirth = user.UserDOB.year + this.monthseperator + user.UserDOB.month + this.dayseperator + user.UserDOB.day + "T00:00:00.000Z";
+
+    user = {
       "userID": 0,
       "userName": user.UserName,
       "userFirstName": user.UserFirstName,
@@ -173,16 +202,16 @@ export class DataService {
       "userEmail": user.UserEmail,
       "userPhoneNumber": user.UserPhoneNumber,
       "userPassword": user.UserPassword,
-      "userDOB": user.UserDOB,
+      "userDOB": this.dateofbirth,
       "userAddressLine1": user.UserAddressLine1,
       "userAddressLine2": user.UserAddressLine2,
       "userPostalCode": user.UserPostalCode,
       "artistBio": user.ArtistBio,
-      "userTypeID": user.UserTypeID,
-      "suburbID": user.SurburbId,
-      "timestamp": "2021-08-31T19:56:56.098Z"
-    
-    
+      "userTypeID": user.UserTypeId,
+      "suburbID": user.SuburbId,
+      "timestamp": this.timestamp
+
+
     };
 
     console.table(user);
@@ -190,6 +219,14 @@ export class DataService {
       .post<User>(this.apiURL + '/User', user, this.httpOptions)
       .toPromise()
   }
+
+  updateUser(user){
+    return this.http
+    .put<User>(this.apiURL + '/User/'+user.userID, user, this.httpOptions)
+    .toPromise()
+
+}
+
 
 
   addArtClass(artclass): Observable<ArtClass> {
@@ -228,19 +265,13 @@ export class DataService {
   }
 
 
-  addBooking(booking): Observable<Booking> {
+  addBooking(booking): Promise<any>  {
 
     console.log(booking);
 
     return this.http
-      .post<Booking>(this.apiURL + '/Booking', JSON.stringify(booking), this.httpOptions)
-      .pipe(
-        retry(1)
-        ,
-        catchError(this.handleError)
-
-      )
-
+      .post<Booking>(this.apiURL + '/Booking', booking, this.httpOptions)
+      .toPromise()
 
 
   }

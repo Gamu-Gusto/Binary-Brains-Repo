@@ -46,9 +46,9 @@ let indexofElementc= index;
       <p>Are you sure you only want to book for class?</p>
     </div>
     <div class="modal-footer">
-      <button mdbBtn type="button" gradient="peach" (click)="submitBooking(bookModal)" rounded="true"
+      <button mdbBtn type="button" gradient="peach" [routerLink]="['art-classes']" rounded="true"
         mdbWavesEffect>No</button>
-      <button mdbBtn type="button" gradient="purple" (click)="submitBooking(bookModal)" rounded="true"
+      <button mdbBtn type="button" gradient="purple" (click)="submitBooking()" rounded="true"
         mdbWavesEffect>Yes</button>
     </div>
   </ng-template>

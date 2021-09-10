@@ -1,5 +1,5 @@
 export class UserType {
-    userTypeID : string;
+    userTypeId : string;
     userRoleName : string;
     privileges : string;
 }

@@ -2,11 +2,11 @@ export class Booking {
     BookingID: string;
     BookingDateTime: string;
 
-    BookingNotification: string;
+    BookingNotificationID: string;
 
-    Payment: string;
+    BookingStatus: string;
 
-    ArtClass: string;
+    ArtClassID: string;
 
-    User: string;
+    UserID: string;
 }

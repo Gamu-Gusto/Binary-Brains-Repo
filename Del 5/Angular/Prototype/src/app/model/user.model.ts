@@ -13,6 +13,6 @@ export class User {
         UserPostalCode : string;
         ArtistBio : string;
         UserTypeId: string;
-        SurburbId: string;
+        SuburbId: string;
         timestamp: any;
 }

@@ -1,5 +1,7 @@
-﻿using BinaryBrainsAPI.Entities.Bookings;
+﻿using BinaryBrainsAPI.Entities.ArtClasses;
+using BinaryBrainsAPI.Entities.Bookings;
 using BinaryBrainsAPI.Interfaces;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,14 +12,16 @@ using System.Threading.Tasks;
 namespace BinaryBrainsAPI.Controllers.BookingsControllers
 {
     [Route("api/Booking")]
-    [ApiController]
+    [EnableCors("MyCorsPolicy")]
     public class BookingController : ControllerBase
     {
         private readonly IAppRepository<Booking> _appRepository;
+        private readonly IAppRepository<ArtClass> _artclassRepository;
 
-        public BookingController(IAppRepository<Booking> appRepository)
+        public BookingController(IAppRepository<Booking> appRepository, IAppRepository<ArtClass> artclassRepository)
         {
             _appRepository = appRepository;
+            _artclassRepository = artclassRepository;
         }
 
         // GET: api/Booking
@@ -36,6 +40,8 @@ namespace BinaryBrainsAPI.Controllers.BookingsControllers
         {
             Booking booking = _appRepository.Get(id);
 
+            
+
 
             if (booking == null)
             {
@@ -49,11 +55,26 @@ namespace BinaryBrainsAPI.Controllers.BookingsControllers
         [HttpPost]
         public IActionResult Post([FromBody] Booking booking)
         {
+
+
             if (booking == null)
             {
                 return BadRequest("Booking is null.");
             }
+
+            ArtClass artclass = _artclassRepository.Get(booking.ArtClassID);
+
+            IEnumerable<Booking> existinGbookings = _appRepository.GetAll();
+
+
+            if (artclass.ClassLimit <= existinGbookings.Count())
+            {
+                return BadRequest("Class is fully booked.");
+
+            }
+
             _appRepository.Add(booking);
+
             return CreatedAtRoute(
                   "GetBooking",
                   new { Id = booking.BookingID },

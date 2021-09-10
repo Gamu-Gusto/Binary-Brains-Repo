@@ -1,4 +1,6 @@
-import { Component, OnInit ,ViewChild, AfterViewInit} from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
@@ -15,26 +17,35 @@ import { Venue } from 'src/app/model/Exhibitions/venue';
   templateUrl: './art-class.component.html',
   styleUrls: ['./art-class.component.scss']
 })
-export class ArtClassComponent implements OnInit{
+export class ArtClassComponent implements OnInit {
 
- artClass: ArtClass;
+  artClass: any;
 
- teacher: any;
- artVenue: any;
- artClassType: any;
- artOrganisation: any;
+  teacher: any;
+  artVenue: any;
+  artClassType: any;
+  artOrganisation: any;
 
- classTeacher: ClassTeacher;
+  classTeacher: ClassTeacher;
 
- classType: ArtClassType;
+  classType: ArtClassType;
 
- venue: Venue;
+  venue: Venue;
 
- organisation: Organisation;
+  organisation: Organisation;
 
-listartclass: Array<ArtClass> = []
+  listartclass: Array<ArtClass> = [];
 
-  constructor(public data: DataService,private route: Router, private modalService: NgbModal, private toastr: ToastrService) { }
+  user: any;
+
+  bookingForm: FormGroup;
+
+  formSubmitted: boolean;
+  timestamp: Date;
+
+  constructor(public data: DataService, private route: Router
+    , private modalService: NgbModal, private toastr: ToastrService
+    , private formBuilder: FormBuilder,public datepipe: DatePipe) { }
 
 
 
@@ -47,24 +58,88 @@ listartclass: Array<ArtClass> = []
 
     this.artClass = this.data.sharedData;
 
-  
+
     this.listartclass.push(this.artClass);
 
+    this.user = this.data.loginInUserData;
+
+
+    this.bookingForm = this.formBuilder.group({
+      bookingID: [''],
+      bookingDateTime: [''],
+      bookingNotificationID: [''],
+      bookingStatus: [''],
+      artClassID: [''],
+      userID: ['']
+    });
 
 
   }
 
-  
+
 
 
   onBooking(bookModal) {
     this.modalService.open(bookModal, { centered: true });
   }
 
-  submitBooking (bookModal) {
-    this.route.navigate(['/home/art-classes']);
-    this.modalService.dismissAll(bookModal);
-    this.toastr.success('Booking Successful', 'Success')
+  submitBooking() {
+
+    this.timestamp = new Date();  
+
+    let latest_date_time =this.datepipe.transform(this.timestamp, 'yyyy-MM-ddTHH:mm:ss');
+
+    this.bookingForm.get('bookingID').setValue(0)  ;
+    this.bookingForm.get('bookingDateTime').setValue(latest_date_time +'.000Z')  ;
+    this.bookingForm.get('bookingNotificationID').setValue(1)  ;
+    this.bookingForm.get('bookingStatus').setValue('Pending')  ;
+    this.bookingForm.get('artClassID').setValue(this.artClass.artClassID)  ;
+    this.bookingForm.get('userID').setValue(this.user.userID)  ;
+
+    if (this.bookingForm.invalid) {
+      return;
+    }
+    else {
+
+      console.log(this.bookingForm.value);
+
+    this.data.addBooking(this.bookingForm.value).then(success => {
+
+    
+        this.toastr.success("Booking Request Sucessfully Sent", 'Success', {
+         disableTimeOut: true,
+          tapToDismiss: false,
+          closeButton: true,
+          positionClass: 'toast-top-full-width',
+
+        });
+        this.route.navigate(['/home/art-classes']),
+
+
+      this.formSubmitted = false;     
+
+
+      }).catch(error => {
+
+        console.log(error);
+
+        this.toastr.error(error, 'Error', {
+          disableTimeOut: true,
+          tapToDismiss: false,
+          closeButton: true,
+          positionClass: 'toast-top-full-width',
+          enableHtml: true
+
+        });
+
+        console.log(error);
+
+      });
+
+
+
+    }
+
   }
 
 }

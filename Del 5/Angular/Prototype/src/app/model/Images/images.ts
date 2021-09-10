@@ -1,5 +1,6 @@
 export class Images {
     ImageID: string;
     ImageContent: string;
-    ImageType: string;
+    ImageTypeID: string;
+    UserID:string;
 }
