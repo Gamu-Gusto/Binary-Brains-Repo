@@ -15,6 +15,7 @@ namespace BinaryBrainsAPI.Entities.Artworks
         public int ArtworkID { get; set; }
         public string ArtworkTitle { get; set; }
         public double ArtworkPrice { get; set; }
+        public string ArtworkImage { get; set; }
 
         [ForeignKey("SurfaceTypeID")]
         public int SurfaceTypeID { get; set; }
@@ -25,7 +26,7 @@ namespace BinaryBrainsAPI.Entities.Artworks
         public MediumType MediumType { get; set; }
 
         [ForeignKey("ArtworkStatusID")]
-        public int ArtworkStatusID { get; set; }
+        public int? ArtworkStatusID { get; set; }
         public ArtworkStatus ArtworkStatus { get; set; }
 
         [ForeignKey("ArtworkDimensionID")]
@@ -35,10 +36,6 @@ namespace BinaryBrainsAPI.Entities.Artworks
         [ForeignKey("FrameColourID")]
         public int FrameColourID { get; set; }
         public FrameColour FrameColour { get; set; }
-
-        [ForeignKey("ImageID")]
-        public int ImageID { get; set; }
-        public Image Image { get; set; }
 
         [ForeignKey("UserID")]
         public int? UserID { get; set; }

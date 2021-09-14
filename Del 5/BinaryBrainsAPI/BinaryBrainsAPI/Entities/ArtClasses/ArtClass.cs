@@ -14,10 +14,9 @@ namespace BinaryBrainsAPI.Entities.ArtClasses
         public int ArtClassID { get; set; }
         public string ArtClassName { get; set; }
         public string ArtClassDescription { get; set; }
-        public DateTime ArtClassStartDate { get; set; }
-        public DateTime ArtClassEndDate { get; set; }
-        public DateTime ArtClassStartTime { get; set; }
-        public DateTime ArtClassEndTime { get; set; }
+        public DateTime ArtClassStartDateTime { get; set; }
+        public DateTime ArtClassEndDateTime { get; set; }
+        public string ArtClassImage { get; set; }
         public int ClassLimit { get; set; }
         public int RefundDayLimit { get; set; }
         public double ClassPrice { get; set; }
@@ -31,7 +30,7 @@ namespace BinaryBrainsAPI.Entities.ArtClasses
         public Venue Venue { get; set; }
 
         [ForeignKey("ClassTeacherID")]
-        public int ClassTeacherID { get; set; }
+        public int? ClassTeacherID { get; set; }
         public ClassTeacher ClassTeacher { get; set; }
 
         [ForeignKey("OrganisationID")]

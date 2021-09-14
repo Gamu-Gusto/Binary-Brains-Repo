@@ -1,6 +1,7 @@
 ﻿using BinaryBrainsAPI.Data;
 using BinaryBrainsAPI.Entities;
 using BinaryBrainsAPI.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,7 +38,7 @@ namespace BinaryBrainsAPI.Repository.ExhibitionsRepositories
 
         public IEnumerable<Exhibition> GetAll()
         {
-            return _artechDb.Exhibition.ToList();
+            return _artechDb.Exhibition.Include(x => x.ExhibitionType).Include(s => s.Organisation).Include(a => a.Venue).Include(p => p.Schedule).ToList();
         }
 
         public Exhibition GetByString(string str)
@@ -49,8 +50,9 @@ namespace BinaryBrainsAPI.Repository.ExhibitionsRepositories
         {
             exhibition.ExhibitionName = entity.ExhibitionName;
             exhibition.ExhibitionDescription = entity.ExhibitionDescription;
-            exhibition.ExhibitionDate = entity.ExhibitionDate;
-            exhibition.ExhibitionTime = entity.ExhibitionTime;
+            exhibition.ExhibitionStartDateTime = entity.ExhibitionStartDateTime;
+            exhibition.ExhibitionEndDateTime = entity.ExhibitionEndDateTime;
+            exhibition.ExhibitionImage = entity.ExhibitionImage;
             _artechDb.SaveChanges();
         }
     }

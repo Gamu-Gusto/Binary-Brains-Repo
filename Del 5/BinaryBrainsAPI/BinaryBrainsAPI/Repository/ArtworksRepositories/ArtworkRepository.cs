@@ -51,6 +51,7 @@ namespace BinaryBrainsAPI.Repository.ArtworksRepositories
         {
             artwork.ArtworkTitle = entity.ArtworkTitle;
             artwork.ArtworkPrice = entity.ArtworkPrice;
+            artwork.ArtworkImage = entity.ArtworkImage;
             _artechDb.SaveChanges();
         }
     }

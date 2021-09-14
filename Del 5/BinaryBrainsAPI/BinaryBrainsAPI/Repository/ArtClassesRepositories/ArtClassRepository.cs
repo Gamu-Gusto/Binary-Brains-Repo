@@ -20,25 +20,25 @@ namespace BinaryBrainsAPI.Repository.ArtClassesRepositories
 
         public void Add(ArtClass artClass)
         {
-            _artechDb.ArtClasse.Add(artClass);
+            _artechDb.ArtClass.Add(artClass);
             _artechDb.SaveChanges();
         }
 
         public void Delete(ArtClass artClass)
         {
-            _artechDb.ArtClasse.Remove(artClass);
+            _artechDb.ArtClass.Remove(artClass);
             _artechDb.SaveChanges();
 
         }
 
         public ArtClass Get(long id)
         {
-            return _artechDb.ArtClasse.FirstOrDefault(u => u.ArtClassID == id);
+            return _artechDb.ArtClass.FirstOrDefault(u => u.ArtClassID == id);
         }
 
         public IEnumerable<ArtClass> GetAll()
         {
-            return _artechDb.ArtClasse.ToList();
+            return _artechDb.ArtClass.ToList();
         }
 
         public ArtClass GetByString(string str)
@@ -50,10 +50,9 @@ namespace BinaryBrainsAPI.Repository.ArtClassesRepositories
         {
             artClass.ArtClassName = entity.ArtClassName;
             artClass.ArtClassDescription = entity.ArtClassDescription;
-            artClass.ArtClassStartDate = entity.ArtClassStartDate;
-            artClass.ArtClassEndDate = entity.ArtClassEndDate;
-            artClass.ArtClassStartTime = entity.ArtClassStartTime;
-            artClass.ArtClassEndTime = entity.ArtClassEndTime;
+            artClass.ArtClassStartDateTime = entity.ArtClassStartDateTime;
+            artClass.ArtClassEndDateTime = entity.ArtClassEndDateTime;
+            artClass.ArtClassImage = entity.ArtClassImage;
             artClass.ClassLimit = entity.ClassLimit;
             artClass.RefundDayLimit = entity.RefundDayLimit;
             artClass.ClassPrice = entity.ClassPrice;
