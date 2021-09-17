@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BinaryBrainsAPI.Migrations
 {
-    public partial class FullMigration14Sep : Migration
+    public partial class FullMigration15Sep : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
