@@ -15,10 +15,12 @@ namespace BinaryBrainsAPI.Controllers.ArtClassesControllers
     public class ClassTeacherController : ControllerBase
     {
         private readonly IAppRepository<ClassTeacher> _appRepository;
+        //private IClassTeacherRepository teacherRepo;
 
         public ClassTeacherController(IAppRepository<ClassTeacher> appRepository)
         {
             _appRepository = appRepository;
+            //teacherRepo = _teacherRepo;
         }
 
         // GET: api/ClassTeacher
@@ -78,6 +80,15 @@ namespace BinaryBrainsAPI.Controllers.ArtClassesControllers
 
             return NoContent();
         }
+
+        // UPDATE: api/updateteacher
+        //[HttpPatch]
+        //[Route("updateteacher")]
+        //public IActionResult UpdateTeacher([FromBody] ClassTeacher classTeacher)
+        //{
+        //    teacherRepo.UpdateClassTeacher(classTeacher);
+        //    return NoContent();
+        //}
 
 
         // DELETE: api/ClassTeacher/5

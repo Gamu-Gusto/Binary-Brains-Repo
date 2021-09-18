@@ -48,6 +48,9 @@ namespace BinaryBrainsAPI.Repository.ExhibitionsRepositories
         public void Update(ExhibitionApplication exhibitionApplication, ExhibitionApplication entity)
         {
             exhibitionApplication.ApplicationDescription = entity.ApplicationDescription;
+            exhibitionApplication.ExhibitionApplicationImage1 = entity.ExhibitionApplicationImage1;
+            exhibitionApplication.ExhibitionApplicationImage2 = entity.ExhibitionApplicationImage2;
+            exhibitionApplication.ExhibitionApplicationImage3 = entity.ExhibitionApplicationImage3;
             _artechDb.SaveChanges();
         }
 

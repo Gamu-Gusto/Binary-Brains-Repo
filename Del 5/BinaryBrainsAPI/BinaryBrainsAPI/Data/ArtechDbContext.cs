@@ -58,7 +58,7 @@ namespace BinaryBrainsAPI.Data
         public DbSet<BookingNotification> BookingNotification { get; set; }
 
         //Art Classes
-        public DbSet<ArtClass> ArtClasse { get; set; }
+        public DbSet<ArtClass> ArtClass { get; set; }
         public DbSet<ArtClassType> ArtClassType { get; set; }
         public DbSet<Feedback> Feedback { get; set; }
         public DbSet<ClassTeacher> ClassTeacher { get; set; } 

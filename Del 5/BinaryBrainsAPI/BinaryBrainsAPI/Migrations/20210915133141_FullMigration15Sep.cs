@@ -3,10 +3,24 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BinaryBrainsAPI.Migrations
 {
-    public partial class Test : Migration
+    public partial class FullMigration15Sep : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Announcement",
+                columns: table => new
+                {
+                    AnnouncementID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AnnouncementTitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AnnouncementDescription = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Announcement", x => x.AnnouncementID);
+                });
+
             migrationBuilder.CreateTable(
                 name: "ApplicationStatus",
                 columns: table => new
@@ -393,6 +407,70 @@ namespace BinaryBrainsAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Artwork",
+                columns: table => new
+                {
+                    ArtworkID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ArtworkTitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ArtworkPrice = table.Column<double>(type: "float", nullable: false),
+                    ArtworkImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SurfaceTypeID = table.Column<int>(type: "int", nullable: false),
+                    MediumTypeID = table.Column<int>(type: "int", nullable: false),
+                    ArtworkStatusID = table.Column<int>(type: "int", nullable: true),
+                    ArtworkDimensionID = table.Column<int>(type: "int", nullable: false),
+                    FrameColourID = table.Column<int>(type: "int", nullable: false),
+                    UserID = table.Column<int>(type: "int", nullable: true),
+                    ArtworkTypeID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Artwork", x => x.ArtworkID);
+                    table.ForeignKey(
+                        name: "FK_Artwork_ArtworkDimension_ArtworkDimensionID",
+                        column: x => x.ArtworkDimensionID,
+                        principalTable: "ArtworkDimension",
+                        principalColumn: "ArtworkDimensionID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Artwork_ArtworkStatus_ArtworkStatusID",
+                        column: x => x.ArtworkStatusID,
+                        principalTable: "ArtworkStatus",
+                        principalColumn: "ArtworkStatusID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Artwork_ArtworkType_ArtworkTypeID",
+                        column: x => x.ArtworkTypeID,
+                        principalTable: "ArtworkType",
+                        principalColumn: "ArtworkTypeID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Artwork_FrameColour_FrameColourID",
+                        column: x => x.FrameColourID,
+                        principalTable: "FrameColour",
+                        principalColumn: "FrameColourID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Artwork_MediumType_MediumTypeID",
+                        column: x => x.MediumTypeID,
+                        principalTable: "MediumType",
+                        principalColumn: "MediumTypeID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Artwork_SurfaceType_SurfaceTypeID",
+                        column: x => x.SurfaceTypeID,
+                        principalTable: "SurfaceType",
+                        principalColumn: "SurfaceTypeID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Artwork_User_UserID",
+                        column: x => x.UserID,
+                        principalTable: "User",
+                        principalColumn: "UserID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Image",
                 columns: table => new
                 {
@@ -466,125 +544,6 @@ namespace BinaryBrainsAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ArtClasse",
-                columns: table => new
-                {
-                    ArtClassID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ArtClassName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ArtClassDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ArtClassStartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ArtClassEndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ArtClassStartTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ArtClassEndTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ClassLimit = table.Column<int>(type: "int", nullable: false),
-                    RefundDayLimit = table.Column<int>(type: "int", nullable: false),
-                    ClassPrice = table.Column<double>(type: "float", nullable: false),
-                    ArtClassTypeID = table.Column<int>(type: "int", nullable: false),
-                    VenueID = table.Column<int>(type: "int", nullable: false),
-                    ClassTeacherID = table.Column<int>(type: "int", nullable: false),
-                    OrganisationID = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ArtClasse", x => x.ArtClassID);
-                    table.ForeignKey(
-                        name: "FK_ArtClasse_ArtClassType_ArtClassTypeID",
-                        column: x => x.ArtClassTypeID,
-                        principalTable: "ArtClassType",
-                        principalColumn: "ArtClassTypeID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ArtClasse_ClassTeacher_ClassTeacherID",
-                        column: x => x.ClassTeacherID,
-                        principalTable: "ClassTeacher",
-                        principalColumn: "ClassTeacherID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ArtClasse_Organisation_OrganisationID",
-                        column: x => x.OrganisationID,
-                        principalTable: "Organisation",
-                        principalColumn: "OrganisationID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ArtClasse_Venue_VenueID",
-                        column: x => x.VenueID,
-                        principalTable: "Venue",
-                        principalColumn: "VenueID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Artwork",
-                columns: table => new
-                {
-                    ArtworkID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ArtworkTitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ArtworkPrice = table.Column<double>(type: "float", nullable: false),
-                    SurfaceTypeID = table.Column<int>(type: "int", nullable: false),
-                    MediumTypeID = table.Column<int>(type: "int", nullable: false),
-                    ArtworkStatusID = table.Column<int>(type: "int", nullable: false),
-                    ArtworkDimensionID = table.Column<int>(type: "int", nullable: false),
-                    FrameColourID = table.Column<int>(type: "int", nullable: false),
-                    ImageID = table.Column<int>(type: "int", nullable: false),
-                    UserID = table.Column<int>(type: "int", nullable: true),
-                    ArtworkTypeID = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Artwork", x => x.ArtworkID);
-                    table.ForeignKey(
-                        name: "FK_Artwork_ArtworkDimension_ArtworkDimensionID",
-                        column: x => x.ArtworkDimensionID,
-                        principalTable: "ArtworkDimension",
-                        principalColumn: "ArtworkDimensionID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Artwork_ArtworkStatus_ArtworkStatusID",
-                        column: x => x.ArtworkStatusID,
-                        principalTable: "ArtworkStatus",
-                        principalColumn: "ArtworkStatusID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Artwork_ArtworkType_ArtworkTypeID",
-                        column: x => x.ArtworkTypeID,
-                        principalTable: "ArtworkType",
-                        principalColumn: "ArtworkTypeID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Artwork_FrameColour_FrameColourID",
-                        column: x => x.FrameColourID,
-                        principalTable: "FrameColour",
-                        principalColumn: "FrameColourID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Artwork_Image_ImageID",
-                        column: x => x.ImageID,
-                        principalTable: "Image",
-                        principalColumn: "ImageID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Artwork_MediumType_MediumTypeID",
-                        column: x => x.MediumTypeID,
-                        principalTable: "MediumType",
-                        principalColumn: "MediumTypeID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Artwork_SurfaceType_SurfaceTypeID",
-                        column: x => x.SurfaceTypeID,
-                        principalTable: "SurfaceType",
-                        principalColumn: "SurfaceTypeID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Artwork_User_UserID",
-                        column: x => x.UserID,
-                        principalTable: "User",
-                        principalColumn: "UserID",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Exhibition",
                 columns: table => new
                 {
@@ -592,13 +551,13 @@ namespace BinaryBrainsAPI.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ExhibitionName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ExhibitionDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ExhibitionDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ExhibitionTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ExhibitionImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ExhibitionStartDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ExhibitionEndDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ExhibitionTypeID = table.Column<int>(type: "int", nullable: false),
-                    ScheduleID = table.Column<int>(type: "int", nullable: false),
-                    OrganisationID = table.Column<int>(type: "int", nullable: false),
-                    VenueID = table.Column<int>(type: "int", nullable: false),
-                    ImageID = table.Column<int>(type: "int", nullable: false)
+                    ScheduleID = table.Column<int>(type: "int", nullable: true),
+                    OrganisationID = table.Column<int>(type: "int", nullable: true),
+                    VenueID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -610,25 +569,67 @@ namespace BinaryBrainsAPI.Migrations
                         principalColumn: "ExhibitionTypeID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Exhibition_Image_ImageID",
-                        column: x => x.ImageID,
-                        principalTable: "Image",
-                        principalColumn: "ImageID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
                         name: "FK_Exhibition_Organisation_OrganisationID",
                         column: x => x.OrganisationID,
                         principalTable: "Organisation",
                         principalColumn: "OrganisationID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Exhibition_Schedule_ScheduleID",
                         column: x => x.ScheduleID,
                         principalTable: "Schedule",
                         principalColumn: "ScheduleID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Exhibition_Venue_VenueID",
+                        column: x => x.VenueID,
+                        principalTable: "Venue",
+                        principalColumn: "VenueID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ArtClass",
+                columns: table => new
+                {
+                    ArtClassID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ArtClassName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ArtClassDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ArtClassStartDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ArtClassEndDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ArtClassImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ClassLimit = table.Column<int>(type: "int", nullable: false),
+                    RefundDayLimit = table.Column<int>(type: "int", nullable: false),
+                    ClassPrice = table.Column<double>(type: "float", nullable: false),
+                    ArtClassTypeID = table.Column<int>(type: "int", nullable: false),
+                    VenueID = table.Column<int>(type: "int", nullable: false),
+                    ClassTeacherID = table.Column<int>(type: "int", nullable: true),
+                    OrganisationID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ArtClass", x => x.ArtClassID);
+                    table.ForeignKey(
+                        name: "FK_ArtClass_ArtClassType_ArtClassTypeID",
+                        column: x => x.ArtClassTypeID,
+                        principalTable: "ArtClassType",
+                        principalColumn: "ArtClassTypeID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ArtClass_ClassTeacher_ClassTeacherID",
+                        column: x => x.ClassTeacherID,
+                        principalTable: "ClassTeacher",
+                        principalColumn: "ClassTeacherID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_ArtClass_Organisation_OrganisationID",
+                        column: x => x.OrganisationID,
+                        principalTable: "Organisation",
+                        principalColumn: "OrganisationID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ArtClass_Venue_VenueID",
                         column: x => x.VenueID,
                         principalTable: "Venue",
                         principalColumn: "VenueID",
@@ -652,91 +653,6 @@ namespace BinaryBrainsAPI.Migrations
                         column: x => x.CityID,
                         principalTable: "City",
                         principalColumn: "CityID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ArtClassAnnouncement",
-                columns: table => new
-                {
-                    ArtClassAnnouncementID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ArtClassAnnouncementDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ArtClassID = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ArtClassAnnouncement", x => x.ArtClassAnnouncementID);
-                    table.ForeignKey(
-                        name: "FK_ArtClassAnnouncement_ArtClasse_ArtClassID",
-                        column: x => x.ArtClassID,
-                        principalTable: "ArtClasse",
-                        principalColumn: "ArtClassID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Booking",
-                columns: table => new
-                {
-                    BookingID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    BookingDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    BookingStatus = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    BookingNotificationID = table.Column<int>(type: "int", nullable: true),
-                    ArtClassID = table.Column<int>(type: "int", nullable: false),
-                    UserID = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Booking", x => x.BookingID);
-                    table.ForeignKey(
-                        name: "FK_Booking_ArtClasse_ArtClassID",
-                        column: x => x.ArtClassID,
-                        principalTable: "ArtClasse",
-                        principalColumn: "ArtClassID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Booking_BookingNotification_BookingNotificationID",
-                        column: x => x.BookingNotificationID,
-                        principalTable: "BookingNotification",
-                        principalColumn: "BookingNotificationID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Booking_User_UserID",
-                        column: x => x.UserID,
-                        principalTable: "User",
-                        principalColumn: "UserID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Feedback",
-                columns: table => new
-                {
-                    FeedbackID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FeedbackComment = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TeacherRating = table.Column<double>(type: "float", nullable: false),
-                    DifficultyRating = table.Column<double>(type: "float", nullable: false),
-                    OverallRating = table.Column<double>(type: "float", nullable: false),
-                    UserID = table.Column<int>(type: "int", nullable: false),
-                    ArtClassID = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Feedback", x => x.FeedbackID);
-                    table.ForeignKey(
-                        name: "FK_Feedback_ArtClasse_ArtClassID",
-                        column: x => x.ArtClassID,
-                        principalTable: "ArtClasse",
-                        principalColumn: "ArtClassID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Feedback_User_UserID",
-                        column: x => x.UserID,
-                        principalTable: "User",
-                        principalColumn: "UserID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -767,9 +683,11 @@ namespace BinaryBrainsAPI.Migrations
                     ExhibitionApplicationID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ApplicationDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ExhibitionApplicationImage1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ExhibitionApplicationImage2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ExhibitionApplicationImage3 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ExhibitionID = table.Column<int>(type: "int", nullable: true),
                     ApplicationStatusID = table.Column<int>(type: "int", nullable: true),
-                    ImageID = table.Column<int>(type: "int", nullable: true),
                     UserID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -786,12 +704,6 @@ namespace BinaryBrainsAPI.Migrations
                         column: x => x.ExhibitionID,
                         principalTable: "Exhibition",
                         principalColumn: "ExhibitionID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_ExhibitionApplication_Image_ImageID",
-                        column: x => x.ImageID,
-                        principalTable: "Image",
-                        principalColumn: "ImageID",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_ExhibitionApplication_User_UserID",
@@ -856,6 +768,117 @@ namespace BinaryBrainsAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ArtClassAnnouncement",
+                columns: table => new
+                {
+                    ArtClassAnnouncementID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ArtClassAnnouncementDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ArtClassID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ArtClassAnnouncement", x => x.ArtClassAnnouncementID);
+                    table.ForeignKey(
+                        name: "FK_ArtClassAnnouncement_ArtClass_ArtClassID",
+                        column: x => x.ArtClassID,
+                        principalTable: "ArtClass",
+                        principalColumn: "ArtClassID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Booking",
+                columns: table => new
+                {
+                    BookingID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    BookingDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    BookingStatus = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    BookingNotificationID = table.Column<int>(type: "int", nullable: true),
+                    ArtClassID = table.Column<int>(type: "int", nullable: false),
+                    UserID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Booking", x => x.BookingID);
+                    table.ForeignKey(
+                        name: "FK_Booking_ArtClass_ArtClassID",
+                        column: x => x.ArtClassID,
+                        principalTable: "ArtClass",
+                        principalColumn: "ArtClassID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Booking_BookingNotification_BookingNotificationID",
+                        column: x => x.BookingNotificationID,
+                        principalTable: "BookingNotification",
+                        principalColumn: "BookingNotificationID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Booking_User_UserID",
+                        column: x => x.UserID,
+                        principalTable: "User",
+                        principalColumn: "UserID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Feedback",
+                columns: table => new
+                {
+                    FeedbackID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FeedbackComment = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TeacherRating = table.Column<double>(type: "float", nullable: false),
+                    DifficultyRating = table.Column<double>(type: "float", nullable: false),
+                    OverallRating = table.Column<double>(type: "float", nullable: false),
+                    UserID = table.Column<int>(type: "int", nullable: false),
+                    ArtClassID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Feedback", x => x.FeedbackID);
+                    table.ForeignKey(
+                        name: "FK_Feedback_ArtClass_ArtClassID",
+                        column: x => x.ArtClassID,
+                        principalTable: "ArtClass",
+                        principalColumn: "ArtClassID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Feedback_User_UserID",
+                        column: x => x.UserID,
+                        principalTable: "User",
+                        principalColumn: "UserID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserInvitation",
+                columns: table => new
+                {
+                    UserInvitationID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserID = table.Column<int>(type: "int", nullable: true),
+                    InvitationID = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserInvitation", x => x.UserInvitationID);
+                    table.ForeignKey(
+                        name: "FK_UserInvitation_Invitation_InvitationID",
+                        column: x => x.InvitationID,
+                        principalTable: "Invitation",
+                        principalColumn: "InvitationID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_UserInvitation_User_UserID",
+                        column: x => x.UserID,
+                        principalTable: "User",
+                        principalColumn: "UserID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Payment",
                 columns: table => new
                 {
@@ -897,56 +920,30 @@ namespace BinaryBrainsAPI.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "UserInvitation",
-                columns: table => new
-                {
-                    UserInvitationID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserID = table.Column<int>(type: "int", nullable: true),
-                    InvitationID = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserInvitation", x => x.UserInvitationID);
-                    table.ForeignKey(
-                        name: "FK_UserInvitation_Invitation_InvitationID",
-                        column: x => x.InvitationID,
-                        principalTable: "Invitation",
-                        principalColumn: "InvitationID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_UserInvitation_User_UserID",
-                        column: x => x.UserID,
-                        principalTable: "User",
-                        principalColumn: "UserID",
-                        onDelete: ReferentialAction.Restrict);
-                });
+            migrationBuilder.CreateIndex(
+                name: "IX_ArtClass_ArtClassTypeID",
+                table: "ArtClass",
+                column: "ArtClassTypeID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ArtClass_ClassTeacherID",
+                table: "ArtClass",
+                column: "ClassTeacherID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ArtClass_OrganisationID",
+                table: "ArtClass",
+                column: "OrganisationID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ArtClass_VenueID",
+                table: "ArtClass",
+                column: "VenueID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ArtClassAnnouncement_ArtClassID",
                 table: "ArtClassAnnouncement",
                 column: "ArtClassID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ArtClasse_ArtClassTypeID",
-                table: "ArtClasse",
-                column: "ArtClassTypeID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ArtClasse_ClassTeacherID",
-                table: "ArtClasse",
-                column: "ClassTeacherID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ArtClasse_OrganisationID",
-                table: "ArtClasse",
-                column: "OrganisationID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ArtClasse_VenueID",
-                table: "ArtClasse",
-                column: "VenueID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Artwork_ArtworkDimensionID",
@@ -967,11 +964,6 @@ namespace BinaryBrainsAPI.Migrations
                 name: "IX_Artwork_FrameColourID",
                 table: "Artwork",
                 column: "FrameColourID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Artwork_ImageID",
-                table: "Artwork",
-                column: "ImageID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Artwork_MediumTypeID",
@@ -1019,11 +1011,6 @@ namespace BinaryBrainsAPI.Migrations
                 column: "ExhibitionTypeID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Exhibition_ImageID",
-                table: "Exhibition",
-                column: "ImageID");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Exhibition_OrganisationID",
                 table: "Exhibition",
                 column: "OrganisationID");
@@ -1052,11 +1039,6 @@ namespace BinaryBrainsAPI.Migrations
                 name: "IX_ExhibitionApplication_ExhibitionID",
                 table: "ExhibitionApplication",
                 column: "ExhibitionID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ExhibitionApplication_ImageID",
-                table: "ExhibitionApplication",
-                column: "ImageID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ExhibitionApplication_UserID",
@@ -1167,6 +1149,9 @@ namespace BinaryBrainsAPI.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Announcement");
+
+            migrationBuilder.DropTable(
                 name: "ArtClassAnnouncement");
 
             migrationBuilder.DropTable(
@@ -1180,6 +1165,9 @@ namespace BinaryBrainsAPI.Migrations
 
             migrationBuilder.DropTable(
                 name: "Feedback");
+
+            migrationBuilder.DropTable(
+                name: "Image");
 
             migrationBuilder.DropTable(
                 name: "Payment");
@@ -1198,6 +1186,9 @@ namespace BinaryBrainsAPI.Migrations
 
             migrationBuilder.DropTable(
                 name: "Artwork");
+
+            migrationBuilder.DropTable(
+                name: "ImageType");
 
             migrationBuilder.DropTable(
                 name: "Booking");
@@ -1239,10 +1230,13 @@ namespace BinaryBrainsAPI.Migrations
                 name: "SurfaceType");
 
             migrationBuilder.DropTable(
-                name: "ArtClasse");
+                name: "ArtClass");
 
             migrationBuilder.DropTable(
                 name: "BookingNotification");
+
+            migrationBuilder.DropTable(
+                name: "User");
 
             migrationBuilder.DropTable(
                 name: "Province");
@@ -1269,9 +1263,6 @@ namespace BinaryBrainsAPI.Migrations
                 name: "ExhibitionType");
 
             migrationBuilder.DropTable(
-                name: "Image");
-
-            migrationBuilder.DropTable(
                 name: "Organisation");
 
             migrationBuilder.DropTable(
@@ -1282,12 +1273,6 @@ namespace BinaryBrainsAPI.Migrations
 
             migrationBuilder.DropTable(
                 name: "TeacherType");
-
-            migrationBuilder.DropTable(
-                name: "ImageType");
-
-            migrationBuilder.DropTable(
-                name: "User");
 
             migrationBuilder.DropTable(
                 name: "ScheduleType");

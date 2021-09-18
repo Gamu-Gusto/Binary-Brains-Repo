@@ -29,8 +29,8 @@ namespace BinaryBrainsAPI.Controllers.ArtworksControllers
         public ArtworkController(IAppRepository<Artwork> appRepository, IAppRepository<User> userRepository,
             IAppRepository<MediumType> mediumTypeRepository, IAppRepository<SurfaceType> surfaceTypeRepository
             , IAppRepository<ArtworkStatus> artworkStatusRepository, IAppRepository<FrameColour> frameColourRepository
-            , IAppRepository<ArtworkDimension> artworkDimesionRepository, IAppRepository<ArtworkType> artworkTypeRepository
-            , IAppRepository<Image> imageRepository)
+            , IAppRepository<ArtworkDimension> artworkDimesionRepository, IAppRepository<ArtworkType> artworkTypeRepository)
+            //, IAppRepository<Image> imageRepository)
         {
             _appRepository = appRepository;
             _userRepository = userRepository;
@@ -40,7 +40,7 @@ namespace BinaryBrainsAPI.Controllers.ArtworksControllers
             _frameColourRepository = frameColourRepository;
             _artworkDimesionRepository = artworkDimesionRepository;
             _artworkTypeRepository = artworkTypeRepository;
-            _imageRepository = imageRepository;
+            //_imageRepository = imageRepository;
             _frameColourRepository = frameColourRepository;
         }
 
@@ -48,30 +48,31 @@ namespace BinaryBrainsAPI.Controllers.ArtworksControllers
         [HttpGet]
         public IActionResult Get()
         {
-           
-
-             IEnumerable<Artwork> artworks = _appRepository.GetAll();
-
-            foreach (Artwork i in artworks)
-            {
-                User user = _userRepository.Get((long)i.UserID);
-                SurfaceType surfaceType = _surfaceTypeRepository.Get((long)i.SurfaceTypeID);
-                MediumType mediumType = _mediumTypeRepository.Get((long)i.MediumTypeID);
-                ArtworkStatus artworkStatus = _artworkStatusRepository.Get((long)i.ArtworkStatusID);
-                ArtworkDimension artworkDimension = _artworkDimesionRepository.Get((long)i.ArtworkDimensionID);
-                ArtworkType artworkType = _artworkTypeRepository.Get((long)i.ArtworkTypeID);
-                Image image = _imageRepository.Get((long)i.ImageID);
-
-                i.User = user;
-                i.SurfaceType = surfaceType;
-                i.MediumType = mediumType;
-                i.ArtworkStatus = artworkStatus;
-                i.ArtworkDimension = artworkDimension;
-                i.ArtworkType = artworkType;
-                i.Image = image;
 
 
-            }
+            // IEnumerable<Artwork> artworks = _appRepository.GetAll();
+
+            //foreach (Artwork i in artworks)
+            //{
+            //    User user = _userRepository.Get((long)i.UserID);
+            //    SurfaceType surfaceType = _surfaceTypeRepository.Get((long)i.SurfaceTypeID);
+            //    MediumType mediumType = _mediumTypeRepository.Get((long)i.MediumTypeID);
+            //    ArtworkStatus artworkStatus = _artworkStatusRepository.Get((long)i.ArtworkStatusID);
+            //    ArtworkDimension artworkDimension = _artworkDimesionRepository.Get((long)i.ArtworkDimensionID);
+            //    ArtworkType artworkType = _artworkTypeRepository.Get((long)i.ArtworkTypeID);
+            //    //Image image = _imageRepository.Get((long)i.ImageID);
+
+            //    i.User = user;
+            //    i.SurfaceType = surfaceType;
+            //    i.MediumType = mediumType;
+            //    i.ArtworkStatus = artworkStatus;
+            //    i.ArtworkDimension = artworkDimension;
+            //    i.ArtworkType = artworkType;
+            //    //i.Image = image;
+
+
+            //}
+            IEnumerable<Artwork> artworks = _appRepository.GetAll();
 
             return Ok(artworks);
         }

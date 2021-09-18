@@ -54,6 +54,7 @@ namespace BinaryBrainsAPI.Repository.ArtClassesRepositories
             classTeacher.TeacherSurname = entity.TeacherSurname;
             classTeacher.TeacherEmail = entity.TeacherEmail;
             classTeacher.TeacherPhoneNumber = entity.TeacherPhoneNumber;
+            classTeacher.TeacherTypeID = entity.TeacherTypeID;
             _artechDb.SaveChanges();
         }
 

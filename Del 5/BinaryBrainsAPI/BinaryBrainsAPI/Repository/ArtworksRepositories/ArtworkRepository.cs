@@ -1,6 +1,7 @@
 ﻿using BinaryBrainsAPI.Data;
 using BinaryBrainsAPI.Entities.Artworks;
 using BinaryBrainsAPI.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,7 +39,7 @@ namespace BinaryBrainsAPI.Repository.ArtworksRepositories
         public IEnumerable<Artwork> GetAll()
         {
 
-            return _artechDb.Artwork.ToList();
+            return _artechDb.Artwork.Include(m => m.MediumType).Include(s => s.SurfaceType).Include(f => f.FrameColour).Include(d => d.ArtworkDimension).Include(x => x.ArtworkStatus).Include(y => y.ArtworkType).ToList();
             
         }
 
@@ -51,6 +52,7 @@ namespace BinaryBrainsAPI.Repository.ArtworksRepositories
         {
             artwork.ArtworkTitle = entity.ArtworkTitle;
             artwork.ArtworkPrice = entity.ArtworkPrice;
+            artwork.ArtworkImage = entity.ArtworkImage;
             _artechDb.SaveChanges();
         }
 
