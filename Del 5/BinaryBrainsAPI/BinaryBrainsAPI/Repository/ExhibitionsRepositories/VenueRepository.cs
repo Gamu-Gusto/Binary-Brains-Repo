@@ -50,5 +50,10 @@ namespace BinaryBrainsAPI.Repository.ExhibitionsRepositories
             venue.VenueDescription = entity.VenueDescription;
             _artechDb.SaveChanges();
         }
+
+        IEnumerable<Venue> IAppRepository<Venue>.GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

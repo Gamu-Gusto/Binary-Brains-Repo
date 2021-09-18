@@ -56,5 +56,10 @@ namespace BinaryBrainsAPI.Repository.ArtClassesRepositories
             classTeacher.TeacherPhoneNumber = entity.TeacherPhoneNumber;
             _artechDb.SaveChanges();
         }
+
+        IEnumerable<ClassTeacher> IAppRepository<ClassTeacher>.GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

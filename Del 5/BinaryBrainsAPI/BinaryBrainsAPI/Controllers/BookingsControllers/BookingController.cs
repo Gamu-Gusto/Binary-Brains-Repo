@@ -30,6 +30,14 @@ namespace BinaryBrainsAPI.Controllers.BookingsControllers
         {
             IEnumerable<Booking> bookings = _appRepository.GetAll();
 
+            foreach (Booking i in bookings)
+            {
+                ArtClass artClass = _artclassRepository.Get((long)i.ArtClassID);
+
+                i.ArtClass = artClass;
+         
+            }
+
             return Ok(bookings);
         }
 
@@ -42,7 +50,6 @@ namespace BinaryBrainsAPI.Controllers.BookingsControllers
 
             
 
-
             if (booking == null)
             {
                 return NotFound("Requested Booking does not exist.");
@@ -50,7 +57,23 @@ namespace BinaryBrainsAPI.Controllers.BookingsControllers
 
             return Ok(booking);
         }
+        /*
+        
+        // GET: api/Booking/{id}
 
+        [HttpGet("{id}", Name = "GetUserBookings")]
+        public IActionResult Get(int id)
+
+        {
+            IEnumerable<Booking> bookings = _appRepository.GetByString(id.ToString() + "stringuserid");
+
+            var listBookins = bookings.ToList();
+
+
+            return Ok(bookings);
+        }
+        
+        */
         // GET: api/Create
         [HttpPost]
         public IActionResult Post([FromBody] Booking booking)
@@ -64,7 +87,20 @@ namespace BinaryBrainsAPI.Controllers.BookingsControllers
 
             ArtClass artclass = _artclassRepository.Get(booking.ArtClassID);
 
-            IEnumerable<Booking> existinGbookings = _appRepository.GetAll();
+            string artclassStringID = booking.ArtClassID.ToString()+ "stringartclassid";
+
+            IEnumerable<Booking> existinGbookings = _appRepository.GetByString(artclassStringID);
+
+
+            foreach (Booking exist in existinGbookings)
+            {
+                if (exist.UserID == booking.UserID)
+                {
+                    return BadRequest("User already booked for class");
+
+                }
+
+            }
 
 
             if (artclass.ClassLimit <= existinGbookings.Count())

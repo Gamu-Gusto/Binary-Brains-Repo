@@ -51,5 +51,10 @@ namespace BinaryBrainsAPI.Repository.ExhibitionsRepositories
             schedule.ScheduleDescription = entity.ScheduleDescription;
             _artechDb.SaveChanges();
         }
+
+        IEnumerable<Schedule> IAppRepository<Schedule>.GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

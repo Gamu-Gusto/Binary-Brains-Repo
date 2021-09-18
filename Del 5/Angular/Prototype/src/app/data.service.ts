@@ -154,9 +154,16 @@ export class DataService {
 
 
 
-  getAllBookings() {
+  getAllBookings(): Promise<any> {
 
-    return this.http.get(this.apiURL + '/Booking')
+    return this.http.get(this.apiURL + '/Booking').toPromise()
+
+  };
+
+
+  getAllBookingByUser(){
+
+
 
   };
 

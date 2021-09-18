@@ -50,5 +50,10 @@ namespace BinaryBrainsAPI.Repository.ArtClassesRepositories
             teacherType.TeacherTypeDescription = entity.TeacherTypeDescription;
             _artechDb.SaveChanges();
         }
+
+        IEnumerable<TeacherType> IAppRepository<TeacherType>.GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

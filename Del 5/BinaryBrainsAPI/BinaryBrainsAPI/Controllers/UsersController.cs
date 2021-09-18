@@ -59,12 +59,12 @@ namespace BinaryBrainsAPI.Controllers
                 return BadRequest("User is null.");
             }
 
-            if (_appRepository.GetByString(user.UserEmail) != null)
+            if (_appRepository.GetByString(user.UserEmail + "stringemail").Count()>0)
             {
                 return BadRequest("User email already exists.");
             };
 
-            if (_appRepository.GetByString(user.UserName) != null)
+            if (_appRepository.GetByString(user.UserName + "stringusername").Count() > 0)
             {
                 return BadRequest("Username already exists.");
             };

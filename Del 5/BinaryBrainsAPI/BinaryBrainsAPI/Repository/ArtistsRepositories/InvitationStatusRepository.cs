@@ -50,5 +50,10 @@ namespace BinaryBrainsAPI.Repository.ArtistsRepositories
             invitationStatus.InvitationStatusDescription = entity.InvitationStatusDescription;
             _artechDb.SaveChanges();
         }
+
+        IEnumerable<InvitationStatus> IAppRepository<InvitationStatus>.GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

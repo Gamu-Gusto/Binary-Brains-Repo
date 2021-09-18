@@ -50,5 +50,10 @@ namespace BinaryBrainsAPI.Repository.ArtworksRepositories
             artworkType.ArtworkTypeDescription = entity.ArtworkTypeDescription;
             _artechDb.SaveChanges();
         }
+
+        IEnumerable<ArtworkType> IAppRepository<ArtworkType>.GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

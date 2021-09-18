@@ -49,5 +49,10 @@ namespace BinaryBrainsAPI.Repository.PaymentsRepositories
             paymentStatus.PaymentStatusDescription = entity.PaymentStatusDescription;
             _artechDb.SaveChanges();
         }
+
+        IEnumerable<PaymentStatus> IAppRepository<PaymentStatus>.GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

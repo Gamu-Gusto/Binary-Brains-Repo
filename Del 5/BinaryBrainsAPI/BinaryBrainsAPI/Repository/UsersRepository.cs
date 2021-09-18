@@ -66,9 +66,31 @@ namespace BinaryBrainsAPI.Repository
 
         }
 
-        public User GetByString(string str)
+        IEnumerable<User> IAppRepository<User>.GetByString(string str)
         {
-            return _artechDb.User.FirstOrDefault(u => u.UserEmail == str);
+
+            if (str.Contains("stringemail"))
+
+            {
+               string email =  str.Replace("stringemail","");
+
+                return _artechDb.User.Where(s => s.UserEmail== email).ToList();
+            }
+
+            if (str.Contains("stringusername"))
+
+            {
+                string username = str.Replace("stringusername", "");
+
+                return _artechDb.User.Where(s => s.UserName == username).ToList();
+            }
+
+
+            return null;
+            
+
+
         }
+
     }
 }

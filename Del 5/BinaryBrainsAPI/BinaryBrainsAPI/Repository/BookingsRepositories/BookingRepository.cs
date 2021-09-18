@@ -35,14 +35,34 @@ namespace BinaryBrainsAPI.Repository.BookingsRepositories
             return _artechDb.Booking.FirstOrDefault(s => s.BookingID == id);
         }
 
+      
         public IEnumerable<Booking> GetAll()
         {
             return _artechDb.Booking.ToList();
         }
 
-        public Booking GetByString(string str)
+
+     
+        public IEnumerable<Booking> GetByString(string str)
         {
-            throw new NotImplementedException();
+
+            if (str.Contains("stringartclassid"))
+            {
+                string artclassid = str.Replace("stringartclassid", "");
+
+                return _artechDb.Booking.Where(s => s.ArtClassID == Int32.Parse(artclassid)).ToList();
+
+            }
+
+            if (str.Contains("stringuserid"))
+            {
+                string stringuserid = str.Replace("stringuserid", "");
+
+                return _artechDb.Booking.Where(s => s.UserID == Int32.Parse(stringuserid)).ToList();
+
+            }
+
+            return null;
         }
 
         public void Update(Booking booking, Booking entity)

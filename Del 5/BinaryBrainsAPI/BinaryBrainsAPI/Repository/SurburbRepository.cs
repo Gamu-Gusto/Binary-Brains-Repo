@@ -50,5 +50,10 @@ namespace BinaryBrainsAPI.Repository
             suburb.SuburbName = entity.SuburbName;
             _artechDb.SaveChanges();
         }
+
+        IEnumerable<Suburb> IAppRepository<Suburb>.GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

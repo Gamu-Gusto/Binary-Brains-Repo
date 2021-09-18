@@ -51,5 +51,10 @@ namespace BinaryBrainsAPI.Repository
             privileges.PrivilegeDescription = entity.PrivilegeDescription;
             _artechDb.SaveChanges();
         }
+
+        IEnumerable<Privileges> IAppRepository<Privileges>.GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

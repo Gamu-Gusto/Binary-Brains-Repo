@@ -51,5 +51,10 @@ namespace BinaryBrainsAPI.Repository
             country.CountryName = entity.CountryName;
             _artechDb.SaveChanges();
         }
+
+        IEnumerable<Country> IAppRepository<Country>.GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

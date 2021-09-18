@@ -49,5 +49,10 @@ namespace BinaryBrainsAPI.Repository.PaymentsRepositories
             payment.PaymentDateTime = entity.PaymentDateTime;
             _artechDb.SaveChanges();
         }
+
+        IEnumerable<Payment> IAppRepository<Payment>.GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

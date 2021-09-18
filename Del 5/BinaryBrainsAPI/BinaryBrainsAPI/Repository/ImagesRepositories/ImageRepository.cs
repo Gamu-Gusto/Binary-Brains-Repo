@@ -50,5 +50,10 @@ namespace BinaryBrainsAPI.Repository.ImagesRepositories
             image.ImageContent = entity.ImageContent;
             _artechDb.SaveChanges();
         }
+
+        IEnumerable<Image> IAppRepository<Image>.GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -51,5 +51,9 @@ namespace BinaryBrainsAPI.Repository
             _artechDb.SaveChanges();
         }
 
+        IEnumerable<City> IAppRepository<City>.GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

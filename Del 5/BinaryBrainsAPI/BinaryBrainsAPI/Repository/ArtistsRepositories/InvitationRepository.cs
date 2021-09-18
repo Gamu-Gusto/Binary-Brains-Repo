@@ -51,5 +51,10 @@ namespace BinaryBrainsAPI.Repository.ArtistsRepositories
             invitation.InvitationDate = entity.InvitationDate;
             _artechDb.SaveChanges();
         }
+
+        IEnumerable<Invitation> IAppRepository<Invitation>.GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

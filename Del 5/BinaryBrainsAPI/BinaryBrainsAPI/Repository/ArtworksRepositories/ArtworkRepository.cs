@@ -53,5 +53,10 @@ namespace BinaryBrainsAPI.Repository.ArtworksRepositories
             artwork.ArtworkPrice = entity.ArtworkPrice;
             _artechDb.SaveChanges();
         }
+
+        IEnumerable<Artwork> IAppRepository<Artwork>.GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

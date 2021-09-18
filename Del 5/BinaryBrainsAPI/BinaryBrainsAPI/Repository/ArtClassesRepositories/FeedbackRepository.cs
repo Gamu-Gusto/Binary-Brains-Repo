@@ -53,5 +53,10 @@ namespace BinaryBrainsAPI.Repository.ArtClassesRepositories
             feedback.OverallRating = entity.OverallRating;
             _artechDb.SaveChanges();
         }
+
+        IEnumerable<Feedback> IAppRepository<Feedback>.GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

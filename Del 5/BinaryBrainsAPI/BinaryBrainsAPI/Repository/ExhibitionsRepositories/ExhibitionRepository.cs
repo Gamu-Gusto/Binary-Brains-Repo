@@ -53,5 +53,10 @@ namespace BinaryBrainsAPI.Repository.ExhibitionsRepositories
             exhibition.ExhibitionTime = entity.ExhibitionTime;
             _artechDb.SaveChanges();
         }
+
+        IEnumerable<Exhibition> IAppRepository<Exhibition>.GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
