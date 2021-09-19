@@ -28,6 +28,7 @@ export class BookingsComponent implements OnInit {
   public Payment: FormControl = new FormControl();
   paymentForm: FormGroup;
 datestripped: any;
+PaymentModal:any;
   error_messages = {
    
     'CardNumber': [
@@ -138,13 +139,15 @@ datestripped: any;
 
     this.selectedBooking = selectedbooking;
 
+    this.PaymentModal = makePamentModal;
+
     console.log('SelectedBooking', this.selectedBooking);
 
     this.modalService.open(makePamentModal, { centered: true });
 
   }
   confirmRefund(requestRefundModal){
-    // this.route.navigate(['/home/art-classes']);
+  
     this.modalService.dismissAll(requestRefundModal);
     this.toastr.success('Request Successful', 'Success')
   }
@@ -161,14 +164,55 @@ datestripped: any;
     let latest_date_time =this.datepipe.transform(this.timestamp, 'yyyy-MM-ddTHH:mm:ss');
 
     this.paymentForm.get('BookingID').setValue(this.selectedBooking.bookingID) ;
-    this.paymentForm.get('PaymentDateTime').setValue(latest_date_time) ;
+    this.paymentForm.get('PaymentDateTime').setValue(latest_date_time+'.098Z');
     this.paymentForm.get('PaymentType').setValue('Credit Card') ;
     this.paymentForm.get('Amount').setValue(this.selectedBooking.artClass.classPrice)  ;
 
     console.log(this.paymentForm.value);
-    
+
     if (this.paymentForm.invalid) {
       return;
+    }
+    else {
+
+      console.log(this.paymentForm.value);
+
+    this.data.addPayment(this.paymentForm.value).then(success => {
+
+    
+        this.toastr.success("Payment was successful", 'Success', {
+         disableTimeOut: true,
+          tapToDismiss: false,
+          closeButton: true,
+          positionClass: 'toast-top-full-width',
+
+        });
+        //this.modalService.dismissAll(this.BookingsModal);
+        this.route.navigate(['/my-bookings/bookings']),
+
+
+      this.formSubmitted = false;     
+
+
+      }).catch(error => {
+
+        console.log(error);
+        this.modalService.dismissAll(this.PaymentModal);
+        
+        this.toastr.error(error.error, 'Error', {
+          disableTimeOut: true,
+          tapToDismiss: false,
+          closeButton: true,
+          positionClass: 'toast-top-full-width',
+          enableHtml: true
+
+        });
+        console.log(error);
+      
+      });
+
+
+
     }
 
     // this.route.navigate(['/home/art-classes']);

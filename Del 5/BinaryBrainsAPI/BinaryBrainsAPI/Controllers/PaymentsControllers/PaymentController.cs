@@ -1,23 +1,34 @@
-﻿using BinaryBrainsAPI.Entities.Payments;
+﻿using BinaryBrainsAPI.Controllers.BookingsControllers;
+using BinaryBrainsAPI.Entities.Bookings;
+using BinaryBrainsAPI.Entities.Payments;
 using BinaryBrainsAPI.Interfaces;
+using BinaryBrainsAPI.Providers;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
+using System.Globalization;
 using System.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace BinaryBrainsAPI.Controllers.PaymentsControllers
 {
     [Route("api/Payment")]
-    [ApiController]
+    [EnableCors("MyCorsPolicy")]
     public class PaymentController : ControllerBase
     {
         private readonly IAppRepository<Payment> _appRepository;
+        private readonly IAppRepository<Booking> _bookingRepository;
 
-        public PaymentController(IAppRepository<Payment> appRepository)
+        public PaymentController(IAppRepository<Payment> appRepository, IAppRepository<Booking> bookingRepository)
         {
             _appRepository = appRepository;
+            _bookingRepository = bookingRepository;
         }
 
         // GET: api/Payment
@@ -36,7 +47,7 @@ namespace BinaryBrainsAPI.Controllers.PaymentsControllers
         {
             Payment payment = _appRepository.Get(id);
 
-
+            	
             if (payment == null)
             {
                 return NotFound("Requested Payment does not exist.");
@@ -47,17 +58,67 @@ namespace BinaryBrainsAPI.Controllers.PaymentsControllers
 
         // GET: api/Create
         [HttpPost]
-        public IActionResult Post([FromBody] Payment payment)
+        public IActionResult Post([FromBody] dynamic payment)
         {
-            if (payment == null)
+
+            string paymentqq = payment.ToString();
+
+            dynamic seripya = Newtonsoft.Json.JsonConvert.DeserializeObject(paymentqq);
+
+            Console.WriteLine(seripya);
+
+            Payment pay = new Payment();
+
+            pay.PaymentID = 0;
+            pay.Amount = seripya.Amount;
+            pay.BookingID = seripya.BookingID;
+            pay.CardHolderName = seripya.CardHolderName;
+            pay.CardNumber = seripya.CardNumber;
+            pay.ExpiryDate = seripya.ExpiryDate;
+            pay.Code = seripya.Code;
+            pay.PaymentDateTime = seripya.PaymentDateTime;
+            pay.PaymentStatus = seripya.PaymentStatus;
+            pay.PaymentType = seripya.PaymentType;
+            pay.RefundID = seripya.RefundID;
+
+           
+
+            if (pay == null)
             {
                 return BadRequest("Payment is null.");
             }
-            _appRepository.Add(payment);
-            return CreatedAtRoute(
-                  "GetPayment",
-                  new { Id = payment.PaymentID },
-                  payment);
+
+            var response = ChargeCreditCard.Run("52AhCp7Wt8", "5P9n7Uu33d867E8f", (decimal)pay.Amount, pay.CardNumber, pay.Code, pay.ExpiryDate);
+
+
+            if(response.messages.message[0].text == "Successful."){
+
+                
+
+                pay.PaymentStatus = "Successful";
+                pay.CardNumber = "xxxx xxxx xxxx xxx";
+
+                Booking bookingtoupdate = _bookingRepository.Get(pay.BookingID);
+
+                Booking updatedbooking = bookingtoupdate;
+
+                updatedbooking.BookingStatus = "Paid";
+
+                _bookingRepository.Update(bookingtoupdate, updatedbooking);
+
+                _appRepository.Add(pay);
+
+                return CreatedAtRoute(
+                      "GetPayment",
+                      new { Id = pay.PaymentID },
+                      pay);
+
+            }
+
+            return BadRequest("Payment Transaction Failed.");
+
+
+
         }
 
         // PUT: api/Payment/5

@@ -11,7 +11,7 @@ namespace BinaryBrainsAPI.Providers
     public class ChargeCreditCard
     {
 
-        public static ANetApiResponse Run(String ApiLoginID, String ApiTransactionKey, decimal amount)
+        public static ANetApiResponse Run(String ApiLoginID, String ApiTransactionKey, decimal amount,string cardnumber,string code,string expiredate)
         {
             Console.WriteLine("Charge Credit Card Sample");
 
@@ -27,9 +27,9 @@ namespace BinaryBrainsAPI.Providers
 
             var creditCard = new creditCardType
             {
-                cardNumber = "4111111111111111",
-                expirationDate = "1028",
-                cardCode = "123"
+                cardNumber = cardnumber,
+                expirationDate = expiredate,
+                cardCode = code
             };
 
             var billingAddress = new customerAddressType

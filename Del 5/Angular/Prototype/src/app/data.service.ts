@@ -284,20 +284,12 @@ export class DataService {
   }
 
 
-  addPayment(payment): Observable<Payment> {
+  addPayment(payment): Promise<any> {
 
     console.log(payment);
-
     return this.http
-      .post<Payment>(this.apiURL + '/Booking', JSON.stringify(payment), this.httpOptions)
-      .pipe(
-        retry(1)
-        ,
-        catchError(this.handleError)
-
-      )
-
-
+    .post<Payment>(this.apiURL + '/Payment', payment, this.httpOptions)
+    .toPromise()
 
   }
 

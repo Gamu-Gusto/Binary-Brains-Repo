@@ -232,8 +232,6 @@ timestamp: any;
           closeButton: true,
           positionClass: 'toast-top-full-width',
 
-
-
         });
 
 
