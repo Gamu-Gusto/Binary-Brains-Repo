@@ -18,4 +18,5 @@ export class ArtClass {
     ArtClassAnnouncementId: string;
      organisationID: string;
     organisation: string;
+    ArtClassImage:string;
 }

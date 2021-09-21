@@ -50,5 +50,10 @@ namespace BinaryBrainsAPI.Repository.ArtworksRepositories
             mediumType.MediumTypeName = entity.MediumTypeName;
             _artechDb.SaveChanges();
         }
+
+        IEnumerable<MediumType> IAppRepository<MediumType>.GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

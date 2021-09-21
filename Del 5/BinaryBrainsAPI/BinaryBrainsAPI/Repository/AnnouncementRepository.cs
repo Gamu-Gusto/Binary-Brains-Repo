@@ -55,5 +55,10 @@ namespace BinaryBrainsAPI.Repository
         {
             throw new NotImplementedException();
         }
+
+        IEnumerable<Announcement> IAppRepository<Announcement>.GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

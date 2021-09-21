@@ -12,14 +12,23 @@ import { DataService } from 'src/app/data.service';
 export class NavbarComponent implements OnInit {
 
   loggedInUser: any;
-
+  public show:boolean = false;
+  public divName:any = 'Show';
 
 
   constructor(private route: Router, private modalService: NgbModal, private toastr: ToastrService,public data: DataService,) { }
 
   ngOnInit(): void {
 
-    this.loggedInUser = this.data.loginInUserData;
+    this.loggedInUser = JSON.parse(localStorage.getItem('LoggedinUser'));
+
+    if (this.loggedInUser.userTypeID === 1){
+
+      this.show = true;
+
+      
+    }
+
   }
 
   onLogout(logoutModal) {
@@ -29,6 +38,9 @@ export class NavbarComponent implements OnInit {
   
 
   yesLogout (logoutModal) {
+
+    window.localStorage.clear();
+
     this.route.navigate(['/login']);
     this.modalService.dismissAll(logoutModal);
     // this.toastr.success('Registration Successful', 'Success');

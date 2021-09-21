@@ -51,5 +51,10 @@ namespace BinaryBrainsAPI.Repository.ExhibitionsRepositories
             organisation.OrganisationalName = entity.OrganisationalName;
             _artechDb.SaveChanges();
         }
+
+        IEnumerable<Organisation> IAppRepository<Organisation>.GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

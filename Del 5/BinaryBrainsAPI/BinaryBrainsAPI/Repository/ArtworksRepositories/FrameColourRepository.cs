@@ -50,5 +50,10 @@ namespace BinaryBrainsAPI.Repository.ArtworksRepositories
             frameColour.FrameColourDescription = entity.FrameColourDescription;
             _artechDb.SaveChanges();
         }
+
+        IEnumerable<FrameColour> IAppRepository<FrameColour>.GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

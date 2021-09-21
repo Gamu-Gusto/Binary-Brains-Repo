@@ -10,6 +10,7 @@ import { ArtClassType } from 'src/app/model/ArtClasses/art-class-type';
 import { ClassTeacher } from 'src/app/model/ArtClasses/class-teacher';
 import { Organisation } from 'src/app/model/Exhibitions/organisation';
 import { Venue } from 'src/app/model/Exhibitions/venue';
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 @Component({
@@ -29,6 +30,8 @@ export class ArtClassComponent implements OnInit {
   classTeacher: ClassTeacher;
 
   classType: ArtClassType;
+
+  BookingsModal: any;
 
   venue: Venue;
 
@@ -61,7 +64,7 @@ export class ArtClassComponent implements OnInit {
 
     this.listartclass.push(this.artClass);
 
-    this.user = this.data.loginInUserData;
+    this.user = JSON.parse(localStorage.getItem('LoggedinUser'));
 
 
     this.bookingForm = this.formBuilder.group({
@@ -80,6 +83,9 @@ export class ArtClassComponent implements OnInit {
 
 
   onBooking(bookModal) {
+
+    this.BookingsModal = bookModal;
+
     this.modalService.open(bookModal, { centered: true });
   }
 
@@ -92,7 +98,7 @@ export class ArtClassComponent implements OnInit {
     this.bookingForm.get('bookingID').setValue(0)  ;
     this.bookingForm.get('bookingDateTime').setValue(latest_date_time +'.000Z')  ;
     this.bookingForm.get('bookingNotificationID').setValue(1)  ;
-    this.bookingForm.get('bookingStatus').setValue('Pending')  ;
+    this.bookingForm.get('bookingStatus').setValue('Pending Payment')  ;
     this.bookingForm.get('artClassID').setValue(this.artClass.artClassID)  ;
     this.bookingForm.get('userID').setValue(this.user.userID)  ;
 
@@ -113,6 +119,7 @@ export class ArtClassComponent implements OnInit {
           positionClass: 'toast-top-full-width',
 
         });
+        this.modalService.dismissAll(this.BookingsModal);
         this.route.navigate(['/home/art-classes']),
 
 
@@ -122,8 +129,9 @@ export class ArtClassComponent implements OnInit {
       }).catch(error => {
 
         console.log(error);
-
-        this.toastr.error(error, 'Error', {
+        this.modalService.dismissAll(this.BookingsModal);
+        
+        this.toastr.error(error.error, 'Error', {
           disableTimeOut: true,
           tapToDismiss: false,
           closeButton: true,
@@ -131,9 +139,8 @@ export class ArtClassComponent implements OnInit {
           enableHtml: true
 
         });
-
         console.log(error);
-
+      
       });
 
 

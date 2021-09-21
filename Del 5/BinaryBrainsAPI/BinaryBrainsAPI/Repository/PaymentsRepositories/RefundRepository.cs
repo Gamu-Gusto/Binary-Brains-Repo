@@ -48,5 +48,10 @@ namespace BinaryBrainsAPI.Repository.PaymentsRepositories
             refund.RefundStatus = entity.RefundStatus;
             _artechDb.SaveChanges();
         }
+
+        IEnumerable<Refund> IAppRepository<Refund>.GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -74,6 +74,8 @@ export class LoginComponent implements OnInit {
 
 
         this.data.loginInUserData = success;
+
+        localStorage.setItem('LoggedinUser',JSON.stringify(success))
         
         console.log(this.data.loginInUserData );
 

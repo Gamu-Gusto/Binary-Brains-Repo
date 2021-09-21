@@ -57,5 +57,10 @@ namespace BinaryBrainsAPI.Repository.ArtClassesRepositories
             classTeacher.TeacherTypeID = entity.TeacherTypeID;
             _artechDb.SaveChanges();
         }
+
+        IEnumerable<ClassTeacher> IAppRepository<ClassTeacher>.GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

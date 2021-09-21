@@ -12,6 +12,7 @@ import { City } from '../model/Users/city';
 import { NgbCalendar, NgbDate, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { DatePipe } from '@angular/common';
+import { ConfirmedValidator } from 'src/confirmed.validators';
 
 
 //**Interfaces */
@@ -34,6 +35,15 @@ interface Surburb {
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
+  isNameSelected: boolean;
+  selectInput(event) {
+    let selected = event.target.value;
+    if (selected == "1") {
+      this.isNameSelected = true;
+    } else {
+      this.isNameSelected = false;
+    }
+  }
 
   public listUserTypes: any;
 
@@ -63,28 +73,50 @@ timestamp: any;
     'UserFirstName': [
       { type: 'required', message: 'First Name is required.' }
     ],
+    'UserDOB': [
+      { type: 'required', message: 'Date of birth is required.' }
+    ],
 
+    'UserTypeId': [
+      { type: 'required', message: 'User Type is required.' }
+    ],
+
+    'SuburbId': [
+      { type: 'required', message: 'Suburb is required.' }
+    ],
+
+    'CountryId': [
+      { type: 'required', message: 'Country is required.' }
+    ],
+    'CityId': [
+      { type: 'required', message: 'City is required.' }
+    ],
+
+    'ProvinceId': [
+      { type: 'required', message: 'Province is required.' }
+    ],
     'UserLastName': [
       { type: 'required', message: 'Last Name is required.' }
     ],
 
     'UserEmail': [
       { type: 'required', message: 'Email is required.' },
-      { type: 'required', message: 'please enter a valid email address.' }
+      { type: 'email', message: 'please enter a valid email address.' }
     ],
 
     'UserPassword': [
       { type: 'required', message: 'password is required.' },
-      { type: 'minlength', message: 'password length.' },
+      { type: 'minlength', message: 'password is too short' },
       { type: 'maxlength', message: 'password length.' }
     ],
     'UserPasswordConfirm': [
       { type: 'required', message: 'password  confirm is required.' },
-      { type: 'minlength', message: 'password  confirm length.' }
+      { type: 'minlength', message: 'password  is too short.' },
+      { type: 'confirmedValidator', message: 'Password and Confirm Password must be match.' }
     ],
     'UserPhoneNumber': [
-      { type: 'required', message: 'password is required.' },
-      { type: 'minlength', message: 'password length.' }
+      { type: 'required', message: 'Phone number is required.' },
+      { type: 'minlength', message: ' Phone number is too short.' }
     ],
     'UserAddressLine1': [
       { type: 'required', message: 'address  is required.' },
@@ -92,7 +124,8 @@ timestamp: any;
     ],
 
     'UserPostalCode': [
-      { type: 'required', message: 'postal code  is required.' }
+      { type: 'required', message: 'postal code  is required.' },
+      { type: 'minlength', message: 'postal code is too short.' }
     ],
 
   }
@@ -118,7 +151,7 @@ timestamp: any;
       UserPostalCode: new FormControl(''),
       ArtistBio: new FormControl(''),
       UserTypeId: new FormControl(''),
-      SurburbId: new FormControl(''),
+      SuburbId: new FormControl(''),
       CountryId: new FormControl(''),
       ProvinceId: new FormControl(''),
       CityId: new FormControl(''),
@@ -146,22 +179,27 @@ timestamp: any;
       UserName: ['', Validators.required],
       UserFirstName: ['', Validators.required],
       UserLastName: ['', Validators.required],
-      UserEmail: ['', Validators.required],
-      UserPhoneNumber: ['', Validators.required],
-      UserPassword: ['', Validators.required],
+      UserEmail: ['', [Validators.required, Validators.email]],
+      UserPhoneNumber: ['', [Validators.required,Validators.minLength(10)]],
+      UserPassword: ['', [Validators.required,Validators.minLength(6)]],
       UserPasswordConfirm: ['', Validators.required],
       UserDOB: ['', Validators.required],
       UserAddressLine1: ['', Validators.required],
       UserAddressLine2: [''],
-      UserPostalCode: ['', Validators.required],
+      UserPostalCode: ['', [Validators.required,Validators.minLength(4)]],
       ArtistBio: [''],
-      UserTypeId: [''],
+      UserTypeId: ['', Validators.required],
       SuburbId: ['', Validators.required],
       CityId: ['', Validators.required],
       ProvinceId: ['', Validators.required],
       CountryId: ['', Validators.required],
-      timestamp: [''],
-    });
+      timestamp: ['']
+    },{ 
+      validator: ConfirmedValidator('UserPassword', 'UserPasswordConfirm')
+    })
+    
+    
+    ;
 
   }
 
@@ -175,8 +213,10 @@ timestamp: any;
   onSubmit(event) {
 
     this.formSubmitted = true;
+
     event.preventDefault();
     console.log(this.registrationForm.value);
+
     if (this.registrationForm.invalid) {
       return;
     }
@@ -201,8 +241,6 @@ timestamp: any;
           closeButton: true,
           positionClass: 'toast-top-full-width',
 
-
-
         });
 
 
@@ -215,7 +253,7 @@ timestamp: any;
 
         console.log(error);
 
-        this.toastr.error(error, 'Error', {
+        this.toastr.error(error.error, 'Error', {
           disableTimeOut: true,
           tapToDismiss: false,
           closeButton: true,

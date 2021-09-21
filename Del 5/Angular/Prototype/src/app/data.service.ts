@@ -135,6 +135,13 @@ export class DataService {
 
   };
 
+  requestRefund(id): Promise<any> {
+
+    return this.http.post(this.apiURL + '/Refund', + id)
+    .toPromise()
+
+  };
+
 
   getTeacher(id): Promise<any> {
 
@@ -154,9 +161,16 @@ export class DataService {
 
 
 
-  getAllBookings() {
+  getAllBookings(): Promise<any> {
 
-    return this.http.get(this.apiURL + '/Booking')
+    return this.http.get(this.apiURL + '/Booking').toPromise()
+
+  };
+
+
+  getAllBookingByUser(){
+
+
 
   };
 
@@ -277,20 +291,12 @@ export class DataService {
   }
 
 
-  addPayment(payment): Observable<Payment> {
+  addPayment(payment): Promise<any> {
 
     console.log(payment);
-
     return this.http
-      .post<Payment>(this.apiURL + '/Booking', JSON.stringify(payment), this.httpOptions)
-      .pipe(
-        retry(1)
-        ,
-        catchError(this.handleError)
-
-      )
-
-
+    .post<Payment>(this.apiURL + '/Payment', payment, this.httpOptions)
+    .toPromise()
 
   }
 

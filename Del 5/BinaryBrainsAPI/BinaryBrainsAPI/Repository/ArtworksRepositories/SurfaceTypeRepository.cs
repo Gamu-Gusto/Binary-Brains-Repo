@@ -50,5 +50,10 @@ namespace BinaryBrainsAPI.Repository.ArtworksRepositories
             surfaceType.SurfaceTypeName = entity.SurfaceTypeName;
             _artechDb.SaveChanges();
         }
+
+        IEnumerable<SurfaceType> IAppRepository<SurfaceType>.GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

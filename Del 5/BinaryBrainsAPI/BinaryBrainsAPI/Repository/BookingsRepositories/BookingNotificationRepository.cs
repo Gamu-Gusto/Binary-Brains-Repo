@@ -50,5 +50,10 @@ namespace BinaryBrainsAPI.Repository.BookingsRepositories
             bookingNotification.BookNotificationDescription = entity.BookNotificationDescription;
             _artechDb.SaveChanges();
         }
+
+        IEnumerable<BookingNotification> IAppRepository<BookingNotification>.GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

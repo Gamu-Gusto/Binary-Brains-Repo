@@ -15,20 +15,24 @@ namespace BinaryBrainsAPI.Entities.Payments
         public double Amount { get; set; }
         public DateTime PaymentDateTime { get; set; }
 
-        [ForeignKey("PaymentTypeID")]
-        public int PaymentTypeID { get; set; }
-        public PaymentType PaymentType { get; set; }
+        public string? CardNumber { get; set; }
 
-        [ForeignKey("PaymentStatusID")]
-        public int PaymentStatusID { get; set; }
-        public PaymentStatus PaymentStatus { get; set; }
+        public string? CardHolderName { get; set; }
+
+        public string? Code { get; set; }
+
+        public string? ExpiryDate { get; set; }
+        public string PaymentType { get; set; }
+
+        public string PaymentStatus { get; set; }
+       
 
        [ForeignKey("BookingID")]
        public int BookingID { get; set; }
        public Booking Booking { get; set; }
 
         [ForeignKey("RefundID")]
-        public int RefundID { get; set; }
+        public int? RefundID { get; set; }
         public Refund Refund { get; set; }
     }
 }

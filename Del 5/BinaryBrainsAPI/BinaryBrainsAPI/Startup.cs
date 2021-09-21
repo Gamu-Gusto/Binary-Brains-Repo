@@ -31,6 +31,7 @@ using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Web.Http;
 
@@ -60,6 +61,8 @@ namespace BinaryBrainsAPI
             });
 
             services.AddDbContext<ArtechDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            //services.AddControllers().AddJsonOptions(x =>x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
 
             // User Repositories
             services.AddScoped<IAppRepository<User>, UsersRepository>();
@@ -115,6 +118,7 @@ namespace BinaryBrainsAPI
             services.AddScoped<IAppRepository<PaymentStatus>, PaymentStatusRepository>();
             services.AddScoped<IAppRepository<PaymentType>, PaymentTypeRepository>();
             services.AddScoped<IAppRepository<Refund>, RefundRepository>();
+            services.AddScoped<IRefundRepository, RefundUpdateRepository>();
 
             // Images Repositories
             services.AddScoped<IAppRepository<Image>, ImageRepository>();

@@ -4,14 +4,16 @@ using BinaryBrainsAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BinaryBrainsAPI.Migrations
 {
     [DbContext(typeof(ArtechDbContext))]
-    partial class ArtechDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210921080110_sp_UpdateBookingAndPayment")]
+    partial class sp_UpdateBookingAndPayment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

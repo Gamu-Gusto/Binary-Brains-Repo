@@ -38,16 +38,16 @@ namespace BinaryBrainsAPI.Repository.PaymentsRepositories
             return _artechDb.Payment.ToList();
         }
 
-        public Payment GetByString(string str)
-        {
-            throw new NotImplementedException();
-        }
-
         public void Update(Payment payment, Payment entity)
         {
             payment.Amount = entity.Amount;
             payment.PaymentDateTime = entity.PaymentDateTime;
             _artechDb.SaveChanges();
+        }
+
+        IEnumerable<Payment> IAppRepository<Payment>.GetByString(string str)
+        {
+            return _artechDb.Payment.Where(s => s.BookingID == Int32.Parse(str)).ToList();
         }
     }
 }

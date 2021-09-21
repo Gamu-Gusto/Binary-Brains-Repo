@@ -8,5 +8,5 @@ export class Booking {
 
     ArtClassID: string;
 
-    UserID: string;
+    userID: string;
 }

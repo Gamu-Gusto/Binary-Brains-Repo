@@ -50,5 +50,10 @@ namespace BinaryBrainsAPI.Repository
             province.ProvinceName = entity.ProvinceName;
             _artechDb.SaveChanges();
         }
+
+        IEnumerable<Province> IAppRepository<Province>.GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

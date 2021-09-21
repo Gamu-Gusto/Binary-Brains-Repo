@@ -50,5 +50,10 @@ namespace BinaryBrainsAPI.Repository.ArtworksRepositories
             artworkDimension.ArtworkDimensionDescription = entity.ArtworkDimensionDescription;
             _artechDb.SaveChanges();
         }
+
+        IEnumerable<ArtworkDimension> IAppRepository<ArtworkDimension>.GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

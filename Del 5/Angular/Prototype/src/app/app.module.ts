@@ -5,6 +5,8 @@ import {RouterModule} from '@angular/router';
 import {DataService} from'./data.service';
 import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgbDateCustomParserFormatter } from  'src/ngb-date-custom-parser-formatter';
+import { NgxMaskModule} from 'ngx-mask';
+import { StorageServiceModule } from 'ngx-webstorage-service';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -71,7 +73,6 @@ import { DatePipe } from '@angular/common';
 
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -133,7 +134,7 @@ import { DatePipe } from '@angular/common';
     ToastrModule.forRoot(),
     MDBBootstrapModule.forRoot(),
     MdbModule,
-    BrowserAnimationsModule,ReactiveFormsModule,RouterModule,HttpClientModule, AppRoutingModule
+    BrowserAnimationsModule,ReactiveFormsModule,RouterModule,HttpClientModule, AppRoutingModule,  NgxMaskModule.forRoot()
   ],
   providers: [DataService, DatePipe,
     { provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter } 

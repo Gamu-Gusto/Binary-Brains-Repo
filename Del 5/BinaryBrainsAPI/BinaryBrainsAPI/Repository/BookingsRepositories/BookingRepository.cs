@@ -1,4 +1,5 @@
 ﻿using BinaryBrainsAPI.Data;
+using BinaryBrainsAPI.Entities.ArtClasses;
 using BinaryBrainsAPI.Entities.Bookings;
 using BinaryBrainsAPI.Interfaces;
 using System;
@@ -32,17 +33,46 @@ namespace BinaryBrainsAPI.Repository.BookingsRepositories
 
         public Booking Get(long id)
         {
-            return _artechDb.Booking.FirstOrDefault(s => s.BookingID == id);
+            
+            
+            Booking booking = _artechDb.Booking.FirstOrDefault(s => s.BookingID == id);
+
+            ArtClass artClass = _artechDb.ArtClass.FirstOrDefault(b => b.ArtClassID == booking.ArtClassID);
+
+            booking.ArtClass = artClass;
+
+            return booking;
+
         }
 
+      
         public IEnumerable<Booking> GetAll()
         {
             return _artechDb.Booking.ToList();
         }
 
-        public Booking GetByString(string str)
+
+     
+        public IEnumerable<Booking> GetByString(string str)
         {
-            throw new NotImplementedException();
+
+            if (str.Contains("stringartclassid"))
+            {
+                string artclassid = str.Replace("stringartclassid", "");
+
+                return _artechDb.Booking.Where(s => s.ArtClassID == Int32.Parse(artclassid)).ToList();
+
+            }
+
+            if (str.Contains("stringuserid"))
+            {
+                string stringuserid = str.Replace("stringuserid", "");
+
+                return _artechDb.Booking.Where(s => s.UserID == Int32.Parse(stringuserid)).ToList();
+
+            }
+
+            return null;
         }
 
         public void Update(Booking booking, Booking entity)

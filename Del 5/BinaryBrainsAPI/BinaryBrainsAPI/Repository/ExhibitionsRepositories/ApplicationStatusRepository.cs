@@ -50,5 +50,10 @@ namespace BinaryBrainsAPI.Repository.ExhibitionsRepositories
             applicationStatus.ApplicationStatusDescription = entity.ApplicationStatusDescription;
             _artechDb.SaveChanges();
         }
+
+        IEnumerable<ApplicationStatus> IAppRepository<ApplicationStatus>.GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

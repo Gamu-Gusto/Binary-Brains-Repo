@@ -9,7 +9,7 @@ import { ArtClassType } from 'src/app/model/ArtClasses/art-class-type';
 import { ClassTeacher } from 'src/app/model/ArtClasses/class-teacher';
 import { Organisation } from 'src/app/model/Exhibitions/organisation';
 import { Venue } from 'src/app/model/Exhibitions/venue';
-
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-art-classes',
@@ -32,7 +32,7 @@ export class ArtClassesComponent implements OnInit {
 
 g
   constructor(public data: DataService,private formBuilder: FormBuilder,private fb: FormBuilder, 
-    private toastr: ToastrService, private router: Router,private calendar: NgbCalendar) { }
+    private toastr: ToastrService, private router: Router,private calendar: NgbCalendar,private sanitizer:DomSanitizer) { }
 
 
 
@@ -43,7 +43,8 @@ g
 
     this.data.getAllArtClasses().then((result) => { console.log(result); this.listArtClasses = result });
 
-    this.user = this.data.loginInUserData;
+     this.user = JSON.parse(localStorage.getItem('LoggedinUser'));
+     
   }
 
 

@@ -11,7 +11,7 @@
 
 <div class="card-deck">
     <div class="card" *ngFor="let artclass of listArtClasses; let indexofElementc= index;">
-      <img class="card-img-top" src="../../../assets/art-class/theme1.png" alt="Card image cap">
+      <img class="card-img-top" src='data:image/png;base64,{{artclass.artClassImage}}' alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title">{{artclass.artClassDescription}}</h5>
         <p class="card-text">{{artclass.artClassDescription}}.</p>

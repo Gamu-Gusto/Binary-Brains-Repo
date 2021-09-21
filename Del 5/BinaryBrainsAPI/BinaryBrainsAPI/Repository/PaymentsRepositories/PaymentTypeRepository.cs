@@ -48,5 +48,10 @@ namespace BinaryBrainsAPI.Repository.PaymentsRepositories
             paymentType.PaymentTypeDescription = entity.PaymentTypeDescription;
             _artechDb.SaveChanges();
         }
+
+        IEnumerable<PaymentType> IAppRepository<PaymentType>.GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

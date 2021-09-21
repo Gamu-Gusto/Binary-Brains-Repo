@@ -50,5 +50,10 @@ namespace BinaryBrainsAPI.Repository
             userType.UserRoleName = entity.UserRoleName;
             _artechDb.SaveChanges();
         }
+
+        IEnumerable<UserType> IAppRepository<UserType>.GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

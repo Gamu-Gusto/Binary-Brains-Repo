@@ -50,5 +50,10 @@ namespace BinaryBrainsAPI.Repository.ExhibitionsRepositories
             exhibitionAnnouncement.ExhibitionAnnouncementDescription = entity.ExhibitionAnnouncementDescription;
             _artechDb.SaveChanges();
         }
+
+        IEnumerable<ExhibitionAnnouncement> IAppRepository<ExhibitionAnnouncement>.GetByString(string str)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
