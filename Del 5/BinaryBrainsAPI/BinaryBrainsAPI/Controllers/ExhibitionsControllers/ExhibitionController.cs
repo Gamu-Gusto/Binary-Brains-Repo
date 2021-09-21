@@ -16,24 +16,24 @@ namespace BinaryBrainsAPI.Controllers.ExhibitionsControllers
     public class ExhibitionController : ControllerBase
     {
         private readonly IAppRepository<Exhibition> _appRepository;
-        private readonly IAppRepository<ExhibitionType> _exhibitionTypeRepository;
-        private readonly IAppRepository<Schedule> _scheduleRepository;
-        private readonly IAppRepository<Organisation> _organisationRepository;
-        private readonly IAppRepository<Venue> _venueRepository;
+        //private readonly IAppRepository<ExhibitionType> _exhibitionTypeRepository;
+        //private readonly IAppRepository<Schedule> _scheduleRepository;
+        //private readonly IAppRepository<Organisation> _organisationRepository;
+        //private readonly IAppRepository<Venue> _venueRepository;
         //private readonly IAppRepository<Image> _imageRepository;
 
-        public ExhibitionController(IAppRepository<Exhibition> appRepository, 
-          IAppRepository<ExhibitionType> exhibitionTypeRepository
-         //,IAppRepository<Schedule> scheduleRepository
-        ,IAppRepository<Organisation> organisationRepository
-        , IAppRepository<Venue> venueRepository)
+        public ExhibitionController(IAppRepository<Exhibition> appRepository)
+        //  IAppRepository<ExhibitionType> exhibitionTypeRepository
+        // //,IAppRepository<Schedule> scheduleRepository
+        //,IAppRepository<Organisation> organisationRepository
+        //, IAppRepository<Venue> venueRepository)
         //,IAppRepository<Image> imageRepository)
         {
             _appRepository = appRepository;
-            _exhibitionTypeRepository = exhibitionTypeRepository;
-            //_scheduleRepository = scheduleRepository;
-            _organisationRepository = organisationRepository;
-            _venueRepository = venueRepository;
+            //_exhibitionTypeRepository = exhibitionTypeRepository;
+            ////_scheduleRepository = scheduleRepository;
+            //_organisationRepository = organisationRepository;
+            //_venueRepository = venueRepository;
             //_imageRepository = imageRepository;
         }
 
