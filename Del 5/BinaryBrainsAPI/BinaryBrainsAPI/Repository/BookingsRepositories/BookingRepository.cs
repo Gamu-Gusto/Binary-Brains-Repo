@@ -1,4 +1,5 @@
 ﻿using BinaryBrainsAPI.Data;
+using BinaryBrainsAPI.Entities.ArtClasses;
 using BinaryBrainsAPI.Entities.Bookings;
 using BinaryBrainsAPI.Interfaces;
 using System;
@@ -32,7 +33,16 @@ namespace BinaryBrainsAPI.Repository.BookingsRepositories
 
         public Booking Get(long id)
         {
-            return _artechDb.Booking.FirstOrDefault(s => s.BookingID == id);
+            
+            
+            Booking booking = _artechDb.Booking.FirstOrDefault(s => s.BookingID == id);
+
+            ArtClass artClass = _artechDb.ArtClass.FirstOrDefault(b => b.ArtClassID == booking.ArtClassID);
+
+            booking.ArtClass = artClass;
+
+            return booking;
+
         }
 
       

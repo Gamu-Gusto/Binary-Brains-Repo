@@ -1,4 +1,5 @@
-﻿using BinaryBrainsAPI.Entities.Payments;
+﻿using BinaryBrainsAPI.Entities.Bookings;
+using BinaryBrainsAPI.Entities.Payments;
 using BinaryBrainsAPI.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,10 +15,17 @@ namespace BinaryBrainsAPI.Controllers.PaymentsControllers
     public class RefundController : ControllerBase
     {
         private readonly IAppRepository<Refund> _appRepository;
+        private readonly IAppRepository<Payment> _paymentRepository;
+        private readonly IAppRepository<Booking> _bookingRepository;
+        private readonly IRefundRepository _refundRepository;
 
-        public RefundController(IAppRepository<Refund> appRepository)
+
+        public RefundController(IAppRepository<Refund> appRepository, IAppRepository<Payment> paymentRepository, IAppRepository<Booking> bookingRepository, IRefundRepository refundRepository)
         {
             _appRepository = appRepository;
+            _paymentRepository = paymentRepository;
+            _bookingRepository = bookingRepository;
+            _refundRepository = refundRepository;
         }
 
         // GET: api/Refund
@@ -47,18 +55,59 @@ namespace BinaryBrainsAPI.Controllers.PaymentsControllers
 
         // GET: api/Create
         [HttpPost]
-        public IActionResult Post([FromBody] Refund refund)
+        public async Task<IActionResult> Post([FromBody] long? bookingid)
         {
-            if (refund == null)
+
+            Refund refund = new Refund();
+
+            IEnumerable<Payment> linkedPayment = _paymentRepository.GetByString(Convert.ToString(bookingid));
+
+            Payment linkedPaymentToUpdate = linkedPayment.First();
+
+
+            if (linkedPaymentToUpdate.PaymentStatus == "Refund Requested")
             {
-                return BadRequest("Refund is null.");
+                return BadRequest("There is already a refun pending.");
+
             }
-            _appRepository.Add(refund);
-            return CreatedAtRoute(
-                  "GetRefund",
-                  new { Id = refund.RefundID },
-                  refund);
-        }
+
+            Booking booking = _bookingRepository.Get((long)bookingid);
+
+
+            int refundLimit = booking.ArtClass.RefundDayLimit;
+
+
+            double daysFromClassStart = (booking.ArtClass.ArtClassStartDateTime - DateTime.Now).TotalDays;
+
+            if (daysFromClassStart < refundLimit)
+            {
+                return BadRequest("Refund request is past refund deadline.");
+
+            }
+
+            if (linkedPaymentToUpdate.PaymentStatus == "Refund Requested")
+            {
+                return BadRequest("There is already a refund pending.");
+
+            }
+
+            refund.RefundStatus = "In Progress";
+            
+
+             if (bookingid == null)
+             {
+                 return BadRequest("Refund is null.");
+             }
+
+             _appRepository.Add(refund);
+
+            int createdRefundId = refund.RefundID;
+
+            int result = await _refundRepository.UpdateRefund(linkedPaymentToUpdate.PaymentID, createdRefundId);
+
+            return Ok(result);
+
+     }
 
         // PUT: api/Refund/5
         [HttpPut("{id}")]
