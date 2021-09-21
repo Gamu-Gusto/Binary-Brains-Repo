@@ -35,6 +35,15 @@ interface Surburb {
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
+  isNameSelected: boolean;
+  selectInput(event) {
+    let selected = event.target.value;
+    if (selected == "1") {
+      this.isNameSelected = true;
+    } else {
+      this.isNameSelected = false;
+    }
+  }
 
   public listUserTypes: any;
 

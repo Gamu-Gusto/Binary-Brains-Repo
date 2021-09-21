@@ -26,7 +26,7 @@ export class UserAccountComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.user = this.data.loginInUserData;
+    this.user = JSON.parse(localStorage.getItem('LoggedinUser'));
 
     this.userAccountForm = this.formBuilder.group({
       artistBio: [''],

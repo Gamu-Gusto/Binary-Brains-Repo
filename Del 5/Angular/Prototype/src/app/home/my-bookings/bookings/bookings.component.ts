@@ -10,6 +10,8 @@ import { DataService } from 'src/app/data.service';
 import { Booking } from 'src/app/model/Bookings/booking';
 import { ExpiryDateValidator } from 'src/confirmed.validators';
 import { CustomValidationsService } from 'src/custom-validations.service';
+import { User } from '../../../model/user.model';
+import { RefundsComponent } from '../refunds/refunds.component';
 
 @Component({
   selector: 'app-bookings',
@@ -21,6 +23,8 @@ export class BookingsComponent implements OnInit {
   listBookings: [];
 
   listUserBookings:Booking[];
+
+  loggedInUser: any;
    timestamp: any;
   booking: Booking;
   formSubmitted = false;
@@ -29,6 +33,9 @@ export class BookingsComponent implements OnInit {
   paymentForm: FormGroup;
 datestripped: any;
 PaymentModal:any;
+
+refund: RefundsComponent;
+
   error_messages = {
    
     'CardNumber': [
@@ -82,9 +89,14 @@ PaymentModal:any;
      this.data.getAllBookings().then((result) => { 
        
       console.log(result);
-      this.listBookings = result 
+
+      this.listBookings = result
+
+      this.loggedInUser = JSON.parse(localStorage.getItem('LoggedinUser'));
+
+      console.log(this.loggedInUser );
     
-      this.listUserBookings  =this.listBookings.filter((bking: Booking) => bking.userID === this.data.loginInUserData.userID);
+      this.listUserBookings  =this.listBookings.filter((bking: Booking) => bking.userID === this.loggedInUser.userID);
 
       console.log(this.listUserBookings );
 
@@ -130,7 +142,10 @@ PaymentModal:any;
     this.toastr.success('Cancellation Successful', 'Success')
   }
 
-  onRequestRefund(requestRefundModal) {
+  onRequestRefund(requestRefundModal,selectedbooking) {
+
+    this.selectedBooking= selectedbooking
+
     this.modalService.open(requestRefundModal, { centered: true });
 
   }
@@ -147,9 +162,45 @@ PaymentModal:any;
 
   }
   confirmRefund(requestRefundModal){
-  
+
+    
+
+    this.data.requestRefund(this.selectedBooking.bookingID).then(success => {
+
+    
+    this.toastr.success("Refund requested successfully", 'Success');
+
     this.modalService.dismissAll(requestRefundModal);
-    this.toastr.success('Request Successful', 'Success')
+
+    this.route.navigate(['/home/my-bookings/bookings']);
+
+
+    this.formSubmitted = false;     
+
+
+    }).catch(error => {
+
+      console.log(error);
+
+      this.modalService.dismissAll(requestRefundModal);
+      
+      this.toastr.error(error.error, 'Error', {
+        disableTimeOut: true,
+        tapToDismiss: false,
+        closeButton: true,
+        positionClass: 'toast-top-full-width',
+        enableHtml: true
+
+      });
+
+      this.route.navigate(['/home/my-bookings/bookings']);
+      console.log(error);
+    
+    });
+
+  
+
+  
   }
 
   onSubmit(event){
@@ -179,7 +230,8 @@ PaymentModal:any;
 
     this.data.addPayment(this.paymentForm.value).then(success => {
 
-    
+      let currentUrl = this.route.url;
+
         this.toastr.success("Payment was successful", 'Success', {
          disableTimeOut: true,
           tapToDismiss: false,
@@ -187,8 +239,10 @@ PaymentModal:any;
           positionClass: 'toast-top-full-width',
 
         });
-        //this.modalService.dismissAll(this.BookingsModal);
-        this.route.navigate(['/my-bookings/bookings']),
+
+        this.modalService.dismissAll(this.PaymentModal);
+
+        this.route.navigate([currentUrl]);
 
 
       this.formSubmitted = false;     
@@ -207,6 +261,8 @@ PaymentModal:any;
           enableHtml: true
 
         });
+        let currentUrl = this.route.url;
+        this.route.navigate([currentUrl]);
         console.log(error);
       
       });
@@ -215,9 +271,7 @@ PaymentModal:any;
 
     }
 
-    // this.route.navigate(['/home/art-classes']);
-    
-    this.toastr.success('Request Successful', 'Success')
+   
   }
 
 }

@@ -5,7 +5,8 @@ import {RouterModule} from '@angular/router';
 import {DataService} from'./data.service';
 import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgbDateCustomParserFormatter } from  'src/ngb-date-custom-parser-formatter';
-import { NgxMaskModule} from 'ngx-mask'
+import { NgxMaskModule} from 'ngx-mask';
+import { StorageServiceModule } from 'ngx-webstorage-service';
 
 
 import { AppRoutingModule } from './app-routing.module';

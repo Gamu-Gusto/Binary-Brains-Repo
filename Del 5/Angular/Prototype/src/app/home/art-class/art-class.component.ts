@@ -10,6 +10,7 @@ import { ArtClassType } from 'src/app/model/ArtClasses/art-class-type';
 import { ClassTeacher } from 'src/app/model/ArtClasses/class-teacher';
 import { Organisation } from 'src/app/model/Exhibitions/organisation';
 import { Venue } from 'src/app/model/Exhibitions/venue';
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 @Component({
@@ -63,7 +64,7 @@ export class ArtClassComponent implements OnInit {
 
     this.listartclass.push(this.artClass);
 
-    this.user = this.data.loginInUserData;
+    this.user = JSON.parse(localStorage.getItem('LoggedinUser'));
 
 
     this.bookingForm = this.formBuilder.group({
@@ -97,7 +98,7 @@ export class ArtClassComponent implements OnInit {
     this.bookingForm.get('bookingID').setValue(0)  ;
     this.bookingForm.get('bookingDateTime').setValue(latest_date_time +'.000Z')  ;
     this.bookingForm.get('bookingNotificationID').setValue(1)  ;
-    this.bookingForm.get('bookingStatus').setValue('Pending')  ;
+    this.bookingForm.get('bookingStatus').setValue('Pending Payment')  ;
     this.bookingForm.get('artClassID').setValue(this.artClass.artClassID)  ;
     this.bookingForm.get('userID').setValue(this.user.userID)  ;
 

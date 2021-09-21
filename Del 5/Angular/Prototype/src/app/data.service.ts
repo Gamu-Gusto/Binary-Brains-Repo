@@ -135,6 +135,13 @@ export class DataService {
 
   };
 
+  requestRefund(id): Promise<any> {
+
+    return this.http.post(this.apiURL + '/Refund', + id)
+    .toPromise()
+
+  };
+
 
   getTeacher(id): Promise<any> {
 

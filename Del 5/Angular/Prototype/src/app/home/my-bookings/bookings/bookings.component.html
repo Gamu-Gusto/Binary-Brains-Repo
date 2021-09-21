@@ -1,16 +1,16 @@
 <script src="cardvalidator.js"></script>
-  <table class="table">
+  <table class="table" *ngFor="let booking of listUserBookings">
     <thead>
       <tr>
         <th scope="col">#</th>
         <th scope="col">Class Name</th>
         <th scope="col">Payment Status</th>
         <th scope="col">Cancel Booking</th>
-        <th scope="col">Refund</th>
+        <th scope="col"  *ngIf="booking.bookingStatus !=='Pending Refund'">Refund</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let booking of listUserBookings" >
+      <tr >
         <th scope="row">
             <div class="image-card">
             <img class="card-img-top" src="../../../assets/art-class/theme1.png" alt="Card image cap">
@@ -22,9 +22,9 @@
             <button mdbBtn type="button" gradient="peach" rounded="true" (click)="onCancelBooking(cancelBookingModal)" mdbWavesEffect>Cancel <i class="fas fa-times-circle"></i></button>
         </td>
         <td>
-            <button *ngIf="booking.bookingStatus !=='Paid'" mdbBtn type="button" gradient="purple" rounded="true" (click)="makePayment(makePamentModal,booking)" mdbWavesEffect>Make Payment</button> 
+            <button *ngIf="booking.bookingStatus ==='Pending Payment'" mdbBtn type="button" gradient="purple" rounded="true" (click)="makePayment(makePamentModal,booking)" mdbWavesEffect>Make Payment</button> 
 
-            <button *ngIf="booking.bookingStatus ==='Paid'"mdbBtn type="button" gradient="purple" rounded="true" (click)="onRequestRefund(requestRefundModal)" mdbWavesEffect>Request Refund</button>             
+            <button *ngIf="booking.bookingStatus ==='Paid'"mdbBtn type="button" gradient="purple" rounded="true" (click)="onRequestRefund(requestRefundModal,booking)" mdbWavesEffect>Request Refund</button>             
 
         </td>
       </tr>
@@ -62,7 +62,7 @@
       <p>Are you sure you want to cancel your Booking and Request a Refund?</p>
     </div>
     <div class="modal-footer">
-      <button mdbBtn type="button" gradient="purple" (click)="confirmCancel(cancelBookingModal)" rounded="true" mdbWavesEffect>Confirm</button>
+      <button mdbBtn type="button" gradient="purple" (click)="confirmRefund(requestRefundModal)" rounded="true" mdbWavesEffect>Confirm</button>
     </div>
   </ng-template>
 

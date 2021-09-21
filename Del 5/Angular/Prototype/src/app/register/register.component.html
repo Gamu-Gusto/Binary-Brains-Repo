@@ -104,7 +104,7 @@
               <div class="form-group">
                 <label for="ScriptType" style="text-align:right;width: 150px ">User
                   Type</label>
-                <select name="UserType" formControlName="UserTypeId" class="btn btn-outline-primary">
+                <select name="UserType" formControlName="UserTypeId" class="btn btn-outline-primary" (change)="selectInput($event)">
                   <option value="undefined">Select User Type</option>
                   <option *ngFor="let usertype of listUserTypes" [value]="usertype.userTypeID">
                     {{usertype.userRoleName}}
@@ -246,10 +246,10 @@
         </div>
 
         <div class="row">
-          <div class="col">
+          <div class="col" *ngIf="isNameSelected">
             <label>Artist Bio</label>
-            <input type="text" formControlName="ArtistBio" class="form-control" style="width: 250px;"
-              placeholder="Artist Bio" />
+            <textarea type="text" formControlName="ArtistBio" class="form-control" style="width: 250px;"
+              placeholder="Artist Bio" ></textarea>
           </div>
           <div class="col">
             <label>Address Line 1</label>

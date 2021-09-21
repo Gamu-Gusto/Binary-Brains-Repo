@@ -34,7 +34,7 @@
     <ul class="navbar-nav ml-auto nav-flex-icons">
       <li class="nav-item">
 
-    
+
 
         <a class="nav-link waves-light" [routerLink]="['exhibitions']" routerLinkActive="active"
           mdbWavesEffect>Exhibitions</a>
@@ -42,10 +42,23 @@
 
       </li>
 
-
+      <ng-container *ngIf="show">
+        <li class="nav-item">
+          <a class="nav-link waves-light"  [routerLink]="['my-bookings/bookings']"
+            routerLinkActive="active" mdbWavesEffect>My Artwork</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link waves-light"  [routerLink]="['my-bookings/bookings']"
+            routerLinkActive="active" mdbWavesEffect>My Exhibitions</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link waves-light"  [routerLink]="['my-bookings/bookings']"
+            routerLinkActive="active" mdbWavesEffect>My Invitations</a>
+        </li>
+      </ng-container>
       <li class="nav-item">
-      <a class="nav-link waves-light" [routerLink]="['my-bookings/bookings']" routerLinkActive="active"
-        mdbWavesEffect>My Bookings</a>
+        <a class="nav-link waves-light" [routerLink]="['my-bookings/bookings']" routerLinkActive="active"
+          mdbWavesEffect>My Bookings</a>
       </li>
       <li class="nav-item">
         <a class="nav-link waves-light" [routerLink]="['announcements']" routerLinkActive="active"
