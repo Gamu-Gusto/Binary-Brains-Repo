@@ -1,0 +1,83 @@
+<div class="container">
+
+        <h1>Refunds</h1>
+  
+    <hr>
+    <h2>Requested Refunds</h2>
+
+    <br>
+
+    <table class="table">
+        <thead>
+          <tr class="table-primary">
+            <th scope="col">Name</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Date and Time of Payment</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Tom Cruise</td>
+            <td>R 800.00</td>
+            <td>2021/06/23 14:34:12</td>
+            <td>
+                <button type="button" class="btn btn-success" (click)="onApprove(approveModal)">Approve</button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-danger" (click)="onDecline(declineModal)">Decline</button>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Elon Musk</td>
+            <td>R 1000.00</td>
+            <td>2021/06/23 14:34:12</td>
+            <td>
+                <button type="button" class="btn btn-success" (click)="onApprove(approveModal)">Approve</button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-danger" (click)="onDecline(declineModal)">Decline</button>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+
+    <ng-template #approveModal let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title">Approve Refund</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" >
+      <p>Are you sure you want to approve this refund?</p>
+          </div>
+          <br>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" (click)="modal.dismiss('Cross click')">No</button>
+          <button type="button" class="btn btn-primary" (click)="confirmApprove(approveModal)">Yes</button>
+        </div>
+      </ng-template>
+
+
+      <ng-template #declineModal let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title">Decline Refund</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" >
+      <p>Are you sure you want to decline this refund?</p>
+          </div>
+          <br>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" (click)="modal.dismiss('Cross click')">No</button>
+          <button type="button" class="btn btn-primary" (click)="confirmDecline(declineModal)">Yes</button>
+        </div>
+      </ng-template>

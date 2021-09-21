@@ -1,0 +1,146 @@
+<div class="exhibition-applications">
+  <div class="row">
+    <h1>Exhibition Applications</h1>
+  </div>
+  <hr />
+  <h2>Source Code (Exhibition Title)</h2>
+  <br />
+
+  <div class="card">
+    <div class="card-header">
+      <div class="row">
+      <div class="col">
+        Tom Cruise
+      </div>
+      <div class="col" style="float: right;">
+        <button type="button" class="btn btn-danger" style="float: right;" (click)="onDecline(declineModal)" >Decline <i class="fas fa-ban"></i></button>
+        <button type="button" class="btn btn-success" style="float: right; margin-right: 20px;" (click)="onAccept(acceptModal)">Accept <i class="fas fa-check"></i></button>
+      </div>
+    </div>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Exhibition Application</h5>
+      <p class="card-text">Motivation/Description as to why I want to take part in this exhibition.</p>
+    </div>
+    <hr>
+    <div class="artwork-pictures">
+      <div class="row">
+        <div class="col">
+          <img src="assets/artworks/artwork1.png" alt="logo" class="artwork-img"/>
+        </div>
+        <div class="col">
+          <img src="assets/artworks/artwork2.png" alt="logo" class="artwork-img"/>
+        </div>
+        <div class="col">
+          <img src="assets/artworks/artwork3.png" alt="logo" class="artwork-img"/>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="row">
+      <div class="col">
+        Tom Cruise
+      </div>
+      <div class="col" style="float: right;">
+        <button type="button" class="btn btn-danger" style="float: right;" (click)="onDecline(declineModal)">Decline <i class="fas fa-ban"></i></button>
+        <button type="button" class="btn btn-success" style="float: right; margin-right: 20px;" (click)="onAccept(acceptModal)">Accept <i class="fas fa-check"></i></button>
+      </div>
+    </div>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Exhibition Application</h5>
+      <p class="card-text">Motivation/Description as to why I want to take part in this exhibition.</p>
+    </div>
+    <hr>
+    <div class="artwork-pictures">
+      <div class="row">
+        <div class="col">
+          <img src="assets/artworks/profile-works1.png" alt="logo" class="artwork-img"/>
+        </div>
+        <div class="col">
+          <img src="assets/artworks/artwork2.png" alt="logo" class="artwork-img"/>
+        </div>
+        <div class="col">
+          <img src="assets/artworks/artwork3.png" alt="logo" class="artwork-img"/>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="row">
+      <div class="col">
+        Tom Cruise
+      </div>
+      <div class="col" style="float: right;">
+        <button type="button" class="btn btn-danger" style="float: right;" (click)="onDecline(declineModal)">Decline <i class="fas fa-ban"></i></button>
+        <button type="button" class="btn btn-success" style="float: right; margin-right: 20px;" (click)="onAccept(acceptModal)">Accept <i class="fas fa-check"></i></button>
+      </div>
+    </div>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Exhibition Application</h5>
+      <p class="card-text">Motivation/Description as to why I want to take part in this exhibition.</p>
+    </div>
+    <hr>
+    <div class="artwork-pictures">
+      <div class="row">
+        <div class="col">
+          <img src="assets/artworks/profile-works3.png" alt="logo" class="artwork-img"/>
+        </div>
+        <div class="col">
+          <img src="assets/artworks/artwork2.png" alt="logo" class="artwork-img"/>
+        </div>
+        <div class="col">
+          <img src="assets/artworks/artwork3.png" alt="logo" class="artwork-img"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- =========MODALS BELOW======================= -->
+
+<ng-template #acceptModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Accept Application</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" >
+    <p>Are you sure you want to Accept this Application?</p>
+    </div>
+    <br>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="modal.dismiss('Cross click')">No</button>
+    <button type="button" class="btn btn-primary" (click)="confirmAccept(acceptModal)">Yes</button>
+  </div>
+</ng-template>
+
+<ng-template #declineModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Decline Application</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" >
+    <p>Are you sure you want to Decline this Application?</p>
+    </div>
+    <br>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="modal.dismiss('Cross click')">No</button>
+    <button type="button" class="btn btn-primary" (click)="confirmDecline(declineModal)">Yes</button>
+  </div>
+</ng-template>
+

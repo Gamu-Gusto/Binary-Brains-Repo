@@ -1,0 +1,30 @@
+<div class="container">
+    <form novalidate #form="ngForm" (submit)="onSubmit(form)">
+    <div class="row">
+        <h1>Post Announcement</h1>
+    </div>
+    <hr>
+    <div class="row">
+        
+        <label>Announcement Title:</label>
+        <input type="text" class="form-control" placeholder="Title" name="announcementTitle" #announcementTitle="ngModel" [(ngModel)]="announcementService.announcementData.announcementTitle"
+        required [class.invalid]="announcementTitle.invalid && announcementTitle.touched">
+        <div *ngIf="announcementTitle.invalid && (announcementTitle.dirty || announcementTitle.touched)" style="color: red;">
+          Have to Provide a Title
+        </div> 
+        <br>
+          
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Enter Announcement Here:</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="announcementDescription" #announcementDescription="ngModel" [(ngModel)]="announcementService.announcementData.announcementDescription" required></textarea>
+          </div>
+          <div *ngIf="announcementDescription.invalid && (announcementDescription.dirty || announcementDescription.touched)" style="color: red;">
+            Have to enter Announcement
+          </div> 
+          <hr>
+
+          <button type="button" class="btn btn-success btn-lg" [disabled]="form.invalid"  type="submit">Post</button>
+        </form>
+        </div>
