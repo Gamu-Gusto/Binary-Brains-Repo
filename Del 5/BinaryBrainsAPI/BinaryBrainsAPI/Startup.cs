@@ -118,7 +118,7 @@ namespace BinaryBrainsAPI
             services.AddScoped<IAppRepository<PaymentStatus>, PaymentStatusRepository>();
             services.AddScoped<IAppRepository<PaymentType>, PaymentTypeRepository>();
             services.AddScoped<IAppRepository<Refund>, RefundRepository>();
-            services.AddScoped<IRefundRepository, RefundUpdateRepository>();
+            services.AddScoped<IRefundRepository<Booking>, RefundUpdateRepository>();
 
             // Images Repositories
             services.AddScoped<IAppRepository<Image>, ImageRepository>();
