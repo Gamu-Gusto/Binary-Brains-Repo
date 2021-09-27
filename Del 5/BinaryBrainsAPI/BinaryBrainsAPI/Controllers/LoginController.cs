@@ -1,11 +1,15 @@
 ﻿using BinaryBrainsAPI.Entities.Users;
 using BinaryBrainsAPI.Interfaces;
+using BinaryBrainsAPI.Providers;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Linq;
 
 namespace BinaryBrainsAPI.Controllers
 {
     [Route("api/Login")]
-    [ApiController]
+    [EnableCors("MyCorsPolicy")]
 
     public class LoginController : ControllerBase
     {
@@ -22,8 +26,10 @@ namespace BinaryBrainsAPI.Controllers
         }
 
 
+    
 
-        [HttpGet("{username}/{password}", Name = "GetUserDetails")]
+
+    [HttpGet("{username}/{password}", Name = "GetUserDetails")]
         public IActionResult Get(string username, string password)
         {
             
@@ -58,5 +64,38 @@ namespace BinaryBrainsAPI.Controllers
             return Ok(user);
         }
 
+
+        // GET: api/Create
+        [HttpPost]
+        public IActionResult Post([FromBody] UserInfo userInfo)
+        {
+           
+
+            if (userInfo.UserEmail == null)
+            {
+                return BadRequest("Email is null");
+
+            }
+            if (_applicationRepository.GetByString(userInfo.UserEmail + "stringemail").Count() == 0)
+            {
+                return BadRequest("Please register as a user.");
+            }
+            try
+            {
+                string sourcemethod = "reset";
+
+                SendEmail.SendEmailMethod(userInfo.UserEmail, sourcemethod);
+
+            }
+
+            catch(Exception ex)
+            {
+
+                return BadRequest("An error occured:" + ex.Message);
+            }
+
+
+            return Ok("Rest Link Email Sent");
+        }
     }
 }

@@ -65,7 +65,6 @@ namespace BinaryBrainsAPI.Controllers.PaymentsControllers
 
             dynamic seripya = Newtonsoft.Json.JsonConvert.DeserializeObject(paymentqq);
 
-            Console.WriteLine(seripya);
 
             Payment pay = new Payment();
 

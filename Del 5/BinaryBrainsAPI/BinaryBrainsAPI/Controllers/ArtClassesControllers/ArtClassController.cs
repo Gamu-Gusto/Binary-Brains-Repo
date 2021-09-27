@@ -41,19 +41,19 @@ namespace BinaryBrainsAPI.Controllers.ArtClassesControllers
             IEnumerable<ArtClass> artClasses = _appRepository.GetAll();
 
 
-            //foreach (ArtClass i in artClasses)
-            //{
-            //    Venue venue = _venueRepository.Get((long)i.VenueID);
-            //    Organisation organisation = _organisationRepository.Get((long)i.OrganisationID);
-            //    ArtClassType artClassType = _artClassTypeRepository.Get((long)i.ArtClassTypeID);
-            //    ClassTeacher classTeacher = _classTeacherRepository.Get((long)i.ClassTeacherID);
+            foreach (ArtClass i in artClasses)
+            {
+                Venue venue = _venueRepository.Get((long)i.VenueID);
+               Organisation organisation = _organisationRepository.Get((long)i.OrganisationID);
+               ArtClassType artClassType = _artClassTypeRepository.Get((long)i.ArtClassTypeID);
+                ClassTeacher classTeacher = _classTeacherRepository.Get((long)i.ClassTeacherID);
               
-            //    i.Venue = venue;
-            //    i.Organisation = organisation;
-            //    i.ArtClassType = artClassType;
-            //    i.ClassTeacher = classTeacher;
+                i.Venue = venue;
+                i.Organisation = organisation;
+                i.ArtClassType = artClassType;
+                i.ClassTeacher = classTeacher;
 
-            //}
+            }
 
             return Ok(artClasses);
         }
@@ -64,6 +64,10 @@ namespace BinaryBrainsAPI.Controllers.ArtClassesControllers
         public IActionResult Get(long id)
         {
             ArtClass artClass = _appRepository.Get(id);
+
+            ClassTeacher classTeacher = _classTeacherRepository.Get((long)artClass.ClassTeacherID);
+
+            artClass.ClassTeacher = classTeacher;
 
 
             if (artClass == null)

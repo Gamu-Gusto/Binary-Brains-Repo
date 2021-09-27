@@ -1,6 +1,8 @@
-﻿using BinaryBrainsAPI.Entities.Bookings;
+﻿using BinaryBrainsAPI.Entities.ArtClasses;
+using BinaryBrainsAPI.Entities.Bookings;
 using BinaryBrainsAPI.Entities.Payments;
 using BinaryBrainsAPI.Interfaces;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,21 +13,24 @@ using System.Threading.Tasks;
 namespace BinaryBrainsAPI.Controllers.PaymentsControllers
 {
     [Route("api/Refund")]
-    [ApiController]
+    [EnableCors("MyCorsPolicy")]
     public class RefundController : ControllerBase
     {
         private readonly IAppRepository<Refund> _appRepository;
         private readonly IAppRepository<Payment> _paymentRepository;
         private readonly IAppRepository<Booking> _bookingRepository;
-        private readonly IRefundRepository _refundRepository;
+        private readonly IRefundRepository<Booking> _refundRepository;
+        private readonly IAppRepository<ArtClass> _artclassRepository;
 
 
-        public RefundController(IAppRepository<Refund> appRepository, IAppRepository<Payment> paymentRepository, IAppRepository<Booking> bookingRepository, IRefundRepository refundRepository)
+        public RefundController(IAppRepository<Refund> appRepository, IAppRepository<Payment> paymentRepository, IAppRepository<ArtClass> artclassRepository,
+            IAppRepository<Booking> bookingRepository, IRefundRepository<Booking> refundRepository)
         {
             _appRepository = appRepository;
             _paymentRepository = paymentRepository;
             _bookingRepository = bookingRepository;
             _refundRepository = refundRepository;
+            _artclassRepository = artclassRepository;
         }
 
         // GET: api/Refund
@@ -71,9 +76,15 @@ namespace BinaryBrainsAPI.Controllers.PaymentsControllers
 
             }
 
-            Booking booking = _bookingRepository.Get((long)bookingid);
+            Booking booking = _refundRepository.GetBooking((int)bookingid);
 
+            Booking bookingToUpdate = booking;
 
+            //_bookingRepository.Get((long)bookingid);
+
+            ArtClass artClass = _artclassRepository.Get(booking.ArtClassID);
+
+            booking.ArtClass = artClass;
             int refundLimit = booking.ArtClass.RefundDayLimit;
 
 
@@ -92,6 +103,7 @@ namespace BinaryBrainsAPI.Controllers.PaymentsControllers
             }
 
             refund.RefundStatus = "In Progress";
+            refund.ArtClassRefunded = booking.ArtClass.ArtClassName;
             
 
              if (bookingid == null)
@@ -103,9 +115,21 @@ namespace BinaryBrainsAPI.Controllers.PaymentsControllers
 
             int createdRefundId = refund.RefundID;
 
-            int result = await _refundRepository.UpdateRefund(linkedPaymentToUpdate.PaymentID, createdRefundId);
+            linkedPaymentToUpdate.RefundID = createdRefundId;
+            linkedPaymentToUpdate.PaymentStatus = "Refund Requested";
 
-            return Ok(result);
+            _paymentRepository.Update(linkedPaymentToUpdate, linkedPayment.First());
+
+            bookingToUpdate.BookingStatus = "Pending Refund";
+
+            _bookingRepository.Update(bookingToUpdate, booking);
+
+
+
+
+           // int result = await _refundRepository.UpdateRefund(linkedPaymentToUpdate.PaymentID, createdRefundId);
+
+            return Ok(booking);
 
      }
 

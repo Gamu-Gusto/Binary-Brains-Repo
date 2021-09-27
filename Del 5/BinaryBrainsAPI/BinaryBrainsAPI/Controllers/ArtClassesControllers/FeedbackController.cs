@@ -1,5 +1,6 @@
 ﻿using BinaryBrainsAPI.Entities.ArtClasses;
 using BinaryBrainsAPI.Interfaces;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 namespace BinaryBrainsAPI.Controllers.ArtClassesControllers
 {
     [Route("api/Feedback")]
-    [ApiController]
+    [EnableCors("MyCorsPolicy")]
     public class FeedbackController : ControllerBase
     {
         private readonly IAppRepository<Feedback> _appRepository;
@@ -47,17 +48,37 @@ namespace BinaryBrainsAPI.Controllers.ArtClassesControllers
 
         // GET: api/Create
         [HttpPost]
-        public IActionResult Post([FromBody] Feedback feedback)
+        public IActionResult Post([FromBody] dynamic feedback)
         {
-            if (feedback == null)
+
+
+
+          
+
+            string feedbackDynamic = feedback.ToString();
+
+            dynamic theDynamicFeedbackObj = Newtonsoft.Json.JsonConvert.DeserializeObject(feedbackDynamic);
+
+            Feedback newFeedback = new Feedback();
+
+            newFeedback.ArtClassID = theDynamicFeedbackObj.ArtClassID;
+            newFeedback.UserID = theDynamicFeedbackObj.UserID;
+            newFeedback.FeedbackComment = theDynamicFeedbackObj.FeedbackComment;
+            newFeedback.TeacherRating = theDynamicFeedbackObj.TeacherRating;
+            newFeedback.DifficultyRating = theDynamicFeedbackObj.DifficultyRating;
+            newFeedback.OverallRating = theDynamicFeedbackObj.OverallRating;
+
+
+            if (newFeedback == null)
             {
                 return BadRequest("Feedback is null.");
             }
-            _appRepository.Add(feedback);
+
+            _appRepository.Add(newFeedback);
             return CreatedAtRoute(
                   "GetFeedback",
-                  new { Id = feedback.FeedbackID },
-                  feedback);
+                  new { Id = newFeedback.FeedbackID },
+                  newFeedback);
         }
 
         // PUT: api/Feedback/5
