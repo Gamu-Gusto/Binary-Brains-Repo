@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BinaryBrainsAPI.Migrations
 {
     [DbContext(typeof(ArtechDbContext))]
-    [Migration("20210921080110_sp_UpdateBookingAndPayment")]
-    partial class sp_UpdateBookingAndPayment
+    [Migration("20210922200123_Full22092021")]
+    partial class Full22092021
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -824,6 +824,9 @@ namespace BinaryBrainsAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ArtClassRefunded")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RefundStatus")
                         .HasColumnType("nvarchar(max)");

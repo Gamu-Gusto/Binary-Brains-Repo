@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BinaryBrainsAPI.Migrations
 {
-    public partial class FullMigration15Sep : Migration
+    public partial class Full22092021 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -237,7 +237,8 @@ namespace BinaryBrainsAPI.Migrations
                 {
                     RefundID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    RefundStatus = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    RefundStatus = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ArtClassRefunded = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -886,10 +887,14 @@ namespace BinaryBrainsAPI.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Amount = table.Column<double>(type: "float", nullable: false),
                     PaymentDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    PaymentTypeID = table.Column<int>(type: "int", nullable: false),
-                    PaymentStatusID = table.Column<int>(type: "int", nullable: false),
+                    CardNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CardHolderName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Code = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ExpiryDate = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PaymentType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PaymentStatus = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     BookingID = table.Column<int>(type: "int", nullable: false),
-                    RefundID = table.Column<int>(type: "int", nullable: false)
+                    RefundID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -901,23 +906,11 @@ namespace BinaryBrainsAPI.Migrations
                         principalColumn: "BookingID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Payment_PaymentStatus_PaymentStatusID",
-                        column: x => x.PaymentStatusID,
-                        principalTable: "PaymentStatus",
-                        principalColumn: "PaymentStatusID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Payment_PaymentType_PaymentTypeID",
-                        column: x => x.PaymentTypeID,
-                        principalTable: "PaymentType",
-                        principalColumn: "PaymentTypeID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
                         name: "FK_Payment_Refund_RefundID",
                         column: x => x.RefundID,
                         principalTable: "Refund",
                         principalColumn: "RefundID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -1091,16 +1084,6 @@ namespace BinaryBrainsAPI.Migrations
                 column: "BookingID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Payment_PaymentStatusID",
-                table: "Payment",
-                column: "PaymentStatusID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Payment_PaymentTypeID",
-                table: "Payment",
-                column: "PaymentTypeID");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Payment_RefundID",
                 table: "Payment",
                 column: "RefundID");
@@ -1173,6 +1156,12 @@ namespace BinaryBrainsAPI.Migrations
                 name: "Payment");
 
             migrationBuilder.DropTable(
+                name: "PaymentStatus");
+
+            migrationBuilder.DropTable(
+                name: "PaymentType");
+
+            migrationBuilder.DropTable(
                 name: "Suburb");
 
             migrationBuilder.DropTable(
@@ -1192,12 +1181,6 @@ namespace BinaryBrainsAPI.Migrations
 
             migrationBuilder.DropTable(
                 name: "Booking");
-
-            migrationBuilder.DropTable(
-                name: "PaymentStatus");
-
-            migrationBuilder.DropTable(
-                name: "PaymentType");
 
             migrationBuilder.DropTable(
                 name: "Refund");

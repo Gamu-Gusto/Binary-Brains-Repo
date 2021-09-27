@@ -2,7 +2,7 @@
 
 namespace BinaryBrainsAPI.Migrations
 {
-    public partial class sp_UpdateBookingAndPayment : Migration
+    public partial class sp_RefundProcess : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -30,7 +30,7 @@ namespace BinaryBrainsAPI.Migrations
                                         BEGIN
                                             SET @retVal = 500  -- nothing is updated
                                         END
-END";
+                END";
 
             migrationBuilder.Sql(sp);
 
@@ -38,8 +38,7 @@ END";
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.Sql("drop procedure sp_UpdateRefundAndCancelPayment");
+            migrationBuilder.Sql("drop procedure sp_UpdateBookingAndPayment");
         }
     }
 }
-

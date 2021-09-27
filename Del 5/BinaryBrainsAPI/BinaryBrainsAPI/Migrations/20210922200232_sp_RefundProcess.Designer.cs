@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BinaryBrainsAPI.Migrations
 {
     [DbContext(typeof(ArtechDbContext))]
-    [Migration("20210915133141_FullMigration15Sep")]
-    partial class FullMigration15Sep
+    [Migration("20210922200232_sp_RefundProcess")]
+    partial class sp_RefundProcess
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -755,25 +755,33 @@ namespace BinaryBrainsAPI.Migrations
                     b.Property<int>("BookingID")
                         .HasColumnType("int");
 
+                    b.Property<string>("CardHolderName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CardNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ExpiryDate")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("PaymentDateTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("PaymentStatusID")
-                        .HasColumnType("int");
+                    b.Property<string>("PaymentStatus")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PaymentTypeID")
-                        .HasColumnType("int");
+                    b.Property<string>("PaymentType")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("RefundID")
+                    b.Property<int?>("RefundID")
                         .HasColumnType("int");
 
                     b.HasKey("PaymentID");
 
                     b.HasIndex("BookingID");
-
-                    b.HasIndex("PaymentStatusID");
-
-                    b.HasIndex("PaymentTypeID");
 
                     b.HasIndex("RefundID");
 
@@ -816,6 +824,9 @@ namespace BinaryBrainsAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ArtClassRefunded")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RefundStatus")
                         .HasColumnType("nvarchar(max)");
@@ -1329,29 +1340,11 @@ namespace BinaryBrainsAPI.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BinaryBrainsAPI.Entities.Payments.PaymentStatus", "PaymentStatus")
-                        .WithMany()
-                        .HasForeignKey("PaymentStatusID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BinaryBrainsAPI.Entities.Payments.PaymentType", "PaymentType")
-                        .WithMany()
-                        .HasForeignKey("PaymentTypeID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("BinaryBrainsAPI.Entities.Payments.Refund", "Refund")
                         .WithMany()
-                        .HasForeignKey("RefundID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("RefundID");
 
                     b.Navigation("Booking");
-
-                    b.Navigation("PaymentStatus");
-
-                    b.Navigation("PaymentType");
 
                     b.Navigation("Refund");
                 });
