@@ -3,9 +3,9 @@ export class Artwork {
     ArtworkTitle: string;
     ArtworkPrice: string;
     ArtworkPicture: string;
-
+    ArtworkImage: string;
     SurfaceType: string;
-
+    userID:string;
     MediumType: string;
 
     ArtworkStatus: string;

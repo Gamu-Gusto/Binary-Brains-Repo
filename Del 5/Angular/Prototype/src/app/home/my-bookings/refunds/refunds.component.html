@@ -1,5 +1,5 @@
 
-  <table class="table">
+  <table class="table" *ngFor="let refund of listUserRefunds">
     <thead>
       <tr>
         <th scope="col">#</th>
@@ -14,8 +14,8 @@
             <img class="card-img-top" src="../../../assets/art-class/theme1.png" alt="Card image cap">
         </div>
         </th>
-        <td>Conflict and Adversity</td>
-        <td>'Pending'</td>
+        <td>{{refund.artClassRefunded}}</td>
+        <td>{{refund.refundStatus}}</td>
       </tr>
 
     </tbody>

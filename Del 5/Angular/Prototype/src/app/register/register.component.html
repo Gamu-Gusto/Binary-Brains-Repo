@@ -25,7 +25,7 @@
             <input type="text" formControlName="UserFirstName" class="form-control" style="width: 250px;"
               placeholder="Enter Name" />  
               <div class="error-messages" *ngFor="let error of error_messages.UserFirstName">              
-                <div style="position: static;" class="error-message" *ngIf="formSubmitted ||  registrationForm.get('UserFirstName').hasError(error.type) &&
+                <div style="position: static;" class="error-message" *ngIf=" registrationForm.get('UserFirstName').hasError(error.type) &&
                  (registrationForm.get('UserFirstName').dirty || registrationForm.get('UserFirstName').touched)">
                   {{ error.message }}
                 </div>         
@@ -38,7 +38,7 @@
               placeholder="Enter Surname" />
             <div class="error-messages">
               <ng-container *ngFor="let error of error_messages.UserLastName">
-                <div class="error-message" *ngIf="formSubmitted ||  registrationForm.get('UserLastName').hasError(error.type) &&
+                <div class="error-message" *ngIf=" registrationForm.get('UserLastName').hasError(error.type) &&
                    (registrationForm.get('UserLastName').dirty || registrationForm.get('UserLastName').touched)">
                   {{ error.message }}
                 </div>
@@ -57,7 +57,7 @@
               placeholder="E-mail" />
             <div class="error-messages">
               <ng-container *ngFor="let error of error_messages.UserEmail">
-                <div class="error-message" *ngIf="formSubmitted ||  registrationForm.get('UserEmail').hasError(error.type) &&
+                <div class="error-message" *ngIf=" registrationForm.get('UserEmail').hasError(error.type) &&
                    (registrationForm.get('UserEmail').dirty || registrationForm.get('UserEmail').touched)">
                   {{ error.message }}
                 </div>
@@ -70,7 +70,7 @@
               placeholder="Username" />
             <div class="error-messages">
               <ng-container *ngFor="let error of error_messages.UserName">
-                <div class="error-message" *ngIf="formSubmitted ||  registrationForm.get('UserName').hasError(error.type) &&
+                <div class="error-message" *ngIf=" registrationForm.get('UserName').hasError(error.type) &&
                    (registrationForm.get('UserName').dirty || registrationForm.get('UserName').touched)">
                   {{ error.message }}
                 </div>
@@ -87,7 +87,7 @@
                   <i class="fa fa-calendar" style="font-size:48px;color:blue" (click)="d.toggle()" type="button"></i>
                 </div>
                 <div class="error-messages" *ngFor="let error of error_messages.UserDOB">              
-                  <div style="position: static;" class="error-message" *ngIf="formSubmitted ||  registrationForm.get('UserDOB').hasError(error.type) &&
+                  <div style="position: static;" class="error-message" *ngIf=" registrationForm.get('UserDOB').hasError(error.type) &&
                    (registrationForm.get('UserDOB').dirty || registrationForm.get('UserDOB').touched)">
                     {{ error.message }}
                   </div>         
@@ -111,7 +111,7 @@
                   </option>
                 </select>
                 <div class="error-messages" *ngFor="let error of error_messages.UserTypeId">              
-                  <div style="position: static;" class="error-message" *ngIf="formSubmitted ||  registrationForm.get('UserTypeId').hasError(error.type) &&
+                  <div style="position: static;" class="error-message" *ngIf=" registrationForm.get('UserTypeId').hasError(error.type) &&
                    (registrationForm.get('UserTypeId').dirty || registrationForm.get('UserTypeId').touched)">
                     {{ error.message }}
                   </div>         
@@ -129,7 +129,7 @@
               <div class="error-messages">
                 <ng-container *ngFor="let error of error_messages.UserPhoneNumber">
                   <div class="error-message"
-                    *ngIf="formSubmitted ||  registrationForm.get('UserPhoneNumber').hasError(error.type) &&
+                    *ngIf=" registrationForm.get('UserPhoneNumber').hasError(error.type) &&
                      (registrationForm.get('UserPhoneNumber').dirty || registrationForm.get('UserPhoneNumber').touched)">
                     {{ error.message }}
                   </div>
@@ -148,7 +148,7 @@
               placeholder="Password" />
             <div class="error-messages">
               <ng-container *ngFor="let error of error_messages.UserPassword">
-                <div class="error-message" *ngIf="formSubmitted ||  registrationForm.get('UserPassword').hasError(error.type) &&
+                <div class="error-message" *ngIf=" registrationForm.get('UserPassword').hasError(error.type) &&
                    (registrationForm.get('UserPassword').dirty || registrationForm.get('UserPassword').touched)">
                   {{ error.message }}
                 </div>
@@ -162,7 +162,7 @@
             <div class="error-messages">
               <ng-container *ngFor="let error of error_messages.UserPasswordConfirm">
                 <div class="error-message"
-                  *ngIf="formSubmitted ||  registrationForm.get('UserPasswordConfirm').hasError(error.type) &&
+                  *ngIf=" registrationForm.get('UserPasswordConfirm').hasError(error.type) &&
                    (registrationForm.get('UserPasswordConfirm').dirty || registrationForm.get('UserPasswordConfirm').touched)">
                   {{ error.message }}
                 </div>
@@ -170,7 +170,7 @@
 
               <ng-container>
                 <div class="error-message"
-                  *ngIf="formSubmitted ||  registrationForm.get('UserPasswordConfirm').hasError('notSame') &&
+                  *ngIf=" registrationForm.get('UserPasswordConfirm').hasError('notSame') &&
                    (registrationForm.get('UserPasswordConfirm').dirty || registrationForm.get('UserPasswordConfirm').touched)">
                   {{ error.message }}
                 </div>
@@ -189,7 +189,7 @@
               </option>
             </select>
             <div class="error-messages" *ngFor="let error of error_messages.SuburbId">              
-              <div style="position: static;" class="error-message" *ngIf="formSubmitted ||  registrationForm.get('SuburbId').hasError(error.type) &&
+              <div style="position: static;" class="error-message" *ngIf=" registrationForm.get('SuburbId').hasError(error.type) &&
                (registrationForm.get('SuburbId').dirty || registrationForm.get('SuburbId').touched)">
                 {{ error.message }}
               </div>         
@@ -204,7 +204,7 @@
               </option>
             </select>
             <div class="error-messages" *ngFor="let error of error_messages.CityId">              
-              <div style="position: static;" class="error-message" *ngIf="formSubmitted ||  registrationForm.get('CityId').hasError(error.type) &&
+              <div style="position: static;" class="error-message" *ngIf=" registrationForm.get('CityId').hasError(error.type) &&
                (registrationForm.get('CityId').dirty || registrationForm.get('CityId').touched)">
                 {{ error.message }}
               </div>         
@@ -222,7 +222,7 @@
               </option>
             </select>
             <div class="error-messages" *ngFor="let error of error_messages.ProvinceId">              
-              <div style="position: static;" class="error-message" *ngIf="formSubmitted ||  registrationForm.get('ProvinceId').hasError(error.type) &&
+              <div style="position: static;" class="error-message" *ngIf=" registrationForm.get('ProvinceId').hasError(error.type) &&
                (registrationForm.get('ProvinceId').dirty || registrationForm.get('ProvinceId').touched)">
                 {{ error.message }}
               </div>         
@@ -237,7 +237,7 @@
               </option>
             </select>
             <div class="error-messages" *ngFor="let error of error_messages.CountryId">              
-              <div style="position: static;" class="error-message" *ngIf="formSubmitted ||  registrationForm.get('CountryId').hasError(error.type) &&
+              <div style="position: static;" class="error-message" *ngIf=" registrationForm.get('CountryId').hasError(error.type) &&
                (registrationForm.get('CountryId').dirty || registrationForm.get('CountryId').touched)">
                 {{ error.message }}
               </div>         
@@ -258,7 +258,7 @@
             <div class="error-messages">
               <ng-container *ngFor="let error of error_messages.UserAddressLine1">
                 <div class="error-message"
-                  *ngIf="formSubmitted ||  registrationForm.get('UserAddressLine1').hasError(error.type) &&
+                  *ngIf=" registrationForm.get('UserAddressLine1').hasError(error.type) &&
                    (registrationForm.get('UserAddressLine1').dirty || registrationForm.get('UserAddressLine1').touched)">
                   {{ error.message }}
                 </div>
@@ -276,7 +276,7 @@
               placeholder="Postal Code">
             <div class="error-messages">
               <ng-container *ngFor="let error of error_messages.UserPostalCode">
-                <div class="error-message" *ngIf="formSubmitted ||  registrationForm.get('UserPostalCode').hasError(error.type) &&
+                <div class="error-message" *ngIf=" registrationForm.get('UserPostalCode').hasError(error.type) &&
                    (registrationForm.get('UserPostalCode').dirty || registrationForm.get('UserPostalCode').touched)">
                   {{ error.message }}
                 </div>

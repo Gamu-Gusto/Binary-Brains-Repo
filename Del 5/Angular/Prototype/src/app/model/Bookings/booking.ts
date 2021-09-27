@@ -1,5 +1,5 @@
 export class Booking {
-    BookingID: string;
+    bookingID: string;
     BookingDateTime: string;
 
     BookingNotificationID: string;

@@ -16,6 +16,8 @@ import { Artwork } from './model/Artworks/artwork';
 import { Booking } from './model/Bookings/booking';
 import { ClassTeacher } from './model/ArtClasses/class-teacher';
 import { Payment } from './model/Payments/payment';
+import { EmailValidator } from '@angular/forms';
+import { Feedback } from './model/ArtClasses/feedback';
 
 @Injectable({
   providedIn: 'root'
@@ -142,6 +144,17 @@ export class DataService {
 
   };
 
+  resetPassword(email): Promise<any> {
+
+
+    console.log(email);
+
+    return this.http.post(this.apiURL + '/Login',email,this.httpOptions)
+    .toPromise()
+    
+
+  };
+
 
   getTeacher(id): Promise<any> {
 
@@ -168,9 +181,15 @@ export class DataService {
   };
 
 
-  getAllBookingByUser(){
+  getAllPayments(){
 
+    return this.http.get(this.apiURL + '/Payment').toPromise()
 
+  };
+
+  getAllRefunds(){
+
+    return this.http.get(this.apiURL + '/Refund').toPromise()
 
   };
 
@@ -285,6 +304,17 @@ export class DataService {
 
     return this.http
       .post<Booking>(this.apiURL + '/Booking', booking, this.httpOptions)
+      .toPromise()
+
+
+  }
+
+  addFeedback(feedBack): Promise<any>  {
+
+    console.log(feedBack);
+
+    return this.http
+      .post<Feedback>(this.apiURL + '/Feedback', feedBack, this.httpOptions)
       .toPromise()
 
 

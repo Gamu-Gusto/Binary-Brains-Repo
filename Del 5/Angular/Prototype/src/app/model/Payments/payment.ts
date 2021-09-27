@@ -4,9 +4,10 @@ export class Payment {
     PaymentDateTime: string;
     PaymentType: string;
     PaymentStatus: string;
-    BookingID: string;
+    bookingID: string;
     CardNumber:string;
     Code:string;
     ExpiryDate:string;
     CardHolderName: string;
+    refundID: string;
 }

@@ -70,6 +70,7 @@ import { AddPaymentComponent } from './home/add-payment/add-payment.component';
 import { AddArtworkComponent } from './home/add-artwork/add-artwork.component';
 import { AddBookingComponent } from './home/add-booking/add-booking.component';
 import { DatePipe } from '@angular/common';
+import { ExhibitionapplicationComponent } from './home/exhibitions/exhibitionapplication/exhibitionapplication.component';
 
 
 
@@ -126,6 +127,7 @@ import { DatePipe } from '@angular/common';
     AddPaymentComponent,
     AddArtworkComponent,
     AddBookingComponent,
+    ExhibitionapplicationComponent,
    
   ],
   imports: [

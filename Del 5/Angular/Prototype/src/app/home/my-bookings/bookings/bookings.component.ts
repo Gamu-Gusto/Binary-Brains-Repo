@@ -31,6 +31,8 @@ export class BookingsComponent implements OnInit {
   selectedBooking: any;
   public Payment: FormControl = new FormControl();
   paymentForm: FormGroup;
+  public Feeback: FormControl = new FormControl();
+  ratingsForm: FormGroup;
 datestripped: any;
 PaymentModal:any;
 
@@ -55,6 +57,21 @@ refund: RefundsComponent;
       { type: 'maxlength', message: 'Expiry date length.' },
       { type: 'min', message: 'Card has Expired.' }
     ],
+    'TeacherRating': [
+      { type: 'required', message: 'Teacher Rating is required.' },
+      { type: 'min', message: 'Rating must be between 1 and 10.' },
+      { type: 'min', message: 'Rating must be between 1 and 10.' },
+    ],
+    'DifficultyRating': [
+      { type: 'required', message: 'Difficulty Rating is required.' },
+      { type: 'min', message: 'Rating must be between 1 and 10.' },
+      { type: 'min', message: 'Rating must be between 1 and 10.' },
+    ],
+    'OverallRating': [
+      { type: 'required', message: 'Overall Rating is required.' },
+      { type: 'min', message: 'Rating must be between 1 and 10.' },
+      { type: 'min', message: 'Rating must be between 1 and 10.' },
+    ],
 
     'CardHolderName': [
       { type: 'required', message: 'Card holder name is required.' }
@@ -64,6 +81,7 @@ refund: RefundsComponent;
   }
   
   errorMessage: any;
+  makeRatingModal: any;
 
   constructor(private route: Router, private modalService: NgbModal, private toastr: ToastrService,public data: DataService
     , private formBuilder: FormBuilder, private fb: FormBuilder,public datepipe: DatePipe) { 
@@ -82,6 +100,20 @@ refund: RefundsComponent;
         });
 
 
+        
+      this.ratingsForm = new FormGroup({
+        FeedbackID: new FormControl(''),
+        FeedbackComment: new FormControl(''),
+        TeacherRating: new FormControl(''),
+        DifficultyRating: new FormControl(''),
+        OverallRating: new FormControl(''),
+        UserID: new FormControl(''),
+        ArtClassID:new FormControl(''),
+ 
+        });
+
+
+
     }
 
   ngOnInit(): void {
@@ -97,6 +129,9 @@ refund: RefundsComponent;
       console.log(this.loggedInUser );
     
       this.listUserBookings  =this.listBookings.filter((bking: Booking) => bking.userID === this.loggedInUser.userID);
+
+      localStorage.setItem('UserBookings',JSON.stringify(this.listUserBookings));
+     
 
       console.log(this.listUserBookings );
 
@@ -124,6 +159,18 @@ refund: RefundsComponent;
       ExpiryDate:['', [Validators.required,Validators.minLength(4),Validators.maxLength(4),CustomValidationsService.min(minminthyear)]],
       CardHolderName: ['', Validators.required],
       });
+
+
+      this.ratingsForm = this.formBuilder.group({
+        FeedbackID: [''],
+        FeedbackComment: [''],
+        TeacherRating: ['', [Validators.required,Validators.min(1),Validators.max(10)]],
+        DifficultyRating: ['', [Validators.required,Validators.min(1),Validators.max(10)]],
+        OverallRating: ['', [Validators.required,Validators.min(1),Validators.max(10)]],
+        UserID: [''],
+        ArtClassID: [''],
+ 
+        });
 
  
 
@@ -172,7 +219,7 @@ refund: RefundsComponent;
 
     this.modalService.dismissAll(requestRefundModal);
 
-    this.route.navigate(['/home/my-bookings/bookings']);
+    this.ngOnInit();
 
 
     this.formSubmitted = false;     
@@ -193,7 +240,7 @@ refund: RefundsComponent;
 
       });
 
-      this.route.navigate(['/home/my-bookings/bookings']);
+      this.ngOnInit();
       console.log(error);
     
     });
@@ -201,6 +248,102 @@ refund: RefundsComponent;
   
 
   
+  }
+
+  onSubmitFeedback(feedbackModal,selectedbooking) {
+
+    this.selectedBooking = selectedbooking;
+
+    localStorage.setItem('SelectedBooking',JSON.stringify(this.selectedBooking))
+
+   console.log(this.selectedBooking);
+
+    this.modalService.open(feedbackModal, { centered: true });
+
+  }
+
+  onSubmitFeedbackConfirm(feedbackModal,event) {
+
+    event.preventDefault();
+    this.modalService.open(feedbackModal, { centered: true });
+
+  }
+
+  confirmFeedback(ratingsModal,event){
+
+    console.log(this.ratingsForm.value);
+
+    this.selectedBooking = JSON.parse(localStorage.getItem('SelectedBooking'));
+
+    console.log(this.selectedBooking);
+
+    this.makeRatingModal = ratingsModal;
+
+    this.formSubmitted = true;
+
+
+    this.ratingsForm.get('UserID').setValue(this.selectedBooking.userID) ;
+    this.ratingsForm.get('ArtClassID').setValue(this.selectedBooking.artClassID) ;
+
+     console.log(this.ratingsForm.value);
+
+     if (this.ratingsForm.invalid) {
+      return;
+    }
+    else {
+
+  
+
+    this.data.addFeedback(this.ratingsForm.value).then(success => {
+
+      
+
+      this.toastr.success('Feedback Successfully submitted', 'Success', {
+         disableTimeOut: true,
+          tapToDismiss: false,
+          closeButton: true,
+          positionClass: 'toast-top-full-width',
+
+        });
+
+        this.modalService.dismissAll(this.makeRatingModal);
+
+        this.ngOnInit();
+
+
+      this.formSubmitted = false;     
+
+
+      }).catch(error => {
+
+        console.log(error);
+        this.modalService.dismissAll(this.makeRatingModal);
+        
+        this.toastr.error(error.error, 'Error', {
+          disableTimeOut: true,
+          tapToDismiss: false,
+          closeButton: true,
+          positionClass: 'toast-top-full-width',
+          enableHtml: true
+
+        });
+
+       
+        this.ngOnInit();
+        
+      
+      });
+
+
+
+    }
+
+
+    this.route.navigate(['/home/my-bookings/bookings']);
+
+    this.modalService.dismissAll(ratingsModal);
+
+   
   }
 
   onSubmit(event){
@@ -242,7 +385,7 @@ refund: RefundsComponent;
 
         this.modalService.dismissAll(this.PaymentModal);
 
-        this.route.navigate([currentUrl]);
+        this.ngOnInit();
 
 
       this.formSubmitted = false;     
@@ -262,7 +405,7 @@ refund: RefundsComponent;
 
         });
         let currentUrl = this.route.url;
-        this.route.navigate([currentUrl]);
+        this.ngOnInit();
         console.log(error);
       
       });
