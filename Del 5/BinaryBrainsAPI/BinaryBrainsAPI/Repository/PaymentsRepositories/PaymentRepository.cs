@@ -42,6 +42,8 @@ namespace BinaryBrainsAPI.Repository.PaymentsRepositories
         {
             payment.Amount = entity.Amount;
             payment.PaymentDateTime = entity.PaymentDateTime;
+            payment.PaymentStatus = entity.PaymentStatus;
+            payment.RefundID = entity.RefundID;
             _artechDb.SaveChanges();
         }
 
