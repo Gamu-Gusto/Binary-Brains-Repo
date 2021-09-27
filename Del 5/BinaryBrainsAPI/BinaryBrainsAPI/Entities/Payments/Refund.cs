@@ -11,5 +11,7 @@ namespace BinaryBrainsAPI.Entities.Payments
         [Key]
         public int RefundID { get; set; }
         public string RefundStatus { get; set; }
+
+        public string ArtClassRefunded { get; set; }
     }
 }
