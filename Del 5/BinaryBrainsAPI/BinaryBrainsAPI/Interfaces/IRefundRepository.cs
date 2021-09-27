@@ -5,8 +5,10 @@ using System.Threading.Tasks;
 
 namespace BinaryBrainsAPI.Interfaces
 {
-    public interface IRefundRepository
+    public interface IRefundRepository<TEntity> where TEntity : class
     {
         Task<int> UpdateRefund(int paymentID,int refundID);
+
+        TEntity GetBooking(int id);
     }
 }
