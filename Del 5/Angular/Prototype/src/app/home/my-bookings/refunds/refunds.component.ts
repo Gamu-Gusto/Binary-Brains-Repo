@@ -94,12 +94,19 @@ export class RefundsComponent implements OnInit {
 
       this.refunds = result
 
-      for (let i=0; i < this.refunds.length; i++){
+      console.log('REFUNDIDS',this.listRefunds);
+
+if (this.listRefunds !== undefined){
+
+      for (let i=0; i < this.listRefunds.length; i++){
+
+        this.listUserRefunds = [ ]; 
 
         this.listUserRefunds  = this.refunds.filter((refnd: Refund) => refnd.refundID === this.listRefunds[i]);
   
         
       }
+    }
       console.log(this.listUserRefunds);
     
     });

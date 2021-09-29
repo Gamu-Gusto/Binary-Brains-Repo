@@ -59,6 +59,14 @@ const routes: Routes = [
 
     // User Page Routes
   { path: 'home', component: HomeComponent, children: [
+    {path: 'my-exhibitions', component: MyExhibitionsComponent, children: [
+      {path: 'accepted', component: AcceptedExhibitionsComponent},
+      {path: 'applications', component: ApplicationsComponent},
+      {path: 'generate-tags', component: GenerateTagsComponent}
+    ]},
+    {path: 'artist-exhibitions', component: ArtistExhibitionsComponent},
+    {path: 'artist-exhibition', component: ArtistExhibitionComponent},
+    {path: 'apply-exhibition', component: ApplyExhibitionComponent},
     { path: 'art-classes', component: ArtClassesComponent},
     { path: 'welcome', component: WelcomePageComponent},
     { path: 'art-class', component: ArtClassComponent},

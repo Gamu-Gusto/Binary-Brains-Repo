@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   user: Object;
   formSubmitted = false;
   theErrors: string[] = [];
+  public hide:boolean = false;
 
   
    public User : FormControl = new FormControl(); 
@@ -42,7 +43,7 @@ export class LoginComponent implements OnInit {
           
 
   ngOnInit(): void  {
-
+    
     this.loginForm = this.formBuilder.group({
       UserName : ['', Validators.required],
       Password :['',Validators.required],
@@ -78,7 +79,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('LoggedinUser',JSON.stringify(success))
         
         console.log(this.data.loginInUserData );
-
+        this.hide = true;
         this.router.navigate(['/home']);
      
       }, error =>{

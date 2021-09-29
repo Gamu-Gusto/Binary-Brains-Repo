@@ -14,6 +14,7 @@ export class NavbarComponent implements OnInit {
   loggedInUser: any;
   public show:boolean = false;
   public divName:any = 'Show';
+  public hide:boolean = false;
 
 
   constructor(private route: Router, private modalService: NgbModal, private toastr: ToastrService,public data: DataService,) { }
