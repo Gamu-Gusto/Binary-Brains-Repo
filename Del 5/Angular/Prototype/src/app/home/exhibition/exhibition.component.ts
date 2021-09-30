@@ -16,14 +16,23 @@ export class ExhibitionComponent implements OnInit {
 
   listexhibition: Array<Exhibition> = [];
   exhibition: Exhibition;
+  public showApply:boolean = false;
+  loggedInuser: any;
 
   constructor(public data: DataService,private formBuilder: FormBuilder,private fb: FormBuilder, 
     private toastr: ToastrService, private router: Router,private calendar: NgbCalendar) { }
 
   ngOnInit(): void {
 
-    this.exhibition = this.data.sharedData;
+    this.exhibition = JSON.parse(localStorage.getItem('SelectedExhibition'));
 
+    this.loggedInuser = JSON.parse(localStorage.getItem('LoggedinUser'));
+
+    if(this.loggedInuser.userID == 1){
+      
+      this.showApply = true;
+
+    }
   
     this.listexhibition.push(this.exhibition);
 

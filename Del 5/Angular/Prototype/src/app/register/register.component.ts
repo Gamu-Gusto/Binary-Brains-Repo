@@ -55,8 +55,18 @@ export class RegisterComponent implements OnInit {
 
   public listCities: any;
 
+  public listFilteredSurburbs: any;
+
+  public listFilteredProvinces: any;
+
+  
+  public listFilteredCities: any;
+
   public User: FormControl = new FormControl();
   registrationForm: FormGroup;
+  SelCountryId: string = '0';
+  SelProvinceId: string = '0';
+  SelCityId: string = '0';
 
   formSubmitted = false;
   theErrors: string[] = [];
@@ -202,6 +212,29 @@ timestamp: any;
     ;
 
   }
+
+  FillCountry(){
+
+    this.listCountries;
+  }
+  FillProvince(){
+
+    console.log('Country Id', this.SelCountryId);
+
+    this.listFilteredProvinces = this.listProvinces.filter((item) => item.countryID == this.SelCountryId);
+
+    console.log('PROVINCE', this.listFilteredProvinces);
+
+  }
+  FillCity(){
+
+    this.listFilteredCities = this.listCities.filter((item)  => item.provinceID == this.SelProvinceId);
+  }
+  FillSurburb(){
+
+    this.listFilteredSurburbs = this.listSurburbs.filter((item)  => item.cityID == this.SelCityId);
+  }
+
 
   userPassword(formGroup: FormGroup) {
     const { value: UserPassword } = formGroup.get('UserPassword');

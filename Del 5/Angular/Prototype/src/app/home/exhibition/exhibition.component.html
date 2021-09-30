@@ -22,20 +22,19 @@ let indexofElementc= index;">
     <div class="col">
       <img
         class="card-img-top"
-        src='data:image/png;base64,{{exhibition.image.imageContent}}'
+        src='data:image/png;base64,{{exhibition.exhibitionImage}}'
         alt="Card image cap"
       />
     </div>
-  
+    <br/>
     <div class="col-8">
       <p> Exhibition Description: 
         {{exhibition.exhibitionDescription}}
       </p>
       <p>Exhibition By:</p>
       <ul class="list-group">
-        <li class="list-group-item">Claude Monet</li>
-        <li class="list-group-item">Leonardo da  Vinci</li>
-        <li class="list-group-item">Edgar Degas</li>
+        <li class="list-group-item">{{exhibition.organisation.organisationalName}}</li>
+     
       </ul>
       <hr>
       <p>Date: {{exhibition.exhibitionDate}}</p>
@@ -44,7 +43,19 @@ let indexofElementc= index;">
 
     </div>
   </div>
-  
+  <hr>
+  <ng-container *ngIf="!allart">
+  <button
+    mdbBtn
+    type="button"
+    gradient="purple"
+    rounded="true"
+    mdbWavesEffect
+    [routerLink]="['../apply-exhibition']"
+  >
+    Apply For Exhibition
+  </button>
+</ng-container>
   <!-- ==================================================================================== -->
   <!-- =====================================================MODALS BELOW============================================ -->
 

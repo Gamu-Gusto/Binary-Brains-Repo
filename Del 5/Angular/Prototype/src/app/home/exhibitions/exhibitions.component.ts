@@ -24,7 +24,9 @@ export class ExhibitionsComponent implements OnInit {
 
   getExhibition(exhibition){
 
-    this.data.sharedData = exhibition;
+ 
+
+    localStorage.setItem('SelectedExhibition',JSON.stringify(exhibition));
 
     this.router.navigate(['/home/exhibition']);
   

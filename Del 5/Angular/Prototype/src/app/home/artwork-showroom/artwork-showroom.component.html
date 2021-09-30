@@ -8,15 +8,23 @@
   <ng-container *ngIf="show">
 
     <ng-container *ngIf="allart">
-    <button mdbBtn type="button" gradient="peach" rounded="true" 
+    <button  mdbBtn
+    type="button"
+    gradient="purple"
+    rounded="true"
+    mdbWavesEffect
     (click)="getMyArtwork()" mdbWavesEffect>View My Artwork Only 
-    <i class="fas fa-times-circle"></i></button>
+    </button>
   </ng-container>
 
     <ng-container *ngIf="!allart">
-      <button mdbBtn type="button" gradient="peach" rounded="true" 
+      <button  mdbBtn
+      type="button"
+      gradient="purple"
+      rounded="true"
+      mdbWavesEffect
       (click)="ngOnInit()" mdbWavesEffect>View All Artwork 
-      <i class="fas fa-times-circle"></i></button>
+      </button>
     </ng-container>
 
     </ng-container>
