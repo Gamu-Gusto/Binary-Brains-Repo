@@ -1,67 +1,58 @@
 <div class="container">
-    <div class="row">
-        <h1>Class Teacher Report</h1>
+  <div class="row">
+    <h1>Class Teacher Report</h1>
+  </div>
+  <hr />
+  <div class="row">
+    <label>Teacher:</label>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend"></div>
+      <select
+        (click)="hideTable()"
+        class="custom-select"
+        id="inputGroupSelect01"
+        (change)="getTeacher($event.target.value)"
+      >
+        <option value="0">--Select Teacher--</option>
+        <option
+          *ngFor="let teacher of teachers"
+          value="{{ teacher.ClassTeacherID }}"
+        >
+          {{ teacher.TeacherName }} {{ teacher.TeacherSurname }}
+        </option>
+      </select>
     </div>
-    <hr>
-    <div class="row">
-        <label>Teacher:</label>
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-            </div>
-            <select class="custom-select" id="inputGroupSelect01">
-              <option selected>Stan Lee</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
-            </select>
-          </div>
-          <br>
-          <label>Search Teacher: </label>
-          <div class="input-group mb-3">
-              <input type="text" class="form-control" placeholder="Search" value="Stan Lee">
-              <div class="input-group-append">
-                <button class="btn btn-outline-success" type="button"><i class="fas fa-search"></i></button>
-              </div>
-            </div>
-            <br>
-            <br>
-            <br>
-            <button type="button" class="btn btn-primary">Generate Teacher Report</button>
-
+    <button
+      type="button"
+      (click)="showTable()"
+      class="btn btn-primary mb-3 mt-3"
+    >
+      Generate Teacher Report
+    </button>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="table">
+      <table class="table">
+        <thead>
+          <tr class="table-primary">
+            <th scope="col">Class Name</th>
+            <th scope="col">Class Type</th>
+            <th scope="col">Number of Students</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="isShown">
+          <tr *ngFor="let teacher of teacher">
+            <th>{{ teacher.ArtClassName }}</th>
+            <td>{{ teacher.classType }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <hr>
-    <div class="row">
-
-            <div class="table">
-                <table class="table">
-                    <thead>
-                      <tr class="table-primary">
-                        <th scope="col">Class Name</th>
-                        <th scope="col">Class Type</th>
-                        <th scope="col">Number of Students</th>
-                        <th scope="col">Class Status</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th>Character Design</th>
-                        <td>Human Anatomy</td>
-                        <td>5</td>
-                        <td>Completed</td>
-                      </tr>
-                      <tr>
-                        <th>Blender</th>
-                        <td>Digital Art</td>
-                        <td>8</td>
-                        <td>Upcoming</td>
-                      </tr>
-                    </tbody>
-                  </table>
-            </div>
-            <br>
-            <button type="button" class="btn btn-primary" style="margin-right: 15px;">Export</button>
-            <button type="button" class="btn btn-primary">Print</button>
-
-            
-    </div>
+    <br />
+    <button type="button" class="btn btn-primary" style="margin-right: 15px">
+      Export
+    </button>
+    <button type="button" class="btn btn-primary">Print</button>
+  </div>
 </div>

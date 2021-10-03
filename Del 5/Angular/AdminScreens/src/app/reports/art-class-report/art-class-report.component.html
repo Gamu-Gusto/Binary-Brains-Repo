@@ -1,73 +1,57 @@
 <div class="container">
-    <div class="row">
-        <h1>Art Class Report</h1>
+  <div class="row">
+    <h1>Art Class Report</h1>
+  </div>
+  <hr />
+  <div class="row">
+    <label>Art Class:</label>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend"></div>
+      <select
+        (click)="hideTable()"
+        class="custom-select"
+        id="inputGroupSelect01"
+        (change)="getClass($event.target.value)"
+      >
+        <option value="0">--Select Art Class--</option>
+        <option *ngFor="let class of classes" value="{{ class.ArtClassID }}">
+          {{ class.ArtClassName }}
+        </option>
+      </select>
     </div>
-    <hr>
-    <div class="row">
-        <label>Art Class:</label>
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-            </div>
-            <select class="custom-select" id="inputGroupSelect01">
-              <option selected>Comic Arts</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
-            </select>
-          </div>
-          <br>
-          <label>Search Art Class: </label>
-          <div class="input-group mb-3">
-              <input type="text" class="form-control" placeholder="Search" value="Comic Arts">
-              <div class="input-group-append">
-                <button class="btn btn-outline-success" type="button"><i class="fas fa-search"></i></button>
-              </div>
-            </div>
-            <br>
-            <br>
-            <br>
-            <button type="button" class="btn btn-primary">Generate Art Class Report</button>
 
+    <button
+      type="button"
+      (click)="showTable()"
+      class="btn btn-primary mb-3 mt-3"
+    >
+      Generate Art Class Report
+    </button>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="table" id="pdf">
+      <table class="table">
+        <thead>
+          <tr class="table-primary">
+            <th scope="col">Student</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">Payment Status</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="isShown">
+          <tr *ngFor="let class of class">
+            <th>{{ class.Student }}</th>
+            <td>{{ class.Email }}</td>
+            <td>{{ class.PhoneNumber }}</td>
+            <td>{{ class.PaymentStatusDescription }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <hr>
-    <div class="row">
+    <br />
 
-            <div class="table">
-                <table class="table">
-                    <thead>
-                      <tr class="table-primary">
-                        <th scope="col">Student</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Phone Number</th>
-                        <th scope="col">Payment Status</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th>Mark Otto</th>
-                        <td>mark@email.com</td>
-                        <td>573986012</td>
-                        <td>Paid</td>
-                      </tr>
-                      <tr>
-                        <th>Jacob Thornton</th>
-                        <td>jacob@email.com</td>
-                        <td>476903675</td>
-                        <td>Paid Deposit</td>
-                      </tr>
-                      <tr>
-                        <th>Larry McDonald</th>
-                        <td>larry@email.com</td>
-                        <td>784367549</td>
-                        <td>Not Paid</td>
-                      </tr>
-                    </tbody>
-                  </table>
-            </div>
-            <br>
-            <button type="button" class="btn btn-primary" style="margin-right: 15px;">Export</button>
-            <button type="button" class="btn btn-primary">Print</button>
-
-            
-    </div>
+    <button *ngIf="isShown" type="button" class="btn btn-primary printbutton" (click)="download()">Print</button>
+  </div>
 </div>
