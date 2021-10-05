@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ApplyExhibitionComponent } from './artist-home/apply-exhibition/apply-exhibition.component';
+import { ApplyExhibitionComponent } from './home/apply-exhibition/apply-exhibition.component';
 import { ArtistAccountComponent } from './artist-home/artist-account/artist-account.component';
 import { ArtistAnnouncementComponent } from './artist-home/artist-announcement/artist-announcement.component';
 import { ArtistBookingsComponent } from './artist-home/artist-bookings/artist-bookings.component';
@@ -19,10 +19,10 @@ import { ClassesComponent } from './artist-home/classes/classes.component';
 import { ContactArtistComponent } from './artist-home/contact-artist/contact-artist.component';
 import { InvitationsComponent } from './artist-home/invitations/invitations.component';
 import { MyArtworkComponent } from './artist-home/my-artwork/my-artwork.component';
-import { AcceptedExhibitionsComponent } from './artist-home/my-exhibitions/accepted-exhibitions/accepted-exhibitions.component';
-import { ApplicationsComponent } from './artist-home/my-exhibitions/applications/applications.component';
-import { GenerateTagsComponent } from './artist-home/my-exhibitions/generate-tags/generate-tags.component';
-import { MyExhibitionsComponent } from './artist-home/my-exhibitions/my-exhibitions.component';
+import { MyExhibitionsComponent } from './home/my-exhibitions/my-exhibitions.component';
+import { AcceptedExhibitionsComponent } from './home/my-exhibitions/accepted-exhibitions/accepted-exhibitions.component';
+import { ApplicationsComponent } from './home/my-exhibitions/applications/applications.component';
+import { GenerateTagsComponent } from './home/my-exhibitions/generate-tags/generate-tags.component';
 import { AddClassComponent } from './home/add-class/add-class.component';
 import { AddExhibitionComponent } from './home/add-exhibition/add-exhibition.component';
 import { AnnouncementsComponent } from './home/announcements/announcements.component';
@@ -45,6 +45,7 @@ import { NewPasswordComponent } from './new-password/new-password.component';
 import { RegisterArtistComponent } from './register-artist/register-artist.component';
 import { RegisterComponent } from './register/register.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { MyApplicationComponent } from './home/my-exhibitions/my-application/my-application.component';
 
 
 
@@ -62,7 +63,8 @@ const routes: Routes = [
     {path: 'my-exhibitions', component: MyExhibitionsComponent, children: [
       {path: 'accepted', component: AcceptedExhibitionsComponent},
       {path: 'applications', component: ApplicationsComponent},
-      {path: 'generate-tags', component: GenerateTagsComponent}
+      {path: 'generate-tags', component: GenerateTagsComponent},
+      {path: 'my-application', component: MyApplicationComponent}
     ]},
     {path: 'artist-exhibitions', component: ArtistExhibitionsComponent},
     {path: 'artist-exhibition', component: ArtistExhibitionComponent},
@@ -88,17 +90,18 @@ const routes: Routes = [
 
   // Artist Page Routes
   {path: 'artist-home', component: ArtistHomeComponent, children: [
-    {path: 'my-exhibitions', component: MyExhibitionsComponent, children: [
+      {path: 'my-exhibitions', component: MyExhibitionsComponent, children: [
       {path: 'accepted', component: AcceptedExhibitionsComponent},
       {path: 'applications', component: ApplicationsComponent},
       {path: 'generate-tags', component: GenerateTagsComponent}
     ]},
+    
     {path: 'artist-exhibitions', component: ArtistExhibitionsComponent},
     {path: 'artist-exhibition', component: ArtistExhibitionComponent},
     {path: 'my-artwork', component: MyArtworkComponent},
     {path: 'artist-showroom', component: ArtistShowroomComponent},
     {path: 'artist-welcome', component: ArtistWelcomePageComponent},
-    {path: 'apply-exhibition', component: ApplyExhibitionComponent},
+    //{path: 'apply-exhibition', component: ApplyExhibitionComponent},
     {path: 'artist-announcements', component: ArtistAnnouncementComponent},
     {path: 'invitations', component: InvitationsComponent},
     {path: 'contact-artist', component: ContactArtistComponent},

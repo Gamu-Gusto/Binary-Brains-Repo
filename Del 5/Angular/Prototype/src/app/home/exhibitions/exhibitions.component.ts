@@ -25,6 +25,8 @@ export class ExhibitionsComponent implements OnInit {
   getExhibition(exhibition){
 
  
+   exhibition.ExhibitionDate = exhibition.exhibitionStartDateTime.substring(0,10);
+    exhibition.ExhibitionTime = exhibition.exhibitionStartDateTime.substring(11,16);
 
     localStorage.setItem('SelectedExhibition',JSON.stringify(exhibition));
 

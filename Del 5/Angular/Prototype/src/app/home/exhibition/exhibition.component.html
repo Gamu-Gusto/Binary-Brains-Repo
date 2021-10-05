@@ -37,8 +37,8 @@ let indexofElementc= index;">
      
       </ul>
       <hr>
-      <p>Date: {{exhibition.exhibitionDate}}</p>
-      <P>Time: {{exhibition.exhibitionTime}}</P>
+      <p>Date: {{exhibition.ExhibitionDate}}</p>
+      <P>Time: {{exhibition.ExhibitionTime}}</P>
       <p>Venue: {{exhibition.venue.venueDescription}}</p>
 
     </div>
@@ -51,7 +51,9 @@ let indexofElementc= index;">
     gradient="purple"
     rounded="true"
     mdbWavesEffect
-    [routerLink]="['../apply-exhibition']"
+
+    (click) = "applyForExhibition(exhibition)"
+    
   >
     Apply For Exhibition
   </button>

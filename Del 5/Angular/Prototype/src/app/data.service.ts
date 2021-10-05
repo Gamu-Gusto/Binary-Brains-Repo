@@ -150,7 +150,7 @@ export class DataService {
     console.log(email);
 
     return this.http.post(this.apiURL + '/Login',email,this.httpOptions)
-    .toPromise()
+    .toPromise();
     
 
   };
@@ -158,7 +158,7 @@ export class DataService {
 
   getTeacher(id): Promise<any> {
 
-    return this.http.get(this.apiURL + '/ClassTeacher/' + id).toPromise()
+    return this.http.get(this.apiURL + '/ClassTeacher/' + id).toPromise();
 
   };
   getClassType(id): Promise<any> {
@@ -168,7 +168,7 @@ export class DataService {
   };
   getOrganisation(id): Promise<any> {
 
-    return this.http.get(this.apiURL + '/Organisation/' + id).toPromise()
+    return this.http.get(this.apiURL + '/Organisation/' + id).toPromise();
 
   };
 
@@ -176,26 +176,26 @@ export class DataService {
 
   getAllBookings(): Promise<any> {
 
-    return this.http.get(this.apiURL + '/Booking').toPromise()
+    return this.http.get(this.apiURL + '/Booking').toPromise();
 
   };
 
 
   getAllPayments(){
 
-    return this.http.get(this.apiURL + '/Payment').toPromise()
+    return this.http.get(this.apiURL + '/Payment').toPromise();
 
   };
 
   getAllRefunds(){
 
-    return this.http.get(this.apiURL + '/Refund').toPromise()
+    return this.http.get(this.apiURL + '/Refund').toPromise();
 
   };
 
   getAllClassTeachers() {
 
-    return this.http.get(this.apiURL + '/ClassTeacher')
+    return this.http.get(this.apiURL + '/ClassTeacher');
 
   };
 
@@ -317,6 +317,23 @@ export class DataService {
       .post<Feedback>(this.apiURL + '/Feedback', feedBack, this.httpOptions)
       .toPromise()
 
+
+  }
+
+  addExhibitionApplication(exhibitionApplication): Promise<any>  {
+
+    console.log(exhibitionApplication);
+
+    return this.http
+      .post<Feedback>(this.apiURL + '/ExhibitionApplication', exhibitionApplication, this.httpOptions)
+      .toPromise()
+
+
+  }
+
+  getApplications(){
+
+    return this.http.get(this.apiURL + '/ExhibitionApplication').toPromise();
 
   }
 

@@ -80,7 +80,7 @@ export class LoginComponent implements OnInit {
         
         console.log(this.data.loginInUserData );
         this.hide = true;
-        this.router.navigate(['/home']);
+        this.router.navigate(['/home/artwork-showroom']);
      
       }, error =>{
           

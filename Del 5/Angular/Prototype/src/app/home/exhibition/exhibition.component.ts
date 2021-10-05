@@ -33,10 +33,19 @@ export class ExhibitionComponent implements OnInit {
       this.showApply = true;
 
     }
-  
+
     this.listexhibition.push(this.exhibition);
 
+    console.log(this.listexhibition);
+
    
+  }
+
+  applyForExhibition(exhibition){
+
+  console.log(exhibition);
+  this.router.navigate(['/home/apply-exhibition']);
+
   }
 
 

@@ -18,6 +18,7 @@ export class UserAccountComponent implements OnInit {
 
   imageForm: FormGroup;
   formSubmitted: boolean;
+  loggedInUser: any;
 
 
   constructor(private route: Router, private modalService: NgbModal
@@ -89,6 +90,8 @@ export class UserAccountComponent implements OnInit {
     this.data.updateUser(this.userAccountForm.value).then(success => {
 
         this.data.loginInUserData = this.userAccountForm.value;
+        localStorage.setItem('LoggedinUser',JSON.stringify(this.data.loginInUserData))
+     
 
         this.toastr.success("User Profile Updated Successful", 'Success', {
           disableTimeOut: true,
@@ -132,6 +135,8 @@ export class UserAccountComponent implements OnInit {
     console.log(this.userAccountForm.value);
 
     this.data.loginInUserData = this.userAccountForm.value
+
+    this.loggedInUser = JSON.parse(localStorage.getItem('LoggedinUser'));
 
     this.route.navigate(['/home']);
 

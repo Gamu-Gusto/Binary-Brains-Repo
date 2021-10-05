@@ -1,12 +1,13 @@
 <h3>My Exhibitions: </h3>
 <br>
-<table class="table">
+<table class="table" *ngFor="let application of listMyApplication">
     <thead>
       <tr>
         <th scope="col"></th>
         <th scope="col">Exhibition Name</th>
         <th scope="col">Application Status</th>
         <th scope="col"></th>
+        <th scope="col"*ngIf="application.applicationStatusID =='2'"></th>
         <th scope="col"></th>
       </tr>
     </thead>
@@ -14,16 +15,20 @@
       <tr>
         <th scope="row">
             <div class="image-card">
-            <img class="card-img-top" src="../../../assets/exhibitions/exhibition1.png" alt="Card image cap">
+            <img class="card-img-top" src='{{application.exhibitionApplicationImage1}}' alt="Card image cap">
         </div>
         </th>
-        <td>Tropical Fiesta</td>
-        <td>Pending</td>
+        <td>{{application.exhibition.exhibitionName}}</td>
+        <td>{{application.applicationStatus.applicationStatusDescription}}</td>
         <td>
             <button mdbBtn type="button" gradient="peach" rounded="true" mdbWavesEffect (click)="cancelApplication(cancelApplicationModal)">Withdraw <i class="fas fa-sign-out-alt"></i></button>
         </td>
         <td>
-            <button mdbBtn type="button" gradient="purple" [routerLink]="['../artist-exhibition']" rounded="true" mdbWavesEffect>View Exhibition</button>            
+          <button mdbBtn type="button" gradient="purple" *ngIf="application.applicationStatusID =='2'" [routerLink]="['../generate-tags']" rounded="true" mdbWavesEffect>Generate Tags</button>            
+
+        </td>
+        <td>
+            <button mdbBtn type="button" gradient="purple" (click) ="selectedApp(application);" rounded="true" mdbWavesEffect>View Exhibition</button>            
         </td>
       </tr>
 

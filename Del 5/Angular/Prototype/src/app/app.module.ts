@@ -31,13 +31,14 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { NewPasswordComponent } from './new-password/new-password.component';
 import { ArtistHomeComponent } from './artist-home/artist-home.component';
 import { ArtistNavbarComponent } from './artist-home/artist-navbar/artist-navbar.component';
-import { MyExhibitionsComponent } from './artist-home/my-exhibitions/my-exhibitions.component';
+import { MyExhibitionsComponent } from './home/my-exhibitions/my-exhibitions.component';
 import { ArtistExhibitionsComponent } from './artist-home/artist-exhibitions/artist-exhibitions.component';
 import { ArtistExhibitionComponent } from './artist-home/artist-exhibition/artist-exhibition.component';
 import { ArtistBookingsComponent } from './artist-home/artist-bookings/artist-bookings.component';
 import { ClassComponent } from './artist-home/class/class.component';
 import { ClassesComponent } from './artist-home/classes/classes.component';
 import { ArtistbookingComponent } from './artist-home/artist-bookings/artistbooking/artistbooking.component';
+import { ApplyExhibitionComponent } from './home/apply-exhibition/apply-exhibition.component';
 
 
 import { ArtistRefundsComponent } from './artist-home/artist-bookings/artist-refunds/artist-refunds.component';
@@ -48,15 +49,15 @@ import { ExhibitionComponent } from './home/exhibition/exhibition.component';
 import { UserAccountComponent } from './home/user-account/user-account.component';
 import { ArtistAccountComponent } from './artist-home/artist-account/artist-account.component';
 import { InvitationsComponent } from './artist-home/invitations/invitations.component';
-import { ApplyExhibitionComponent } from './artist-home/apply-exhibition/apply-exhibition.component';
+
 import { MyArtworkComponent } from './artist-home/my-artwork/my-artwork.component';
 import { ArtistShowroomComponent } from './artist-home/artist-showroom/artist-showroom.component';
 import { ArtworkShowroomComponent } from './home/artwork-showroom/artwork-showroom.component';
 import { AnnouncementsComponent } from './home/announcements/announcements.component';
 import { RegisterArtistComponent } from './register-artist/register-artist.component';
-import { AcceptedExhibitionsComponent } from './artist-home/my-exhibitions/accepted-exhibitions/accepted-exhibitions.component';
-import { ApplicationsComponent } from './artist-home/my-exhibitions/applications/applications.component';
-import { GenerateTagsComponent } from './artist-home/my-exhibitions/generate-tags/generate-tags.component';
+import { AcceptedExhibitionsComponent } from './home/my-exhibitions/accepted-exhibitions/accepted-exhibitions.component';
+import { ApplicationsComponent } from './home/my-exhibitions/applications/applications.component';
+import { GenerateTagsComponent } from './home/my-exhibitions/generate-tags/generate-tags.component';
 import { ContactUserComponent } from './home/contact-user/contact-user.component';
 import { ContactArtistComponent } from './artist-home/contact-artist/contact-artist.component';
 import { ArtistAnnouncementComponent } from './artist-home/artist-announcement/artist-announcement.component';
@@ -71,6 +72,7 @@ import { AddArtworkComponent } from './home/add-artwork/add-artwork.component';
 import { AddBookingComponent } from './home/add-booking/add-booking.component';
 import { DatePipe } from '@angular/common';
 import { ExhibitionapplicationComponent } from './home/exhibitions/exhibitionapplication/exhibitionapplication.component';
+import { MyApplicationComponent } from './home/my-exhibitions/my-application/my-application.component';
 
 
 
@@ -128,6 +130,7 @@ import { ExhibitionapplicationComponent } from './home/exhibitions/exhibitionapp
     AddArtworkComponent,
     AddBookingComponent,
     ExhibitionapplicationComponent,
+    MyApplicationComponent,
    
   ],
   imports: [

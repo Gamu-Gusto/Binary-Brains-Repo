@@ -3,6 +3,7 @@ export class Exhibition {
     ExhibitionName: string;
     ExhibitionDescription: string;
     ExhibitionDate: string;
+    exhibitionStartDateTime: string;
     ExhibitionTime: string;
     Exhibition_Image: string;
 

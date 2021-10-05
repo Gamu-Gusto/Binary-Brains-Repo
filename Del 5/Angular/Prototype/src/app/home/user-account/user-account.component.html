@@ -3,7 +3,7 @@
     <img src="../../../assets/art-class/art-class-poster.png" alt="" style="width: 900px; height: 300px" />
     <div class="bottom-left">
       <img src="../../../assets/user/User_Circle.png" alt="" style="width: 100px; height: 100px" />
-      <h1>Reinhardt Smit</h1>
+      <h1>{{user.userFirstName}} {{user.userLastName}}</h1>
       <button type="button" class="btn btn-outline-secondary btn-rounded" data-mdb-ripple-color="dark">
         Edit Profile Pic
       </button>
@@ -28,6 +28,12 @@
           <label>Email Address</label>
           <input formControlName="userEmail" type="email" class="form-control" style="width: 535px"
             placeholder="E-mail" />
+        </div>
+
+        <div class="col" *ngIf="user.userTypeID == 1">
+          <label>Artist Bio</label>
+          <textarea type="text" formControlName="artistBio" class="form-control" style="width: 250px;"
+            placeholder="Artist Bio"></textarea>
         </div>
         <br>
 

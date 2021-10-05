@@ -4,8 +4,7 @@ export class ExhibitionApplication {
     ExhibitionPicture2: string;
     ExhibitionPicture3: string;
     ApplicationDescription: string;
-
     Exhibition: string;
-
     ApplicationStatus: string;
+    userID:string;
 }
