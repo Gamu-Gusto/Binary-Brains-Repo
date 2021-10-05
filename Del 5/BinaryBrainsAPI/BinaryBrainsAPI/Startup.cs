@@ -87,6 +87,7 @@ namespace BinaryBrainsAPI
             services.AddScoped<IAppRepository<Schedule>, ScheduleRepository>();
             services.AddScoped<IAppRepository<ScheduleType>, ScheduleTypeRepository>();
             services.AddScoped<IAppRepository<Venue>, VenueRepository>();
+            services.AddScoped<IAppRepository<ApplicationTag>, ApplicationTagRepository>();
 
             // Art Classes Repositories
             services.AddScoped<IAppRepository<ArtClass>, ArtClassRepository>();
