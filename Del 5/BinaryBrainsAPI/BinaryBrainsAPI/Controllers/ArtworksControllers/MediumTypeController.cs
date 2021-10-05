@@ -14,10 +14,11 @@ namespace BinaryBrainsAPI.Controllers.ArtworksControllers
     public class MediumTypeController : ControllerBase
     {
         private readonly IAppRepository<MediumType> _appRepository;
-
-        public MediumTypeController(IAppRepository<MediumType> appRepository)
+        private readonly IAppRepository<Artwork> _artworkRepository;
+        public MediumTypeController(IAppRepository<MediumType> appRepository, IAppRepository<Artwork> artworkRepository)
         {
             _appRepository = appRepository;
+            _artworkRepository = artworkRepository;
         }
 
         // GET: api/MediumType
@@ -84,10 +85,22 @@ namespace BinaryBrainsAPI.Controllers.ArtworksControllers
         [HttpDelete("{id}")]
         public IActionResult Delete(long id)
         {
-            MediumType mediumType = _appRepository.Get(id);
-            if (mediumType == null)
+
+
+            IEnumerable<Artwork> artwork = _artworkRepository.GetByString(id.ToString());
+
+            if(artwork.Count() > 0)
             {
                 return NotFound("The Medium Type does not exist.");
+
+            }
+
+            MediumType mediumType = _appRepository.Get(id);
+
+
+            if (mediumType == null)
+            {
+                return BadRequest("Cannot delete the Medium Type, it is still in use.");
             }
             _appRepository.Delete(mediumType);
 

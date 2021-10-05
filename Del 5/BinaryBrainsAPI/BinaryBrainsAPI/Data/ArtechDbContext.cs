@@ -38,6 +38,8 @@ namespace BinaryBrainsAPI.Data
         public DbSet<ExhibitionApplication> ExhibitionApplication { get; set; }
         public DbSet<ApplicationStatus> ApplicationStatus { get; set; }
 
+        public DbSet<ApplicationTag> ApplicationTag { get; set; }
+
         // Artworks
         public DbSet<Artwork> Artwork { get; set; }
         public DbSet<SurfaceType> SurfaceType { get; set; }

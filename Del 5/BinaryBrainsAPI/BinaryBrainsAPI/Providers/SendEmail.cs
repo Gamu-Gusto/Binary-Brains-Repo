@@ -19,15 +19,20 @@ namespace BinaryBrainsAPI.Providers
                 mail.Subject = "Artec Reset Password Link";
                 mail.Body = "http://localhost:4200/new-password";
             }
-       
+            else {
+
+             
+                mail.Subject = "Test Mail - 1";
+                mail.Body = "mail with attachment";
+
+            }
             mail.From = new MailAddress("artechgalary@gmail.com");
             mail.To.Add(email);
-            mail.Subject = "Test Mail - 1";
-            mail.Body = "mail with attachment";
 
-           // System.Net.Mail.Attachment attachment;
-           // attachment = new System.Net.Mail.Attachment("c:/textfile.txt");
-           // mail.Attachments.Add(attachment);
+
+            // System.Net.Mail.Attachment attachment;
+            // attachment = new System.Net.Mail.Attachment("c:/textfile.txt");
+            // mail.Attachments.Add(attachment);
 
             SmtpServer.Port = 587;
             SmtpServer.Credentials = new System.Net.NetworkCredential("artechgalary@gmail.com", "Artech123System");

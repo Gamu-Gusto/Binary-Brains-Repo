@@ -1,5 +1,7 @@
-﻿using BinaryBrainsAPI.Entities.Exhibitions;
+﻿using BinaryBrainsAPI.Entities;
+using BinaryBrainsAPI.Entities.Exhibitions;
 using BinaryBrainsAPI.Interfaces;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,14 +12,20 @@ using System.Threading.Tasks;
 namespace BinaryBrainsAPI.Controllers.ExhibitionsControllers
 {
     [Route("api/ExhibitionApplication")]
-    [ApiController]
+    [EnableCors("MyCorsPolicy")]
     public class ExhibitionApplicationController : ControllerBase
     {
         private readonly IAppRepository<ExhibitionApplication> _appRepository;
+        private readonly IAppRepository<Exhibition> _exhibitionRepository;
+        private readonly IAppRepository<ApplicationStatus> _exhibitionApplicationStatusRepository;
 
-        public ExhibitionApplicationController(IAppRepository<ExhibitionApplication> appRepository)
+        public ExhibitionApplicationController(IAppRepository<ExhibitionApplication> appRepository
+            , IAppRepository<Exhibition> exhibitionRepository
+            , IAppRepository<ApplicationStatus> exhibitionApplicationStatusRepository)
         {
             _appRepository = appRepository;
+            _exhibitionRepository = exhibitionRepository;
+            _exhibitionApplicationStatusRepository = exhibitionApplicationStatusRepository;
         }
 
         // GET: api/ExhibitionApplication
@@ -25,6 +33,13 @@ namespace BinaryBrainsAPI.Controllers.ExhibitionsControllers
         public IActionResult Get()
         {
             IEnumerable<ExhibitionApplication> exhibitionApplications = _appRepository.GetAll();
+
+            foreach(ExhibitionApplication i in exhibitionApplications)
+            {
+                i.ApplicationStatus = _exhibitionApplicationStatusRepository.Get((long)i.ApplicationStatusID);
+                i.Exhibition = _exhibitionRepository.Get((long)i.ExhibitionID);
+
+             }
 
             return Ok(exhibitionApplications);
         }
@@ -47,17 +62,35 @@ namespace BinaryBrainsAPI.Controllers.ExhibitionsControllers
 
         // GET: api/Create
         [HttpPost]
-        public IActionResult Post([FromBody] ExhibitionApplication exhibitionApplication)
+        public IActionResult Post([FromBody] dynamic exhibitionApplication)
         {
-            if (exhibitionApplication == null)
+            
+            string serialExhibitionApplication = exhibitionApplication.ToString();
+
+            dynamic serialExhibitionApp = Newtonsoft.Json.JsonConvert.DeserializeObject(serialExhibitionApplication);
+
+
+            ExhibitionApplication exhibitionApplication1 = new ExhibitionApplication();
+
+            exhibitionApplication1.ApplicationDescription = serialExhibitionApp.ApplicationDescription;
+            exhibitionApplication1.ExhibitionApplicationImage1 = serialExhibitionApp.ExhibitionPicture1BASE64;
+            exhibitionApplication1.ExhibitionApplicationImage2 = serialExhibitionApp.ExhibitionPicture2BASE64;
+            exhibitionApplication1.ExhibitionApplicationImage3 = serialExhibitionApp.ExhibitionPicture3BASE64;
+            exhibitionApplication1.ApplicationStatusID = serialExhibitionApp.ApplicationStatus;
+            exhibitionApplication1.ExhibitionID = serialExhibitionApp.ExhibitionID;
+            exhibitionApplication1.UserID = serialExhibitionApp.UserID;
+
+
+
+            if (exhibitionApplication1 == null)
             {
                 return BadRequest("Exhibition Application is null.");
             }
-            _appRepository.Add(exhibitionApplication);
+            _appRepository.Add(exhibitionApplication1);
             return CreatedAtRoute(
                   "GetExhibitionApplication",
-                  new { Id = exhibitionApplication.ExhibitionApplicationID },
-                  exhibitionApplication);
+                  new { Id = exhibitionApplication1.ExhibitionApplicationID },
+                  exhibitionApplication1);
         }
 
         // PUT: api/ExhibitionApplication/5

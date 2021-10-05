@@ -58,7 +58,7 @@ namespace BinaryBrainsAPI.Repository.ArtworksRepositories
 
         IEnumerable<Artwork> IAppRepository<Artwork>.GetByString(string str)
         {
-            throw new NotImplementedException();
+            return _artechDb.Artwork.Where(m => m.MediumTypeID == Int32.Parse(str)).ToList();
         }
     }
 }
