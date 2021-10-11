@@ -15,4 +15,5 @@ export class User {
         UserTypeId: string;
         SuburbId: string;
         timestamp: any;
+        isVerified: any;
 }

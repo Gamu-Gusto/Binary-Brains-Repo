@@ -9,7 +9,7 @@ namespace BinaryBrainsAPI.Providers
     public class SendEmail
     {
 
-        public static void SendEmailMethod(string email, string sourcemethod)
+        public static void SendEmailMethod(string email, string sourcemethod,long? userid)
         {
             MailMessage mail = new MailMessage();
             SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
@@ -17,7 +17,17 @@ namespace BinaryBrainsAPI.Providers
             if (sourcemethod == "reset")
             {
                 mail.Subject = "Artec Reset Password Link";
-                mail.Body = "http://localhost:4200/new-password";
+                mail.Body = " We receive a request from you to reset your password." +
+                    "Please use this link to complete the process: http://localhost:4200/new-password." +
+                    "If you did not please contact the admin!!";
+            }
+
+            else if (sourcemethod == "verify")
+            {
+                mail.Subject = "Verify your Artec Account";
+                mail.Body = "You recently registered." +
+                    "Please use this link to verify your account: http://localhost:4200/verify-account/"+ userid +
+                    " If you did not please contact the admin!!";
             }
             else {
 

@@ -19,24 +19,28 @@ namespace BinaryBrainsAPI.Repository.ExhibitionsRepositories
             _artechDb = artechDb;
         }
 
-        public void Add(ApplicationTag entity)
+        public void Add(ApplicationTag applicationTag)
         {
-            throw new NotImplementedException();
+            _artechDb.ApplicationTag.Add(applicationTag);
+            _artechDb.SaveChanges();
         }
 
-        public void Delete(ApplicationTag entity)
+        public void Delete(ApplicationTag applicationTag)
         {
-            throw new NotImplementedException();
+            _artechDb.ApplicationTag.Remove(applicationTag);
+            _artechDb.SaveChanges();
         }
 
         public ApplicationTag Get(long id)
         {
-            throw new NotImplementedException();
+            return _artechDb.ApplicationTag.FirstOrDefault(s => s.ApplicationTagID== id);
         }
 
         public IEnumerable<ApplicationTag> GetAll()
         {
-            throw new NotImplementedException();
+            return _artechDb.ApplicationTag.ToList();
+
+           
         }
 
         public IEnumerable<ApplicationTag> GetByString(string str)
@@ -44,7 +48,7 @@ namespace BinaryBrainsAPI.Repository.ExhibitionsRepositories
             throw new NotImplementedException();
         }
 
-        public void Update(ApplicationTag dbEntity, ApplicationTag entity)
+        public void Update(ApplicationTag dbEntity, ApplicationTag applicationTag)
         {
             throw new NotImplementedException();
         }

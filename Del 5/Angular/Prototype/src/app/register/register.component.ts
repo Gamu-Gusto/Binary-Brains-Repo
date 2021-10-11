@@ -166,6 +166,7 @@ timestamp: any;
       ProvinceId: new FormControl(''),
       CityId: new FormControl(''),
       timestamp: new FormControl(''),
+      isVerified:new FormControl(''),
       });
 
 
@@ -203,7 +204,8 @@ timestamp: any;
       CityId: ['', Validators.required],
       ProvinceId: ['', Validators.required],
       CountryId: ['', Validators.required],
-      timestamp: ['']
+      timestamp: [''],
+      isVerified: [''],
     },{ 
       validator: ConfirmedValidator('UserPassword', 'UserPasswordConfirm')
     })
@@ -264,6 +266,7 @@ timestamp: any;
       let latest_date_time =this.datepipe.transform(this.timestamp, 'yyyy-MM-ddTHH:mm:ss');
 
       this.registrationForm.get('timestamp').setValue(latest_date_time)  ;
+      this.registrationForm.get('isVerified').setValue(0)  ;
 
       console.log(this.registrationForm.value);
       this.data.addUser(this.registrationForm.value).then(success => {

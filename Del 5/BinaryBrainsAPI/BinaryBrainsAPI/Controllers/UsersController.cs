@@ -2,6 +2,7 @@
 using BinaryBrainsAPI.Dtos.UsersDtos;
 using BinaryBrainsAPI.Entities.Users;
 using BinaryBrainsAPI.Interfaces;
+using BinaryBrainsAPI.Providers;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -74,6 +75,10 @@ namespace BinaryBrainsAPI.Controllers
             user.UserPassword = CryptoEngine.Encrypt(user.UserPassword, encryptionKey);
 
             _appRepository.Add(user);
+
+            string sourcemethod = "verify";
+
+            SendEmail.SendEmailMethod(user.UserEmail, sourcemethod,user.UserID);
 
             return CreatedAtRoute(
                   "GetUser",

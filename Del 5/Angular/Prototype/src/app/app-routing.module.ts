@@ -46,6 +46,7 @@ import { RegisterArtistComponent } from './register-artist/register-artist.compo
 import { RegisterComponent } from './register/register.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { MyApplicationComponent } from './home/my-exhibitions/my-application/my-application.component';
+import { VerifyAccountComponent } from './verify-account/verify-account.component';
 
 
 
@@ -57,6 +58,7 @@ const routes: Routes = [
   {path: 'new-password', component: NewPasswordComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'register-artist', component: RegisterArtistComponent},
+  {path: 'verify-account/:id', component: VerifyAccountComponent},
 
     // User Page Routes
   { path: 'home', component: HomeComponent, children: [

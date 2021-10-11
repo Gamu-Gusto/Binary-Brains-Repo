@@ -555,6 +555,27 @@ namespace BinaryBrainsAPI.Migrations
                     b.ToTable("ApplicationStatus");
                 });
 
+            modelBuilder.Entity("BinaryBrainsAPI.Entities.Exhibitions.ApplicationTag", b =>
+                {
+                    b.Property<int>("ApplicationTagID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ApplicationArtworkTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ApplicationDimension")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Price")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ApplicationTagID");
+
+                    b.ToTable("ApplicationTag");
+                });
+
             modelBuilder.Entity("BinaryBrainsAPI.Entities.Exhibitions.ExhibitionAnnouncement", b =>
                 {
                     b.Property<int>("ExhibitionAnnouncementID")
@@ -954,6 +975,9 @@ namespace BinaryBrainsAPI.Migrations
 
                     b.Property<string>("ArtistBio")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsVerified")
+                        .HasColumnType("bit");
 
                     b.Property<int>("SuburbID")
                         .HasColumnType("int");
