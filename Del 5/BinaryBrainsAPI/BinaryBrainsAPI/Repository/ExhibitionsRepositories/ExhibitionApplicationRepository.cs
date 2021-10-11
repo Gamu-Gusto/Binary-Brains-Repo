@@ -1,6 +1,7 @@
 ﻿using BinaryBrainsAPI.Data;
 using BinaryBrainsAPI.Entities.Exhibitions;
 using BinaryBrainsAPI.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,7 +38,7 @@ namespace BinaryBrainsAPI.Repository.ExhibitionsRepositories
 
         public IEnumerable<ExhibitionApplication> GetAll()
         {
-            return _artechDb.ExhibitionApplication.ToList();
+            return _artechDb.ExhibitionApplication.Include(x => x.ApplicationStatus).Include(s => s.User).Include(y => y.Exhibition).ToList();
         }
 
         public ExhibitionApplication GetByString(string str)

@@ -15,11 +15,14 @@ namespace BinaryBrainsAPI.Controllers.ArtClassesControllers
     public class ClassTeacherController : ControllerBase
     {
         private readonly IAppRepository<ClassTeacher> _appRepository;
+        private readonly IAppRepository<ArtClass> _artClassRepository;
+
         //private IClassTeacherRepository teacherRepo;
 
-        public ClassTeacherController(IAppRepository<ClassTeacher> appRepository)
+        public ClassTeacherController(IAppRepository<ClassTeacher> appRepository, IAppRepository<ArtClass> artClassRepository)
         {
             _appRepository = appRepository;
+            _artClassRepository = artClassRepository;
             //teacherRepo = _teacherRepo;
         }
 
@@ -95,12 +98,18 @@ namespace BinaryBrainsAPI.Controllers.ArtClassesControllers
         [HttpDelete("{id}")]
         public IActionResult Delete(long id)
         {
-            ClassTeacher classTeacher = _appRepository.Get(id);
-            if (classTeacher == null)
+            IEnumerable<ArtClass> artClass = _artClassRepository.GetByString(id.ToString());
+
+            if (artClass.Count() > 0)
             {
-                return NotFound("The class teacher does not exist.");
+                return BadRequest();
             }
-            _appRepository.Delete(classTeacher);
+            else
+            {
+                ClassTeacher classTeacher = _appRepository.Get(id);
+                _appRepository.Delete(classTeacher);
+            }
+
 
             return NoContent();
         }

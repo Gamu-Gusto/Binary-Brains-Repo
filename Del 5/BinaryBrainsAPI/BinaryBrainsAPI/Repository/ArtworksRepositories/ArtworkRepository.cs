@@ -53,12 +53,15 @@ namespace BinaryBrainsAPI.Repository.ArtworksRepositories
             artwork.ArtworkTitle = entity.ArtworkTitle;
             artwork.ArtworkPrice = entity.ArtworkPrice;
             artwork.ArtworkImage = entity.ArtworkImage;
+            artwork.MediumTypeID = entity.MediumTypeID;
+            artwork.SurfaceTypeID = entity.SurfaceTypeID; 
+            artwork.ArtworkDimensionID = entity.ArtworkDimensionID;
             _artechDb.SaveChanges();
         }
 
         IEnumerable<Artwork> IAppRepository<Artwork>.GetByString(string str)
         {
-            return _artechDb.Artwork.Where(m => m.MediumTypeID == Int32.Parse(str)).ToList();
+            return _artechDb.Artwork.Where(m => m.MediumTypeID == Int32.Parse(str)).Where(s => s.SurfaceTypeID == Int32.Parse(str)).ToList();
         }
     }
 }
