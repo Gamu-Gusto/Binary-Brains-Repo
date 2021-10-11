@@ -48,6 +48,8 @@ namespace BinaryBrainsAPI.Repository.BookingsRepositories
       
         public IEnumerable<Booking> GetAll()
         {
+            var bookings = _artechDb.Booking.Where(b => b.BookingDateTime >= DateTime.Parse("2021-02-01")).ToList();
+
             return _artechDb.Booking.ToList();
         }
 

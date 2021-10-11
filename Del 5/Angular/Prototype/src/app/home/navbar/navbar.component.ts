@@ -15,6 +15,7 @@ export class NavbarComponent implements OnInit {
   public show:boolean = false;
   public divName:any = 'Show';
   public hide:boolean = false;
+  weather: any;
 
 
   constructor(private route: Router, private modalService: NgbModal, private toastr: ToastrService,public data: DataService,) { }
@@ -29,6 +30,16 @@ export class NavbarComponent implements OnInit {
 
       
     }
+    this.data.getWeather().then((result) => { 
+
+      this.weather = result;
+
+    });
+
+
+     console.log(this.weather);
+    
+    
 
   }
 

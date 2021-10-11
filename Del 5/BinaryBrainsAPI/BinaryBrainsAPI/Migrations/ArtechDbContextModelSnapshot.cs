@@ -986,6 +986,9 @@ namespace BinaryBrainsAPI.Migrations
                     b.Property<string>("ArtistBio")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsVerified")
+                        .HasColumnType("bit");
+
                     b.Property<int>("SuburbID")
                         .HasColumnType("int");
 

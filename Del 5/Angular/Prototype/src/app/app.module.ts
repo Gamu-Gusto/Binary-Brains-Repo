@@ -7,6 +7,7 @@ import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgbDateCustomParserFormatter } from  'src/ngb-date-custom-parser-formatter';
 import { NgxMaskModule} from 'ngx-mask';
 import { StorageServiceModule } from 'ngx-webstorage-service';
+import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -73,6 +74,7 @@ import { AddBookingComponent } from './home/add-booking/add-booking.component';
 import { DatePipe } from '@angular/common';
 import { ExhibitionapplicationComponent } from './home/exhibitions/exhibitionapplication/exhibitionapplication.component';
 import { MyApplicationComponent } from './home/my-exhibitions/my-application/my-application.component';
+import { VerifyAccountComponent } from './verify-account/verify-account.component';
 
 
 
@@ -131,6 +133,7 @@ import { MyApplicationComponent } from './home/my-exhibitions/my-application/my-
     AddBookingComponent,
     ExhibitionapplicationComponent,
     MyApplicationComponent,
+    VerifyAccountComponent,
    
   ],
   imports: [
@@ -139,7 +142,7 @@ import { MyApplicationComponent } from './home/my-exhibitions/my-application/my-
     ToastrModule.forRoot(),
     MDBBootstrapModule.forRoot(),
     MdbModule,
-    BrowserAnimationsModule,ReactiveFormsModule,RouterModule,HttpClientModule, AppRoutingModule,  NgxMaskModule.forRoot()
+    BrowserAnimationsModule,NgIdleKeepaliveModule.forRoot(),ReactiveFormsModule,RouterModule,HttpClientModule, AppRoutingModule,  NgxMaskModule.forRoot()
   ],
   providers: [DataService, DatePipe,
     { provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter } 

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BinaryBrainsAPI.Migrations
 {
-    public partial class Full22092021 : Migration
+    public partial class fullmigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -32,6 +32,21 @@ namespace BinaryBrainsAPI.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ApplicationStatus", x => x.ApplicationStatusID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ApplicationTag",
+                columns: table => new
+                {
+                    ApplicationTagID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ApplicationArtworkTitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ApplicationDimension = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Price = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ApplicationTag", x => x.ApplicationTagID);
                 });
 
             migrationBuilder.CreateTable(
@@ -303,6 +318,7 @@ namespace BinaryBrainsAPI.Migrations
                     ArtistBio = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserTypeID = table.Column<int>(type: "int", nullable: false),
                     SuburbID = table.Column<int>(type: "int", nullable: false),
+                    IsVerified = table.Column<bool>(type: "bit", nullable: false),
                     timestamp = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -1133,6 +1149,9 @@ namespace BinaryBrainsAPI.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Announcement");
+
+            migrationBuilder.DropTable(
+                name: "ApplicationTag");
 
             migrationBuilder.DropTable(
                 name: "ArtClassAnnouncement");

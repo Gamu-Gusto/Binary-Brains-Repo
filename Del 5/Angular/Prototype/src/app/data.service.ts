@@ -27,6 +27,7 @@ export class DataService {
   //https://localhost:44353/api/Login
   port = 44353;
   apiURL = 'https://localhost:' + this.port + '/api';
+  weatherApiURL = 'http://api.openweathermap.org/data/2.5/forecast?id=524901&appid={96d4bffad02c2379905562a814c8e591}';
 
   user: User;
   artclass: ArtClass;
@@ -242,7 +243,8 @@ export class DataService {
       "artistBio": user.ArtistBio,
       "userTypeID": user.UserTypeId,
       "suburbID": user.SuburbId,
-      "timestamp": this.timestamp
+      "timestamp": this.timestamp,
+      "isVerified": false,
 
 
     };
@@ -260,6 +262,16 @@ export class DataService {
 
 }
 
+verifyAccount(id){
+
+  console.log(id);
+
+  return this.http
+  .put<any>(this.apiURL + '/Login/'+ id, this.httpOptions)
+    .toPromise()
+
+
+}
 
 
   addArtClass(artclass): Observable<ArtClass> {
@@ -362,6 +374,11 @@ export class DataService {
 
 
 
+  }
+
+  getWeather(){
+
+    return this.http.get(this.weatherApiURL).toPromise();
   }
 
 

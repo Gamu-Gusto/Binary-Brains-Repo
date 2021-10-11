@@ -28,6 +28,7 @@ namespace BinaryBrainsAPI.Entities.Users
         public int UserTypeID { get; set; }
         public UserType UserType { get; set; }
         public int SuburbID { get; set; }
+        public bool IsVerified { get; set; }
 
         public DateTime timestamp { get; set; }
 

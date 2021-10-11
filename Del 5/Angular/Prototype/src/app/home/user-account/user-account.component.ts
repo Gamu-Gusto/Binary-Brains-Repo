@@ -90,7 +90,8 @@ export class UserAccountComponent implements OnInit {
     this.data.updateUser(this.userAccountForm.value).then(success => {
 
         this.data.loginInUserData = this.userAccountForm.value;
-        localStorage.setItem('LoggedinUser',JSON.stringify(this.data.loginInUserData))
+
+        localStorage.setItem('LoggedinUser',JSON.stringify(this.data.loginInUserData));
      
 
         this.toastr.success("User Profile Updated Successful", 'Success', {

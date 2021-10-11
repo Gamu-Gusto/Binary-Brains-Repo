@@ -47,12 +47,22 @@ namespace BinaryBrainsAPI.Controllers
                 return NotFound("Requested User does not exist.");
             }
 
+            if (user.IsVerified == false)
+            {
+                return BadRequest("You have not verified your account. Please use link that was sent on registration");
+            }
+
             if (user != null && user.UserPassword == password)
             {
                 isAuthenticated = true;
 
                 return Ok(user);
 
+            }
+
+            if (user.IsVerified == false)
+            {
+                return BadRequest("You have not verified your account. Please use link that was sent on registration");
             }
 
 
@@ -76,6 +86,7 @@ namespace BinaryBrainsAPI.Controllers
                 return BadRequest("Email is null");
 
             }
+
             if (_applicationRepository.GetByString(userInfo.UserEmail + "stringemail").Count() == 0)
             {
                 return BadRequest("Please register as a user.");
@@ -84,7 +95,9 @@ namespace BinaryBrainsAPI.Controllers
             {
                 string sourcemethod = "reset";
 
-                SendEmail.SendEmailMethod(userInfo.UserEmail, sourcemethod);
+                SendEmail.SendEmailMethod(userInfo.UserEmail, sourcemethod,null);
+
+                return Ok(userInfo);
 
             }
 
@@ -95,7 +108,52 @@ namespace BinaryBrainsAPI.Controllers
             }
 
 
-            return Ok("Rest Link Email Sent");
+            
         }
+
+
+
+        // PUT: api/Login/5
+        [HttpPut("{id}")]
+        public IActionResult Put(long id)
+        {
+
+            User user = _applicationRepository.Get(id);
+
+            if (user == null)
+            {
+
+                return BadRequest("Account not found");
+
+            }
+
+            if (user.IsVerified == true)
+            {
+
+                return BadRequest("Account is already verified, please login");
+
+            }
+
+            User userToUpdate = user;
+
+            user.IsVerified = true;
+
+            try
+            {
+
+                _applicationRepository.Update(user, userToUpdate);
+
+                return Ok(user);
+            }
+            catch(Exception ex)
+            {
+
+                return BadRequest("An error occured:" + ex.Message);
+
+
+            }
+
+                      
+       }
     }
 }
