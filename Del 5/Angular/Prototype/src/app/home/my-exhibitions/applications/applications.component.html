@@ -1,6 +1,6 @@
 <h3>My Exhibitions: </h3>
-<br>
-<table class="table" *ngFor="let application of listMyApplication">
+<br><div *ngFor="let application of listMyApplication">
+<table class="table" >
     <thead>
       <tr>
         <th scope="col"></th>
@@ -21,14 +21,14 @@
         <td>{{application.exhibition.exhibitionName}}</td>
         <td>{{application.applicationStatus.applicationStatusDescription}}</td>
         <td>
-            <button mdbBtn type="button" gradient="peach" rounded="true" mdbWavesEffect (click)="cancelApplication(cancelApplicationModal)">Withdraw <i class="fas fa-sign-out-alt"></i></button>
+            <button mdbBtn type="button" gradient="peach" rounded="true" *ngIf="application.applicationStatusID !='4'" mdbWavesEffect (click)="cancelApplication(cancelApplicationModal)">Withdraw <i class="fas fa-sign-out-alt"></i></button>
         </td>
         <td>
-          <button mdbBtn type="button" gradient="purple" *ngIf="application.applicationStatusID =='2'" [routerLink]="['../generate-tags']" rounded="true" mdbWavesEffect>Generate Tags</button>            
+          <button mdbBtn type="button" gradient="purple" *ngIf="application.applicationStatusID =='2'" (click) ="generateTag(application);"  rounded="true" mdbWavesEffect>Generate Tags</button>            
 
         </td>
         <td>
-            <button mdbBtn type="button" gradient="purple" (click) ="selectedApp(application);" rounded="true" mdbWavesEffect>View Exhibition</button>            
+            <button mdbBtn type="button" gradient="purple" (click) ="selectedApp(application);" rounded="true" mdbWavesEffect>View Application</button>            
         </td>
       </tr>
 
@@ -52,6 +52,7 @@
     </div>
     <div class="modal-footer">
       <button mdbBtn type="button" gradient="peach" rounded="true" style="float: right;" (click)="modal.dismiss('Cross click')"  mdbWavesEffect>No</button>
-      <button mdbBtn type="button" gradient="purple" (click)="confirmCancel(cancelApplicationModal)" rounded="true" mdbWavesEffect>Yes</button>
+      <button mdbBtn type="button" gradient="purple" (click)="confirmCancel(cancelApplicationModal,application)" rounded="true" mdbWavesEffect>Yes</button>
     </div>
   </ng-template>
+</div>

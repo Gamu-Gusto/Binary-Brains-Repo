@@ -12,9 +12,11 @@ import { ExhibitionApplication } from '../../../model/Exhibitions/exhibition-app
   styleUrls: ['./applications.component.scss']
 })
 export class ApplicationsComponent implements OnInit {
+  
 listMyApplication:any;
 listAllApplications: any;
   loggedInUser: any;
+  cancelModal: any;
 
   constructor(private route: Router, private modalService: NgbModal, private toastr: ToastrService, public data: DataService
     , private formBuilder: FormBuilder, private fb: FormBuilder) { }
@@ -47,11 +49,49 @@ listAllApplications: any;
 
   }
 
-  confirmCancel(cancelApplicationModal){
+  confirmCancel(cancelApplicationModal,application){
     // this.route.navigate(['/home/art-classes']);
-    this.modalService.dismissAll(cancelApplicationModal);
-    this.toastr.success('Application Successfully Cancelled', 'Success')
-    this.toastr.error('Could not Cancel', 'Error')
+
+
+    this.data.cancelApplication(application.exhibitionApplicationID).then(success => {
+
+      this.toastr.success("Application has been cancelled", 'Success', {
+          disableTimeOut: false,
+          tapToDismiss: false,
+          closeButton: true,
+          positionClass: 'toast-top-full-width',
+
+
+
+        });
+        this.modalService.dismissAll(cancelApplicationModal);
+
+        this.ngOnInit();
+
+        this.route.navigate(['/home/my-exhibitions/applications']);
+
+      }).catch(error => {
+
+  console.log(error.error);
+
+        this.toastr.error(error.error, 'Error', {
+          disableTimeOut: false,
+          tapToDismiss: false,
+          closeButton: true,
+          positionClass: 'toast-top-full-width',
+          enableHtml: true
+
+        });
+
+        this.modalService.dismissAll(cancelApplicationModal);
+
+        this.ngOnInit();
+
+        this.route.navigate(['/home/my-exhibitions/applications']);
+
+      });
+
+
 
   }
 
@@ -59,8 +99,20 @@ listAllApplications: any;
 
     localStorage.setItem('SelectedApplication',JSON.stringify(application));
 
+
+
     this.route.navigate(['/home/my-exhibitions/my-application']);
   };
 
+  generateTag(application){
+
+
+    localStorage.setItem('SelectedApplication',JSON.stringify(application));
+
+
+
+    this.route.navigate(['/home/my-exhibitions/generate-tags']);
+
+  }
 
 }

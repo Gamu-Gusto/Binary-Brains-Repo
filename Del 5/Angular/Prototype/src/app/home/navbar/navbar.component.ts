@@ -30,6 +30,7 @@ export class NavbarComponent implements OnInit {
 
       
     }
+    /*
     this.data.getWeather().then((result) => { 
 
       this.weather = result;
@@ -38,7 +39,7 @@ export class NavbarComponent implements OnInit {
 
 
      console.log(this.weather);
-    
+    */
     
 
   }

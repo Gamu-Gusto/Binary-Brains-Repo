@@ -7,32 +7,37 @@
         <button type="button" style="width: 200px" class="btn btn-secondary" (click)="addTag(addTagModal)">Add Tag <i class="fas fa-plus"></i></button>
     </div>
 </div>
+<div class="card-deck">
+<div class="card" *ngFor="let tag of listSelectedApplicationTag; 
+let indexofElementc= index;
+" >
+  
 
-<table class="table table-bordered" style="width: 800px;">
+<table class="table table-bordered" style="width: 600px;">
     <thead>
         <tr style="text-align: center;">
             <th colspan="2">Artist Name</th>
           </tr>
           <tr style="text-align: center;">
-            <th colspan="2">Johann van Heerden Gallery</th>
+            <th colspan="2">{{loggedInUser.userFirstName}} {{loggedInUser.userLastName}}</th>
           </tr>
       <tr>
         <th scope="col">Title</th>
-        <td Style="text-align: center;">Little Things</td>
+        <td Style="text-align: center;">{{tag.applicationArtworkTitle}}</td>
       </tr>
     </thead>
     <tbody>
       <tr>
         <th scope="row">Medium</th>
-        <td Style="text-align: center;">Pencil Drawing</td>
+        <td Style="text-align: center;">{{tag.medium}}</td>
       </tr>
       <tr>
         <th scope="row">Size</th>
-        <td Style="text-align: center;">12000mm x 900mm</td>
+        <td Style="text-align: center;">{{tag.applicationDimension}}</td>
       </tr>
       <tr>
         <th scope="row">Price</th>
-        <td Style="text-align: center;">R 1000.00</td>
+        <td Style="text-align: center;">{{tag.price}}</td>
       </tr>
       <tr style="text-align: center;">
         <th colspan="2">
@@ -43,10 +48,12 @@
       </tr>
     </tbody>
   </table>
+</div>
+</div>
 
 <!-- =================================================================================== -->
 <!-- ========================MODAL BELOW ===================================================================== -->
-
+<form [formGroup]="applicationTagForm" (ngSubmit)="onConfirmTag(addTagModal,$event)">
 <ng-template #addTagModal let-modal>
     <div class="modal-header">
       <h4 class="modal-title">Enter Tag Details</h4>
@@ -56,24 +63,56 @@
     </div>
     <div class="modal-body">
         <label>Title:</label>
-        <input type="text" class="form-control" placeholder="Artwork Title">
+        <input type="text" formControlName="applicationArtworkTitle"  class="form-control" placeholder="Artwork Title">
+        <div class="error-messages">
+          <ng-container *ngFor="let error of error_messages.applicationArtworkTitle">
+            <div class="error-message" *ngIf=" applicationTagForm.get('applicationArtworkTitle').hasError(error.type) &&
+               (applicationTagForm.get('applicationArtworkTitle').dirty || applicationTagForm.get('applicationArtworkTitle').touched)">
+              {{ error.message }}
+            </div>
+          </ng-container>
+        </div>
         <br>
-        <label>Medium:</label>
-        <input type="text" class="form-control" placeholder="Medium type">
+        <label>medium:</label>
+        <input type="text" formControlName="medium"  class="form-control" placeholder="Medium type">
+        <div class="error-messages">
+          <ng-container *ngFor="let error of error_messages.medium">
+            <div class="error-message" *ngIf=" applicationTagForm.get('medium').hasError(error.type) &&
+               (applicationTagForm.get('medium').dirty || applicationTagForm.get('medium').touched)">
+              {{ error.message }}
+            </div>
+          </ng-container>
+        </div>
         <br>
-        <label>Dimmensions</label>
-        <input type="text" class="form-control"  placeholder="mm x mm">
+        <label>Dimensions</label>
+        <input type="text" formControlName="applicationDimension"  class="form-control"  placeholder="mm x mm">
+        <div class="error-messages">
+          <ng-container *ngFor="let error of error_messages.applicationDimension">
+            <div class="error-message" *ngIf=" applicationTagForm.get('applicationDimension').hasError(error.type) &&
+               (applicationTagForm.get('applicationDimension').dirty || applicationTagForm.get('applicationDimension').touched)">
+              {{ error.message }}
+            </div>
+          </ng-container>
+        </div>
         <br>
         <label>Price:</label>
-        <input type="text" class="form-control"  placeholder="R 0.00">
+        <input type="text" class="form-control" formControlName="price"  placeholder="R 0.00">
+        <div class="error-messages">
+          <ng-container *ngFor="let error of error_messages.price">
+            <div class="error-message" *ngIf=" applicationTagForm.get('price').hasError(error.type) &&
+               (applicationTagForm.get('price').dirty || applicationTagForm.get('price').touched)">
+              {{ error.message }}
+            </div>
+          </ng-container>
+        </div>
         <br>
         </div>
     <div class="modal-footer">
       <button mdbBtn type="button" gradient="peach" rounded="true" style="float: right;" (click)="modal.dismiss('Cross click')" mdbWavesEffect>Cancel</button>
-      <button mdbBtn type="button" gradient="purple" (click)="confirmTag(addTagModal)" rounded="true" mdbWavesEffect>Save</button>
+      <button mdbBtn type="button" gradient="purple" (click)="onConfirmTag(addTagModal,event)" rounded="true" mdbWavesEffect>Save</button>
     </div>
   </ng-template>
-
+</form>
 
   <ng-template #deleteTagModal let-modal>
     <div class="modal-header">

@@ -80,12 +80,28 @@ namespace BinaryBrainsAPI.Controllers.ExhibitionsControllers
             exhibitionApplication1.ExhibitionID = serialExhibitionApp.ExhibitionID;
             exhibitionApplication1.UserID = serialExhibitionApp.UserID;
 
+            IEnumerable<ExhibitionApplication> existingExhibitionApplications = _appRepository.GetAll();
 
 
             if (exhibitionApplication1 == null)
             {
                 return BadRequest("Exhibition Application is null.");
             }
+
+            foreach (ExhibitionApplication i in existingExhibitionApplications)
+            {
+
+              
+
+                if((i.ExhibitionID == exhibitionApplication1.ExhibitionID && i.UserID == exhibitionApplication1.UserID) && i.ApplicationStatusID != 3)
+                {
+                    return BadRequest("You already applied for this exhibition.");
+
+                }
+              
+            }
+
+         
             _appRepository.Add(exhibitionApplication1);
             return CreatedAtRoute(
                   "GetExhibitionApplication",
@@ -122,9 +138,16 @@ namespace BinaryBrainsAPI.Controllers.ExhibitionsControllers
             {
                 return NotFound("The Exhibition Application does not exist.");
             }
-            _appRepository.Delete(exhibitionApplication);
 
-            return NoContent();
+            ExhibitionApplication exhibitionApplicationToUpdate = new ExhibitionApplication();
+
+            exhibitionApplicationToUpdate = exhibitionApplication;
+
+            exhibitionApplication.ApplicationStatusID = 4;
+
+            _appRepository.Update(exhibitionApplication,exhibitionApplicationToUpdate);
+
+            return Ok(exhibitionApplication);
         }
     }
 }

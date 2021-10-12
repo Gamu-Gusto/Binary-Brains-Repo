@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
   lastPing?: Date = null;
   constructor(private idle: Idle, private keepalive: Keepalive,private route: Router, private toastr: ToastrService) {
     // sets an idle timeout of 30 seconds, for testing purposes.
-    idle.setIdle(15);
+    idle.setIdle(600);
     // sets a timeout period of 5 seconds. after 10 seconds of inactivity, the user will be considered timed out.
     idle.setTimeout(5);
     // sets the default interrupts, in this case, things like clicks, scrolls, touches to the document
@@ -58,6 +58,7 @@ export class HomeComponent implements OnInit {
     this.idle.watch();
     this.idleState = 'Started.';
     this.timedOut = false;
+    
     
   }
 

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BinaryBrainsAPI.Migrations
 {
     [DbContext(typeof(ArtechDbContext))]
-    [Migration("20211007162958_full-migration")]
-    partial class fullmigration
+    [Migration("20211011174848_fulllatest")]
+    partial class fulllatest
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -569,6 +569,9 @@ namespace BinaryBrainsAPI.Migrations
 
                     b.Property<string>("ApplicationDimension")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ExhibitionApplicationID")
+                        .HasColumnType("int");
 
                     b.Property<string>("Price")
                         .HasColumnType("nvarchar(max)");

@@ -321,6 +321,15 @@ verifyAccount(id){
 
   }
 
+  cancelApplication(id){
+
+    return this.http
+    .delete<any>(this.apiURL + '/ExhibitionApplication/' + id, this.httpOptions)
+    .toPromise()
+
+
+  }
+
   addFeedback(feedBack): Promise<any>  {
 
     console.log(feedBack);
@@ -331,6 +340,33 @@ verifyAccount(id){
 
 
   }
+
+
+  addApplicationTag(tag){
+
+
+    tag = {
+
+      "applicationTagID": 0,
+      "applicationArtworkTitle": tag.applicationArtworkTitle,
+      "applicationDimension": tag.applicationDimension,
+      "price": tag.price,
+      "medium": tag.medium,
+      "exhibitionApplicationID": tag.exhibitionApplicationID
+    }
+
+    console.log(tag);
+    return this.http
+    .post<Feedback>(this.apiURL + '/ApplicationTag', tag, this.httpOptions)
+    .toPromise()
+
+  }
+
+  getAllApplicationTags(){
+
+    return this.http.get(this.apiURL + '/ApplicationTag').toPromise();
+
+  };
 
   addExhibitionApplication(exhibitionApplication): Promise<any>  {
 

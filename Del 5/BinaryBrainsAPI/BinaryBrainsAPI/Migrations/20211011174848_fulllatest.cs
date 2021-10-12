@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BinaryBrainsAPI.Migrations
 {
-    public partial class fullmigration : Migration
+    public partial class fulllatest : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -42,7 +42,8 @@ namespace BinaryBrainsAPI.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ApplicationArtworkTitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ApplicationDimension = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Price = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Price = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ExhibitionApplicationID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {

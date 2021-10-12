@@ -51,6 +51,7 @@ namespace BinaryBrainsAPI.Repository.ExhibitionsRepositories
             exhibitionApplication.ExhibitionApplicationImage1 = entity.ExhibitionApplicationImage1;
             exhibitionApplication.ExhibitionApplicationImage2 = entity.ExhibitionApplicationImage2;
             exhibitionApplication.ExhibitionApplicationImage3 = entity.ExhibitionApplicationImage3;
+            exhibitionApplication.ApplicationStatusID = entity.ApplicationStatusID;
             _artechDb.SaveChanges();
         }
 
