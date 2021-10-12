@@ -1,24 +1,33 @@
 .bottom-left {
-    position: absolute;
-    bottom: 8px;
-    left: 150px;
-  }
-  .container {
-    position: relative;
-    text-align: center;
-    color: white;
+  position: absolute;
+  bottom: 8px;
+  left: 150px;
+}
+.container {
+  position: relative;
+  text-align: center;
+  color: white;
+  padding-left: 50px;
 }
 h1 {
-    margin: 0; 
-    font-family: 'Leckerli One', cursive;
-    text-shadow: 0 2px rgba(0,0,0,.5);
-  }
+  margin: 0;
+  font-family: "Leckerli One", cursive;
+  text-shadow: 0 2px rgba(0, 0, 0, 0.5);
+}
 
-  button {
-    border-radius: 10px;
+button {
+  border-radius: 10px;
 }
 
 .profile-card {
-  margin-left: auto;
+  padding-left: 100px;
   margin-right: auto;
+}
+
+.profile-header {
+  padding-left: 100px;
+}
+
+.my-account {
+  padding-left: 50px;
 }

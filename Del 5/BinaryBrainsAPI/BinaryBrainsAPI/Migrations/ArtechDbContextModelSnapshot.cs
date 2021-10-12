@@ -123,8 +123,9 @@ namespace BinaryBrainsAPI.Migrations
                     b.Property<string>("TeacherName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TeacherPhoneNumber")
-                        .HasColumnType("int");
+                    b.Property<string>("TeacherPhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("TeacherSurname")
                         .HasColumnType("nvarchar(max)");
@@ -1016,8 +1017,9 @@ namespace BinaryBrainsAPI.Migrations
                     b.Property<string>("UserPassword")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserPhoneNumber")
-                        .HasColumnType("int");
+                    b.Property<string>("UserPhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
 
                     b.Property<int>("UserPostalCode")
                         .HasColumnType("int");

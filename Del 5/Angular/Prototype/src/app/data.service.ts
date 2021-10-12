@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { User } from './model/user.model'
+import { User } from './model/user.model';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
@@ -20,14 +20,14 @@ import { EmailValidator } from '@angular/forms';
 import { Feedback } from './model/ArtClasses/feedback';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DataService {
-
   //https://localhost:44353/api/Login
   port = 44353;
   apiURL = 'https://localhost:' + this.port + '/api';
-  weatherApiURL = 'http://api.openweathermap.org/data/2.5/forecast?id=524901&appid={96d4bffad02c2379905562a814c8e591}';
+  weatherApiURL =
+    'http://api.openweathermap.org/data/2.5/forecast?id=524901&appid={96d4bffad02c2379905562a814c8e591}';
 
   user: User;
   artclass: ArtClass;
@@ -44,368 +44,270 @@ export class DataService {
   organisationData: any;
   artClassTypeData: any;
   timestamp: string;
-  dateofbirth: string
+  dateofbirth: string;
   monthseperator: string;
   dayseperator: string;
-  loginInUserData:any;
+  loginInUserData: any;
+  artworkList: Artwork[];
 
-  constructor(private http: HttpClient, private toastr: ToastrService) { }
+  constructor(private http: HttpClient, private toastr: ToastrService) {}
 
   // Http Options
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  }
+      'Content-Type': 'application/json',
+    }),
+  };
 
   loginUser(user) {
-
-    let params = new HttpParams().set('UserName', user.UserName).set('password', user.Password);
+    let params = new HttpParams()
+      .set('UserName', user.UserName)
+      .set('password', user.Password);
 
     return this.http
       .get<User>(this.apiURL + '/Login/' + user.UserName + '/' + user.Password)
-      .pipe(
-        retry(1)
-        ,
-        catchError(this.handleError)
-
-
-      );
-
+      .pipe(retry(1), catchError(this.handleError));
   }
 
   getAllUserTypes(): Promise<any> {
-
-    return this.http
-      .get(this.apiURL + '/UserType').toPromise()
-
-  };
-
+    return this.http.get(this.apiURL + '/UserType').toPromise();
+  }
 
   getAllSuburbs(): Promise<any> {
-
-    return this.http.get(this.apiURL + '/Surburb').toPromise()
-
-  };
+    return this.http.get(this.apiURL + '/Surburb').toPromise();
+  }
 
   getAllCities(): Promise<any> {
-
-    return this.http.get(this.apiURL + '/City').toPromise()
-
-  };
+    return this.http.get(this.apiURL + '/City').toPromise();
+  }
 
   getAllCountries(): Promise<any> {
-
-    return this.http.get(this.apiURL + '/Country').toPromise()
-
-  };
-
+    return this.http.get(this.apiURL + '/Country').toPromise();
+  }
 
   getAllProvinces(): Promise<any> {
-    return this.http.get(this.apiURL + '/Province').toPromise()
-  };
-
-
+    return this.http.get(this.apiURL + '/Province').toPromise();
+  }
 
   getAllArtwork(): Promise<any> {
-
-    return this.http.get(this.apiURL + '/Artwork').toPromise()
-
-  };
+    return this.http
+      .get(this.apiURL + '/Artwork')
+      .toPromise()
+      .then((res) => {
+        this.artworkList = res as Artwork[];
+      });
+  }
 
   getAllArtClasses(): Promise<any> {
-
-    return this.http.get(this.apiURL + '/ArtClass').toPromise()
-
-  };
+    return this.http.get(this.apiURL + '/ArtClass').toPromise();
+  }
 
   getAllExhibitions(): Promise<any> {
-
-    return this.http.get(this.apiURL + '/Exhibition').toPromise()
-
-  };
-
+    return this.http.get(this.apiURL + '/Exhibition').toPromise();
+  }
 
   getArtClass(id): Promise<any> {
-
-    return this.http.get(this.apiURL + '/ArtClass/' + id).toPromise()
-
-  };
+    return this.http.get(this.apiURL + '/ArtClass/' + id).toPromise();
+  }
 
   getVenue(id): Promise<any> {
-
-    return this.http.get(this.apiURL + '/Venue/' + id).toPromise()
-
-  };
+    return this.http.get(this.apiURL + '/Venue/' + id).toPromise();
+  }
 
   requestRefund(id): Promise<any> {
-
-    return this.http.post(this.apiURL + '/Refund', + id)
-    .toPromise()
-
-  };
+    return this.http.post(this.apiURL + '/Refund', +id).toPromise();
+  }
 
   resetPassword(email): Promise<any> {
-
-
     console.log(email);
 
-    return this.http.post(this.apiURL + '/Login',email,this.httpOptions)
-    .toPromise();
-    
-
-  };
-
+    return this.http
+      .post(this.apiURL + '/Login', email, this.httpOptions)
+      .toPromise();
+  }
 
   getTeacher(id): Promise<any> {
-
     return this.http.get(this.apiURL + '/ClassTeacher/' + id).toPromise();
-
-  };
+  }
   getClassType(id): Promise<any> {
-
-    return this.http.get(this.apiURL + '/ArtClassType/' + id).toPromise()
-
-  };
+    return this.http.get(this.apiURL + '/ArtClassType/' + id).toPromise();
+  }
   getOrganisation(id): Promise<any> {
-
     return this.http.get(this.apiURL + '/Organisation/' + id).toPromise();
-
-  };
-
-
+  }
 
   getAllBookings(): Promise<any> {
-
     return this.http.get(this.apiURL + '/Booking').toPromise();
+  }
 
-  };
-
-
-  getAllPayments(){
-
+  getAllPayments() {
     return this.http.get(this.apiURL + '/Payment').toPromise();
+  }
 
-  };
-
-  getAllRefunds(){
-
+  getAllRefunds() {
     return this.http.get(this.apiURL + '/Refund').toPromise();
-
-  };
+  }
 
   getAllClassTeachers() {
-
     return this.http.get(this.apiURL + '/ClassTeacher');
-
-  };
-
-
+  }
 
   addUser(user): Promise<any> {
-
     console.table(user);
 
-    this.timestamp = user.timestamp + ".098Z";
+    this.timestamp = user.timestamp + '.098Z';
 
     if (user.UserDOB.month > 9) {
-      this.monthseperator = "-"
-
-    }
-    else {
-
-      this.monthseperator = "-0"
+      this.monthseperator = '-';
+    } else {
+      this.monthseperator = '-0';
     }
 
     if (user.UserDOB.day > 9) {
-      this.dayseperator = "-"
-
-    }
-    else {
-
-      this.dayseperator = "-0"
+      this.dayseperator = '-';
+    } else {
+      this.dayseperator = '-0';
     }
 
-    this.dateofbirth = user.UserDOB.year + this.monthseperator + user.UserDOB.month + this.dayseperator + user.UserDOB.day + "T00:00:00.000Z";
+    this.dateofbirth =
+      user.UserDOB.year +
+      this.monthseperator +
+      user.UserDOB.month +
+      this.dayseperator +
+      user.UserDOB.day +
+      'T00:00:00.000Z';
 
     user = {
-      "userID": 0,
-      "userName": user.UserName,
-      "userFirstName": user.UserFirstName,
-      "userLastName": user.UserLastName,
-      "userEmail": user.UserEmail,
-      "userPhoneNumber": user.UserPhoneNumber,
-      "userPassword": user.UserPassword,
-      "userDOB": this.dateofbirth,
-      "userAddressLine1": user.UserAddressLine1,
-      "userAddressLine2": user.UserAddressLine2,
-      "userPostalCode": user.UserPostalCode,
-      "artistBio": user.ArtistBio,
-      "userTypeID": user.UserTypeId,
-      "suburbID": user.SuburbId,
-      "timestamp": this.timestamp,
-      "isVerified": false,
-
-
+      userID: 0,
+      userName: user.UserName,
+      userFirstName: user.UserFirstName,
+      userLastName: user.UserLastName,
+      userEmail: user.UserEmail,
+      userPhoneNumber: user.UserPhoneNumber,
+      userPassword: user.UserPassword,
+      userDOB: this.dateofbirth,
+      userAddressLine1: user.UserAddressLine1,
+      userAddressLine2: user.UserAddressLine2,
+      userPostalCode: user.UserPostalCode,
+      artistBio: user.ArtistBio,
+      userTypeID: user.UserTypeId,
+      suburbID: user.SuburbId,
+      timestamp: this.timestamp,
+      isVerified: false,
     };
 
     console.table(user);
     return this.http
       .post<User>(this.apiURL + '/User', user, this.httpOptions)
-      .toPromise()
+      .toPromise();
   }
 
-  updateUser(user){
+  updateUser(user) {
     return this.http
-    .put<User>(this.apiURL + '/User/'+user.userID, user, this.httpOptions)
-    .toPromise()
+      .put<User>(this.apiURL + '/User/' + user.userID, user, this.httpOptions)
+      .toPromise();
+  }
 
-}
+  verifyAccount(id) {
+    console.log(id);
 
-verifyAccount(id){
-
-  console.log(id);
-
-  return this.http
-  .put<any>(this.apiURL + '/Login/'+ id, this.httpOptions)
-    .toPromise()
-
-
-}
-
+    return this.http
+      .put<any>(this.apiURL + '/Login/' + id, this.httpOptions)
+      .toPromise();
+  }
 
   addArtClass(artclass): Observable<ArtClass> {
-
     console.log(artclass);
 
     return this.http
       .post<ArtClass>(this.apiURL + '/ArtClass', artclass)
-      .pipe(
-        retry(1)
-        ,
-        catchError(this.handleError)
-
-      )
-
-
-
+      .pipe(retry(1), catchError(this.handleError));
   }
 
-
   addExhibition(exhibition): Observable<Exhibition> {
-
     console.log(exhibition);
 
     return this.http
-      .post<Exhibition>(this.apiURL + '/Exhibition', JSON.stringify(exhibition), this.httpOptions)
-      .pipe(
-        retry(1)
-        ,
-        catchError(this.handleError)
-
+      .post<Exhibition>(
+        this.apiURL + '/Exhibition',
+        JSON.stringify(exhibition),
+        this.httpOptions
       )
-
-
-
+      .pipe(retry(1), catchError(this.handleError));
   }
 
-
-  addBooking(booking): Promise<any>  {
-
+  addBooking(booking): Promise<any> {
     console.log(booking);
 
     return this.http
       .post<Booking>(this.apiURL + '/Booking', booking, this.httpOptions)
-      .toPromise()
-
-
+      .toPromise();
   }
 
-  addFeedback(feedBack): Promise<any>  {
-
+  addFeedback(feedBack): Promise<any> {
     console.log(feedBack);
 
     return this.http
       .post<Feedback>(this.apiURL + '/Feedback', feedBack, this.httpOptions)
-      .toPromise()
-
-
+      .toPromise();
   }
 
-  addExhibitionApplication(exhibitionApplication): Promise<any>  {
-
+  addExhibitionApplication(exhibitionApplication): Promise<any> {
     console.log(exhibitionApplication);
 
     return this.http
-      .post<Feedback>(this.apiURL + '/ExhibitionApplication', exhibitionApplication, this.httpOptions)
-      .toPromise()
-
-
+      .post<Feedback>(
+        this.apiURL + '/ExhibitionApplication',
+        exhibitionApplication,
+        this.httpOptions
+      )
+      .toPromise();
   }
 
-  getApplications(){
-
+  getApplications() {
     return this.http.get(this.apiURL + '/ExhibitionApplication').toPromise();
-
   }
-
 
   addPayment(payment): Promise<any> {
-
     console.log(payment);
     return this.http
-    .post<Payment>(this.apiURL + '/Payment', payment, this.httpOptions)
-    .toPromise()
-
+      .post<Payment>(this.apiURL + '/Payment', payment, this.httpOptions)
+      .toPromise();
   }
 
   addClassTeacher(classteacher): Observable<ClassTeacher> {
-
     console.log(classteacher);
 
     return this.http
-      .post<ClassTeacher>(this.apiURL + '/ClassTeacher', JSON.stringify(classteacher), this.httpOptions)
-      .pipe(
-        retry(1)
-        ,
-        catchError(this.handleError)
-
+      .post<ClassTeacher>(
+        this.apiURL + '/ClassTeacher',
+        JSON.stringify(classteacher),
+        this.httpOptions
       )
-
-
-
+      .pipe(retry(1), catchError(this.handleError));
   }
 
-  getWeather(){
-
+  getWeather() {
     return this.http.get(this.weatherApiURL).toPromise();
   }
 
-
   addArtwork(artwork): Observable<Artwork> {
-
     console.log(artwork);
 
     return this.http
-      .post<Artwork>(this.apiURL + '/Artwork', JSON.stringify(artwork), this.httpOptions)
-      .pipe(
-        retry(1)
-        ,
-        catchError(this.handleError)
-
+      .post<Artwork>(
+        this.apiURL + '/Artwork',
+        JSON.stringify(artwork),
+        this.httpOptions
       )
-
-
-
+      .pipe(retry(1), catchError(this.handleError));
   }
-  // Error handling 
+  // Error handling
   handleError(error) {
-
     let errorMessage = '';
 
     // Get client-side error
     errorMessage = error.error;
-
 
     console.log(errorMessage);
 
@@ -413,5 +315,4 @@ verifyAccount(id){
 
     return throwError(errorMessage);
   }
-
 }

@@ -14,6 +14,8 @@ namespace BinaryBrainsAPI.Entities.ArtClasses
         public string TeacherName { get; set; }
         public string TeacherSurname { get; set; }
         public string TeacherEmail { get; set; }
+
+        [Column(TypeName = "varchar(50)")]
         public int TeacherPhoneNumber { get; set; }
 
         [ForeignKey("TeacherTypeID")]

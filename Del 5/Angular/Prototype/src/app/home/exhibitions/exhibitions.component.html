@@ -22,7 +22,7 @@
         alt="Card image cap"
       />
       <div class="card-body">
-        <h5 class="card-title">{{ exhibition.exhibitionName }}</h5>
+        <h2 class="card-title">{{ exhibition.exhibitionName }}</h2>
         <p class="card-text">{{ exhibition.exhibitionDescription }}</p>
         <button
           mdbBtn
@@ -36,7 +36,9 @@
         </button>
       </div>
       <div class="card-footer">
-        <small class="text-muted">{{ exhibition.exhibitionDate }}</small>
+        <small class="text-muted">{{
+          exhibition.exhibitionStartDateTime | date
+        }}</small>
       </div>
     </div>
   </div>

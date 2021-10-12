@@ -5,6 +5,7 @@
       <th scope="col">#</th>
       <th scope="col">Class Name</th>
       <th scope="col">Payment Status</th>
+      <th scope="col">Class Start-End Date</th>
       <th scope="col" *ngIf="booking.bookingStatus !== 'Completed'">
         Cancel Booking
       </th>
@@ -30,6 +31,10 @@
       </th>
       <td>{{ booking.artClass.artClassDescription }}</td>
       <td>{{ booking.bookingStatus }}</td>
+      <td>
+        {{ booking.artClass.artClassStartDateTime | date }} -
+        {{ booking.artClass.artClassEndDateTime | date }}
+      </td>
       <td *ngIf="booking.bookingStatus !== 'Completed'">
         <button
           mdbBtn
