@@ -1,28 +1,43 @@
 <div class="page-padding">
-<div class="container">
-    <img src="../../../assets/art-class/art-class-poster.png" alt="" style="width: 900px; height: 300px"> 
+  <div class="container">
+    <img
+      src="../../../assets/art-class/art-class-poster.png"
+      alt=""
+      style="width: 900px; height: 300px"
+    />
     <div class="top-right"><h1>Art Classes</h1></div>
+  </div>
+  <hr />
+  <h2>Available Classes</h2>
+  <hr />
 
-  
-</div>
-<hr>
-<h2>Available Classes</h2>
-<hr>
-
-<div class="card-deck">
-    <div class="card" *ngFor="let artclass of listArtClasses; let indexofElementc= index;">
-      <img class="card-img-top" src='data:image/png;base64,{{artclass.artClassImage}}' alt="Card image cap">
+  <div class="card-deck">
+    <div
+      class="card"
+      *ngFor="let artclass of listArtClasses; let indexofElementc = index"
+    >
+      <img
+        class="card-img-top"
+        src="{{ artclass.artClassImage }}"
+        alt="Card image cap"
+      />
       <div class="card-body">
-        <h5 class="card-title">{{artclass.artClassDescription}}</h5>
-        <p class="card-text">{{artclass.artClassDescription}}.</p>
-        <button mdbBtn type="submit" gradient="aqua" (click)="getArtClass(artclass)" rounded="true" mdbWavesEffect>View Class</button>      
-
+        <h5 class="card-title">{{ artclass.artClassDescription }}</h5>
+        <p class="card-text">{{ artclass.artClassDescription }}.</p>
+        <button
+          mdbBtn
+          type="submit"
+          gradient="aqua"
+          (click)="getArtClass(artclass)"
+          rounded="true"
+          mdbWavesEffect
+        >
+          View Class
+        </button>
       </div>
       <div class="card-footer">
         <small class="text-muted">Seats Available: 8</small>
       </div>
     </div>
-
   </div>
- 
 </div>

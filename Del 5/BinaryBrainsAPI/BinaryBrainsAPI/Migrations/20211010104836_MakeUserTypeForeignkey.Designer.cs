@@ -4,14 +4,16 @@ using BinaryBrainsAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BinaryBrainsAPI.Migrations
 {
     [DbContext(typeof(ArtechDbContext))]
-    partial class ArtechDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211010104836_MakeUserTypeForeignkey")]
+    partial class MakeUserTypeForeignkey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -578,12 +580,6 @@ namespace BinaryBrainsAPI.Migrations
                     b.Property<string>("ApplicationDimension")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ExhibitionApplicationID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Medium")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Price")
                         .HasColumnType("nvarchar(max)");
 
@@ -991,9 +987,6 @@ namespace BinaryBrainsAPI.Migrations
 
                     b.Property<string>("ArtistBio")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsVerified")
-                        .HasColumnType("bit");
 
                     b.Property<int>("SuburbID")
                         .HasColumnType("int");

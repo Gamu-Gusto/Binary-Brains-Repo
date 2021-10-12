@@ -44,5 +44,9 @@ namespace BinaryBrainsAPI.Entities.Artworks
         [ForeignKey("ArtworkTypeID")]
         public int ArtworkTypeID { get; set; }
         public ArtworkType ArtworkType { get; set; }
+
+        [ForeignKey("ExhibitionID")]
+        public int? ExhibitionID { get; set; }
+        public Exhibition Exhibition { get; set; }
     }
 }

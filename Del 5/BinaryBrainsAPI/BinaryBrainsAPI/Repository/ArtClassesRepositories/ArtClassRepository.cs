@@ -62,7 +62,7 @@ namespace BinaryBrainsAPI.Repository.ArtClassesRepositories
 
         IEnumerable<ArtClass> IAppRepository<ArtClass>.GetByString(string str)
         {
-            throw new NotImplementedException();
+            return _artechDb.ArtClass.Where(m => m.ClassTeacherID == Int32.Parse(str)).ToList();
         }
     }
 }

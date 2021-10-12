@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace BinaryBrainsAPI.Repository
 {
@@ -22,7 +23,7 @@ namespace BinaryBrainsAPI.Repository
         public IEnumerable<User> GetAll()
         {
 
-            return _artechDb.User.ToList();
+            return _artechDb.User.Include(x => x.UserType).ToList();
         }
         public void Add(User user)
         {
