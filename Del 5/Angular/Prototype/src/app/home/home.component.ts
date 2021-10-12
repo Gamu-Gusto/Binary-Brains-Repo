@@ -26,7 +26,11 @@ export class HomeComponent implements OnInit {
     private toastr: ToastrService
   ) {
     // sets an idle timeout of 30 seconds, for testing purposes.
+<<<<<<< HEAD
     idle.setIdle(3000000);
+=======
+    idle.setIdle(600);
+>>>>>>> d3ade780aad356f8155d327b0c1b0d7133c446dd
     // sets a timeout period of 5 seconds. after 10 seconds of inactivity, the user will be considered timed out.
     idle.setTimeout(5);
     // sets the default interrupts, in this case, things like clicks, scrolls, touches to the document
@@ -65,6 +69,11 @@ export class HomeComponent implements OnInit {
     this.idle.watch();
     this.idleState = 'Started.';
     this.timedOut = false;
+<<<<<<< HEAD
+=======
+    
+    
+>>>>>>> d3ade780aad356f8155d327b0c1b0d7133c446dd
   }
 
   ngOnInit(): void {

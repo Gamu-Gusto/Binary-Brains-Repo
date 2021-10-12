@@ -14,5 +14,8 @@ namespace BinaryBrainsAPI.Entities.Exhibitions
         public string ApplicationDimension{ get; set; }
 
         public string Price { get; set; }
+        public string Medium { get; set; }
+
+        public int ExhibitionApplicationID { get; set; }
     }
 }

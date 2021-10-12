@@ -288,8 +288,10 @@ refund: RefundsComponent;
      console.log(this.ratingsForm.value);
 
      if (this.ratingsForm.invalid) {
+
       return;
     }
+    
     else {
 
   

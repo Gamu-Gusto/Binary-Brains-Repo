@@ -120,8 +120,7 @@ export class ApplyExhibitionComponent implements OnInit {
 
     this.route.navigate(['/home/exhibitions']);
     this.modalService.dismissAll(applyExhibitionModal);
-    this.toastr.success('Application Successful', 'Success');
-    this.toastr.error('Application Unsuccessful', 'Error');
+
 
 
     if (this.exhibitionApplicationForm.invalid) {

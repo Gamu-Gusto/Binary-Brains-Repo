@@ -4,14 +4,16 @@ using BinaryBrainsAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BinaryBrainsAPI.Migrations
 {
     [DbContext(typeof(ArtechDbContext))]
-    partial class ArtechDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211011174848_fulllatest")]
+    partial class fulllatest
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -123,9 +125,8 @@ namespace BinaryBrainsAPI.Migrations
                     b.Property<string>("TeacherName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("TeacherPhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("varchar(50)");
+                    b.Property<int>("TeacherPhoneNumber")
+                        .HasColumnType("int");
 
                     b.Property<string>("TeacherSurname")
                         .HasColumnType("nvarchar(max)");
@@ -257,9 +258,6 @@ namespace BinaryBrainsAPI.Migrations
                     b.Property<int>("ArtworkTypeID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ExhibitionID")
-                        .HasColumnType("int");
-
                     b.Property<int>("FrameColourID")
                         .HasColumnType("int");
 
@@ -279,8 +277,6 @@ namespace BinaryBrainsAPI.Migrations
                     b.HasIndex("ArtworkStatusID");
 
                     b.HasIndex("ArtworkTypeID");
-
-                    b.HasIndex("ExhibitionID");
 
                     b.HasIndex("FrameColourID");
 
@@ -404,9 +400,6 @@ namespace BinaryBrainsAPI.Migrations
                     b.Property<string>("BookingStatus")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PaymentStatusID")
-                        .HasColumnType("int");
-
                     b.Property<int>("UserID")
                         .HasColumnType("int");
 
@@ -415,8 +408,6 @@ namespace BinaryBrainsAPI.Migrations
                     b.HasIndex("ArtClassID");
 
                     b.HasIndex("BookingNotificationID");
-
-                    b.HasIndex("PaymentStatusID");
 
                     b.HasIndex("UserID");
 
@@ -581,9 +572,6 @@ namespace BinaryBrainsAPI.Migrations
 
                     b.Property<int>("ExhibitionApplicationID")
                         .HasColumnType("int");
-
-                    b.Property<string>("Medium")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Price")
                         .HasColumnType("nvarchar(max)");
@@ -1023,9 +1011,8 @@ namespace BinaryBrainsAPI.Migrations
                     b.Property<string>("UserPassword")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserPhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("varchar(50)");
+                    b.Property<int>("UserPhoneNumber")
+                        .HasColumnType("int");
 
                     b.Property<int>("UserPostalCode")
                         .HasColumnType("int");
@@ -1037,8 +1024,6 @@ namespace BinaryBrainsAPI.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("UserID");
-
-                    b.HasIndex("UserTypeID");
 
                     b.ToTable("User");
                 });
@@ -1174,10 +1159,6 @@ namespace BinaryBrainsAPI.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BinaryBrainsAPI.Entities.Exhibition", "Exhibition")
-                        .WithMany()
-                        .HasForeignKey("ExhibitionID");
-
                     b.HasOne("BinaryBrainsAPI.Entities.Artworks.FrameColour", "FrameColour")
                         .WithMany()
                         .HasForeignKey("FrameColourID")
@@ -1206,8 +1187,6 @@ namespace BinaryBrainsAPI.Migrations
 
                     b.Navigation("ArtworkType");
 
-                    b.Navigation("Exhibition");
-
                     b.Navigation("FrameColour");
 
                     b.Navigation("MediumType");
@@ -1229,10 +1208,6 @@ namespace BinaryBrainsAPI.Migrations
                         .WithMany()
                         .HasForeignKey("BookingNotificationID");
 
-                    b.HasOne("BinaryBrainsAPI.Entities.Payments.PaymentStatus", "PaymentStatus")
-                        .WithMany()
-                        .HasForeignKey("PaymentStatusID");
-
                     b.HasOne("BinaryBrainsAPI.Entities.Users.User", "User")
                         .WithMany()
                         .HasForeignKey("UserID")
@@ -1242,8 +1217,6 @@ namespace BinaryBrainsAPI.Migrations
                     b.Navigation("ArtClass");
 
                     b.Navigation("BookingNotification");
-
-                    b.Navigation("PaymentStatus");
 
                     b.Navigation("User");
                 });
@@ -1434,17 +1407,6 @@ namespace BinaryBrainsAPI.Migrations
                         .IsRequired();
 
                     b.Navigation("City");
-                });
-
-            modelBuilder.Entity("BinaryBrainsAPI.Entities.Users.User", b =>
-                {
-                    b.HasOne("BinaryBrainsAPI.Entities.Users.UserType", "UserType")
-                        .WithMany()
-                        .HasForeignKey("UserTypeID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("UserType");
                 });
 
             modelBuilder.Entity("BinaryBrainsAPI.Entities.Users.UserType", b =>
