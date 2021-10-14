@@ -9,65 +9,46 @@ import { ExhibitionApplication } from '../../../model/Exhibitions/exhibition-app
 @Component({
   selector: 'app-applications',
   templateUrl: './applications.component.html',
-  styleUrls: ['./applications.component.scss'],
+  styleUrls: ['./applications.component.scss']
 })
 export class ApplicationsComponent implements OnInit {
-<<<<<<< HEAD
-  listMyApplication: any;
-  listAllApplications: any;
-  listExhibition: any;
-=======
   
 listMyApplication:any;
 listAllApplications: any;
->>>>>>> d3ade780aad356f8155d327b0c1b0d7133c446dd
   loggedInUser: any;
   cancelModal: any;
 
-  constructor(
-    private route: Router,
-    private modalService: NgbModal,
-    private toastr: ToastrService,
-    public data: DataService,
-    private formBuilder: FormBuilder,
-    private fb: FormBuilder
-  ) {}
+  constructor(private route: Router, private modalService: NgbModal, private toastr: ToastrService, public data: DataService
+    , private formBuilder: FormBuilder, private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    this.data.getApplications().then((result) => {
+
+    this.data.getApplications().then((result) => { 
+       
       console.log(result);
 
-      this.listAllApplications = result;
+      this.listAllApplications = result
 
       this.loggedInUser = JSON.parse(localStorage.getItem('LoggedinUser'));
 
-      console.log(this.loggedInUser);
+      console.log(this.loggedInUser );
+    
+      this.listMyApplication  =this.listAllApplications.filter((application: ExhibitionApplication) => application.userID === this.loggedInUser.userID);
 
-      this.listMyApplication = this.listAllApplications.filter(
-        (application: ExhibitionApplication) =>
-          application.userID === this.loggedInUser.userID
-      );
+      localStorage.setItem('UserApplications',JSON.stringify(this.listMyApplication));
+     
 
-      localStorage.setItem(
-        'UserApplications',
-        JSON.stringify(this.listMyApplication)
-      );
+      console.log(this.listMyApplication );
 
-      console.log(this.listMyApplication);
     });
+    
   }
 
   cancelApplication(cancelApplicationModal) {
     this.modalService.open(cancelApplicationModal, { centered: true });
+
   }
 
-<<<<<<< HEAD
-  confirmCancel(cancelApplicationModal) {
-    // this.route.navigate(['/home/art-classes']);
-    this.modalService.dismissAll(cancelApplicationModal);
-    this.toastr.success('Application Successfully Cancelled', 'Success');
-    this.toastr.error('Could not Cancel', 'Error');
-=======
   confirmCancel(cancelApplicationModal,application){
     // this.route.navigate(['/home/art-classes']);
 
@@ -112,18 +93,15 @@ listAllApplications: any;
 
 
 
->>>>>>> d3ade780aad356f8155d327b0c1b0d7133c446dd
   }
 
-  selectedApp(application) {
-    localStorage.setItem('SelectedApplication', JSON.stringify(application));
+  selectedApp(application){
+
+    localStorage.setItem('SelectedApplication',JSON.stringify(application));
 
 
 
     this.route.navigate(['/home/my-exhibitions/my-application']);
-<<<<<<< HEAD
-  }
-=======
   };
 
   generateTag(application){
@@ -137,5 +115,4 @@ listAllApplications: any;
 
   }
 
->>>>>>> d3ade780aad356f8155d327b0c1b0d7133c446dd
 }

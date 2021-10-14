@@ -41,8 +41,16 @@
         </li>
       </ul>
       <hr />
-      <p>Date: {{ exhibition.ExhibitionDate }}</p>
-      <P>Time: {{ exhibition.ExhibitionTime }}</P>
+      <p>
+        Start-Date:
+        {{ exhibition.exhibitionStartDateTime | date: "mediumDate" }} at
+        {{ exhibition.exhibitionStartDateTime | date: "shortTime" }}
+      </p>
+      <P
+        >End-Date:
+        {{ exhibition.exhibitionEndDateTime | date: "mediumDate" }} at
+        {{ exhibition.exhibitionEndDateTime | date: "shortTime" }}</P
+      >
       <p>Venue: {{ exhibition.venue.venueDescription }}</p>
     </div>
   </div>

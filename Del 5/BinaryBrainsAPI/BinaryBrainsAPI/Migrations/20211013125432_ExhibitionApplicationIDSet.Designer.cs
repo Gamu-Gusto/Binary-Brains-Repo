@@ -4,14 +4,16 @@ using BinaryBrainsAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BinaryBrainsAPI.Migrations
 {
     [DbContext(typeof(ArtechDbContext))]
-    partial class ArtechDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211013125432_ExhibitionApplicationIDSet")]
+    partial class ExhibitionApplicationIDSet
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -885,9 +887,6 @@ namespace BinaryBrainsAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("AnnounceStamp")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("AnnouncementDescription")
                         .HasColumnType("nvarchar(max)");

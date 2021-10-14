@@ -48,7 +48,6 @@ export class DataService {
   monthseperator: string;
   dayseperator: string;
   loginInUserData: any;
-  artworkList: Artwork[];
 
   constructor(private http: HttpClient, private toastr: ToastrService) {}
 
@@ -90,12 +89,7 @@ export class DataService {
   }
 
   getAllArtwork(): Promise<any> {
-    return this.http
-      .get(this.apiURL + '/Artwork')
-      .toPromise()
-      .then((res) => {
-        this.artworkList = res as Artwork[];
-      });
+    return this.http.get(this.apiURL + '/Artwork').toPromise();
   }
 
   getAllArtClasses(): Promise<any> {
@@ -244,21 +238,16 @@ export class DataService {
       .toPromise();
   }
 
-<<<<<<< HEAD
-  addFeedback(feedBack): Promise<any> {
-=======
-  cancelApplication(id){
-
+  cancelApplication(id) {
     return this.http
-    .delete<any>(this.apiURL + '/ExhibitionApplication/' + id, this.httpOptions)
-    .toPromise()
-
-
+      .delete<any>(
+        this.apiURL + '/ExhibitionApplication/' + id,
+        this.httpOptions
+      )
+      .toPromise();
   }
 
-  addFeedback(feedBack): Promise<any>  {
-
->>>>>>> d3ade780aad356f8155d327b0c1b0d7133c446dd
+  addFeedback(feedBack): Promise<any> {
     console.log(feedBack);
 
     return this.http
@@ -266,39 +255,27 @@ export class DataService {
       .toPromise();
   }
 
-<<<<<<< HEAD
-  addExhibitionApplication(exhibitionApplication): Promise<any> {
-=======
-
-  addApplicationTag(tag){
-
-
+  addApplicationTag(tag) {
     tag = {
-
-      "applicationTagID": 0,
-      "applicationArtworkTitle": tag.applicationArtworkTitle,
-      "applicationDimension": tag.applicationDimension,
-      "price": tag.price,
-      "medium": tag.medium,
-      "exhibitionApplicationID": tag.exhibitionApplicationID
-    }
+      applicationTagID: 0,
+      applicationArtworkTitle: tag.applicationArtworkTitle,
+      applicationDimension: tag.applicationDimension,
+      price: tag.price,
+      medium: tag.medium,
+      exhibitionApplicationID: tag.exhibitionApplicationID,
+    };
 
     console.log(tag);
     return this.http
-    .post<Feedback>(this.apiURL + '/ApplicationTag', tag, this.httpOptions)
-    .toPromise()
-
+      .post<Feedback>(this.apiURL + '/ApplicationTag', tag, this.httpOptions)
+      .toPromise();
   }
 
-  getAllApplicationTags(){
-
+  getAllApplicationTags() {
     return this.http.get(this.apiURL + '/ApplicationTag').toPromise();
+  }
 
-  };
-
-  addExhibitionApplication(exhibitionApplication): Promise<any>  {
-
->>>>>>> d3ade780aad356f8155d327b0c1b0d7133c446dd
+  addExhibitionApplication(exhibitionApplication): Promise<any> {
     console.log(exhibitionApplication);
 
     return this.http

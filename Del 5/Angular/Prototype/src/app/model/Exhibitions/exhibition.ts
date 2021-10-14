@@ -1,19 +1,18 @@
 export class Exhibition {
-    ExhibitionID: string;
-    ExhibitionName: string;
-    ExhibitionDescription: string;
-    ExhibitionDate: string;
-    exhibitionStartDateTime: string;
-    ExhibitionTime: string;
-    Exhibition_Image: string;
+  exhibitionID: string;
+  exhibitionName: string;
+  exhibitionDescription: string;
+  exhibitionEndDateTime: string;
+  exhibitionStartDateTime: string;
+  exhibition_Image: string;
 
-    ExhibitionType: string;
+  exhibitionType: string;
 
-    Schedule: string;
+  echedule: string;
 
-    Organisation: string;
+  erganisation: string;
 
-    ExhibitionAnnouncement: string;
+  exhibitionAnnouncement: string;
 
-    Venue: string;
+  venue: string;
 }

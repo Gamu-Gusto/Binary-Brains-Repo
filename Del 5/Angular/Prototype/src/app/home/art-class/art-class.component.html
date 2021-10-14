@@ -36,8 +36,14 @@
         Teacher: {{ artclass.classTeacher.teacherName }}
         {{ artclass.classTeacher.teacherSurname }}
       </p>
-      <p>Start-Date: {{ artclass.artClassStartDateTime | date }}</p>
-      <P>End-Date: {{ artclass.artClassEndDateTime | date }} </P>
+      <p>
+        Start-Date: {{ artclass.artClassStartDateTime | date: "mediumDate" }} at
+        {{ artclass.artClassStartDateTime | date: "shortTime" }}
+      </p>
+      <P
+        >End-Date: {{ artclass.artClassEndDateTime | date: "mediumDate" }} at
+        {{ artclass.artClassStartDateTime | date: "shortTime" }}</P
+      >
 
       <p>Venue: {{ artclass.venue.venueDescription }}</p>
       <p>Seats Open: 6</p>
@@ -77,7 +83,7 @@
       </button>
     </div>
     <div class="modal-body">
-      <p>Are you sure you only want to book for class?</p>
+      <p>Are you sure you want to book for this class?</p>
     </div>
     <div class="modal-footer">
       <button

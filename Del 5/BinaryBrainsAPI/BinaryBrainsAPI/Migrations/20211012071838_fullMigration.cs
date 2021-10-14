@@ -3,11 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BinaryBrainsAPI.Migrations
 {
-<<<<<<< HEAD:Del 5/BinaryBrainsAPI/BinaryBrainsAPI/Migrations/20211012070021_fullMigration.cs
     public partial class fullMigration : Migration
-=======
-    public partial class fulllatest : Migration
->>>>>>> d3ade780aad356f8155d327b0c1b0d7133c446dd:Del 5/BinaryBrainsAPI/BinaryBrainsAPI/Migrations/20211011174848_fulllatest.cs
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -47,6 +43,7 @@ namespace BinaryBrainsAPI.Migrations
                     ApplicationArtworkTitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ApplicationDimension = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Price = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Medium = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ExhibitionApplicationID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
