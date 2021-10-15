@@ -35,7 +35,7 @@
         {{ booking.artClass.artClassStartDateTime | date }} -
         {{ booking.artClass.artClassEndDateTime | date }}
       </td>
-      <td *ngIf="booking.bookingStatus !== 'Completed'">
+      <td *ngIf="booking.bookingStatus == 'Pending Payment'">
         <button
           mdbBtn
           type="button"
