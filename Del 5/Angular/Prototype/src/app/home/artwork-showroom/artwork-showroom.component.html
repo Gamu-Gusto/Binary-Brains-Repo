@@ -9,6 +9,7 @@
     <div class="top-right"><h1>Artist Artworks</h1></div>
   </div>
   <hr />
+ 
   <ng-container *ngIf="show">
     <ng-container *ngIf="allart">
       <button
@@ -36,6 +37,21 @@
       >
         View All Artwork
       </button>
+    </ng-container>
+    <ng-container >
+      <div style="float: right;">
+      <button
+        mdbBtn
+        type="button"
+        gradient="purple"
+        rounded="true"
+        mdbWavesEffect
+        (click)="addArtwork()"
+        mdbWavesEffect
+      >
+        Add Artwork
+      </button>
+    </div>
     </ng-container>
   </ng-container>
 

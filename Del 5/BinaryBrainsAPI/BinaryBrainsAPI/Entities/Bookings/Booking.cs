@@ -30,9 +30,7 @@ namespace BinaryBrainsAPI.Entities.Bookings
         public int UserID { get; set; }
         public User User { get; set; }
 
-        [ForeignKey("PaymentStatusID")]
-        public int? PaymentStatusID { get; set; }
-        public PaymentStatus PaymentStatus { get; set; }
+    
 
 
 

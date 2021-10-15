@@ -39,7 +39,11 @@ namespace BinaryBrainsAPI.Repository.ArtworksRepositories
         public IEnumerable<Artwork> GetAll()
         {
 
-            return _artechDb.Artwork.Include(m => m.MediumType).Include(s => s.SurfaceType).Include(f => f.FrameColour).Include(d => d.ArtworkDimension).Include(x => x.ArtworkStatus).Include(y => y.ArtworkType).ToList();
+            return _artechDb.Artwork.Include(m => m.MediumType)
+                .Include(s => s.SurfaceType).Include(f => f.FrameColour)
+                .Include(d => d.ArtworkDimension)
+                .Include(x => x.ArtworkStatus)
+                .Include(y => y.ArtworkType).ToList();
             
         }
 

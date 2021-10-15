@@ -21,7 +21,7 @@
         <td>{{application.exhibition.exhibitionName}}</td>
         <td>{{application.applicationStatus.applicationStatusDescription}}</td>
         <td>
-            <button mdbBtn type="button" gradient="peach" rounded="true" *ngIf="application.applicationStatusID !='4'" mdbWavesEffect (click)="cancelApplication(cancelApplicationModal)">Withdraw <i class="fas fa-sign-out-alt"></i></button>
+            <button mdbBtn type="button" gradient="peach" rounded="true" *ngIf="application.applicationStatusID =='1'" mdbWavesEffect (click)="cancelApplication(cancelApplicationModal)">Withdraw <i class="fas fa-sign-out-alt"></i></button>
         </td>
         <td>
           <button mdbBtn type="button" gradient="purple" *ngIf="application.applicationStatusID =='2'" (click) ="generateTag(application);"  rounded="true" mdbWavesEffect>Generate Tags</button>            

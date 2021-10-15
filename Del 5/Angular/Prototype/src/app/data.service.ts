@@ -395,6 +395,13 @@ verifyAccount(id){
 
   }
 
+  removeTag(id){
+
+    return this.http
+    .delete<any>(this.apiURL + '/ApplicationTag/' + id, this.httpOptions)
+    .toPromise()
+  }
+
   addClassTeacher(classteacher): Observable<ClassTeacher> {
 
     console.log(classteacher);
@@ -417,19 +424,28 @@ verifyAccount(id){
     return this.http.get(this.weatherApiURL).toPromise();
   }
 
+  getAllSurfaceType(){
+    return this.http.get(this.apiURL + '/SurfaceType').toPromise();
+  }
+  getAllMediumTypes(){
+    return this.http.get(this.apiURL + '/MediumType').toPromise();
+  }
+  getAllArtworkStatuses(){
+    return this.http.get(this.apiURL + '/ArtworkStatus').toPromise();
+  } 
+  getAllDimesisons(){return this.http.get(this.apiURL + '/ArtworkDimension').toPromise();
+}
+  getAllFrameColors(){return this.http.get(this.apiURL + '/FrameColour').toPromise();}
+  getAllArtworkTypes(){return this.http.get(this.apiURL + '/ArtworkType').toPromise();}
 
-  addArtwork(artwork): Observable<Artwork> {
+
+  addArtwork(artwork): Promise<any>  {
 
     console.log(artwork);
 
     return this.http
-      .post<Artwork>(this.apiURL + '/Artwork', JSON.stringify(artwork), this.httpOptions)
-      .pipe(
-        retry(1)
-        ,
-        catchError(this.handleError)
-
-      )
+    .post<Artwork>(this.apiURL + '/Artwork', artwork, this.httpOptions)
+    .toPromise()
 
 
 

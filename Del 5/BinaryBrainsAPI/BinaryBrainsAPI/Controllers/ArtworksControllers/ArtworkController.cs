@@ -52,27 +52,27 @@ namespace BinaryBrainsAPI.Controllers.ArtworksControllers
 
              IEnumerable<Artwork> artworks = _appRepository.GetAll();
 
-            //foreach (Artwork i in artworks)
-            //{
-            //  User user = _userRepository.Get((long)i.UserID);
-            //   SurfaceType surfaceType = _surfaceTypeRepository.Get((long)i.SurfaceTypeID);
-            //    MediumType mediumType = _mediumTypeRepository.Get((long)i.MediumTypeID);
-            //    ArtworkStatus artworkStatus = _artworkStatusRepository.Get((long)i.ArtworkStatusID);
-            // ArtworkDimension artworkDimension = _artworkDimesionRepository.Get((long)i.ArtworkDimensionID);
-            //ArtworkType artworkType = _artworkTypeRepository.Get((long)i.ArtworkTypeID);
+            foreach (Artwork i in artworks)
+            {
+             User user = _userRepository.Get((long)i.UserID);
+             SurfaceType surfaceType = _surfaceTypeRepository.Get((long)i.SurfaceTypeID);
+            MediumType mediumType = _mediumTypeRepository.Get((long)i.MediumTypeID);
+            ArtworkStatus artworkStatus = _artworkStatusRepository.Get((long)i.ArtworkStatusID);
+            ArtworkDimension artworkDimension = _artworkDimesionRepository.Get((long)i.ArtworkDimensionID);
+            ArtworkType artworkType = _artworkTypeRepository.Get((long)i.ArtworkTypeID);
                //Image image = _imageRepository.Get((long)i.ImageID);
 
-             //i.User = user;
-             //i.SurfaceType = surfaceType;
-             //i.MediumType = mediumType;
-             //i.ArtworkStatus = artworkStatus;
-             //i.ArtworkDimension = artworkDimension;
-             //i.ArtworkType = artworkType;
+             i.User = user;
+             i.SurfaceType = surfaceType;
+             i.MediumType = mediumType;
+            i.ArtworkStatus = artworkStatus;
+             i.ArtworkDimension = artworkDimension;
+             i.ArtworkType = artworkType;
             //i.Image = image;
 
 
-            //}
-           // IEnumerable<Artwork> artworks = _appRepository.GetAll();
+            }
+            
 
             return Ok(artworks);
         }
@@ -95,17 +95,38 @@ namespace BinaryBrainsAPI.Controllers.ArtworksControllers
 
         // GET: api/Create
         [HttpPost]
-        public IActionResult Post([FromBody] Artwork artwork)
+        public IActionResult Post([FromBody] dynamic artwork)
         {
-            if (artwork == null)
+
+            string artworkStringToResialise = artwork.ToString();
+
+            dynamic serialArtwork = Newtonsoft.Json.JsonConvert.DeserializeObject(artworkStringToResialise);
+
+
+            Artwork artwork1 = new Artwork();
+
+            artwork1.ArtworkTitle = serialArtwork.ArtworkTitle;
+            artwork1.ArtworkDimensionID = serialArtwork.ArtworkDimensionID;
+            artwork1.ArtworkTypeID = serialArtwork.ArtworkTypeID;
+            artwork1.ArtworkPrice = serialArtwork.ArtworkPrice;
+            artwork1.ArtworkStatusID = serialArtwork.ArtworkStatusID;
+            artwork1.ArtworkImage = serialArtwork.ArtworkPicture1BASE64;
+            artwork1.FrameColourID = serialArtwork.FrameColourID;
+            artwork1.MediumTypeID = serialArtwork.MediumTypeID;
+            artwork1.SurfaceTypeID = serialArtwork.SurfaceTypeID;
+            artwork1.UserID = serialArtwork.UserID;
+
+
+
+            if (artwork1 == null)
             {
                 return BadRequest("Artwork is null.");
             }
-            _appRepository.Add(artwork);
+            _appRepository.Add(artwork1);
             return CreatedAtRoute(
                   "GetArtwork",
-                  new { Id = artwork.ArtworkID },
-                  artwork);
+                  new { Id = artwork1.ArtworkID },
+                  artwork1);
         }
 
         // PUT: api/Artwork/5

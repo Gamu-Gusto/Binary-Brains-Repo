@@ -41,6 +41,13 @@ public allart:boolean = false;
 
   }
 
+  addArtwork(){
+
+
+    this.route.navigate(['/home/add-artwork']);
+
+  }
+
 
   getMyArtwork(){
 

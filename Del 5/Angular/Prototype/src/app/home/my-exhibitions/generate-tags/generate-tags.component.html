@@ -41,7 +41,7 @@ let indexofElementc= index;
       </tr>
       <tr style="text-align: center;">
         <th colspan="2">
-            <button mdbBtn type="button" gradient="peach" rounded="true" mdbWavesEffect (click)="deleteTag(deleteTagModal)">Delete Tag</button>
+            <button mdbBtn type="button" gradient="peach" rounded="true" mdbWavesEffect (click)="deleteTag(deleteTagModal, tag.applicationTagID)">Delete Tag</button>
             <!-- <button mdbBtn type="button" gradient="aqua" rounded="true" mdbWavesEffect (click)="addTag(addTagModal)">Edit Tag</button> -->
 
         </th>
@@ -112,8 +112,8 @@ let indexofElementc= index;
       <button mdbBtn type="button" gradient="purple" (click)="onConfirmTag(addTagModal,event)" rounded="true" mdbWavesEffect>Save</button>
     </div>
   </ng-template>
-</form>
 
+</form>
   <ng-template #deleteTagModal let-modal>
     <div class="modal-header">
       <h4 class="modal-title">Delete Tag</h4>

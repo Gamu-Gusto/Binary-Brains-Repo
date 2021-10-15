@@ -47,6 +47,7 @@ import { RegisterComponent } from './register/register.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { MyApplicationComponent } from './home/my-exhibitions/my-application/my-application.component';
 import { VerifyAccountComponent } from './verify-account/verify-account.component';
+import { AddArtworkComponent } from './home/add-artwork/add-artwork.component';
 
 
 
@@ -78,6 +79,7 @@ const routes: Routes = [
     { path: 'exhibitions', component: ExhibitionsComponent},
     { path: 'add-exhibition', component: AddExhibitionComponent},
     { path: 'artwork-showroom', component: ArtworkShowroomComponent},
+    { path: 'add-artwork', component: AddArtworkComponent},
     { path: 'announcements', component: AnnouncementsComponent},
     { path: 'contact-user', component: ContactUserComponent},
     { path: 'user-account', component: UserAccountComponent},
