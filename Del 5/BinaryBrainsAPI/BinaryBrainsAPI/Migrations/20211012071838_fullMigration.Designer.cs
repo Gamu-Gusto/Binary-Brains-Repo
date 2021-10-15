@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BinaryBrainsAPI.Migrations
 {
     [DbContext(typeof(ArtechDbContext))]
-    [Migration("20211010104836_MakeUserTypeForeignkey")]
-    partial class MakeUserTypeForeignkey
+    [Migration("20211012071838_fullMigration")]
+    partial class fullMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -125,8 +125,9 @@ namespace BinaryBrainsAPI.Migrations
                     b.Property<string>("TeacherName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TeacherPhoneNumber")
-                        .HasColumnType("int");
+                    b.Property<string>("TeacherPhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("TeacherSurname")
                         .HasColumnType("nvarchar(max)");
@@ -580,6 +581,12 @@ namespace BinaryBrainsAPI.Migrations
                     b.Property<string>("ApplicationDimension")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("ExhibitionApplicationID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Medium")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Price")
                         .HasColumnType("nvarchar(max)");
 
@@ -988,6 +995,9 @@ namespace BinaryBrainsAPI.Migrations
                     b.Property<string>("ArtistBio")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsVerified")
+                        .HasColumnType("bit");
+
                     b.Property<int>("SuburbID")
                         .HasColumnType("int");
 
@@ -1015,8 +1025,9 @@ namespace BinaryBrainsAPI.Migrations
                     b.Property<string>("UserPassword")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserPhoneNumber")
-                        .HasColumnType("int");
+                    b.Property<string>("UserPhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
 
                     b.Property<int>("UserPostalCode")
                         .HasColumnType("int");

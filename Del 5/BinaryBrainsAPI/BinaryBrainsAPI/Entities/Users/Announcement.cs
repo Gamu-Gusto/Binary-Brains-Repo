@@ -12,5 +12,6 @@ namespace BinaryBrainsAPI.Entities.Users
         public int AnnouncementID { get; set; }
         public string AnnouncementTitle { get; set; }
         public string AnnouncementDescription { get; set; }
+        public DateTime AnnounceStamp { get; set; }
     }
 }

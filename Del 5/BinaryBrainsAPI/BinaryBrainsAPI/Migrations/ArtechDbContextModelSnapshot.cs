@@ -123,8 +123,9 @@ namespace BinaryBrainsAPI.Migrations
                     b.Property<string>("TeacherName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TeacherPhoneNumber")
-                        .HasColumnType("int");
+                    b.Property<string>("TeacherPhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("TeacherSurname")
                         .HasColumnType("nvarchar(max)");
@@ -578,7 +579,10 @@ namespace BinaryBrainsAPI.Migrations
                     b.Property<string>("ApplicationDimension")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ExhibitionApplicationID")
+                    b.Property<int?>("ExhibitionApplicationID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ExhibitionID")
                         .HasColumnType("int");
 
                     b.Property<string>("Medium")
@@ -588,6 +592,10 @@ namespace BinaryBrainsAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ApplicationTagID");
+
+                    b.HasIndex("ExhibitionApplicationID");
+
+                    b.HasIndex("ExhibitionID");
 
                     b.ToTable("ApplicationTag");
                 });
@@ -878,6 +886,9 @@ namespace BinaryBrainsAPI.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("AnnounceStamp")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("AnnouncementDescription")
                         .HasColumnType("nvarchar(max)");
 
@@ -1022,8 +1033,9 @@ namespace BinaryBrainsAPI.Migrations
                     b.Property<string>("UserPassword")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserPhoneNumber")
-                        .HasColumnType("int");
+                    b.Property<string>("UserPhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
 
                     b.Property<int>("UserPostalCode")
                         .HasColumnType("int");
@@ -1320,6 +1332,21 @@ namespace BinaryBrainsAPI.Migrations
                     b.Navigation("Schedule");
 
                     b.Navigation("Venue");
+                });
+
+            modelBuilder.Entity("BinaryBrainsAPI.Entities.Exhibitions.ApplicationTag", b =>
+                {
+                    b.HasOne("BinaryBrainsAPI.Entities.Exhibitions.ExhibitionApplication", "ExhibitionApplication")
+                        .WithMany()
+                        .HasForeignKey("ExhibitionApplicationID");
+
+                    b.HasOne("BinaryBrainsAPI.Entities.Exhibition", "Exhibition")
+                        .WithMany()
+                        .HasForeignKey("ExhibitionID");
+
+                    b.Navigation("Exhibition");
+
+                    b.Navigation("ExhibitionApplication");
                 });
 
             modelBuilder.Entity("BinaryBrainsAPI.Entities.Exhibitions.ExhibitionAnnouncement", b =>

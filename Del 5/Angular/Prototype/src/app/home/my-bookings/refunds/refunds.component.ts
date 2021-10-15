@@ -12,10 +12,9 @@ import { Refund } from '../../../model/Payments/refund';
 @Component({
   selector: 'app-refunds',
   templateUrl: './refunds.component.html',
-  styleUrls: ['./refunds.component.scss']
+  styleUrls: ['./refunds.component.scss'],
 })
 export class RefundsComponent implements OnInit {
-
   listRefunds: string[];
   loggedInUser: any;
   listPayments: any;
@@ -23,96 +22,84 @@ export class RefundsComponent implements OnInit {
   listBookingID: string[];
   listBookings: Booking[];
   refundID: [];
-  listUserPayments :Payment[];
-  refunds:any;
-  listUserRefunds:string[];
+  listUserPayments: Payment[];
+  refunds: any;
+  listUserRefunds: string[];
 
-  constructor(private route: Router, private modalService: NgbModal, private toastr: ToastrService,public data: DataService
-    , private formBuilder: FormBuilder, private fb: FormBuilder,public datepipe: DatePipe) { }
+  constructor(
+    private route: Router,
+    private modalService: NgbModal,
+    private toastr: ToastrService,
+    public data: DataService,
+    private formBuilder: FormBuilder,
+    private fb: FormBuilder,
+    public datepipe: DatePipe
+  ) {}
 
   ngOnInit(): void {
-
-      this.data.getAllPayments().then((result) => { 
-       
+    this.data.getAllPayments().then((result) => {
       console.log(result);
 
-      this.listPayments = result
+      this.listPayments = result;
 
       this.loggedInUser = JSON.parse(localStorage.getItem('LoggedinUser'));
 
       this.listBookings = JSON.parse(localStorage.getItem('UserBookings'));
 
+      console.log(this.listBookings);
 
-      console.log(this.listBookings );
+      for (let i = 0; i < this.listBookings.length; i++) {
+        var id = this.listBookings[i].bookingID;
 
-     for(let i=0; i< this.listBookings.length; i++){
+        this.listBookingID = [];
 
-      var id = this.listBookings[i].bookingID;
-
-      this.listBookingID = [ ]; 
-
-      this.listBookingID.push(id);
-
-
-     }
-
-
-     for (let i=0; i < this.listBookingID.length; i++){
-
-      this.listUserPayments  = this.listPayments.filter((paymn: Payment) => paymn.bookingID === this.listBookingID[i]);
-
-      console.log(this.listUserPayments);
-
-      for (let j = 0; j<this.listUserPayments.length; j++){
-
-        var paymmentRefundID = this.listUserPayments[j].refundID;
-
-        this.listRefunds = [ ]; 
-
-        this.listRefunds.push(paymmentRefundID);
-
-        
+        this.listBookingID.push(id);
       }
 
-      console.log(this.listRefunds);
+      for (let i = 0; i < this.listBookingID.length; i++) {
+        this.listUserPayments = this.listPayments.filter(
+          (paymn: Payment) => paymn.bookingID === this.listBookingID[i]
+        );
 
-     }
+        console.log(this.listUserPayments);
 
-     console.log(this.listBookingID);
+        for (let j = 0; j < this.listUserPayments.length; j++) {
+          var paymmentRefundID = this.listUserPayments[j].refundID;
 
-    /*
+          this.listRefunds = [];
+
+          this.listRefunds.push(paymmentRefundID);
+        }
+
+        console.log(this.listRefunds);
+      }
+
+      console.log(this.listBookingID);
+
+      /*
       this.listUserBookings  =this.listBookings.filter((bking: Booking) => bking.userID === this.loggedInUser.userID);
 
       console.log(this.listUserBookings );
     */
-
     });
 
-    this.data.getAllRefunds().then((result) => { 
-       
+    this.data.getAllRefunds().then((result) => {
       console.log(result);
 
-      this.refunds = result
+      this.refunds = result;
 
-      console.log('REFUNDIDS',this.listRefunds);
+      console.log('REFUNDIDS', this.listRefunds);
 
-if (this.listRefunds !== undefined){
+      if (this.listRefunds !== undefined) {
+        for (let i = 0; i < this.listRefunds.length; i++) {
+          this.listUserRefunds = [];
 
-      for (let i=0; i < this.listRefunds.length; i++){
-
-        this.listUserRefunds = [ ]; 
-
-        this.listUserRefunds  = this.refunds.filter((refnd: Refund) => refnd.refundID === this.listRefunds[i]);
-  
-        
+          this.listUserRefunds = this.refunds.filter(
+            (refnd: Refund) => refnd.refundID === this.listRefunds[i]
+          );
+        }
       }
-    }
       console.log(this.listUserRefunds);
-    
     });
-
-
-
   }
-
 }

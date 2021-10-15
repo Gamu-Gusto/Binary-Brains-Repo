@@ -1,14 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-import {RouterModule} from '@angular/router';
-import {DataService} from'./data.service';
-import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
-import { NgbDateCustomParserFormatter } from  'src/ngb-date-custom-parser-formatter';
-import { NgxMaskModule} from 'ngx-mask';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { DataService } from './data.service';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgbDateCustomParserFormatter } from 'src/ngb-date-custom-parser-formatter';
+import { NgxMaskModule } from 'ngx-mask';
 import { StorageServiceModule } from 'ngx-webstorage-service';
 import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
-
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -40,7 +39,6 @@ import { ClassComponent } from './artist-home/class/class.component';
 import { ClassesComponent } from './artist-home/classes/classes.component';
 import { ArtistbookingComponent } from './artist-home/artist-bookings/artistbooking/artistbooking.component';
 import { ApplyExhibitionComponent } from './home/apply-exhibition/apply-exhibition.component';
-
 
 import { ArtistRefundsComponent } from './artist-home/artist-bookings/artist-refunds/artist-refunds.component';
 import { ArtistCompletedComponent } from './artist-home/artist-bookings/artist-completed/artist-completed.component';
@@ -75,8 +73,6 @@ import { DatePipe } from '@angular/common';
 import { ExhibitionapplicationComponent } from './home/exhibitions/exhibitionapplication/exhibitionapplication.component';
 import { MyApplicationComponent } from './home/my-exhibitions/my-application/my-application.component';
 import { VerifyAccountComponent } from './verify-account/verify-account.component';
-
-
 
 @NgModule({
   declarations: [
@@ -134,7 +130,6 @@ import { VerifyAccountComponent } from './verify-account/verify-account.componen
     ExhibitionapplicationComponent,
     MyApplicationComponent,
     VerifyAccountComponent,
-   
   ],
   imports: [
     BrowserModule,
@@ -142,12 +137,20 @@ import { VerifyAccountComponent } from './verify-account/verify-account.componen
     ToastrModule.forRoot(),
     MDBBootstrapModule.forRoot(),
     MdbModule,
-    BrowserAnimationsModule,NgIdleKeepaliveModule.forRoot(),ReactiveFormsModule,RouterModule,HttpClientModule, AppRoutingModule,  NgxMaskModule.forRoot()
+    BrowserAnimationsModule,
+    NgIdleKeepaliveModule.forRoot(),
+    ReactiveFormsModule,
+    RouterModule,
+    HttpClientModule,
+    AppRoutingModule,
+    NgxMaskModule.forRoot(),
   ],
-  providers: [DataService, DatePipe,
-    { provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter } 
+  providers: [
+    DataService,
+    DatePipe,
+    { provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter },
   ],
   bootstrap: [AppComponent],
-  schemas:[CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class AppModule { }
+export class AppModule {}

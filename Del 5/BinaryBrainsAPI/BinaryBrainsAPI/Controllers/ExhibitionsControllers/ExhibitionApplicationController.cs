@@ -1,9 +1,11 @@
-﻿using BinaryBrainsAPI.Entities;
+﻿using BinaryBrainsAPI.Data;
+using BinaryBrainsAPI.Entities;
 using BinaryBrainsAPI.Entities.Exhibitions;
 using BinaryBrainsAPI.Interfaces;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,14 +20,16 @@ namespace BinaryBrainsAPI.Controllers.ExhibitionsControllers
         private readonly IAppRepository<ExhibitionApplication> _appRepository;
         private readonly IAppRepository<Exhibition> _exhibitionRepository;
         private readonly IAppRepository<ApplicationStatus> _exhibitionApplicationStatusRepository;
+        readonly ArtechDbContext _artechDb;
 
         public ExhibitionApplicationController(IAppRepository<ExhibitionApplication> appRepository
             , IAppRepository<Exhibition> exhibitionRepository
-            , IAppRepository<ApplicationStatus> exhibitionApplicationStatusRepository)
+            , IAppRepository<ApplicationStatus> exhibitionApplicationStatusRepository, ArtechDbContext artechDb)
         {
             _appRepository = appRepository;
             _exhibitionRepository = exhibitionRepository;
             _exhibitionApplicationStatusRepository = exhibitionApplicationStatusRepository;
+            _artechDb = artechDb;
         }
 
         // GET: api/ExhibitionApplication
@@ -148,6 +152,34 @@ namespace BinaryBrainsAPI.Controllers.ExhibitionsControllers
             _appRepository.Update(exhibitionApplication,exhibitionApplicationToUpdate);
 
             return Ok(exhibitionApplication);
+        }
+
+        [HttpGet("acceptapplication/{id}")]
+        public IActionResult AcceptRefund(int id)
+        {
+
+            var appplicationStatus = _artechDb.ExhibitionApplication.Where(co => co.ExhibitionApplicationID == id).FirstOrDefault();
+
+            appplicationStatus.ApplicationStatusID = 2;
+
+            _artechDb.Entry(appplicationStatus).State = EntityState.Modified;
+            _artechDb.SaveChanges();
+
+            return Ok();
+        }
+
+        [HttpGet("declineapplication/{id}")]
+        public IActionResult DeclineRefund(int id)
+        {
+
+            var appplicationStatus = _artechDb.ExhibitionApplication.Where(co => co.ExhibitionApplicationID == id).FirstOrDefault();
+
+            appplicationStatus.ApplicationStatusID = 3;
+
+            _artechDb.Entry(appplicationStatus).State = EntityState.Modified;
+            _artechDb.SaveChanges();
+
+            return Ok();
         }
     }
 }

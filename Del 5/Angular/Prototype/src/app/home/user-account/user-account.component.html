@@ -1,80 +1,141 @@
 <form [formGroup]="userAccountForm" (ngSubmit)="onSubmit($event)">
   <div class="container">
-    <img src="../../../assets/art-class/art-class-poster.png" alt="" style="width: 900px; height: 300px" />
+    <!-- <div class="my-account"> -->
+    <img
+      src="../../../assets/art-class/art-class-poster.png"
+      alt=""
+      style="width: 900px; height: 300px"
+    />
     <div class="bottom-left">
-      <img src="../../../assets/user/User_Circle.png" alt="" style="width: 100px; height: 100px" />
-      <h1>{{user.userFirstName}} {{user.userLastName}}</h1>
-      <button type="button" class="btn btn-outline-secondary btn-rounded" data-mdb-ripple-color="dark">
+      <img
+        src="../../../assets/user/User_Circle.png"
+        alt=""
+        style="width: 100px; height: 100px"
+      />
+      <h1>{{ user.userFirstName }} {{ user.userLastName }}</h1>
+      <button
+        type="button"
+        class="btn btn-outline-secondary btn-rounded"
+        data-mdb-ripple-color="dark"
+      >
         Edit Profile Pic
       </button>
     </div>
   </div>
-  <h3>My Account</h3>
-  <p>View and edit personal info below.</p>
+  <div class="profile-header">
+    <h3>My Account</h3>
+    <p>View and edit personal info below.</p>
+  </div>
   <hr />
   <div class="profile-card">
     <div class="row">
       <div class="col">
         <label>First Name</label>
-        <input formControlName="userFirstName" type="text" class="form-control" style="width: 535px"
-          placeholder="Enter Name" />
+        <input
+          formControlName="userFirstName"
+          type="text"
+          class="form-control"
+          style="width: 535px"
+          placeholder="Enter Name"
+        />
         <br />
         <label>Last Name</label>
-        <input formControlName="userLastName" type="text" class="form-control" style="width: 535px"
-          placeholder="Enter Surname" />
+        <input
+          formControlName="userLastName"
+          type="text"
+          class="form-control"
+          style="width: 535px"
+          placeholder="Enter Surname"
+        />
         <br />
 
         <div>
           <label>Email Address</label>
-          <input formControlName="userEmail" type="email" class="form-control" style="width: 535px"
-            placeholder="E-mail" />
+          <input
+            formControlName="userEmail"
+            type="email"
+            class="form-control"
+            style="width: 535px"
+            placeholder="E-mail"
+          />
         </div>
 
-        <div class="col" *ngIf="user.userTypeID == 1">
+        <br />
+
+        <div *ngIf="user.userTypeID == 1">
           <label>Artist Bio</label>
-          <textarea type="text" formControlName="artistBio" class="form-control" style="width: 250px;"
-            placeholder="Artist Bio"></textarea>
+          <textarea
+            type="text"
+            formControlName="artistBio"
+            class="form-control"
+            style="width: 600px; height: 200px"
+            placeholder="Artist Bio"
+          ></textarea>
         </div>
-        <br>
-
-
-
 
         <br />
       </div>
       <div class="col">
-
         <div>
           <label>Phone Number</label>
-          <input formControlName="userPhoneNumber" type="text" class="form-control" style="width: 535px"
-            placeholder="+ (27)" />
+          <input
+            formControlName="userPhoneNumber"
+            type="text"
+            class="form-control"
+            style="width: 535px"
+            placeholder="+ (27)"
+          />
         </div>
         <br />
 
         <div>
           <label>Address Line</label>
-          <input formControlName="userAddressLine1" type="email" class="form-control" style="width: 535px"
-            placeholder="Address Line" />
+          <input
+            formControlName="userAddressLine1"
+            type="email"
+            class="form-control"
+            style="width: 535px"
+            placeholder="Address Line"
+          />
         </div>
-
 
         <br />
 
         <div>
           <label>Postal Code</label>
-          <input formControlName="userPostalCode" type="email" class="form-control" style="width: 535px"
-            placeholder="Postal Code" />
+          <input
+            formControlName="userPostalCode"
+            type="email"
+            class="form-control"
+            style="width: 535px"
+            placeholder="Postal Code"
+          />
         </div>
       </div>
     </div>
     <br />
   </div>
 
-  <button mdbBtn type="button" (click)="onSubmit($event)" gradient="purple" rounded="true" mdbWavesEffect>
+  <button
+    mdbBtn
+    type="button"
+    (click)="onSubmit($event)"
+    gradient="purple"
+    rounded="true"
+    mdbWavesEffect
+    style="margin-left: 100px"
+  >
     Update Info
   </button>
 
-  <button mdbBtn type="button"  (click)="backHome($event)" gradient="red" rounded="true" mdbWavesEffect>
+  <button
+    mdbBtn
+    type="button"
+    (click)="backHome($event)"
+    gradient="red"
+    rounded="true"
+    mdbWavesEffect
+  >
     Back
   </button>
 </form>

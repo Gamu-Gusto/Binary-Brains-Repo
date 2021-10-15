@@ -1,10 +1,12 @@
-﻿using BinaryBrainsAPI.Entities.ArtClasses;
+﻿using BinaryBrainsAPI.Data;
+using BinaryBrainsAPI.Entities.ArtClasses;
 using BinaryBrainsAPI.Entities.Bookings;
 using BinaryBrainsAPI.Entities.Payments;
 using BinaryBrainsAPI.Interfaces;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,15 +24,19 @@ namespace BinaryBrainsAPI.Controllers.PaymentsControllers
         private readonly IRefundRepository<Booking> _refundRepository;
         private readonly IAppRepository<ArtClass> _artclassRepository;
 
+        readonly ArtechDbContext _artechDb;
+ 
+
 
         public RefundController(IAppRepository<Refund> appRepository, IAppRepository<Payment> paymentRepository, IAppRepository<ArtClass> artclassRepository,
-            IAppRepository<Booking> bookingRepository, IRefundRepository<Booking> refundRepository)
+            IAppRepository<Booking> bookingRepository, IRefundRepository<Booking> refundRepository, ArtechDbContext artechDb)
         {
             _appRepository = appRepository;
             _paymentRepository = paymentRepository;
             _bookingRepository = bookingRepository;
             _refundRepository = refundRepository;
             _artclassRepository = artclassRepository;
+            _artechDb = artechDb;
         }
 
         // GET: api/Refund
@@ -166,5 +172,34 @@ namespace BinaryBrainsAPI.Controllers.PaymentsControllers
 
             return NoContent();
         }
+
+        [HttpGet("acceptrefund/{id}")]
+        public IActionResult AcceptRefund(int id)
+        {
+
+            var refundStatus = _artechDb.Refund.Where(co => co.RefundID == id).FirstOrDefault();
+
+            refundStatus.RefundStatus = "Accepted";
+
+            _artechDb.Entry(refundStatus).State = EntityState.Modified;
+            _artechDb.SaveChanges();
+
+            return Ok();
+        }
+
+        [HttpGet("declinerefund/{id}")]
+        public IActionResult DeclineRefund(int id)
+        {
+
+            var refundStatus = _artechDb.Refund.Where(co => co.RefundID == id).FirstOrDefault();
+
+            refundStatus.RefundStatus = "Declined";
+
+            _artechDb.Entry(refundStatus).State = EntityState.Modified;
+            _artechDb.SaveChanges();
+
+            return Ok();
+        }
+
     }
 }
