@@ -167,6 +167,7 @@ timestamp: any;
       CityId: new FormControl(''),
       timestamp: new FormControl(''),
       isVerified:new FormControl(''),
+      profilePicture:new FormControl(''),
       });
 
 
@@ -206,6 +207,7 @@ timestamp: any;
       CountryId: ['', Validators.required],
       timestamp: [''],
       isVerified: [''],
+      profilePicture:[''],
     },{ 
       validator: ConfirmedValidator('UserPassword', 'UserPasswordConfirm')
     })

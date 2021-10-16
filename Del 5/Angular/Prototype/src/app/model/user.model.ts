@@ -14,6 +14,7 @@ export class User {
         ArtistBio : string;
         UserTypeId: string;
         SuburbId: string;
+        profilePicture: string;
         timestamp: any;
         isVerified: any;
 }

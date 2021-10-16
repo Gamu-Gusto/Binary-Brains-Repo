@@ -21,6 +21,7 @@ namespace BinaryBrainsAPI.Entities.Users
         public int UserPhoneNumber { get; set; }
         public string UserPassword { get; set; }
         public DateTime UserDOB { get; set; }
+        public string? ProfilePicture { get; set; }
         public string UserAddressLine1 { get; set; }
         public string UserAddressLine2 { get; set; }
         public int UserPostalCode { get; set; }

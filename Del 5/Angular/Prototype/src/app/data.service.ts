@@ -188,6 +188,7 @@ export class DataService {
       suburbID: user.SuburbId,
       timestamp: this.timestamp,
       isVerified: false,
+      profilePicture: user.profilePicture,
     };
 
     console.table(user);
@@ -197,6 +198,9 @@ export class DataService {
   }
 
   updateUser(user) {
+
+    user.profilePicture = user.base64Picture;
+    
     return this.http
       .put<User>(this.apiURL + '/User/' + user.userID, user, this.httpOptions)
       .toPromise();

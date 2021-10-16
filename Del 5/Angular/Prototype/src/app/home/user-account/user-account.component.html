@@ -7,18 +7,29 @@
       style="width: 900px; height: 300px"
     />
     <div class="bottom-left">
-      <img
-        src="../../../assets/user/User_Circle.png"
-        alt=""
-        style="width: 100px; height: 100px"
-      />
+   
+      <div class="custom-file fileInputProfileWrap">
+          <input type="file" formControlName="profilePicture"  (change)="fileChangeEvent($event)" class="fileInputProfile">
+          <div class="img-space">
+
+              <ng-container *ngIf="isImageSaved; else elseTemplate">
+                  <img [src]="cardImageBase64"  style="width: 100px; height: 100px"/>
+              </ng-container>
+              <ng-template #elseTemplate>
+
+                  <img src='{{user.profilePicture}}'class="img-responsive" style="width: 100px; height: 100px">
+              </ng-template>
+
+          </div>
+
+      </div>
       <h1>{{ user.userFirstName }} {{ user.userLastName }}</h1>
       <button
         type="button"
         class="btn btn-outline-secondary btn-rounded"
         data-mdb-ripple-color="dark"
       >
-        Edit Profile Pic
+        Click On Pic To Edit
       </button>
     </div>
   </div>
