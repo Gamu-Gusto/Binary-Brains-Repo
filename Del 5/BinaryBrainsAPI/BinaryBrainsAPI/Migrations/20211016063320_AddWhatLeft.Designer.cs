@@ -4,14 +4,16 @@ using BinaryBrainsAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BinaryBrainsAPI.Migrations
 {
     [DbContext(typeof(ArtechDbContext))]
-    partial class ArtechDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211016063320_AddWhatLeft")]
+    partial class AddWhatLeft
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -981,21 +983,6 @@ namespace BinaryBrainsAPI.Migrations
                     b.HasIndex("CityID");
 
                     b.ToTable("Suburb");
-                });
-
-            modelBuilder.Entity("BinaryBrainsAPI.Entities.Users.Timer", b =>
-                {
-                    b.Property<int>("TimerID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("TimerSet")
-                        .HasColumnType("int");
-
-                    b.HasKey("TimerID");
-
-                    b.ToTable("Timer");
                 });
 
             modelBuilder.Entity("BinaryBrainsAPI.Entities.Users.User", b =>

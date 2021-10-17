@@ -13,33 +13,36 @@
 
   <div class="card-deck">
     <div
-      class="card"
+      class="col-4"
       *ngFor="let exhibition of listExhibitions; let indexofElementc = index"
     >
-      <img
-        class="card-img-top"
-        src="{{ exhibition.exhibitionImage }}"
-        alt="Card image cap"
-      />
-      <div class="card-body">
-        <h2 class="card-title">{{ exhibition.exhibitionName }}</h2>
-        <p class="card-text">{{ exhibition.exhibitionDescription }}</p>
-        <button
-          mdbBtn
-          type="button"
-          gradient="aqua"
-          (click)="getExhibition(exhibition)"
-          rounded="true"
-          mdbWavesEffect
-        >
-          View Exhibition
-        </button>
+      <div class="card">
+        <img
+          class="card-img-top"
+          src="{{ exhibition.exhibitionImage }}"
+          alt="Card image cap"
+        />
+        <div class="card-body">
+          <h2 class="card-title">{{ exhibition.exhibitionName }}</h2>
+          <p class="card-text">{{ exhibition.exhibitionDescription }}</p>
+          <button
+            mdbBtn
+            type="button"
+            gradient="aqua"
+            (click)="getExhibition(exhibition)"
+            rounded="true"
+            mdbWavesEffect
+          >
+            View Exhibition
+          </button>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">{{
+            exhibition.exhibitionStartDateTime | date
+          }}</small>
+        </div>
       </div>
-      <div class="card-footer">
-        <small class="text-muted">{{
-          exhibition.exhibitionStartDateTime | date
-        }}</small>
-      </div>
+      <br />
     </div>
   </div>
 </div>

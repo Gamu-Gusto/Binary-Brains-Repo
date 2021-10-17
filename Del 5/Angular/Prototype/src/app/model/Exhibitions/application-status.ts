@@ -1,4 +1,4 @@
 export class ApplicationStatus {
-    ApplicationStatusID: string;
-    ApplicationStatusDescription: string;
+  applicationStatusID: string;
+  applicationStatusDescription: string;
 }

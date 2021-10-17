@@ -18,6 +18,7 @@ import { ClassTeacher } from './model/ArtClasses/class-teacher';
 import { Payment } from './model/Payments/payment';
 import { EmailValidator } from '@angular/forms';
 import { Feedback } from './model/ArtClasses/feedback';
+import { Timer } from './model/timer';
 
 @Injectable({
   providedIn: 'root',
@@ -48,6 +49,7 @@ export class DataService {
   monthseperator: string;
   dayseperator: string;
   loginInUserData: any;
+  timerData: Timer;
 
   constructor(private http: HttpClient, private toastr: ToastrService) {}
 
@@ -57,6 +59,10 @@ export class DataService {
       'Content-Type': 'application/json',
     }),
   };
+
+  getTimer(id: number) {
+    return this.http.get(this.apiURL + '/Timer/' + id);
+  }
 
   loginUser(user) {
     let params = new HttpParams()
@@ -92,8 +98,16 @@ export class DataService {
     return this.http.get(this.apiURL + '/Artwork').toPromise();
   }
 
+  getArtClasses() {
+    return this.http.get(this.apiURL + '/ArtClass');
+  }
+
   getAllArtClasses(): Promise<any> {
     return this.http.get(this.apiURL + '/ArtClass').toPromise();
+  }
+
+  getExhibitions() {
+    return this.http.get(this.apiURL + '/Exhibition');
   }
 
   getAllExhibitions(): Promise<any> {
@@ -114,8 +128,7 @@ export class DataService {
 
   resetPassword(email): Promise<any> {
     console.log(email);
-
-    return this.http
+    http: return this.http
       .post(this.apiURL + '/Login', email, this.httpOptions)
       .toPromise();
   }
@@ -198,9 +211,8 @@ export class DataService {
   }
 
   updateUser(user) {
-
     user.profilePicture = user.base64Picture;
-    
+
     return this.http
       .put<User>(this.apiURL + '/User/' + user.userID, user, this.httpOptions)
       .toPromise();
@@ -242,13 +254,12 @@ export class DataService {
       .toPromise();
   }
 
-  cancelApplication(id) {
-    return this.http
-      .delete<any>(
-        this.apiURL + '/ExhibitionApplication/' + id,
-        this.httpOptions
-      )
-      .toPromise();
+  cancelApplication(id: number) {
+    return this.http.delete(this.apiURL + '/ExhibitionApplication/' + id);
+  }
+
+  cancelBooking(id: number) {
+    return this.http.delete(this.apiURL + '/Booking/' + id);
   }
 
   addFeedback(feedBack): Promise<any> {
@@ -267,6 +278,7 @@ export class DataService {
       price: tag.price,
       medium: tag.medium,
       exhibitionApplicationID: tag.exhibitionApplicationID,
+      exhibitionID: tag.exhibitionID,
     };
 
     console.log(tag);
@@ -302,11 +314,10 @@ export class DataService {
       .toPromise();
   }
 
-  removeTag(id){
-
+  removeTag(id) {
     return this.http
-    .delete<any>(this.apiURL + '/ApplicationTag/' + id, this.httpOptions)
-    .toPromise()
+      .delete<any>(this.apiURL + '/ApplicationTag/' + id, this.httpOptions)
+      .toPromise();
   }
 
   addClassTeacher(classteacher): Observable<ClassTeacher> {
@@ -325,31 +336,35 @@ export class DataService {
     return this.http.get(this.weatherApiURL).toPromise();
   }
 
-  getAllSurfaceType(){
+  getAllSurfaceType() {
     return this.http.get(this.apiURL + '/SurfaceType').toPromise();
   }
-  getAllMediumTypes(){
+  getAllMediumTypes() {
     return this.http.get(this.apiURL + '/MediumType').toPromise();
   }
-  getAllArtworkStatuses(){
+  getAllArtworkStatuses() {
     return this.http.get(this.apiURL + '/ArtworkStatus').toPromise();
-  } 
-  getAllDimesisons(){return this.http.get(this.apiURL + '/ArtworkDimension').toPromise();
-}
-  getAllFrameColors(){return this.http.get(this.apiURL + '/FrameColour').toPromise();}
-  getAllArtworkTypes(){return this.http.get(this.apiURL + '/ArtworkType').toPromise();}
+  }
+  getAllDimesisons() {
+    return this.http.get(this.apiURL + '/ArtworkDimension').toPromise();
+  }
+  getAllFrameColors() {
+    return this.http.get(this.apiURL + '/FrameColour').toPromise();
+  }
+  getAllArtworkTypes() {
+    return this.http.get(this.apiURL + '/ArtworkType').toPromise();
+  }
 
+  getAnnouncements() {
+    return this.http.get(this.apiURL + '/Announcement');
+  }
 
-  addArtwork(artwork): Promise<any>  {
-
+  addArtwork(artwork): Promise<any> {
     console.log(artwork);
 
     return this.http
-    .post<Artwork>(this.apiURL + '/Artwork', artwork, this.httpOptions)
-    .toPromise()
-
-
-
+      .post<Artwork>(this.apiURL + '/Artwork', artwork, this.httpOptions)
+      .toPromise();
   }
   // Error handling
   handleError(error) {

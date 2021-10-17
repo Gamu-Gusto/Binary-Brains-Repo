@@ -137,21 +137,30 @@ namespace BinaryBrainsAPI.Controllers.ExhibitionsControllers
         [HttpDelete("{id}")]
         public IActionResult Delete(long id)
         {
-            ExhibitionApplication exhibitionApplication = _appRepository.Get(id);
-            if (exhibitionApplication == null)
+            //ExhibitionApplication exhibitionApplication = _appRepository.Get(id);
+            //if (exhibitionApplication == null)
+            //{
+            //    return NotFound("The Exhibition Application does not exist.");
+            //}
+
+            //ExhibitionApplication exhibitionApplicationToUpdate = new ExhibitionApplication();
+
+            //exhibitionApplicationToUpdate = exhibitionApplication;
+
+            //exhibitionApplication.ApplicationStatusID = 4;
+
+            //_appRepository.Update(exhibitionApplication,exhibitionApplicationToUpdate);
+
+            //return Ok(exhibitionApplication);
+
+            ExhibitionApplication xhibitionApplication = _appRepository.Get(id);
+            if (xhibitionApplication == null)
             {
                 return NotFound("The Exhibition Application does not exist.");
             }
+            _appRepository.Delete(xhibitionApplication);
 
-            ExhibitionApplication exhibitionApplicationToUpdate = new ExhibitionApplication();
-
-            exhibitionApplicationToUpdate = exhibitionApplication;
-
-            exhibitionApplication.ApplicationStatusID = 4;
-
-            _appRepository.Update(exhibitionApplication,exhibitionApplicationToUpdate);
-
-            return Ok(exhibitionApplication);
+            return NoContent();
         }
 
         [HttpGet("acceptapplication/{id}")]

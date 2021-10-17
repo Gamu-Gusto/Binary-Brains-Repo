@@ -61,7 +61,7 @@ export class RefundsComponent implements OnInit {
           (paymn: Payment) => paymn.bookingID === this.listBookingID[i]
         );
 
-        console.log(this.listUserPayments);
+        console.log('CHECK', this.listUserPayments);
 
         for (let j = 0; j < this.listUserPayments.length; j++) {
           var paymmentRefundID = this.listUserPayments[j].refundID;
@@ -71,7 +71,7 @@ export class RefundsComponent implements OnInit {
           this.listRefunds.push(paymmentRefundID);
         }
 
-        console.log(this.listRefunds);
+        console.log('REFUNDS', this.listRefunds);
       }
 
       console.log(this.listBookingID);
@@ -84,7 +84,7 @@ export class RefundsComponent implements OnInit {
     });
 
     this.data.getAllRefunds().then((result) => {
-      console.log(result);
+      console.log('ReaLLL', result);
 
       this.refunds = result;
 

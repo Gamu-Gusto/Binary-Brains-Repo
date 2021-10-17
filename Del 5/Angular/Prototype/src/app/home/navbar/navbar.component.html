@@ -4,11 +4,13 @@
   [containerInside]="false"
 >
   <!-- Navbar brand -->
-  <img
+  <input
+    type="image"
     src="../../../assets/logo/artech.png"
     alt=""
     class="img-fluid rounded-circle z-depth-0"
     style="width: 5%"
+    [routerLink]="['welcome']"
   />
   <!-- Collapsible content -->
   <links>
@@ -51,7 +53,7 @@
 
     <ul class="navbar-nav ml-auto nav-flex-icons">
       <ng-container *ngIf="show">
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a
             class="nav-link waves-light"
             [routerLink]="['my-bookings/bookings']"
@@ -59,7 +61,7 @@
             mdbWavesEffect
             >My Invitations</a
           >
-        </li>
+        </li> -->
         <li class="nav-item">
           <a
             class="nav-link waves-light"

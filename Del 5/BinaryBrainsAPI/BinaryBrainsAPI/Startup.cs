@@ -75,6 +75,7 @@ namespace BinaryBrainsAPI
             services.AddScoped<IImageRepository<Image>, ImagesRepository>();
             services.AddScoped<IIdentifier<User>, UserLoginRepository>();
             services.AddScoped<IAppRepository<Announcement>, AnnouncementRepository>();
+            services.AddScoped<IAppRepository<Timer>, TimerRepository>();
 
 
             // Exhibition Repositories

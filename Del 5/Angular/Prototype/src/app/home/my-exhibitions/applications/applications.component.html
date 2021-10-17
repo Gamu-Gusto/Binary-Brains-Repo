@@ -25,7 +25,7 @@
           <div class="image-card">
             <img
               class="card-img-top"
-              src="{{ application.exhibitionApplicationImage1 }}"
+              src="{{ application.exhibition.exhibitionImage }}"
               alt="Card image cap"
             />
           </div>
@@ -34,7 +34,7 @@
         <td>{{ application.exhibition.exhibitionName }}</td>
 
         <td>
-            <button mdbBtn type="button" gradient="peach" rounded="true" *ngIf="application.applicationStatusID =='1'" mdbWavesEffect (click)="cancelApplication(cancelApplicationModal)">Withdraw <i class="fas fa-sign-out-alt"></i></button>
+          {{ application.applicationStatus.applicationStatusDescription }}
         </td>
 
         <td>
@@ -43,7 +43,7 @@
             type="button"
             gradient="peach"
             rounded="true"
-            *ngIf="application.applicationStatusID != '4'"
+            *ngIf="application.applicationStatusID == '1'"
             mdbWavesEffect
             (click)="cancelApplication(cancelApplicationModal)"
           >
@@ -124,7 +124,7 @@
         mdbBtn
         type="button"
         gradient="purple"
-        (click)="confirmCancel(cancelApplicationModal, application)"
+        (click)="confirmCancel(application.exhibitionApplicationID)"
         rounded="true"
         mdbWavesEffect
       >
@@ -133,3 +133,14 @@
     </div>
   </ng-template>
 </div>
+<!-- <button
+            mdbBtn
+            type="button"
+            gradient="peach"
+            rounded="true"
+            *ngIf="application.applicationStatusID != '4'"
+            mdbWavesEffect
+            (click)="cancelApplication(cancelApplicationModal)"
+          >
+            Withdraw <i class="fas fa-sign-out-alt"></i>
+          </button> -->

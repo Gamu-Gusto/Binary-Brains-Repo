@@ -9,110 +9,82 @@ import { ExhibitionApplication } from '../../../model/Exhibitions/exhibition-app
 @Component({
   selector: 'app-applications',
   templateUrl: './applications.component.html',
-  styleUrls: ['./applications.component.scss']
+  styleUrls: ['./applications.component.scss'],
 })
 export class ApplicationsComponent implements OnInit {
-  
-listMyApplication:any;
-listAllApplications: any;
+  listMyApplication: any;
+  listAllApplications: any;
   loggedInUser: any;
   cancelModal: any;
 
-  constructor(private route: Router, private modalService: NgbModal, private toastr: ToastrService, public data: DataService
-    , private formBuilder: FormBuilder, private fb: FormBuilder) { }
+  constructor(
+    private route: Router,
+    private modalService: NgbModal,
+    private toastr: ToastrService,
+    public data: DataService,
+    private formBuilder: FormBuilder,
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit(): void {
-
-    this.data.getApplications().then((result) => { 
-       
+    this.data.getApplications().then((result) => {
       console.log(result);
 
-      this.listAllApplications = result
+      this.listAllApplications = result;
 
       this.loggedInUser = JSON.parse(localStorage.getItem('LoggedinUser'));
 
-      console.log(this.loggedInUser );
-    
-      this.listMyApplication  =this.listAllApplications.filter((application: ExhibitionApplication) => application.userID === this.loggedInUser.userID);
+      console.log(this.loggedInUser);
 
-      localStorage.setItem('UserApplications',JSON.stringify(this.listMyApplication));
-     
+      this.listMyApplication = this.listAllApplications.filter(
+        (application: ExhibitionApplication) =>
+          application.userID === this.loggedInUser.userID
+      );
 
-      console.log(this.listMyApplication );
+      localStorage.setItem(
+        'UserApplications',
+        JSON.stringify(this.listMyApplication)
+      );
 
+      console.log(this.listMyApplication);
     });
-    
   }
 
   cancelApplication(cancelApplicationModal) {
     this.modalService.open(cancelApplicationModal, { centered: true });
-
   }
 
-  confirmCancel(cancelApplicationModal,application){
+  confirmCancel(id: number) {
     // this.route.navigate(['/home/art-classes']);
 
+    this.data.cancelApplication(id).subscribe((res) => {
+      this.modalService.dismissAll();
+      this.toastr.success('Successfully withdrawn', 'Success');
+      this.ngOnInit();
 
-    this.data.cancelApplication(application.exhibitionApplicationID).then(success => {
+      this.route.navigate(['/home/my-exhibitions/applications']);
+    }),
+      (error) => {
+        console.log(error.error);
+        this.toastr.error('Coudl Not Withdraw', 'Success');
 
-      this.toastr.success("Application has been cancelled", 'Success', {
-          disableTimeOut: false,
-          tapToDismiss: false,
-          closeButton: true,
-          positionClass: 'toast-top-full-width',
-
-
-
-        });
-        this.modalService.dismissAll(cancelApplicationModal);
-
-        this.ngOnInit();
-
-        this.route.navigate(['/home/my-exhibitions/applications']);
-
-      }).catch(error => {
-
-  console.log(error.error);
-
-        this.toastr.error(error.error, 'Error', {
-          disableTimeOut: false,
-          tapToDismiss: false,
-          closeButton: true,
-          positionClass: 'toast-top-full-width',
-          enableHtml: true
-
-        });
-
-        this.modalService.dismissAll(cancelApplicationModal);
+        this.modalService.dismissAll();
 
         this.ngOnInit();
 
         this.route.navigate(['/home/my-exhibitions/applications']);
-
-      });
-
-
-
+      };
   }
 
-  selectedApp(application){
-
-    localStorage.setItem('SelectedApplication',JSON.stringify(application));
-
-
+  selectedApp(application) {
+    localStorage.setItem('SelectedApplication', JSON.stringify(application));
 
     this.route.navigate(['/home/my-exhibitions/my-application']);
-  };
-
-  generateTag(application){
-
-
-    localStorage.setItem('SelectedApplication',JSON.stringify(application));
-
-
-
-    this.route.navigate(['/home/my-exhibitions/generate-tags']);
-
   }
 
+  generateTag(application) {
+    localStorage.setItem('SelectedApplication', JSON.stringify(application));
+
+    this.route.navigate(['/home/my-exhibitions/generate-tags']);
+  }
 }

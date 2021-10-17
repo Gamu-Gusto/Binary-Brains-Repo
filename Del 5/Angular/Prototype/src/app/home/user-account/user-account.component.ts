@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
@@ -19,7 +19,7 @@ export class UserAccountComponent implements OnInit {
   formSubmitted: boolean;
   loggedInUser: any;
   picture1base64: any;
-  base64picture:any;
+  base64picture: any;
   imageError: string;
   cardImageBase64: any;
   url: any;
@@ -33,8 +33,21 @@ export class UserAccountComponent implements OnInit {
     private formBuilder: FormBuilder
   ) {}
 
+  error_messages = {
+    userFirstName: [{ type: 'required', message: 'First Name is required' }],
+
+    userEmail: [
+      { type: 'required', message: 'Email is required.' },
+      { type: 'email', message: 'Enter a valid email' },
+    ],
+    userPhoneNumber: [
+      { type: 'required', message: 'Phone Number is required.' },
+      { type: 'email', message: 'Only numeric values' },
+    ],
+    userLastName: [{ type: 'required', message: 'Last name is required' }],
+  };
+
   ngOnInit(): void {
-    
     this.user = JSON.parse(localStorage.getItem('LoggedinUser'));
 
     this.userAccountForm = this.formBuilder.group({
@@ -44,17 +57,26 @@ export class UserAccountComponent implements OnInit {
       userAddressLine1: [''],
       userAddressLine2: [''],
       userDOB: [''],
-      userEmail: [''],
-      userFirstName: [''],
+      userEmail: [
+        '',
+        Validators.compose([Validators.required, Validators.email]),
+      ],
+      userFirstName: ['', Validators.required],
       userID: [''],
-      userLastName: [''],
+      userLastName: ['', Validators.required],
       userName: [''],
       userPassword: [''],
-      userPhoneNumber: [''],
+      userPhoneNumber: [
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.pattern('^[0-9]*$'),
+        ]),
+      ],
       userPostalCode: [''],
       userTypeID: [''],
-      profilePicture:[''],
-      base64Picture:[''],
+      profilePicture: [''],
+      base64Picture: [''],
     });
 
     this.imageForm = this.formBuilder.group({
@@ -63,7 +85,7 @@ export class UserAccountComponent implements OnInit {
       ImageTypeID: [''],
       UserID: [''],
     });
-this.cardImageBase64 = this.user.profilePicture;
+    this.cardImageBase64 = this.user.profilePicture;
     this.userAccountForm.patchValue(this.user);
 
     console.log(this.userAccountForm.value);
@@ -126,90 +148,77 @@ this.cardImageBase64 = this.user.profilePicture;
   fileChangeEvent(fileInput: any) {
     this.imageError = null;
     if (fileInput.target.files && fileInput.target.files[0]) {
-        // Size Filter Bytes
-        const max_size = 20971520;
-        const allowed_types = ['image/png', 'image/jpeg'];
-        const max_height = 15200;
-        const max_width = 25600;
+      // Size Filter Bytes
+      const max_size = 20971520;
+      const allowed_types = ['image/png', 'image/jpeg'];
+      const max_height = 15200;
+      const max_width = 25600;
 
-        console.log(fileInput.target.files[0]);
+      console.log(fileInput.target.files[0]);
 
-        if (fileInput.target.files[0].size > max_size) {
+      if (fileInput.target.files[0].size > max_size) {
+        this.imageError = 'Maximum size allowed is ' + max_size / 1000 + 'Mb';
+
+        return false;
+      }
+
+      const reader = new FileReader();
+
+      reader.onload = (e: any) => {
+        const image = new Image();
+        image.src = e.target.result;
+
+        console.log(reader.result);
+        this.picture1base64 = reader.result.toString();
+        image.onload = (rs) => {
+          const img_height = rs.currentTarget['height'];
+          const img_width = rs.currentTarget['width'];
+
+          console.log(img_height, img_width);
+
+          if (img_height > max_height && img_width > max_width) {
             this.imageError =
-                'Maximum size allowed is ' + max_size / 1000 + 'Mb';
-
+              'Maximum dimentions allowed ' +
+              max_height +
+              '*' +
+              max_width +
+              'px';
             return false;
-        }
-
-    
-        const reader = new FileReader();
-        
-        reader.onload = (e: any) => {
-            const image = new Image();
-            image.src = e.target.result;
-
-            console.log(reader.result);
-            this.picture1base64 = reader.result.toString();
-            image.onload = rs => {
-                const img_height = rs.currentTarget['height'];
-                const img_width = rs.currentTarget['width'];
-
-                console.log(img_height, img_width);
- 
-
-                if (img_height > max_height && img_width > max_width) {
-                    this.imageError =
-                        'Maximum dimentions allowed ' +
-                        max_height +
-                        '*' +
-                        max_width +
-                        'px';
-                    return false;
-                } else {
-                    const imgBase64Path = e.target.result;
-                    this.cardImageBase64 = imgBase64Path;
-                    this.isImageSaved = true;
-                    // this.previewImagePath = imgBase64Path;
-                }
-            };
+          } else {
+            const imgBase64Path = e.target.result;
+            this.cardImageBase64 = imgBase64Path;
+            this.isImageSaved = true;
+            // this.previewImagePath = imgBase64Path;
+          }
         };
+      };
 
-        
+      reader.readAsDataURL(fileInput.target.files[0]);
 
-reader.readAsDataURL(fileInput.target.files[0]);
+      //me.modelvalue = reader.result;
 
-  //me.modelvalue = reader.result;
-  
-
-
-
-console.log(this.picture1base64 );
-
-    
-
-       
-    }
-}
-
-onSelectFile(event) {
-
-  if (event.target.files && event.target.files[0]) {
-    var reader = new FileReader();
-
-    reader.readAsDataURL(event.target.files[0]); // read file as data url
-
-    reader.onload = (event: any) => { // called once readAsDataURL is completed
-      this.url = event.target.result;
+      console.log(this.picture1base64);
     }
   }
 
-}
+  onSelectFile(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
 
-removeImage() {
-  this.cardImageBase64 = null;
-  this.isImageSaved = false;
-  this.picture1base64 = undefined;
-}
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event: any) => {
+        // called once readAsDataURL is completed
+        this.url = event.target.result;
+      };
+    }
+  }
+
+  removeImage() {
+    this.cardImageBase64 = null;
+    this.isImageSaved = false;
+    this.picture1base64 = undefined;
+  }
 
   backHome(event) {
     console.log(this.userAccountForm.value);

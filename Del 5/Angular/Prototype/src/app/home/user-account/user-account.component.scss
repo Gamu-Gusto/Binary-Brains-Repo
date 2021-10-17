@@ -18,6 +18,9 @@ h1 {
 button {
   border-radius: 10px;
 }
+.success {
+  color: rgb(7, 201, 7);
+}
 
 .profile-card {
   padding-left: 100px;
@@ -32,7 +35,7 @@ button {
   padding-left: 50px;
 }
 
-.card-img-top{
+.card-img-top {
   width: 300px;
   height: 300px;
 }
@@ -54,7 +57,7 @@ button {
   height: auto;
   width: 100%;
   padding: 10px;
-  min-height:175px;
+  min-height: 175px;
 }
 
 .img-space img {
@@ -77,7 +80,7 @@ button {
   z-index: 99;
   opacity: 0;
 }
-.fileInputProfile[disabled] + .img-space{
+.fileInputProfile[disabled] + .img-space {
   pointer-events: none;
-  cursor: not-allowed!important;
+  cursor: not-allowed !important;
 }

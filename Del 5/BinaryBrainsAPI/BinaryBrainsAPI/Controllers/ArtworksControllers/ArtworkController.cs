@@ -52,26 +52,26 @@ namespace BinaryBrainsAPI.Controllers.ArtworksControllers
 
              IEnumerable<Artwork> artworks = _appRepository.GetAll();
 
-            foreach (Artwork i in artworks)
-            {
-             User user = _userRepository.Get((long)i.UserID);
-             SurfaceType surfaceType = _surfaceTypeRepository.Get((long)i.SurfaceTypeID);
-            MediumType mediumType = _mediumTypeRepository.Get((long)i.MediumTypeID);
-            ArtworkStatus artworkStatus = _artworkStatusRepository.Get((long)i.ArtworkStatusID);
-            ArtworkDimension artworkDimension = _artworkDimesionRepository.Get((long)i.ArtworkDimensionID);
-            ArtworkType artworkType = _artworkTypeRepository.Get((long)i.ArtworkTypeID);
-               //Image image = _imageRepository.Get((long)i.ImageID);
+            //foreach (Artwork i in artworks)
+            //{
+            // User user = _userRepository.Get((long)i.UserID);
+            // SurfaceType surfaceType = _surfaceTypeRepository.Get((long)i.SurfaceTypeID);
+            //MediumType mediumType = _mediumTypeRepository.Get((long)i.MediumTypeID);
+            //ArtworkStatus artworkStatus = _artworkStatusRepository.Get((long)i.ArtworkStatusID);
+            //ArtworkDimension artworkDimension = _artworkDimesionRepository.Get((long)i.ArtworkDimensionID);
+            //ArtworkType artworkType = _artworkTypeRepository.Get((long)i.ArtworkTypeID);
+            //   //Image image = _imageRepository.Get((long)i.ImageID);
 
-             i.User = user;
-             i.SurfaceType = surfaceType;
-             i.MediumType = mediumType;
-            i.ArtworkStatus = artworkStatus;
-             i.ArtworkDimension = artworkDimension;
-             i.ArtworkType = artworkType;
+            // i.User = user;
+            // i.SurfaceType = surfaceType;
+            // i.MediumType = mediumType;
+            //i.ArtworkStatus = artworkStatus;
+            // i.ArtworkDimension = artworkDimension;
+            // i.ArtworkType = artworkType;
             //i.Image = image;
 
 
-            }
+            //}
             
 
             return Ok(artworks);

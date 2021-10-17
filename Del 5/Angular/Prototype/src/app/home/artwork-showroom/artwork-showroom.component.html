@@ -6,10 +6,10 @@
       alt=""
       style="width: 900px; height: 300px"
     />
-    <div class="top-right"><h1>Artist Artworks</h1></div>
+    <div class="top-right"><h1>Artworks Showroom</h1></div>
   </div>
   <hr />
- 
+
   <ng-container *ngIf="show">
     <ng-container *ngIf="allart">
       <button
@@ -38,40 +38,43 @@
         View All Artwork
       </button>
     </ng-container>
-    <ng-container >
-      <div style="float: right;">
-      <button
-        mdbBtn
-        type="button"
-        gradient="purple"
-        rounded="true"
-        mdbWavesEffect
-        (click)="addArtwork()"
-        mdbWavesEffect
-      >
-        Add Artwork
-      </button>
-    </div>
+    <ng-container>
+      <div style="float: right">
+        <button
+          mdbBtn
+          type="button"
+          gradient="purple"
+          rounded="true"
+          mdbWavesEffect
+          (click)="addArtwork()"
+          mdbWavesEffect
+        >
+          Add Artwork
+        </button>
+      </div>
     </ng-container>
   </ng-container>
+  <hr />
 
   <div class="card-deck" style="width: auto">
     <div
-      class="card"
+      class="col-4"
       *ngFor="let artwork of listArtwork; let indexofElementc = index"
     >
-      <img src="{{ artwork.artworkImage }}" class="card-img-top" alt="..." />
-      <div class="card-body">
-        <h5 class="card-title">{{ artwork.artworkTitle }}</h5>
-        <p class="card-text">
-          <li>Medium: {{ artwork.mediumType.mediumTypeName }}</li>
-          <li>Surface: {{ artwork.surfaceType.surfaceTypeName }}</li>
-          <li>
-            Dimensions:
-            {{ artwork.artworkDimension.artworkDimensionDescription }}
-          </li>
-          <li>Price: {{ artwork.artworkPrice }}</li>
-        </p>
+      <div class="card">
+        <img src="{{ artwork.artworkImage }}" class="card-img-top" alt="..." />
+        <div class="card-body">
+          <h3 class="card-title">{{ artwork.artworkTitle }}</h3>
+          <p class="card-text">
+            <li>Medium: {{ artwork.mediumType.mediumTypeName }}</li>
+            <li>Surface: {{ artwork.surfaceType.surfaceTypeName }}</li>
+            <li>
+              Dimensions:
+              {{ artwork.artworkDimension.artworkDimensionDescription }}
+            </li>
+            <li>Price: {{ artwork.artworkPrice }}</li>
+          </p>
+        </div>
       </div>
     </div>
   </div>

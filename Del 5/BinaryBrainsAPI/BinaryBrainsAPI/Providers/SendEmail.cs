@@ -18,8 +18,8 @@ namespace BinaryBrainsAPI.Providers
             {
                 mail.Subject = "Artec Reset Password Link";
                 mail.Body = " We receive a request from you to reset your password." +
-                    "Please use this link to complete the process: http://localhost:4200/new-password." +
-                    "If you did not please contact the admin!!";
+                    "Please use this link to complete the process: http://localhost:4200/new-password " +
+                    " If you did not please contact the admin!!";
             }
 
             else if (sourcemethod == "verify")

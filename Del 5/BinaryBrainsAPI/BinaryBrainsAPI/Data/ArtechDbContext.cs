@@ -76,6 +76,7 @@ namespace BinaryBrainsAPI.Data
         public DbSet<Country> Country { get; set; }
         public DbSet<Privileges> Privileges { get; set; }
         public DbSet<Announcement> Announcement { get; set; }
+        public DbSet<Timer> Timer { get; set; }
         
 
         // Artists

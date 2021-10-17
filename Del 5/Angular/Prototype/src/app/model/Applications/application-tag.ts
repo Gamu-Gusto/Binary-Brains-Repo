@@ -1,9 +1,11 @@
-export class ApplicationTag {
+import { Exhibition } from '../Exhibitions/exhibition';
 
-    applicationTagID:  string;
-    applicationArtworkTitle:  string;
-    medium:  string;
-    applicationDimension: string;
-    price:  string;
-    exhibitionApplicationID:  string;
+export class ApplicationTag {
+  applicationTagID: string;
+  applicationArtworkTitle: string;
+  medium: string;
+  applicationDimension: string;
+  price: string;
+  exhibitionApplicationID: string;
+  exhibitionID: string;
 }
